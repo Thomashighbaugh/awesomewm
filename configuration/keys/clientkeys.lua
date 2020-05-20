@@ -4,7 +4,7 @@
 -- Standard Awesome library
 local gears = require("gears")
 local awful = require("awful")
-
+local helpers = require("configuration.helpers")
 local _M = {}
 local modkey = RC.vars.modkey
 
@@ -14,23 +14,35 @@ function _M.get()
   local clientkeys = gears.table.join(
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-    -- Original Example Key Bindings
-    awful.key({ modkey,           }, "f",
-      function (c)
-        c.fullscreen = not c.fullscreen
-        c:raise()
-      end,
-      {description = "toggle fullscreen", group = "Client"}),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
-              {description = "close",group = "Client"}),
+    awful.key({ modkey, "Shift" }, "Down", function (c)
+        helpers.move_client_dwim(c, "down")
+    end),
+    awful.key({ modkey, "Shift" }, "Up", function (c)
+        helpers.move_client_dwim(c, "up")
+    end),
+    awful.key({ modkey, "Shift" }, "Left", function (c)
+        helpers.move_client_dwim(c, "left")
+    end),
+    awful.key({ modkey, "Shift" }, "Right", function (c)
+        helpers.move_client_dwim(c, "right")
+    end),
+
+  
+    awful.key({ modkey,   }, "c",      function (c) c:kill()                         end,
+    {description = "close",group = "Client"}),
+  
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating",group = "Client"}),
+  
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master",group = "Client"}),
+
     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
               {description = "move to screen",group = "Client"}),
+
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top",group = "Client"}),
+
     awful.key({ modkey,           }, "n",
       function (c)
         -- The client currently has the input focus, so it cannot be

@@ -17,6 +17,5 @@ function run {
 ## Hitting Left Super == L Super + L Control + Escape (for rofi)
 run xcape -e 'Super_L=Super_L|Control_L|Escape'
 
-run feh --bg-fill ~/.backgrounds/vice.png
 ## Compositor
 run picom

@@ -17,7 +17,7 @@ dofile(theme_path .. "default.lua")
 dofile(theme_path .. "titlebar.lua")
 dofile(theme_path .. "layouts.lua")
 
-theme.wallpaper          = theme_path .. "background3.png"
+theme.wallpaper          = "/home/tlh/Vice-Base16/Vice-Kali-Yantra.png"
 theme.awesome_icon       = theme_path .. "launcher/awesome.png"
 theme.awesome_subicon    = theme_path .. "launcher/awesome.png"
 
