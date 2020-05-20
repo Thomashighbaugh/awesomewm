@@ -15,6 +15,7 @@ local modkey = RC.vars.modkey
 local terminal = RC.vars.terminal
 local browser = RC.vars.browser
 local file_manager = RC.vars.file_manager
+local helpers = require("configuration.helpers")
 require ("widgets.quake-terminal")
 local _M = {}
 
@@ -44,8 +45,6 @@ function _M.get()
         end,
         {description = "Focus Previous By Index", group = "Client"}
     ),
-    awful.key({ modkey,           }, "Delete", function () awful.spawn.with_shell("menu_power") end,
-              {description = "Display Power Menu", group = "Launcher"}),
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Layout manipulation
@@ -67,8 +66,6 @@ function _M.get()
 
       awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "Launch Terminal", group = 'Launcher'}),
-    awful.key({ modkey,           }, "b", function () awful.spawn(browser) end,
-              {description = "Launch Internet Browser", group = 'Launcher'}),
 
     awful.key({ modkey,           }, "r", awesome.restart,
               {description = "Reload Awesome", group = 'Launcher'}),
@@ -80,51 +77,88 @@ function _M.get()
 
     -- Custom Launchers
     -- note: these are provided by ~/bin executables
-       awful.key({ modkey,           }, "Escape", function () awful.spawn.with_shell("powermenu") end,
-                 {description = "Launch System Power Menu", group = 'Launcher'}),
-      -- Dropdown application
+
+-- Print Screen
+       awful.key({ modkey,           }, "Print", function () awful.spawn.with_shell("menu_screenshot") end,
+                 {description = "Launch Screenshot Menu", group = 'Launcher'}),
+-- Power Menu
+        awful.key({ modkey,           }, "Delete", function () awful.spawn.with_shell("menu_power") end,
+              {description = "Display Power Menu", group = "Launcher"}),
+
+-- Dropdown application
+	--Note: this is internal to Rofi and is configured in Lua
       awful.key({modkey,        }, '`', function() toggle_quake() end,
           {description = 'Toggle Terminal Dropdown', group = 'Launcher'}),
 
-      awful.key({ modkey,           }, "F1",      hotkeys_popup.show_help,
+-- Builtin Keybinding Help Dialog 
+      awful.key({ modkey,           }, "Insert",      hotkeys_popup.show_help,
           {description="Display Keybindings", group='Launcher'}),
-    awful.key({ modkey,           }, "F2", function () awful.spawn(file_manager) end,
-              {description = "Launch File Manager", group = 'Launcher'}),
-       awful.key({ modkey,           }, "F3", function () awful.spawn.with_shell("menu_screenshot") end,
-                 {description = "Launch Screenshot Menu", group = 'Launcher'}),
-          awful.key({ modkey,           }, "F4", function()    start_screen_show() end,
+
+-- Start Screen 
+          awful.key({ modkey,           }, "F1", function()    start_screen_show() end,
                  {description = "Display Start Screen", group = 'Launcher'}),
-                 awful.key({ modkey,           }, "F5", function()    awful.spawn.with_shell("monitor_layout") end,
+
+-- Start Screen 
+          awful.key({ modkey, "Control"           }, "F1", function()  awful.spawn.with_shell("menu_apps") end,
+                 {description = "Display Start Screen", group = 'Launcher'}),
+                 
+--Browser Launch                 
+    awful.key({ modkey,           }, "F2", function () awful.spawn(browser) end,
+              {description = "Launch Internet Browser", group = 'Launcher'}),
+
+--Alternative Browser Launch                 
+    awful.key({ modkey, "Shift" }, "F2", function () awful.spawn("basilisk") end,
+              {description = "Launch Alternative Internet Browser", group = 'Launcher'}),
+
+--File Manager
+    awful.key({ modkey,           }, "F3", function () awful.spawn(file_manager) end,
+              {description = "Launch File Manager", group = 'Launcher'}),
+-- Terminal File Manager
+    awful.key({ modkey, "Control" }, "F3", function () awful.spawn("ranger") end,
+              {description = "Launch Terminal File Manager", group = 'Launcher'}),
+
+-- Font Awesome Clipboard
+                 awful.key({ modkey,           }, "F4", function()    awful.spawn.with_shell("fa-rofi") end,
+                 {description = "Copy Font-Awesome Icons to Clipboard", group = 'Launcher'}),
+
+                      awful.key({ modkey,"Control"           }, "F4", function()    awful.spawn.with_shell("emojipick") end,
+                 {description = "Copy Emojis to Clipboard", group = 'Launcher'}),
+
+
+                 awful.key({ modkey,           }, "F5", function()    awful.spawn.with_shell("sudo picom -b && notify-send 'Compton Activated'") end,
                  {description = "Display Brightness Menu", group = 'Launcher'}),
-                 awful.key({ modkey,           }, "F7", function()    awful.spawn.with_shell("fa-rofi") end,
-                 {description = "Copy Font-Awesome Icons to Clipboard", group = 'Launcher'}),
-                      awful.key({ modkey,"Control"           }, "F7", function()    awful.spawn.with_shell("emojipick") end,
-                 {description = "Copy Font-Awesome Icons to Clipboard", group = 'Launcher'}),
-                 awful.key({ modkey,           }, "F8", function () awful.spawn.with_shell("networkmenu") end,
+
+
+                 awful.key({ modkey, "Control"           }, "F5", function()    awful.spawn.with_shell("sudo pkill picom  && notify-send 'Compton Deactivated'") end,
+                 {description = "Display Brightness Menu", group = 'Launcher'}),
+
+
+                 awful.key({ modkey,           }, "F8", function () awful.spawn.with_shell("menu_network") end,
                  {description = "Launch Network Manager Menu", group = 'Launcher'}),
-                 awful.key({ modkey,           }, "F9", function () awful.spawn.with_shell("terminator") end,
-                 {description = "View Processes and Terminate As Necessary", group = 'Launcher'}),
-                 awful.key({ modkey,           }, "F9", function () awful.spawn.with_shell("menu_network") end,
-                 {description = "View Processes and Terminate As Necessary", group = 'Launcher'}),
+
+
     -- Layout manipulation
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "Increase Width Factor", group = "Layout"}),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
               {description = "Decrease Width Factor", group = "Layout"}),
+    
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = "Increase the Number of Master Clients", group = "Layout"}),
     awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
               {description = "Decrease the Number of Master Clients", group = "Layout"}),
+    
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)    end,
               {description = "Increase the Number of Columns", group = "Layout"}),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
               {description = "Decrease the Number of Columns", group = "Layout"}),
+    
     awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
               {description = "Select Next", group = "Layout"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
               {description = "Select Previous", group = "Layout"}),
-
-    awful.key({ modkey, "Control" }, "n",
+-- Minimize Windows 
+    awful.key({ modkey,          }, "n",
               function ()
                   local c = awful.client.restore()
                   -- Focus restored client
@@ -137,33 +171,23 @@ function _M.get()
               {description = "Restore Minimized", group = "Client"}),
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-    -- Prompt
-    awful.key({ modkey, "Control" },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-              {description = "Run Prompt", group = 'Launcher'}),
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Resize
     --awful.key({ modkey, "Control" }, "Left",  function () awful.client.moveresize( 20,  20, -40, -40) end),
     --awful.key({ modkey, "Control" }, "Right", function () awful.client.moveresize(-20, -20,  40,  40) end),
-    awful.key({ modkey, "Control" }, "Down",  
-              function () awful.client.moveresize( 0, 0, 0, -20) end),
-    awful.key({ modkey, "Control" }, "Up",    
-              function () awful.client.moveresize( 0, 0, 0,  20) end),
-    awful.key({ modkey, "Control" }, "Left",  
-              function () awful.client.moveresize( 0, 0, -20, 0) end),
-    awful.key({ modkey, "Control" }, "Right", 
-              function () awful.client.moveresize( 0, 0,  20, 0) end),
-
-    -- Move
-    awful.key({ modkey, "Shift"   }, "Down",  
-              function () awful.client.moveresize(  0,  20,   0,   0) end),
-    awful.key({ modkey, "Shift"   }, "Up",    
-              function () awful.client.moveresize(  0, -20,   0,   0) end),
-    awful.key({ modkey, "Shift"   }, "Left",  
-              function () awful.client.moveresize(-20,   0,   0,   0) end),
-    awful.key({ modkey, "Shift"   }, "Right", 
-              function () awful.client.moveresize( 20,   0,   0,   0) end),
-
+    awful.key({ modkey, "Control"	 }, "Down", function (c)
+        helpers.resize_dwim(client.focus, "down")
+    end),
+    awful.key({ modkey, "Control" }, "Up", function (c)
+        helpers.resize_dwim(client.focus, "up")
+    end),
+    awful.key({ modkey, "Control" }, "Left", function (c)
+        helpers.resize_dwim(client.focus, "left")
+    end),
+    awful.key({ modkey, "Control" }, "Right", function (c)
+        helpers.resize_dwim(client.focus, "right")
+    end),
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
