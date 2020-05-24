@@ -15,7 +15,7 @@ function run {
 
 
 ## Hitting Left Super == L Super + L Control + Escape (for rofi)
-run xcape -e 'Super_L=Super_L|Control_L|Escape'
+run xcape -e "Super_L=Super_L|Control_L|Escape"
 
 ## Compositor
 run picom
