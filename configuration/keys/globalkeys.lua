@@ -9,7 +9,6 @@ local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Menubar library
 local menubar = require("menubar")
-local start_screen = require("widgets.start_screen")
 -- Resource Configuration
 local modkey = RC.vars.modkey
 local terminal = RC.vars.terminal
@@ -19,7 +18,6 @@ local helpers = require("configuration.helpers")
 require ("widgets.quake-terminal")
 local _M = {}
 
--- reading @TODO add to wiki
 -- https://awesomewm.org/wiki/Global_Keybindings
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
