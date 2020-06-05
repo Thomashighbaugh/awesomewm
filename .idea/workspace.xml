@@ -1,114 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="5615fc34-0def-484c-9d62-65b3f96f5a59" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/keys/global.lua" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/keys/init.lua" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/keys/mod.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autorun.sh" beforeDir="false" afterPath="$PROJECT_DIR$/autorun.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/awesome-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/browser.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/chromium-browser.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/file-manager.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/firefox-mozilla.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/gimp.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/inkscape.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/keyboard-alt1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/menu.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/network.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/pencil2d.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/power.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/spacemacs.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/terminal-alt1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/terminal-alt2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/terminal-alt3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/terminal-alt4.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/terminus.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/icons/Suru/webstorm.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/layouts/default-white/cornerne.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/layouts/default-white/cornernw.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/layouts/default-white/cornerse.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/layouts/default-white/dwindle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/layouts/default-white/fairh.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/layouts/default-white/fairv.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/layouts/default-white/floating.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/layouts/default-white/fullscreen-old.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/layouts/default-white/fullscreen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/layouts/default-white/magnifier.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/layouts/default-white/max.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/layouts/default-white/spiral.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/layouts/default-white/tilebottom.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/layouts/default-white/tileleft.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/layouts/default-white/tiletop.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/close_focus.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/close_focus_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/close_normal.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/close_normal_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/floating_focus_active.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/floating_focus_active_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/floating_focus_inactive.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/floating_focus_inactive_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/floating_normal_active.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/floating_normal_active_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/floating_normal_inactive.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/floating_normal_inactive_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/maximized_focus_active.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/maximized_focus_active_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/maximized_focus_inactive.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/maximized_focus_inactive_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/maximized_normal_active.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/maximized_normal_active_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/maximized_normal_inactive.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/maximized_normal_inactive_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/minimize_focus.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/minimize_focus_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/minimize_normal.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/minimize_normal_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/ontop_focus_active.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/ontop_focus_active_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/ontop_focus_inactive.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/ontop_focus_inactive_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/ontop_normal_active.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/ontop_normal_active_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/ontop_normal_inactive.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/ontop_normal_inactive_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/sticky_focus_active.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/sticky_focus_active_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/sticky_focus_inactive.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/sticky_focus_inactive_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/sticky_normal_active.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/sticky_normal_active_hover.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/sticky_normal_inactive.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/dhumavati/titlebar/default/sticky_normal_inactive_hover.svg" beforeDir="false" />
-    </list>
+    <list default="true" id="33c15ce8-d76c-49f5-b9fb-6dec8034f4d5" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/configuration/rofi/screenshot/screenshot.rasi" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/configuration/rofi/appmenu/rofi.rasi" root0="SKIP_HIGHLIGHTING" />
   </component>
-  <component name="ProjectId" id="1cArmfD2qwwflM5VX0Dh1LSeGt9" />
+  <component name="ProjectId" id="1cQBC9RBq2g7AnIV9iMnaF9zqOs" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -117,55 +21,175 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Bash&#10;Lua" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/the-glorious-dotfiles-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.splitter.proportion" value="0.32258064" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/configuration/rofi/screenshot" />
+      <recent name="$PROJECT_DIR$/theme/icons" />
+      <recent name="$PROJECT_DIR$/widgets" />
+      <recent name="$PROJECT_DIR$/configuration" />
       <recent name="$PROJECT_DIR$" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/theme/icons" />
+      <recent name="$PROJECT_DIR$/theme/icons/drops" />
+      <recent name="$PROJECT_DIR$/theme/icons/titlebar" />
+      <recent name="$PROJECT_DIR$/theme/layouts" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Bash.lines.sh">
+    <configuration name="lines.sh (1)" type="BashConfigurationType" factoryName="Bash" temporary="true">
+      <module name="awesome" />
+      <option name="INTERPRETER_OPTIONS" value="bash" />
+      <option name="INTERPRETER_PATH" value="/usr/bin/env" />
+      <option name="PROJECT_INTERPRETER" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/theme/icons/titlebar" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/theme/icons/titlebar/lines.sh" />
+      <option name="PARAMETERS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="lines.sh (2)" type="BashConfigurationType" factoryName="Bash" temporary="true">
+      <module name="awesome" />
+      <option name="INTERPRETER_OPTIONS" value="bash" />
+      <option name="INTERPRETER_PATH" value="/usr/bin/env" />
+      <option name="PROJECT_INTERPRETER" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/theme/icons" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/theme/icons/lines.sh" />
+      <option name="PARAMETERS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="lines.sh (3)" type="BashConfigurationType" factoryName="Bash" temporary="true">
+      <module name="awesome" />
+      <option name="INTERPRETER_OPTIONS" value="bash" />
+      <option name="INTERPRETER_PATH" value="/usr/bin/env" />
+      <option name="PROJECT_INTERPRETER" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/theme/icons/layouts" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/theme/icons/layouts/lines.sh" />
+      <option name="PARAMETERS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="lines.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
+      <module name="awesome" />
+      <option name="INTERPRETER_OPTIONS" value="bash" />
+      <option name="INTERPRETER_PATH" value="/usr/bin/env" />
+      <option name="PROJECT_INTERPRETER" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/theme/icons/drops" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/theme/icons/drops/lines.sh" />
+      <option name="PARAMETERS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="screenshot.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
+      <module name="awesome" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="PROJECT_INTERPRETER" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/configuration/rofi/screenshot" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configuration/rofi/screenshot/screenshot.sh" />
+      <option name="PARAMETERS" value="" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5615fc34-0def-484c-9d62-65b3f96f5a59" name="Default Changelist" comment="" />
-      <created>1589982398045</created>
+      <changelist id="33c15ce8-d76c-49f5-b9fb-6dec8034f4d5" name="Default Changelist" comment="" />
+      <created>1590450806403</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1589982398045</updated>
-      <workItem from="1589982399673" duration="8720000" />
-      <workItem from="1590029469346" duration="9194000" />
-      <workItem from="1590079202849" duration="693000" />
+      <updated>1590450806403</updated>
+      <workItem from="1590450808357" duration="16383000" />
+      <workItem from="1590481759681" duration="5000" />
+      <workItem from="1590481780861" duration="941000" />
+      <workItem from="1590518860842" duration="2521000" />
+      <workItem from="1590526491778" duration="13087000" />
+      <workItem from="1590604020997" duration="9430000" />
+      <workItem from="1590615752910" duration="4987000" />
+      <workItem from="1590623568448" duration="602000" />
+      <workItem from="1590631705551" duration="1332000" />
+      <workItem from="1590642081283" duration="3357000" />
+      <workItem from="1590646891631" duration="10877000" />
+      <workItem from="1590700951677" duration="2069000" />
+      <workItem from="1590779653128" duration="86000" />
+      <workItem from="1590864409347" duration="6000" />
+      <workItem from="1590864430097" duration="2279000" />
+      <workItem from="1591388848706" duration="51000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="2538" y="345" key="FileChooserDialogImpl" timestamp="1590094056118">
-      <screen x="1920" y="0" width="1600" height="900" />
+    <state x="966" y="575" width="942" height="463" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1590618243088">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="2538" y="345" key="FileChooserDialogImpl/0.0.1920.1080/1920.0.1600.900@1920.0.1600.900" timestamp="1590094056118" />
+    <state x="966" y="575" width="942" height="463" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1080/1920.0.1600.900@0.0.1920.1080" timestamp="1590618243088" />
+    <state x="966" y="71" width="942" height="967" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1590618820309">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="966" y="71" width="942" height="967" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1080/1920.0.1600.900@0.0.1920.1080" timestamp="1590618820309" />
+    <state x="966" y="77" width="942" height="961" key="FileChooserDialogImpl" timestamp="1590864625742">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="966" y="77" width="942" height="961" key="FileChooserDialogImpl/0.0.1920.1080/1920.0.1600.900@0.0.1920.1080" timestamp="1590864625742" />
+    <state x="744" y="359" width="439" height="454" key="FileChooserDialogImpl/1920.0.1600.900/0.0.1920.1080@0.0.1920.1080" timestamp="1590451608475" />
+    <state width="1838" height="257" key="GridCell.Tab.0.bottom" timestamp="1590619510433">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1838" height="257" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1600.900@0.0.1920.1080" timestamp="1590619510433" />
+    <state width="1840" height="251" key="GridCell.Tab.0.bottom/1920.0.1600.900/0.0.1920.1080@0.0.1920.1080" timestamp="1590458615034" />
+    <state width="1838" height="257" key="GridCell.Tab.0.center" timestamp="1590619510432">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1838" height="257" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1600.900@0.0.1920.1080" timestamp="1590619510432" />
+    <state width="1840" height="251" key="GridCell.Tab.0.center/1920.0.1600.900/0.0.1920.1080@0.0.1920.1080" timestamp="1590458615034" />
+    <state width="1838" height="257" key="GridCell.Tab.0.left" timestamp="1590619510432">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1838" height="257" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1600.900@0.0.1920.1080" timestamp="1590619510432" />
+    <state width="1840" height="251" key="GridCell.Tab.0.left/1920.0.1600.900/0.0.1920.1080@0.0.1920.1080" timestamp="1590458615034" />
+    <state width="1838" height="257" key="GridCell.Tab.0.right" timestamp="1590619510432">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1838" height="257" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1600.900@0.0.1920.1080" timestamp="1590619510432" />
+    <state width="1840" height="251" key="GridCell.Tab.0.right/1920.0.1600.900/0.0.1920.1080@0.0.1920.1080" timestamp="1590458615034" />
+    <state x="0" y="60" width="1600" height="700" key="SettingsEditor" timestamp="1590482501808">
+      <screen x="0" y="0" width="1600" height="900" />
+    </state>
+    <state x="0" y="60" width="1600" height="700" key="SettingsEditor/0.0.1600.900/1600.0.1920.1080@0.0.1600.900" timestamp="1590482501808" />
+    <state x="439" y="265" width="1042" height="708" key="SettingsEditor/1920.0.1600.900/0.0.1920.1080@0.0.1920.1080" timestamp="1590454390412" />
+    <state x="575" y="243" width="778" height="751" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1590613908120">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="575" y="243" width="778" height="751" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1080/1920.0.1600.900@0.0.1920.1080" timestamp="1590613908120" />
+    <state x="623" y="288" key="search.everywhere.popup" timestamp="1590456109618">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="623" y="288" key="search.everywhere.popup/1920.0.1600.900/0.0.1920.1080@0.0.1920.1080" timestamp="1590456109618" />
   </component>
 </project>

@@ -17,7 +17,7 @@ function _M.get ()
     awful.layout.suit.spiral,             -- 3:
     awful.layout.suit.max,                -- 4:
 
-   -- awful.layout.suit.tile.top,           -- 5:
+    awful.layout.suit.tile.top,           -- 5:
 
  --   awful.layout.suit.corner.nw,          -- 6:
 

@@ -14,7 +14,7 @@ local _M = {
     -- System File Manager
   file_manager = "pcmanfm",
   filemanager = "pcmanfm",
-  quake = 'kitty --title QuakeTerminal'
+  quake = 'kitty --title QuakeTerminal',
 
 }
 

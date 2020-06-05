@@ -27,7 +27,7 @@ local function worker(args)
         },
    --
     }
--- @TODO: add more themes
+-- @TODO: add more theme
     local args = args or {}
 
     if args.theme ~= nil and calendar_themes[args.theme] == nil then

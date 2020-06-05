@@ -38,24 +38,28 @@ client.connect_signal("request::titlebars", function(c)
             align="left",
         },
         { -- Middle
-            { -- Title
+          --  { -- Title
                 align  = "center",
-spacing=5,
-                widget = awful.titlebar.widget.titlewidget(c)
-            },
+--spacing=5,
+              --  widget = awful.titlebar.widget.titlewidget(c)
+  --          },
             buttons = buttons,
             layout  = wibox.layout.flex.horizontal
         },
-        { -- Right
+        {
+            -- Right
+
+            spacing= 10,
+
             awful.titlebar.widget.floatingbutton (c),
 
-            --  awful.titlebar.widget.stickybutton   (c),
-         --   awful.titlebar.widget.ontopbutton   (c),
+            awful.titlebar.widget.stickybutton   (c),
+            awful.titlebar.widget.ontopbutton   (c),
             awful.titlebar.widget.minimizebutton (c),
 
             awful.titlebar.widget.maximizedbutton(c),
             awful.titlebar.widget.closebutton    (c),
-            layout = wibox.layout.fixed.horizontal()
+            layout = wibox.layout.fixed.horizontal( )
         },
         layout = wibox.layout.align.horizontal,
     }

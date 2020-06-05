@@ -16,7 +16,18 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 
 -- Miscellanous awesome library
-local menubar = require("menubar")
+--local menubar = require("menubar")
+--  ========================================
+-- 			      Modules
+--	        Load all the modules
+--  ========================================
+
+require('module.auto-start')
+require('module.decorate-client')
+-- require('module.backdrop')
+require('module.exit-screen')
+--require('module.quake-terminal')
+require('module.lockscreen')
 
 -----------------------------------------------------
 ----------     Variable Assignments    --------------
@@ -35,6 +46,7 @@ require("configuration.error-handling")
 -----------------------------------------------------
 -- Themes
 require("configuration.theme")
+
 -----------------------------------------------------
 ---------------     Helpers      --------------------
 -----------------------------------------------------
@@ -70,6 +82,7 @@ local keys = {
 
 -- Layouts
 RC.layouts = configuration.layouts()
+
 -----------------------------------------------------
 ---------------     Tags      ------------------
 -----------------------------------------------------
@@ -85,7 +98,7 @@ RC.mainmenu = awful.menu({ items = configuration.menu() }) -- in globalkeys
 RC.launcher = awful.widget.launcher(
   { image = beautiful.awesome_icon, menu = RC.mainmenu }
 )
-menubar.utils.terminal = RC.vars.terminal
+--menubar.utils.terminal = RC.vars.terminal
 -----------------------------------------------------
 ---------------     Keybindings     ------------------
 -----------------------------------------------------
@@ -110,6 +123,8 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- Statusbar: Wibar
 require("widgets.statusbar")
+--require('layout')
+
 -----------------------------------------------------
 ---------------    Notifications    -----------------
 -----------------------------------------------------
@@ -130,6 +145,7 @@ awful.rules.rules = configuration.rules(
 
 -- Signals
 require("configuration.signals")
+
 
 -----------------------------------------------------
 ---------------     Autostart      ------------------

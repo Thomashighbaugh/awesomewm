@@ -1,5 +1,5 @@
 local wibox = require('wibox')
-local mat_list_item = require('widget.material.list-item')
+local mat_list_item = require('widgets.material.list-item')
 
 return wibox.widget {
   wibox.widget {

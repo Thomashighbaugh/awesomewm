@@ -26,11 +26,11 @@ local naughty = require("naughty")
 local home = os.getenv("HOME")
 local vicious = require("vicious")
 local keygrabber = require("awful.keygrabber")
+local clickable_container = require('widgets.clickable-container')
 
 local helpers = require("configuration.helpers")
 local _M = {}
 
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 local spacer ={
     widget =  wibox.container.background,
@@ -49,18 +49,32 @@ local systray = wibox.widget.systray()
 systray:set_horizontal(true)
 systray:set_base_size(32)
 
--- memory widget
-mem = wibox.widget.textbox()
-vicious.cache(vicious.widgets.mem)
-vicious.register(mem, vicious.widgets.mem, " <span  color='#0BBDC7'> Mem: </span>  $1%  ", 4)
-mem.font = "Codename Coder Free 4F Bold 16"
+local build_widget = function(widget)
+    return wibox.widget {
+        {
+            widget,
+            bg = beautiful.groups_title_bg,
+            shape = function(cr, w, h)
+                gears.shape.rounded_rect(cr, w, h, dpi(6))
+            end,
+            widget = wibox.container.background
+        },
+        top = dpi(10),
+        bottom = dpi(10),
+        widget = wibox.container.margin
+    }
+end
+
 -- cpu widget
-cpu = wibox.widget.textbox()
+local cpu = wibox.widget.textbox()
 vicious.cache(vicious.widgets.cpu)
-vicious.register(cpu, vicious.widgets.cpu, " <span color='#8265FF'> CPU: </span> $1%  ", 4)
-cpu.font = "Codename Coder Free 4F Bold 16"
-
-
+vicious.register(cpu, vicious.widgets.cpu, " <span color='#00caff'> CPU: </span> $1%  ", 4)
+cpu.font = "SF TransRobotics 16"
+-- memory widget
+local mem = wibox.widget.textbox()
+vicious.cache(vicious.widgets.mem)
+vicious.register(mem, vicious.widgets.mem, " <span  color='#ff9cff'> Mem: </span>  $1%  ", 4)
+mem.font = "SF TransRobotics 16"
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 local cw = calendar_widget({
@@ -82,9 +96,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox:buttons(gears.table.join(
         awful.button({ }, 1, function () awful.layout.inc( 1) end),
-        awful.button({ }, 3, function () awful.layout.inc(-1) end),
-        awful.button({ }, 4, function () awful.layout.inc( 1) end),
-        awful.button({ }, 5, function () awful.layout.inc(-1) end)
+        awful.button({ }, 3, function () awful.layout.inc(-1) end)
     ))
 
     -- Create a taglist widget
@@ -93,16 +105,19 @@ awful.screen.connect_for_each_screen(function(s)
         filter  = awful.widget.taglist.filter.all,
         buttons = taglist_buttons,
         layout   = {
-            spacing = 5,
+            spacing = 1,
             top = 5,
             layout  = wibox.layout.grid.horizontal,
-                shape  = gears.shape.rounded_bar,
+                shape  = gears.shape.rounded_rect,
 
         },
         shape  = gears.shape.rounded_bar,
 
     }
-
+    s.screen_rec 	= require('widgets.screen-recorder')()
+    s.end_session	= require('widgets.end-session')()
+s.network = require('widgets.network')()
+    s.bluetooth = require('widgets.bluetooth')()
 
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
@@ -110,28 +125,29 @@ awful.screen.connect_for_each_screen(function(s)
         filter   = awful.widget.tasklist.filter.currenttags,
         buttons  = tasklist_buttons,
         style    = {
-            shape_border_width = 3,
-            shape_border_color = beautiful.xcolor0,
+            shape_border_width = 0,
+            shape_border_color = beautiful.xforeground,
             shape  = gears.shape.bar,
         },
         layout   = {
             spacing = 1,
             spacing_widget = {
                 {
-                    forced_width = 100,
+                    forced_width = 150,
                     shape  = gears.shape.square,
                     color        = beautiful.xbackground,
                     widget       = wibox.widget.separator
                 },
                 valign = 'center',
                 halign = 'center',
+                margin = dpi(3),
                 widget = wibox.container.place,
             },
-            layout  = wibox.layout.flex.horizontal
+            layout  = wibox.layout.fixed.horizontal
         },
     }
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 40, ontop = true })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 35, ontop = true })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -139,6 +155,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             s.mylayoutbox,
+            spacer,
 
         },
         {-- Middle widgets
@@ -148,19 +165,18 @@ awful.screen.connect_for_each_screen(function(s)
                 widget = wibox.container.margin,
 
             },
-            bg = beautiful.taglist_bg,
             widget = wibox.container.background,
-            layout = wibox.layout.align.horizontal,
+            layout = wibox.layout.fixed.horizontal,
             align="center",
 
 
         },
         { -- Right widgets
             layout = wibox.layout.align.horizontal,
-            mem,
             cpu,
-            systray,
-            right=0,
+            mem,
+
+            right=10,
             align = "right",
 
         },
@@ -170,20 +186,23 @@ awful.screen.connect_for_each_screen(function(s)
 
 
     }
-    s.mywibox2 = awful.wibar({ position = "bottom", screen = s, height = 35, ontop = true })
+    s.mywibox2 = awful.wibar({ position = "bottom", screen = s, height = 30, ontop = true })
 
     -- Add widgets to the wibox
     s.mywibox2:setup {
-        layout = wibox.layout.align.horizontal,
+        layout      = wibox.layout.align.horizontal,
         { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
-            mylauncher,
+            layout  = wibox.layout.fixed.horizontal,
             s.mypromptbox,
-            spacing = dpi(30),
-            left = dpi(10),
+            require('widgets.xdg-folders'),
+            left    = dpi(10),
+            spacing = 10,
+            spacer,
+
         },
         { -- Middle widget
             s.mytasklist,
+            s.add_button,
             -- Add top and bottom margins to force text to one line
             widget = wibox.container.margin,
         },
@@ -191,13 +210,12 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             spacing = 10,
             mytextclock,
+            s.screen_rec,
+            s.network,
+            s.end_session,
 
         },
-        bottom = dpi(10),
-        margin = dpi(10),
-        top = dpi(10),
-        right = dpi(10),
-        left = dpi(10),
+
 
     }
 end)
