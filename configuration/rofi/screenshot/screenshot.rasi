@@ -1,0 +1,96 @@
+
+* {
+  /* General */
+  text-font:                            "Future Forces Laser 12";
+  icon-font:                            "FontAwesome Regular 18";
+  background: #17161b;
+  accent: #00caff;
+  foreground: #556;
+  option-6-listview-spacing:            1px;
+  menu-window-padding:                  16px;
+  menu-element-padding:                 10px;
+}
+
+#window {
+  width: 4.5%;
+  height: 18%;
+  anchor: east;
+  location: east;
+  x-offset: -1%;
+  y-offset: 0%;
+  border-radius: 12px;
+}
+
+* {
+  background-color: @background;
+  text-color: @foreground;
+  font: @icon-font;
+}
+
+#horibox {
+  children: [ listview ];
+}
+
+#listview {
+  layout: vertical;
+}
+
+#element {
+  border: 0px;
+  border-radius: 12px;
+  background-color: @background;
+}
+
+#element.selected {
+  background-color: @accent;
+  text-color: @background;
+}
+
+* {
+  font: @text-font;
+}
+
+#window {
+  padding: @menu-window-padding;
+  children: [ inputbar, horibox ];
+}
+
+#inputbar {
+  enabled: false;
+  children: [ textbox-prompt-colon, prompt ];
+  margin: @menu-inputbar-margin;
+}
+
+#listview {
+  spacing: 5%;
+  lines: 2;
+}
+
+#element {
+  font: @icon-font;
+  border: @menu-element-border;
+  padding: @menu-element-padding;
+  border-color: #556;
+}
+
+#element.selected {
+  border-color: @accent;
+}
+
+element.active,
+element.selected.urgent {
+  text-color: @background;
+}
+
+element.selected.urgent {
+  border-color: @accent;
+}
+
+element.urgent,
+element.selected.active {
+  text-color: @background;
+}
+
+element.selected.active {
+  border-color: @accent;
+}

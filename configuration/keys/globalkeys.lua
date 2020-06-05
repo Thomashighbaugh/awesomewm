@@ -9,7 +9,6 @@ local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Menubar library
 local menubar = require("menubar")
-local start_screen = require("widgets.start_screen")
 -- Resource Configuration
 local modkey = RC.vars.modkey
 local terminal = RC.vars.terminal
@@ -17,9 +16,8 @@ local browser = RC.vars.browser
 local file_manager = RC.vars.file_manager
 local helpers = require("configuration.helpers")
 require ("widgets.quake-terminal")
+local apps = require("configuration.apps")
 local _M = {}
-
--- reading @TODO add to wiki
 -- https://awesomewm.org/wiki/Global_Keybindings
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -71,7 +69,7 @@ function _M.get()
               {description = "Reload Awesome", group = 'Launcher'}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "Quit Awesome", group = 'Launcher'}),
-  awful.key({ modkey, "Control"}, "Escape", function () awful.spawn("launcher") end,
+  awful.key({ modkey, "Control"}, "Escape", function () awful.spawn(apps.default.rofiappmenu) end,
         {description = "Launch Rofi Application Menu", group = 'Launcher'}),
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
@@ -79,10 +77,10 @@ function _M.get()
     -- note: these are provided by ~/bin executables
 
 -- Print Screen
-       awful.key({ modkey,           }, "Print", function () awful.spawn.with_shell("menu_screenshot") end,
+       awful.key({ modkey,           }, "Print", function () awful.spawn(apps.default.screenshot) end,
                  {description = "Launch Screenshot Menu", group = 'Launcher'}),
 -- Power Menu
-        awful.key({ modkey,           }, "Delete", function () awful.spawn.with_shell("menu_power") end,
+        awful.key({ modkey,           }, "Delete", function () 	awesome.emit_signal("module::exit_screen_show") end,
               {description = "Display Power Menu", group = "Launcher"}),
 
 -- Dropdown application
@@ -126,11 +124,11 @@ function _M.get()
 
 
                  awful.key({ modkey,           }, "F5", function()    awful.spawn.with_shell("sudo picom -b && notify-send 'Compton Activated'") end,
-                 {description = "Display Brightness Menu", group = 'Launcher'}),
+                 {description = "Turn on Picom", group = 'Launcher'}),
 
 
                  awful.key({ modkey, "Control"           }, "F5", function()    awful.spawn.with_shell("sudo pkill picom  && notify-send 'Compton Deactivated'") end,
-                 {description = "Display Brightness Menu", group = 'Launcher'}),
+                 {description = "Turn off Picom", group = 'Launcher'}),
 
 
                  awful.key({ modkey,           }, "F8", function () awful.spawn.with_shell("menu_network") end,
@@ -187,11 +185,8 @@ function _M.get()
     end),
     awful.key({ modkey, "Control" }, "Right", function (c)
         helpers.resize_dwim(client.focus, "right")
-    end),
+    end)
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-    -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "Show the Menubar", group = 'Launcher'})
 
   )
 
