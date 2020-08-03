@@ -1,0 +1,94 @@
+
+configuration {
+    drun-display-format: "{icon} {name}";
+    display-drun: "Apps";
+    show-icons: true;
+    icon-theme: "Flatery-Sky-Dark";
+    font: "Future Forces Regular 22";
+    location: 1;
+    yoffset: 0;
+    xoffset: 0;
+    fake-transparency: false;
+    hide-scrollbar: true;
+    fullscreen: false;
+    show-icons: true;
+    terminal: "kitty";
+    sidebar-mode: false;
+}
+
+/* colors */
+* {
+    red: #ff9cff;
+    blue: #00caff;
+    green: #2ABB9C;
+    purple: #00caff;
+    white: #ebf0f8;
+}
+
+// black
+   * {
+       bg:  #121116;
+       bg-sel: #1a191f;
+       fg: #ebf0f8;
+   }
+
+
+
+* {
+    background-color: #00000000;
+    font: "Future Forces Regular 16";
+}
+
+window {
+    height: 100%;
+    width: 18%;
+    transparency: "real";
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    padding: 0% 0% 0% 0%;
+    background-color: @bg;
+    border: 0;
+    border-radius: 0;
+    border-color: @bg;
+}
+
+listview {
+    columns: 1;
+    padding: 0;
+    spacing: 14;
+    border-radius: 0;
+}
+
+element {
+    border: 0;
+    text-color: @fg;
+    orientation: horizontal;
+    padding: 12;
+    border-radius: 0;
+}
+
+element selected {
+    background-color: @bg-sel;
+    border-color: @bg;
+    text-color: @fg;
+}
+
+inputbar {
+    children: [entry];
+    
+    background-color: @bg;
+    border: 0 0 0 0;
+    border-color: @fg;
+    border-radius: 0;
+    text-color:#00caff;
+}
+
+prompt {
+    enabled: true;
+}
+
+entry {
+    text-color: @white;
+    }
