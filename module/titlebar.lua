@@ -124,7 +124,7 @@ local bg_beautiful_group = {
                                             
                                             layout = wibox.layout.fixed.vertical
                                         },
-                                        margins = dpi(0),
+                                        margins = dpi(6),
                                         widget = wibox.container.margin
                                     },
                                     {
@@ -133,7 +133,7 @@ local bg_beautiful_group = {
                                     },
                                     {
                                         awful.titlebar.widget.floatingbutton (c),
-                                        margins = dpi(0),
+                                        margins = dpi(6),
                                         widget = wibox.container.margin
                                     },
                                     layout = wibox.layout.align.vertical

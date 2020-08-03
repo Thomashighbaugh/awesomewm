@@ -1,0 +1,218 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pa",
+				"pacBack0"
+			],
+			[
+				"pac",
+				"pacBack0"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"shell",
+				"SublimeLinter: Show All Errors"
+			],
+			[
+				"shellsc",
+				"Build With: ShellScript"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/tlh/.config/awesome/configuration/keys/global.lua",
+		"/home/tlh/.config/awesome/configuration/client/signals.lua",
+		"/home/tlh/.config/awesome/configuration/root/init.lua",
+		"/home/tlh/.config/awesome/configuration/client/keys.lua",
+		"/home/tlh/.config/awesome/rc.lua",
+		"/home/tlh/.config/awesome/module/titlebar.lua",
+		"/home/tlh/.config/sublime-text-3/Packages/LuaFormatter/Default (Linux).sublime-keymap",
+		"/home/tlh/.config/awesome/configuration/keys/init.lua",
+		"/home/tlh/.config/awesome/configuration/client/init.lua",
+		"/home/tlh/.config/awesome/configuration/client/buttons.lua",
+		"/home/tlh/.config/awesome/configuration/init.lua",
+		"/home/tlh/.config/awesome/module/init.lua",
+		"/home/tlh/.config/awesome/configuration/signals.lua",
+		"/home/tlh/.config/awesome/widget/awesome-switcher/README.md",
+		"/home/tlh/.config/awesome/module/decorate-client.lua",
+		"/home/tlh/.config/awesome/configuration/layouts.lua",
+		"/home/tlh/.config/awesome/configuration/picom.conf",
+		"/home/tlh/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/tlh/.config/sublime-text-3/Packages/User/LuaFormatter.sublime-settings",
+		"/home/tlh/.config/awesome/configuration/apps.lua",
+		"/home/tlh/.config/awesome/layout/init.lua",
+		"/home/tlh/.config/sublime-text-3/Packages/LuaFormatter/LuaFormatter.sublime-settings"
+	],
+	"find":
+	{
+		"height": 44.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "rc.sublime-project",
+	"replace":
+	{
+		"height": 80.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

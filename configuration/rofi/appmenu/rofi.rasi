@@ -3,7 +3,7 @@ configuration {
     drun-display-format: "{icon} {name}";
     display-drun: "Apps";
     show-icons: true;
-    icon-theme: "Flatery-Sky-Dark";
+    icon-theme: "Flatery-Dark";
     font: "Future Forces Regular 22";
     location: 1;
     yoffset: 0;
