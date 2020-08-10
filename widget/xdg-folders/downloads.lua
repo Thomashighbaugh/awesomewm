@@ -22,7 +22,7 @@ local create_widget = function()
 	local downloads_button = wibox.widget {
 		{
 			dl_widget,
-			margins = dpi(5),
+			margins = dpi(8),
 			widget = wibox.container.margin
 		},
 		widget = clickable_container

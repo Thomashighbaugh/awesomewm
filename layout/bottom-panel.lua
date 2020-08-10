@@ -8,6 +8,8 @@ local awful = require('awful')
 local wibox = require('wibox')
 local gears = require('gears')
 local beautiful = require('beautiful')
+local xresources = require("beautiful.xresources")
+local xrdb = xresources.get_current_theme()
 
 local dpi = beautiful.xresources.apply_dpi
 local clickable_container = require('widget.clickable-container')
@@ -22,7 +24,7 @@ local bottom_panel = function(s)
 				widget,
 				bg = beautiful.xcolor0,
 				shape = function(cr, w, h)
-					gears.shape.rounded_rect(cr, w, h, dpi(18))
+					gears.shape.rounded_rect(cr, w, h, beautiful.groups_radius)
 				end,
 				widget = wibox.container.background
 			},
@@ -45,8 +47,9 @@ local bottom_panel = function(s)
 					span_ratio 		= 0.55,
 					widget 			= wibox.widget.separator
 										}
-	local bottom_panel_height = dpi(50)
+	local bottom_panel_height = dpi(55)
 	local bottom_panel_margins = dpi(8)
+
 	
 	local panel = awful.popup {
 						
@@ -54,17 +57,18 @@ local bottom_panel = function(s)
 										{
 											layout = wibox.layout.fixed.horizontal,
 											spacing = dpi(8),
+											separator,
 													s.home, 	
 												s.downloads,
 
 											tag_list(s),
 											layout_box,
+											separator,
 										},
 
+
 										bg = beautiful.background,
-										shape = function(cr, w, h)
-										gears.shape.rounded_rect(cr, w, h, beautiful.groups_radius)
-										end,
+										shape = gears.shape.rounded_rect,
 										widget = wibox.container.background
 			
 									},

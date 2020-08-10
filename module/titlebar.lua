@@ -9,7 +9,6 @@ local gears = require('gears')
 local beautiful = require('beautiful')
 local wibox = require('wibox')
 local naughty = require('naughty')
-
 local dpi = beautiful.xresources.apply_dpi
 awful.titlebar.fallback_name = 'Client'
 
@@ -28,14 +27,6 @@ end
 -- This table will use the beautiful.background color
 local bg_beautiful_group = {
     class = {
-        'dolphin',
-        'firefox',
-        'pavucontrol-qt',
-        'ark',
-        'polkit-kde-authentication-agent-1',
-        'partitionmanager',
-        'discord',
-        'kdesu'
     },
     instance = {
         'transmission-qt',
@@ -55,7 +46,16 @@ local bg_beautiful_group = {
         local bg_xresources_group = {
             class = {
                 'Xterm',
-                'UXTerm'
+                'UXTerm',
+                 'dolphin',
+                 'firefox',
+                 'pavucontrol-qt',
+                 'ark',
+                 'polkit-kde-authentication-agent-1',
+                 'partitionmanager',
+                 'discord',
+                 'kdesu'
+   
             }}
             
             -- Begin Titlebar Configuration
@@ -216,9 +216,9 @@ local bg_beautiful_group = {
                             or table_has_value(bg_beautiful_group.instance, c.instance) then
                             
                             if c.type == 'dialog' or c.type == 'modal' then
-                                decorate_titlebar(c, 'left', beautiful.background .. '66', titlebar_size)
+                                decorate_titlebar(c, 'left', beautiful.xresources.get_current_theme().background .. '66', titlebar_size)
                             else
-                                decorate_titlebar(c, 'top', beautiful.background .. '66', titlebar_size)
+                                decorate_titlebar(c, 'top', beautiful.xresources.get_current_theme().background .. '66', titlebar_size)
                             end
                             
                         elseif table_has_value(bg_gtk_group.role, c.role)
@@ -245,7 +245,7 @@ local bg_beautiful_group = {
                             
                         else
                             -- Default titlebar
-                            decorate_titlebar(c, 'top', beautiful.background .. '66', titlebar_size)
+                            decorate_titlebar(c, 'top', beautiful.xresources.get_current_theme().background .. '66', titlebar_size)
                             
                         end
                         
