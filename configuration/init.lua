@@ -5,11 +5,6 @@
 --                              |_____|                                       
 
 return {
-    keys = require('configuration.keys'),
-    apps = require('configuration.apps'),
-    layouts = require('configuration.layouts'),
-    client = require('configuration.client'),
     tags = require('configuration.tags'),
-    root = require('configuration.root'),
-    signals = require('configuration.signals')
+    layouts = require('configuration.layouts')
 }
