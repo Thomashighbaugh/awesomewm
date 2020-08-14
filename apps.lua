@@ -9,13 +9,13 @@
 -- Initialization
 -- ===================================================================
 
-local awful = require( "awful" )
-local filesystem = require( "gears.filesystem" )
+local awful = require("awful")
+local filesystem = require("gears.filesystem")
 
-local config_dir = filesystem.get_configuration_dir( )
+local config_dir = filesystem.get_configuration_dir()
 
 -- define module table
-local apps = { }
+local apps = {}
 
 -- ===================================================================
 -- App Declarations
@@ -24,11 +24,9 @@ local apps = { }
 -- define default apps
 apps.default = {
     terminal = "kitty",
-    launcher = 'rofi -dpi ' .. screen.primary.dpi ..
-    ' -show drun -theme ' .. config_dir ..
-    '/configuration/rofi/appmenu/rofi.rasi',
+    launcher = 'rofi  -show drun -theme ' .. config_dir .. '/configuration/rofi/appmenu/rofi.rasi',
     lock = "xlock",
-    screenshot = "maim -s ~/Pictures/Screenshots/$(date +%s).png",
+    screenshot = "maim -s $HOME/Pictures/Screenshots/$(date +%s).png",
     filebrowser = "thunar"
 }
 
@@ -36,7 +34,7 @@ apps.default = {
 local run_on_start_up = {
     'picom -b --experimental-backends --dbus --config ' .. config_dir .. '/configuration/picom.conf',
     'xcape -e "Super_L=Super_L|Control_L|Escape"',
-
+    
     "unclutter"
 }
 
@@ -45,14 +43,14 @@ local run_on_start_up = {
 -- ===================================================================
 
 -- Run all the apps listed in run_on_start_up
-function apps.autostart( )
-    for _, app in ipairs( run_on_start_up ) do
+function apps.autostart()
+    for _, app in ipairs(run_on_start_up) do
         local findme = app
-        local firstspace = app:find( " " )
+        local firstspace = app:find(" ")
         if firstspace then
-            findme = app:sub( 0, firstspace - 1 )
+            findme = app:sub(0, firstspace - 1)
         end
-        awful.spawn.with_shell( string.format( "pgrep -u $USER -x %s > /dev/null || (%s)", findme, app ), false )
+        awful.spawn.with_shell(string.format("pgrep -u $USER -x %s > /dev/null || (%s)", findme, app), false)
     end
 end
 
