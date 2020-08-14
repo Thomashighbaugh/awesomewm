@@ -15,7 +15,6 @@ local wibox = require( "wibox" )
 local gears = require( "gears" )
 local dpi = beautiful.xresources.apply_dpi
 local theme = beautiful
-local net_widgets = require("net_widgets")
 -- import widgets
 local task_list = require( "widgets.task-list" )
 
@@ -63,10 +62,6 @@ top_panel.create = function( s )
         {
         layout = wibox.layout.align.horizontal,
             wibox.layout.margin( wibox.widget.systray( ), 0, 0, 0, 0 ),
-net_wired = net_widgets.indicator({
-    interfaces  = {"enp5s0f1t", "another_interface", "and_another_one"},
-    timeout     = 5
-}),
                         require( "widgets.calendar" ),
 
         }
