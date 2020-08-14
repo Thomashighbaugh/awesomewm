@@ -9,26 +9,26 @@
 -- Initialization
 -- ===================================================================
 
-local gears = require( 'gears' )
-local beautiful = require( 'beautiful' )
+local gears = require('gears')
+local beautiful = require('beautiful')
 
-local filesystem = require( 'gears.filesystem' )
-local dpi = require( 'beautiful' ).xresources.apply_dpi
+local filesystem = require('gears.filesystem')
+local dpi = require('beautiful').xresources.apply_dpi
 
-local theme_dir = filesystem.get_configuration_dir( ) .. '/theme'
+local theme_dir = filesystem.get_configuration_dir() .. '/theme'
 
 local titlebar_icon_path = theme_dir .. "/icons/titlebar/"
 local tip = titlebar_icon_path
 
-local xresources = require( "beautiful.xresources" )
+local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
-local xrdb = xresources.get_current_theme( )
+local xrdb = xresources.get_current_theme()
 
-local theme = { }
+local theme = {}
 theme.icons = theme_dir .. '/icons/'
 
 -- define module table
-local theme = { }
+local theme = {}
 
 -- ===================================================================
 -- Theme Variables
@@ -36,11 +36,11 @@ local theme = { }
 -- Font
 theme.font = 'Sometype Mono Medium 13'
 theme.font_bold = 'Sometype Mono Bold 13'
-theme.taglist_font = "awesomewm-font 28"
+theme.taglist_font = "awesomewm-font 18"
 theme.title_font = 'Future Forces Bold 14'
 
 -- Menu icon theme
-theme.icon_theme = 'Flatery-Sky-Dark'
+theme.icon_theme = 'Flatery-Dark'
 
 theme.dir = theme_dir
 theme.transparent = '#00000000'
@@ -92,11 +92,11 @@ theme.xcolor15 = xrdb.color15
 -- System tray
 
 theme.bg_systray = theme.background
-theme.systray_icon_spacing = dpi( 16 )
+theme.systray_icon_spacing = dpi(16)
 
 -- Titlebar
 
-theme.titlebar_size = dpi( 30 )
+theme.titlebar_size = dpi(30)
 theme.titlebar_bg_focus = theme.background
 theme.titlebar_bg_normal = theme.background
 theme.titlebar_fg_focus = theme.xcolor15
@@ -170,7 +170,7 @@ theme.titlebar_maximized_button_focus_active_hover = tip .. "maximized_focus_act
 
 theme.groups_title_bg = xrdb.color0
 theme.groups_bg = xrdb.color8
-theme.groups_radius = dpi( 18 )
+theme.groups_radius = dpi(18)
 
 -- Client Decorations
 
@@ -178,35 +178,35 @@ theme.groups_radius = dpi( 18 )
 theme.border_focus = theme.xcolor5
 theme.border_normal = theme.background
 theme.border_marked = theme.xcolor1
-theme.border_width = dpi( 2 )
-theme.border_radius = dpi( 15 )
+theme.border_width = dpi(2)
+theme.border_radius = dpi(25)
 
 -- Decorations
-theme.client_radius = dpi( 18 )
-theme.useless_gap = dpi( 6 )
+theme.client_radius = dpi(18)
+theme.useless_gap = dpi(6)
 
 -- Menu
 theme.menu_font = "Sometype Mono Medium 16"
 theme.menu_submenu = '➤' -- ➤
 
-theme.menu_height = dpi( 34 )
-theme.menu_width = dpi( 300 )
-theme.menu_border_width = dpi( 2 )
+theme.menu_height = dpi(34)
+theme.menu_width = dpi(300)
+theme.menu_border_width = dpi(2)
 theme.menu_bg_focus = theme.background .. 'ee'
 
-theme.menu_bg_normal = theme.background:sub( 1, 7 ) .. '33'
+theme.menu_bg_normal = theme.background:sub(1, 7) .. '33'
 theme.menu_fg_normal = xrdb.color15
 theme.menu_fg_focus = xrdb.color15
-theme.menu_border_color = theme.background:sub( 1, 7 ) .. ''
+theme.menu_border_color = theme.background:sub(1, 7) .. '33'
 
 -- Tooltips
 
 theme.tooltip_bg = theme.background
 theme.tooltip_border_color = theme.transparent
 theme.tooltip_border_width = 0
-theme.tooltip_gaps = dpi( 5 )
-theme.tooltip_shape = function( cr, w, h )
-    gears.shape.rounded_rect( cr, w, h, dpi( 6 ))
+theme.tooltip_gaps = dpi(5)
+theme.tooltip_shape = function(cr, w, h)
+    gears.shape.rounded_rect(cr, w, h, dpi(6))
 end
 
 -- Separators
@@ -243,10 +243,10 @@ theme.layout_centerwork = theme.icons .. "layouts/centerwork.png"
 theme.layout_centerworkh = theme.icons .. "layouts/centerworkh.png" -- centerwork.horizontal
 
 -- Tasklist
-theme.tasklist_font = 'Sometype Mono Medium 15'
-theme.tasklist_bg_normal = theme.xcolor8
+theme.tasklist_font = 'Sometype Mono Medium 11'
+theme.tasklist_bg_normal = theme.xcolor0 .. '55'
 theme.tasklist_bg_focus = theme.xcolor0 .. '55'
-theme.tasklist_bg_urgent = theme.xcolor1 
+theme.tasklist_bg_urgent = theme.xcolor1 .. '55'
 theme.tasklist_fg_focus = theme.xcolor15
 theme.tasklist_fg_urgent = theme.xcolor0
 theme.tasklist_fg_normal = theme.fg_normal
@@ -254,26 +254,26 @@ theme.tasklist_fg_normal = theme.fg_normal
 -- Notification
 
 theme.notification_position = 'top_right'
-theme.notification_bg = theme.transparent
-theme.notification_margin = dpi( 2 )
-theme.notification_border_width = dpi( 2 )
-theme.notification_border_color = theme.transparent
-theme.notification_spacing = dpi( 0 )
+theme.notification_bg = theme.xcolor0
+theme.notification_margin = dpi(2)
+theme.notification_border_width = dpi(2)
+theme.notification_border_color = theme.xcolor5
+theme.notification_spacing = dpi(0)
 theme.notification_icon_resize_strategy = 'center'
-theme.notification_icon_size = dpi( 32 )
+theme.notification_icon_size = dpi(32)
 
 -- Client Snap Theme
 
 theme.snap_bg = theme.background
 theme.snap_shape = gears.shape.rectangle
-theme.snap_border_width = dpi( 15 )
+theme.snap_border_width = dpi(15)
 
 -- Hotkey popup
 
 theme.hotkeys_font = 'Future Forces Bold 18'
 theme.hotkeys_description_font = 'Sometype Mono Medium Regular 16'
 theme.hotkeys_bg = theme.background
-theme.hotkeys_group_margin = dpi( 2 )
+theme.hotkeys_group_margin = dpi(2)
 
 -- Tag Lists
 theme.taglist_shape = gears.shape.rounded_rect
@@ -282,20 +282,20 @@ theme.taglist_fg_focus = theme.xcolor5
 theme.taglist_bg_urgent = theme.xcolor0
 theme.taglist_fg_urgent = theme.xcolor1
 theme.taglist_bg_occupied = theme.xcolor0
-theme.taglist_fg_occupied = "#11111a"
+theme.taglist_fg_occupied = theme.xcolor1
 theme.taglist_bg_empty = theme.xcolor0
-theme.taglist_fg_empty = theme.xcolor8
+theme.taglist_fg_empty = theme.xcolor7
 theme.taglist_shape_border_color_empty = theme.xcolor0
-theme.taglist_shape_border_width = dpi( 2 )
+theme.taglist_shape_border_width = dpi(2)
 theme.taglist_shape_border_color_focus = theme.xcolor5
 theme.taglist_shape_border_color = theme.xcolor0
 theme.taglist_shape_border_color_urgent = theme.xcolor0
 
 theme.taglist_bg_volatile = theme.xcolor1
-theme.taglist_spacing = dpi( 5 )
+theme.taglist_spacing = dpi(5)
 theme.taglist_fg_volatile = theme.xcolor6
 
-theme.widget_main_color = "#0badff"
+theme.widget_main_color = theme.xcolor4
 theme.widget_red = theme.xcolor1
 theme.widget_yelow = theme.xcolor3
 theme.widget_green = theme.xcolor2
@@ -303,8 +303,8 @@ theme.widget_black = theme.xcolor0
 theme.widget_transparent = theme.xcolor0 .. '00'
 
 -- Panel Geometry
-theme.top_panel_height = dpi( 25 )
-theme.bottom_panel_height = dpi( 45 )
+theme.top_panel_height = dpi(15)
+theme.bottom_panel_height = dpi(35)
 --theme.bottom_panel_width = dpi(1024)
 
 -- return theme
