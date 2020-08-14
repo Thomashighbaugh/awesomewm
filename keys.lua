@@ -138,7 +138,7 @@ keys.globalkeys = gears.table.join(
         { description = "open a terminal", group = "launcher" }
     ),
     -- launch rofi
-    awful.key({ modkey }, "d",
+    awful.key({ modkey, "Control" }, "Escape",
         function( )
             awful.spawn( apps.launcher )
         end,
@@ -161,7 +161,7 @@ keys.globalkeys = gears.table.join(
                 { modkey, },
                 "F2",
                 function ( )
-                    awful.spawn( apps.default.web_browser )
+                    awful.spawn( 'firefox' )
                 end,
             { description = "Launch Internet Browser", group = 'Launcher' }),
             
@@ -178,7 +178,7 @@ keys.globalkeys = gears.table.join(
                 { modkey, },
                 "F3",
                 function ( )
-                    awful.spawn( file_manager )
+                    awful.spawn( 'thunar' )
                 end,
             { description = "Launch File Manager", group = 'Launcher' }),
             -- Terminal File Manager
@@ -235,7 +235,7 @@ keys.globalkeys = gears.table.join(
                 { altkey, modkey },
                 'Delete',
                 function( )
-                    awful.spawn( apps.default.terminal .. ' ' .. 'htop' )
+                    awful.spawn( 'kitty -e htop' )
                 end,
                 { description = "open system monitor", group = 'launcher' }
             ),
@@ -300,7 +300,7 @@ keys.globalkeys = gears.table.join(
             ),
             
             -- Screenshot on prtscn using scrot
-            awful.key({ }, "Print",
+            awful.key({modkey}, "Print",
                 function( )
                     awful.util.spawn( apps.screenshot, false )
                 end

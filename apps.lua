@@ -28,8 +28,8 @@ apps.default = {
     ' -show drun -theme ' .. config_dir ..
     '/configuration/rofi/appmenu/rofi.rasi',
     lock = "xlock",
-    screenshot = "scrot -e 'mv $f ~/Pictures/ 2>/dev/null'",
-    filebrowser = "nautilus"
+    screenshot = "maim -s ~/Pictures/Screenshots/$(date +%s).png",
+    filebrowser = "thunar"
 }
 
 -- List of apps to start once on start-up

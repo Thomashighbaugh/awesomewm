@@ -1,9 +1,8 @@
---      ████████╗ █████╗ ███████╗██╗  ██╗    ██╗     ██╗███████╗████████╗
---      ╚══██╔══╝██╔══██╗██╔════╝██║ ██╔╝    ██║     ██║██╔════╝╚══██╔══╝
---         ██║   ███████║███████╗█████╔╝     ██║     ██║███████╗   ██║
---         ██║   ██╔══██║╚════██║██╔═██╗     ██║     ██║╚════██║   ██║
---         ██║   ██║  ██║███████║██║  ██╗    ███████╗██║███████║   ██║
---         ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ╚══════╝╚═╝╚══════╝   ╚═╝
+--  _______               __      _____   __         __   
+-- |_     _|.---.-.-----.|  |--. |     |_|__|.-----.|  |_ 
+--   |   |  |  _  |__ --||    <  |       |  ||__ --||   _|
+--   |___|  |___._|_____||__|__| |_______|__||_____||____|
+                                                       
 
 -- ===================================================================
 -- Initialization
@@ -17,7 +16,7 @@ local clickable_container = require('widgets.clickable-container')
 
 local dpi = require('beautiful').xresources.apply_dpi
 local capi = {button = button}
-local ICON_DIR = gears.filesystem.get_configuration_dir() .. "/icons/"
+local ICON_DIR = gears.filesystem.get_configuration_dir() .. "theme/icons/"
 
 -- define module table
 local task_list = {}
