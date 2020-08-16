@@ -16,7 +16,7 @@ local gears = require( "gears" )
 local dpi = beautiful.xresources.apply_dpi
 local theme = beautiful
 -- import widgets
-local task_list = require( "widgets.task-list" )
+local task_list = require( "components.task-list" )
 
 -- define module table
 local top_panel = { }

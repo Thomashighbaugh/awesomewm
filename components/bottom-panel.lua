@@ -9,12 +9,12 @@ local dpi = beautiful.xresources.apply_dpi
 local awful = require("awful")
 local gears = require("gears")
 
-local tag_list = require("widgets.tag-list")
+local tag_list = require("components.tag-list")
 local separator = require("widgets.horizontal-separator")
 local folder = require("widgets.folder")
 
 local home_dir = os.getenv("HOME")
-local tag_list = require('widgets.tag-list')
+local tag_list = require('components.tag-list')
 
 -- define module table
 local bottom_panel = {}

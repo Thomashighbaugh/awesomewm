@@ -19,17 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e63b9b82-4ef7-4e2f-b979-250103057b96" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps.lua" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/apps.lua" afterDir="false" />
+    <list default="true" id="e63b9b82-4ef7-4e2f-b979-250103057b96" name="Default Changelist" comment="awesome possum">
       <change beforePath="$PROJECT_DIR$/components/bottom-panel.lua" beforeDir="false" afterPath="$PROJECT_DIR$/components/bottom-panel.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/exit-screen.lua" beforeDir="false" afterPath="$PROJECT_DIR$/components/exit-screen.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/keys.lua" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/keys.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rc.lua" beforeDir="false" afterPath="$PROJECT_DIR$/rc.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theme/theme.lua" beforeDir="false" afterPath="$PROJECT_DIR$/theme/theme.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widgets/clickable-container.lua" beforeDir="false" afterPath="$PROJECT_DIR$/widgets/clickable-container.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widgets/cpu-ram.lua" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/widgets/folder.lua" beforeDir="false" afterPath="$PROJECT_DIR$/widgets/folder.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/top-panel.lua" beforeDir="false" afterPath="$PROJECT_DIR$/components/top-panel.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widgets/tag-list.lua" beforeDir="false" afterPath="$PROJECT_DIR$/components/tag-list.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widgets/task-list.lua" beforeDir="false" afterPath="$PROJECT_DIR$/components/task-list.lua" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,17 +34,22 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1g0fibS06DjM7cXzmgfNG3ycIxV" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components" />
       <recent name="$PROJECT_DIR$/configuration" />
     </key>
   </component>
@@ -64,8 +63,16 @@
       <updated>1597256559856</updated>
       <workItem from="1597256561459" duration="150000" />
       <workItem from="1597256721488" duration="64000" />
-      <workItem from="1597575334676" duration="185000" />
+      <workItem from="1597575334676" duration="406000" />
     </task>
+    <task id="LOCAL-00001" summary="awesome possum">
+      <created>1597575678531</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1597575678531</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -82,6 +89,11 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="awesome possum" />
+    <option name="LAST_COMMIT_MESSAGE" value="awesome possum" />
   </component>
   <component name="WindowStateProjectService">
     <state x="484" y="202" width="952" height="704" key="SettingsEditor" timestamp="1597256747175">
