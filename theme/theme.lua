@@ -270,8 +270,8 @@ theme.snap_border_width = dpi(15)
 
 -- Hotkey popup
 
-theme.hotkeys_font = 'Future Forces Bold 18'
-theme.hotkeys_description_font = 'Sometype Mono Medium Regular 16'
+theme.hotkeys_font = 'Future Forces Bold 11'
+theme.hotkeys_description_font = 'Sometype Mono Medium Regular 08'
 theme.hotkeys_bg = theme.background
 theme.hotkeys_group_margin = dpi(2)
 
@@ -280,9 +280,9 @@ theme.taglist_shape = gears.shape.rounded_rect
 theme.taglist_bg_focus = theme.xcolor0
 theme.taglist_fg_focus = theme.xcolor5
 theme.taglist_bg_urgent = theme.xcolor0
-theme.taglist_fg_urgent = theme.xcolor1
+theme.taglist_fg_urgent = theme.xcolor5 .. '55'
 theme.taglist_bg_occupied = theme.xcolor0
-theme.taglist_fg_occupied = theme.xcolor1
+theme.taglist_fg_occupied = theme.xcolor5 .. '55'
 theme.taglist_bg_empty = theme.xcolor0
 theme.taglist_fg_empty = theme.xcolor7
 theme.taglist_shape_border_color_empty = theme.xcolor0
@@ -305,7 +305,7 @@ theme.widget_transparent = theme.xcolor0 .. '00'
 -- Panel Geometry
 theme.top_panel_height = dpi(15)
 theme.bottom_panel_height = dpi(35)
---theme.bottom_panel_width = dpi(1024)
+theme.bottom_panel_width = dpi(840)
 
 -- return theme
 return theme

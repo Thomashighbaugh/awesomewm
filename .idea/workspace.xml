@@ -20,17 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e63b9b82-4ef7-4e2f-b979-250103057b96" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/theme/icons/folders/folder-cyan.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps.lua" beforeDir="false" afterPath="$PROJECT_DIR$/apps.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/top-panel.lua" beforeDir="false" afterPath="$PROJECT_DIR$/components/top-panel.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/keys.lua" beforeDir="false" afterPath="$PROJECT_DIR$/keys.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theme/icons/folders/dotfiles.png" beforeDir="false" afterPath="$PROJECT_DIR$/theme/icons/folders/dotfiles.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theme/icons/folders/downloads.png" beforeDir="false" afterPath="$PROJECT_DIR$/theme/icons/folders/downloads.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theme/icons/folders/home.png" beforeDir="false" afterPath="$PROJECT_DIR$/theme/icons/folders/home.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theme/icons/folders/trash.png" beforeDir="false" afterPath="$PROJECT_DIR$/theme/icons/folders/trash.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps.lua" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/apps.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/bottom-panel.lua" beforeDir="false" afterPath="$PROJECT_DIR$/components/bottom-panel.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/exit-screen.lua" beforeDir="false" afterPath="$PROJECT_DIR$/components/exit-screen.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/keys.lua" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/keys.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rc.lua" beforeDir="false" afterPath="$PROJECT_DIR$/rc.lua" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/theme/theme.lua" beforeDir="false" afterPath="$PROJECT_DIR$/theme/theme.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widgets/layout-box.lua" beforeDir="false" afterPath="$PROJECT_DIR$/widgets/layout-box.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widgets/task-list.lua" beforeDir="false" afterPath="$PROJECT_DIR$/widgets/task-list.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widgets/clickable-container.lua" beforeDir="false" afterPath="$PROJECT_DIR$/widgets/clickable-container.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widgets/cpu-ram.lua" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widgets/folder.lua" beforeDir="false" afterPath="$PROJECT_DIR$/widgets/folder.lua" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +49,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/configuration" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -60,6 +64,7 @@
       <updated>1597256559856</updated>
       <workItem from="1597256561459" duration="150000" />
       <workItem from="1597256721488" duration="64000" />
+      <workItem from="1597575334676" duration="185000" />
     </task>
     <servers />
   </component>

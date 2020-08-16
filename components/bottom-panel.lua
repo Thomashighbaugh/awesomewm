@@ -30,7 +30,7 @@ bottom_panel.create = function(s)
         width = beautiful.bottom_panel_width,
         position = "bottom",
         ontop = true,
-        bg = beautiful.xcolor0,
+        bg = beautiful.transparent,
         height = beautiful.bottom_panel_height,
         
     })
@@ -39,7 +39,7 @@ bottom_panel.create = function(s)
         expand = "none",
         layout = wibox.layout.align.horizontal,
         {
-            folder.create(home_dir),
+            --            folder.create(home_dir),
             folder.create(home_dir .. "/dotfiles"),
             folder.create(home_dir .. "/Downloads"),
             folder.create("trash://"),

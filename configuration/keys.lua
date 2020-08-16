@@ -18,7 +18,7 @@ local hotkeys_popup = require( 'awful.hotkeys_popup' ).widget
 local switcher = require( "widgets.awesome-switcher" )
 
 -- Default Applications
-local apps = require( "apps" ).default
+local apps = require( "configuration.apps" ).default
 
 -- Define mod keys
 local modkey = "Mod4"
