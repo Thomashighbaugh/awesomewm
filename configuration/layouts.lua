@@ -1,8 +1,8 @@
---  _____                            __         
+--  _____                            __
 -- |     |_.---.-.--.--.-----.--.--.|  |_.-----.
 -- |       |  _  |  |  |  _  |  |  ||   _|__ --|
 -- |_______|___._|___  |_____|_____||____|_____|
---               |_____|                        
+--               |_____|
 
 -- Standard awesome library
 local awful = require("awful")
@@ -14,16 +14,17 @@ local lain = require("lain")
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts = {
+    lain.layout.termfair,
+    awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     lain.layout.centerwork,
-    awful.layout.suit.tile,
-    awful.layout.suit.spiral,
-    awful.layout.suit.fair,
     lain.layout.termfair.center,
-    lain.layout.cascade,
     awful.layout.suit.floating,
-    
-    --lain.layout.cascade.tile,
+    lain.layout.cascade.tile,
+    --awful.layout.suit.spiral,
+    --awful.layout.suit.fair,
+    --lain.layout.cascade,
+    --awful.layout.suit.tile,
     --awful.layout.suit.corner.sw,
     --lain.layout.termfair,
     --awful.layout.suit.corner.nw,
@@ -33,13 +34,12 @@ layouts = {
     --awful.layout.suit.corner.se,
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.tile.left,
-    --awful.layout.suit.spiral.dwindle,
     --awful.layout.suit.tile.bottom,
     --awful.layout.suit.max.fullscreen,
     --awful.layout.suit.magnifier,
 }
 
-lain.layout.termfair.ncol = 4
+lain.layout.termfair.ncol = 3
 lain.layout.termfair.nmaster = 2
 lain.layout.termfair.center.nmaster = 3
 lain.layout.termfair.center.ncol = 1
