@@ -33,12 +33,12 @@ awful.tooltip({
 margin_topbottom = dpi(15)})
 
 local cal_shape = function(cr, width, height)
-    gears.shape.rounded_rect(cr, width, height, 12)
+    gears.shape.rounded_rect(cr, width, height, 18)
 end
 
 -- Calendar Widget
 local month_calendar = awful.widget.calendar_popup.month({
-    start_sunday = true,
+    start_sunday = false,
     spacing = 10,
     font = beautiful.title_font,
     long_weekdays = true,
@@ -48,6 +48,7 @@ local month_calendar = awful.widget.calendar_popup.month({
     style_weekday = {border_width = 1, bg_color = "#13111a"},
     style_normal = {border_width = 1, bg_color = "#13111a"},
     style_focus = {border_width = 1, bg_color = "#0badff"},
+    
 })
 
 -- Attach calentar to clock_widget

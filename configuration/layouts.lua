@@ -14,13 +14,13 @@ local lain = require("lain")
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts = {
-    lain.layout.termfair,
-    awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     lain.layout.centerwork,
     lain.layout.termfair.center,
     awful.layout.suit.floating,
     lain.layout.cascade.tile,
+    awful.layout.suit.spiral.dwindle
+    
     --awful.layout.suit.spiral,
     --awful.layout.suit.fair,
     --lain.layout.cascade,

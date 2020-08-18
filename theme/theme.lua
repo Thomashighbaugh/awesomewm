@@ -34,10 +34,10 @@ local theme = {}
 -- Theme Variables
 -- ===================================================================
 -- Font
-theme.font = 'Sometype Mono Medium 13'
-theme.font_bold = 'Sometype Mono Bold 13'
-theme.taglist_font = "awesomewm-font 18"
-theme.title_font = 'Future Forces Bold 14'
+theme.font = 'Share Tech Medium 13'
+theme.font_bold = 'Share Tech Bold 13'
+theme.taglist_font = "awesomewm-font 14"
+theme.title_font = 'Share Tech Bold  14'
 
 -- Menu icon theme
 theme.icon_theme = 'Flatery-Dark'
@@ -186,7 +186,7 @@ theme.client_radius = dpi(18)
 theme.useless_gap = dpi(6)
 
 -- Menu
-theme.menu_font = "Sometype Mono Medium 16"
+theme.menu_font = "Share Tech Medium 16"
 theme.menu_submenu = '➤' -- ➤
 
 theme.menu_height = dpi(34)
@@ -243,7 +243,7 @@ theme.layout_centerwork = theme.icons .. "layouts/centerwork.png"
 theme.layout_centerworkh = theme.icons .. "layouts/centerworkh.png" -- centerwork.horizontal
 
 -- Tasklist
-theme.tasklist_font = 'Sometype Mono Medium 11'
+theme.tasklist_font = 'Share Tech Medium 11'
 theme.tasklist_bg_normal = theme.xcolor0 .. '55'
 theme.tasklist_bg_focus = theme.xcolor0 .. '55'
 theme.tasklist_bg_urgent = theme.xcolor1 .. '55'
@@ -271,7 +271,7 @@ theme.snap_border_width = dpi(15)
 -- Hotkey popup
 
 theme.hotkeys_font = 'Future Forces Bold 11'
-theme.hotkeys_description_font = 'Sometype Mono Medium Regular 08'
+theme.hotkeys_description_font = 'Share Tech Medium 08'
 theme.hotkeys_bg = theme.background
 theme.hotkeys_group_margin = dpi(2)
 
@@ -303,9 +303,8 @@ theme.widget_black = theme.xcolor0
 theme.widget_transparent = theme.xcolor0 .. '00'
 
 -- Panel Geometry
-theme.top_panel_height = dpi(15)
-theme.bottom_panel_height = dpi(35)
-theme.bottom_panel_width = dpi(840)
+theme.top_panel_height = dpi(12)
+theme.bottom_panel_height = dpi(30)
 
 -- return theme
 return theme
