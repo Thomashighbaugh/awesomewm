@@ -1,89 +1,87 @@
---       █████╗ ██╗    ██╗███████╗███████╗ ██████╗ ███╗   ███╗███████╗
---      ██╔══██╗██║    ██║██╔════╝██╔════╝██╔═══██╗████╗ ████║██╔════╝
---      ███████║██║ █╗ ██║█████╗  ███████╗██║   ██║██╔████╔██║█████╗
---      ██╔══██║██║███╗██║██╔══╝  ╚════██║██║   ██║██║╚██╔╝██║██╔══╝
---      ██║  ██║╚███╔███╔╝███████╗███████║╚██████╔╝██║ ╚═╝ ██║███████╗
---      ╚═╝  ╚═╝ ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝
+--  _______                                             ________ _______
+-- |   _   |.--.--.--.-----.-----.-----.--------.-----.|  |  |  |   |   |
+-- |       ||  |  |  |  -__|__ --|  _  |        |  -__||  |  |  |       |
+-- |___|___||________|_____|_____|_____|__|__|__|_____||________|__|_|__|
+--
+--                                                  Thomas Leon Highbaugh
+-- ========================================================================
 
--- ===================================================================
--- Initialization
--- ===================================================================
+-- External Package Manager Call
 pcall(require, "luarocks.loader")
--- Standard awesome library
+
+-- Standard AwesomeWM Libraries
 local gears = require("gears")
 local awful = require("awful")
 
--- Import theme
-local beautiful = require("beautiful")
-beautiful.init(gears.filesystem.get_configuration_dir() .. "/theme/theme.lua")
--- Widget and layout library
-local wibox = require("wibox")
-
--- Theme handling library
+-- Theme Handling Library
 local beautiful = require("beautiful")
 
--- Notification library
-local naughty = require("naughty")
-naughty.config.defaults['icon_size'] = 100
-
+-- Miscellanous AwesomeWM Libraries
+local menubar = require("menubar")
 local lain = require("lain")
-local freedesktop = require("freedesktop")
--- Import Keybinds
-local keys = require("configuration.keys")
-root.keys(keys.globalkeys)
-root.buttons(keys.desktopbuttons)
-
--- Import rules
-local create_rules = require("configuration.rules").create
-awful.rules.rules = create_rules(keys.clientkeys, keys.clientbuttons)
-
--- Import notification appearance
-require("components.notifications")
-awful.layout.layouts = require("configuration.layouts")
--- Import components
-require("components.wallpaper")
-require("components.exit-screen")
-require("components.volume-adjust")
-require("configuration")
--- Autostart specified apps
-local apps = require("configuration.apps")
-apps.autostart()
 
 -- ===================================================================
--- Set Up Screen & Connect Signals
+-- Calling All Module Libraries
 -- ===================================================================
 
--- Import panels
-local bottom_panel = require("components.bottom-panel")
-local top_panel = require("components.top-panel")
+RC = {} -- global namespace, on top before require any modules
+RC.vars = require("main.user-variables")
+modkey = RC.vars.modkey
 
--- Set up each screen (add tags & panels)
-awful.screen.connect_for_each_screen(function(s)
-    top_panel.create(s)
-    bottom_panel.create(s)
-end)
+-- Error handling
+require("main.error-handling")
 
--- Signal function to execute when a new client appears.
-client.connect_signal("manage", function (c)
-    -- Set the window as a slave (put it at the end of others instead of setting it as master)
-    if not awesome.startup then
-        awful.client.setslave(c)
-    end
-    
-    if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
-        -- Prevent clients from being unreachable after screen count changes.
-        awful.placement.no_offscreen(c)
-        awful.placement.center(c)
-    end
-end)
--- ===================================================================
--- Client Focusing
--- ===================================================================
+-- Themes
+require("main.theme")
 
-signals = require('configuration.signals')
--- ===================================================================
+-- Custom Local Library
+local main = {
+    layouts = require("main.layouts"),
+    tags = require("main.tags"),
+    menu = require("main.menu"),
+    rules = require("main.rules"),
+}
+-- Layouts
+RC.layouts = main.layouts()
+
+-- Tags
+RC.tags = main.tags()
+
+-- Custom Local Library: Keys and Mouse Binding
+local binding = {
+    globalbuttons = require("binding.globalbuttons"),
+    clientbuttons = require("binding.clientbuttons"),
+    globalkeys = require("binding.globalkeys"),
+    clientkeys = require("binding.clientkeys"),
+bindtotags = require("binding.bindtotags")}
+
+-- Menu
+RC.mainmenu = awful.menu({items = main.menu()}) -- in globalkeys
+RC.launcher = awful.widget.launcher(
+{image = beautiful.awesome_icon, menu = RC.mainmenu})
+menubar.utils.terminal = RC.vars.terminal
+
+-- Mouse and Key bindings
+RC.globalkeys = binding.globalkeys()
+RC.globalkeys = binding.bindtotags(RC.globalkeys)
+
+-- Set root
+root.buttons(binding.globalbuttons())
+root.keys(RC.globalkeys)
+
+-- Keyboard map indicator and switcher
+mykeyboardlayout = awful.widget.keyboardlayout()
+
+-- Statusbar: Wibar
+require("deco.statusbar")
+
+-- Rules
+awful.rules.rules = main.rules(
+    binding.clientkeys(),
+binding.clientbuttons())
+-- Signals
+require("main.signals")
+
 -- Garbage collection (allows for lower memory consumption)
--- ===================================================================
-
 collectgarbage("setpause", 110)
 collectgarbage("setstepmul", 1000)
