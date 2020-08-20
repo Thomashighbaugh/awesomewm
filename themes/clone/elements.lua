@@ -17,9 +17,9 @@ theme.fg_urgent = xrdb.color15
 
 theme.bat_fg_critical = xrdb.color8
 
-theme.bg_normal = xrdb.background
-theme.bg_focus = xrdb.color8
-theme.bg_urgent = xrdb.color0
+theme.bg_normal = xrdb.background .. '22'
+theme.bg_focus = xrdb.color0 .. 'cc'
+theme.bg_urgent = xrdb.color0 .. '22'
 
 -- Colorscheme
 theme.background = xrdb.background
@@ -54,7 +54,7 @@ theme.bg_systray = theme.background
 theme.systray_icon_spacing = dpi(16)
 
 theme.bg_normal = theme.xcolor0 .. "22"
-theme.bg_focus = theme.xcolor0 .. "22"
+theme.bg_focus = theme.xcolor0 .. "cc"
 theme.bg_urgent = theme.xcolor0 .. "22"
 theme.bg_minimize = theme.xcolor0 .. "22"
 theme.bg_systray = theme.xcolor0 .. "22"
@@ -68,7 +68,7 @@ theme.useless_gap = dpi(6)
 theme.border_width = dpi(1)
 
 theme.border_normal = theme.xcolor0 .. "55"
-theme.border_focus = theme.xcolor7 .. "55"
+theme.border_focus = theme.xcolor8 .. "11"
 theme.border_marked = theme.xcolor1 .. "55"
 theme.border_radius = dpi(25)
 theme.client_radius = dpi(18)
@@ -102,7 +102,7 @@ theme.tasklist_bg_focus = theme.xcolor0 .. "88"
 theme.tasklist_fg_focus = theme.xcolor7 .. 'cc'
 
 theme.titlebar_bg_normal = theme.xcolor0 .. "aa"
-theme.titlebar_bg_focus = theme.xcolor0 .. "aa"
+theme.titlebar_bg_focus = theme.xcolor0 .. "ee"
 theme.titlebar_fg_focus = theme.xcolor7 .. "ff"
 theme.titlebar_size = dpi(20)
 theme.titlebar_fg_normal = theme.xcolor15 .. 'ff'

@@ -12,6 +12,7 @@ pcall(require, "luarocks.loader")
 -- Standard AwesomeWM Libraries
 local gears = require("gears")
 local awful = require("awful")
+local freedesktop = require("lib.freedesktop")
 
 -- Theme Handling Library
 local beautiful = require("beautiful")
@@ -26,6 +27,9 @@ local lain = require("lain")
 
 RC = {} -- global namespace, on top before require any modules
 RC.vars = require("main.user-variables")
+local apps = require("main.apps")
+apps.autostart()
+
 modkey = RC.vars.modkey
 
 -- Error handling
@@ -82,6 +86,6 @@ binding.clientbuttons())
 -- Signals
 require("main.signals")
 
--- Garbage collection (allows for lower memory consumption)
+-- Garbage collection
 collectgarbage("setpause", 110)
 collectgarbage("setstepmul", 1000)

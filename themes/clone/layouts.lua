@@ -1,3 +1,9 @@
+--  _____                            __     _______ __
+-- |     |_.---.-.--.--.-----.--.--.|  |_  |_     _|  |--.-----.--------.-----.
+-- |       |  _  |  |  |  _  |  |  ||   _|   |   | |     |  -__|        |  -__|
+-- |_______|___._|___  |_____|_____||____|   |___| |__|__|_____|__|__|__|_____|
+--               |_____|
+
 -- You can use your own layout icons like this:
 
 local layout_icons = "default-white"
@@ -32,3 +38,11 @@ theme.layout_uselesstiletop = layout_path .. "tiletop.png"
 theme.layout_uselesstileleft = layout_path .. "tileleft.png"
 theme.layout_uselesstilebottom = layout_path .. "tilebottom.png"
 theme.layout_uselesspiral = layout_path .. "spiral.png"
+
+theme.layout_cascade = layout_path .. "cascade.png"
+theme.layout_centerfair = layout_path .. "centerfair.png"
+theme.layout_cascadetile = layout_path .. "cascadebrowse.png"
+
+theme.layout_cascadebrowse = layout_path .. "cascadebrowse.png"
+theme.layout_centerhwork = layout_path .. "centerhwork.png"
+theme.layout_centerwork = layout_path .. "centerwork.png"

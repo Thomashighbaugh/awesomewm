@@ -1,3 +1,9 @@
+--  _____                            __
+-- |     |_.---.-.--.--.-----.--.--.|  |_
+-- |       |  _  |  |  |  _  |  |  ||   _|
+-- |_______|___._|___  |_____|_____||____|
+--               |_____|
+
 -- Standard awesome library
 local awful = require("awful")
 local lain = require("lain")
@@ -7,7 +13,7 @@ local _M = {}
 
 function _M.get ()
     -- Table of layouts to cover with awful.layout.inc, order matters.
-    local layouts = {
+    awful.layout.layouts = {
         awful.layout.suit.spiral, --1
         awful.layout.suit.max, -- 2
         lain.layout.centerwork, --3

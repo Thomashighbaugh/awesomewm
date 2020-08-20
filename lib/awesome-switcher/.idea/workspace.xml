@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bdfc4307-c47d-488d-9b44-7ef793e8ddcc" name="Default Changelist" comment="" />
+    <list default="true" id="b83e909d-a381-4731-9a79-c199e6178dcd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/init.lua" beforeDir="false" afterPath="$PROJECT_DIR$/init.lua" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectId" id="1gJU92QqLCNqOiXjeCNaphU0Q9q" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1gN7WHUUttpQ4fovaAGHOIcjj1m" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -15,28 +20,21 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/dotfiles" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bdfc4307-c47d-488d-9b44-7ef793e8ddcc" name="Default Changelist" comment="" />
-      <created>1597832034456</created>
+      <changelist id="b83e909d-a381-4731-9a79-c199e6178dcd" name="Default Changelist" comment="" />
+      <created>1597943226587</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1597832034456</updated>
-      <workItem from="1597832035661" duration="9000" />
-      <workItem from="1597834487391" duration="73000" />
+      <updated>1597943226587</updated>
+      <workItem from="1597943228172" duration="39000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="1220" y="140" width="426" height="456" key="FileChooserDialogImpl" timestamp="1597834558393">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="1220" y="140" width="426" height="456" key="FileChooserDialogImpl/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1597834558393" />
   </component>
 </project>
