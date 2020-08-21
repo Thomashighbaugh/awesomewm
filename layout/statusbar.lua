@@ -10,14 +10,22 @@ local awful = require("awful")
 -- Wibox handling library
 local wibox = require("wibox")
 local vicious = require("vicious")
--- Custom Local Library: Common Functional Decoration
-local deco = {
-    wallpaper = require("deco.wallpaper"),
-    taglist = require("deco.taglist"),
-tasklist = require("deco.tasklist")}
+local beautiful = require("beautiful")
+local xresources = require("beautiful.xresources")
 
-local taglist_buttons = deco.taglist()
-local tasklist_buttons = deco.tasklist()
+local dpi = xresources.apply_dpi
+
+-- Custom Local Library: Common Functional Decoration
+local cpu_widget = require("lib.awesome-wm-widgets.cpu-widget/cpu-widget")
+local ram_widget = require("lib.awesome-wm-widgets.ram-widget/ram-widget")
+
+local layout = {
+    wallpaper = require("layout.wallpaper"),
+    taglist = require("layout.taglist"),
+tasklist = require("layout.tasklist")}
+
+local taglist_buttons = layout.taglist()
+local tasklist_buttons = layout.tasklist()
 
 local _M = {}
 local W = {}
@@ -30,6 +38,15 @@ local F = {} -- Format
 mytextclock = wibox.widget.textclock()
 
 awful.screen.connect_for_each_screen(function(s)
+    
+    local separator = wibox.widget {
+        orientation = 'vertical',
+        forced_height = dpi(1),
+        forced_width = dpi(20),
+        span_ratio = 0.5,
+        color = beautiful.xcolor7,
+        widget = wibox.widget.separator
+    }
     -- Wallpaper
     set_wallpaper(s)
     --Memory Widget
@@ -56,9 +73,40 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytaglist = awful.widget.taglist {
         screen = s,
         filter = awful.widget.taglist.filter.all,
+        style = {
+            shape = gears.shape.rounded_rect
+        },
+        layout = {
+            spacing = 5,
+            spacing_widget = {
+                color = beautiful.xcolor0 .. 'cc',
+                shape = gears.shape.rounded_rect,
+                widget = wibox.widget.separator,
+            },
+            layout = wibox.layout.fixed.horizontal
+        },
+        widget_template = {
+            {
+                {
+                    {
+                        id = 'text_role',
+                        widget = wibox.widget.textbox,
+                        shape = gears.shape.rounded_rect,
+                    },
+                    layout = wibox.layout.fixed.horizontal,
+                },
+                margins = dpi(3),
+                left = 2,
+                right = 2,
+                widget = wibox.container.margin
+            },
+            id = 'background_role',
+            widget = wibox.container.background,
+            -- Add support for hover colors and an index label
+            
+        },
         buttons = taglist_buttons
     }
-    
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
         screen = s,
@@ -74,20 +122,20 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         {-- Left widgets
             layout = wibox.layout.fixed.horizontal,
+            separator,
             s.mytaglist,
             s.mypromptbox,
+            separator,
         },
         s.mytasklist, -- Middle widget
         {-- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
-            wibox.widget.systray(),
-            mytextclock,
+            separator,
             s.mylayoutbox,
         },
     }
     -- Create the wibox
-    s.mywibox2 = awful.wibar({position = "top", screen = s, bg = "#292b35cc", height = 15})
+    s.mywibox2 = awful.wibar({position = "top", screen = s, bg = "#292b35cc", height = 20})
     
     -- Add widgets to the wibox
     s.mywibox2:setup {
@@ -95,6 +143,8 @@ awful.screen.connect_for_each_screen(function(s)
         {-- Left widgets
             layout = wibox.layout.align.horizontal,
             RC.launcher,
+            wibox.widget.systray(),
+            
             align = "left",
         },
         mytextclock, -- Middle widget
@@ -104,10 +154,14 @@ awful.screen.connect_for_each_screen(function(s)
         {-- Right widgets
             layout = wibox.layout.fixed.horizontal,
             align = "right",
+            separator,
             cpuwidget,
+            cpu_widget,
             memwidget,
+            ram_widget,
         },
     }
 end)
 
 -- }}}
+

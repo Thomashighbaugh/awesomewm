@@ -92,10 +92,10 @@ function _M.get()
         {description = "toggle titlebar", group = "client"}),
         -- resize clients
         
-        awful.key({modkey}, "Down", function (c) c:relative_move(0, 20, 0, 0) end),
-        awful.key({modkey, }, "Up", function (c) c:relative_move(0, -20, 0, 0) end),
-        awful.key({modkey}, "Left", function (c) c:relative_move(-20, 0, 0, 0) end),
-        awful.key({modkey}, "Right", function (c) c:relative_move(20, 0, 0, 0) end),
+        awful.key({modkey, "Control", }, "Down", function (c) c:relative_move(0, 20, 0, 0) end),
+        awful.key({modkey, "Control", }, "Up", function (c) c:relative_move(0, -20, 0, 0) end),
+        awful.key({modkey, "Control", }, "Left", function (c) c:relative_move(-20, 0, 0, 0) end),
+        awful.key({modkey, "Control", }, "Right", function (c) c:relative_move(20, 0, 0, 0) end),
         
         --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
         -- Maximized

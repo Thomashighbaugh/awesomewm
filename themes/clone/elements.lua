@@ -60,7 +60,7 @@ theme.bg_minimize = theme.xcolor0 .. "22"
 theme.bg_systray = theme.xcolor0 .. "22"
 
 theme.fg_normal = theme.xcolor7
-theme.fg_focus = theme.xcolor7
+theme.fg_focus = theme.xcolor15
 theme.fg_urgent = theme.xcolor7
 theme.fg_minimize = theme.xcolor7
 
@@ -84,19 +84,24 @@ theme.groups_radius = dpi(18)
 -- mouse_finder_[color|timeout|animate_timeout|radius|factor]
 -- Example:
 
-theme.taglist_bg_focus = theme.xcolor0 .. '22'
-theme.taglist_bg_normal = theme.xcolor0 .. '22'
-theme.taglist_fg_focus = theme.xcolor7 .. 'bb'
+theme.taglist_bg_focus = theme.xcolor0 .. 'cc'
+theme.taglist_bg_normal = theme.xcolor0 .. 'cc'
+theme.taglist_fg_focus = theme.xcolor7.. 'bb'
 theme.taglist_bg_urgent = theme.xcolor0 .. '22'
-theme.taglist_fg_urgent = theme.xcolor5 .. '55'
-theme.taglist_bg_occupied = theme.xcolor0 .. '22'
-theme.taglist_fg_occupied = theme.xcolor12 .. 'bb'
-theme.taglist_bg_empty = theme.xcolor0 .. '22'
-theme.taglist_fg_empty = theme.xcolor7 .. 'bb'
-theme.taglist_shape_border_color_focus = theme.xcolor5
+theme.taglist_fg_urgent = theme.xcolor1 .. '55'
+theme.taglist_bg_occupied = theme.xcolor0 .. 'cc'
+theme.taglist_fg_occupied = theme.xcolor9 .. 'bb'
+theme.taglist_bg_empty = theme.xcolor0 .. 'cc'
+theme.taglist_fg_empty = theme.xcolor8 .. 'ff'
+theme.taglist_shape_border_color_focus = theme.xcolor4
 theme.taglist_shape_border_color = theme.xcolor0
+theme.taglist_shape_border_width = 0
+
+theme.taglist_shape_border_color_occupied = theme.xcolor7
+
 theme.taglist_shape_border_color_urgent = theme.xcolor0
-theme.taglist_spacing = dpi(3)
+-- theme.taglist_spacing = dpi(1)
+
 theme.tasklist_bg_normal = theme.xcolor0 .. "55"
 theme.tasklist_bg_focus = theme.xcolor0 .. "88"
 theme.tasklist_fg_focus = theme.xcolor7 .. 'cc'
@@ -123,12 +128,12 @@ theme.menu_fg_focus = theme.xcolor7
 theme.menu_border_color = theme.xcolor12 .. "00"
 theme.menu_border_width = 1
 
-theme.hotkeys_font = 'Share Tech Bold 11'
-theme.hotkeys_description_font = 'Share Tech Medium 10'
+theme.hotkeys_font = 'Share Tech Bold 12'
+theme.hotkeys_description_font = 'Share Tech Medium 12'
 theme.hotkeys_bg = theme.background .. 'cc'
 theme.hotkeys_group_margin = dpi(2)
-theme.hotkeys_label_fg = theme.xcolor7
-theme.hotkeys_modifiers_fg = theme.xcolor1 .. 'cc'
+theme.hotkeys_label_fg = theme.xcolor0
+theme.hotkeys_modifiers_fg = theme.xcolor4 .. 'cc'
 -- You can add as many variables as
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
