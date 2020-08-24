@@ -5,7 +5,14 @@
 --
 --                                                  Thomas Leon Highbaugh
 -- ========================================================================
+-- Warning the following configuration contains so much spaghetti code, it 
+-- may soon transcend into the Flying Spaghetti Monster.
+-- ========================================================================
 
+
+-- ===================================================================
+--  External Libraries 
+-- ===================================================================
 -- External Package Manager Call
 pcall(require, "luarocks.loader")
 
@@ -20,25 +27,29 @@ local beautiful = require("beautiful")
 -- Miscellanous AwesomeWM Libraries
 local menubar = require("menubar")
 local lain = require("lain")
-
+local vicious = require("vicious")
 -- ===================================================================
--- Calling All Module Libraries
+-- My Configuration 
 -- ===================================================================
 
-RC = {} -- global namespace, on top before require any modules
+-- Global Namespace,     
+RC = {}
+-- User Variables
 RC.vars = require("main.user-variables")
 local apps = require("main.apps")
 apps.autostart()
 
+-- Mod Key declared Globally
+	-- Meaning I do not have to worry about the import process later
 modkey = RC.vars.modkey
 
 -- Error handling
 require("main.error-handling")
 
--- Themes
+-- Load the user themes 
 require("main.theme")
 
--- Custom Local Library
+-- Custom Local Libraries 
 local main = {
     layouts = require("main.layouts"),
     tags = require("main.tags"),
@@ -86,6 +97,11 @@ binding.clientbuttons())
 -- Signals
 require("main.signals")
 
--- Garbage collection
+
+
+
+-- ===================================================================
+-- Garbage Collection
+-- ===================================================================
 collectgarbage("setpause", 110)
 collectgarbage("setstepmul", 1000)
