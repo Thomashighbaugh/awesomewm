@@ -65,19 +65,17 @@ function _M.get( )
                     end,
                 { description = "pop up terminal Launcher", group = "Launcher" }),
                 -- ===================================================================
-                
+                -- Revelation
                 awful.key({ modkey, }, "e", revelation,
                 { description = "show all windows", group = "awesome" }),
                 
                 -- ===================================================================
-                -- launch rofi
+                -- launch rofi app menu *Note this is bound to just mod4 thanks to xcape see main/apps.lua
                 awful.key({ modkey, "Control" }, "Escape",
                     function( )
-                        awful.spawn( "rofi  -show drun -theme ~/.config/awesome/scripts/rofi/appmenu/rofi.rasi" )
+                        awful.spawn( "rofi  -show drun -theme ~/.config/awesome/configuration/rofi/appmenu/rofi.rasi" )
                     end,
                 { description = "application Launcher", group = "Launcher" }),
-                
-                -- ===================================================================
                 
                 -- ===================================================================
                 --Browser Launch
@@ -85,7 +83,7 @@ function _M.get( )
                     { modkey, },
                     "F2",
                     function ( )
-                        awful.spawn( 'firefox' )
+                        awful.spawn( RC.vars.browser )
                     end,
                 { description = "Launch Firefox", group = 'Launcher' }),
                 -- ===================================================================

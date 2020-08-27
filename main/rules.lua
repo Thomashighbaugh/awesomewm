@@ -2,24 +2,28 @@
 -- |   __ \.--.--.|  |.-----.-----.
 -- |      <|  |  ||  ||  -__|__ --|
 -- |___|__||_____||__||_____|_____|
+-- ===================================================================
+--  Import Libraries and Utilities
+-- ===================================================================
 
 -- Standard awesome library
-local awful = require("awful")
+local awful = require( "awful" )
 -- Theme handling library
-local beautiful = require("beautiful")
+local beautiful = require( "beautiful" )
 
-local _M = {}
+local _M = { }
 
 -- reading
 -- https://awesomewm.org/apidoc/libraries/awful.rules.html
 
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
-function _M.get(clientkeys, clientbuttons)
+-- ===================================================================
+--  Rule Declaration
+-- ===================================================================
+function _M.get( clientkeys, clientbuttons )
     local rules = {
         
         -- All clients will match this rule.
-        {rule = {},
+        { rule = { },
             properties = {
                 border_width = beautiful.border_width,
                 border_color = beautiful.border_normal,
@@ -28,12 +32,12 @@ function _M.get(clientkeys, clientbuttons)
                 keys = clientkeys,
                 buttons = clientbuttons,
                 screen = awful.screen.preferred,
-                placement = awful.placement.under_mouse + awful.placement.no_overlap + awful.placement.no_offscreen,
+                placement = awful.placement.under_mouse + awful.placement.no_overlap + awful.placement.no_offscreen + awful.placement.centered,
                 callback = awful.client.setslave,
             }},
             
             -- Floating clients.
-            {rule_any = {
+            { rule_any = {
                 instance = {
                     "DTA", -- Firefox addon DownThemAll.
                     "copyq", -- Includes session name in class.
@@ -49,7 +53,7 @@ function _M.get(clientkeys, clientbuttons)
                     "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
                     "Wpa_gui",
                     "veromix",
-                "xtightvncviewer"},
+                "xtightvncviewer" },
                 
                 -- Note that the name property shown in xprop might be set slightly after creation of the client
                 -- and the name shown there might not match defined rules here.
@@ -66,8 +70,8 @@ function _M.get(clientkeys, clientbuttons)
                 }},
                 
                 -- Add titlebars to normal clients and dialogs
-                {rule_any = {
-                type = {"normal", "dialog"}},
+                { rule_any = {
+                type = { "normal", "dialog" }},
                 properties = {
                     titlebars_enabled = true
                 }},
@@ -84,6 +88,6 @@ function _M.get(clientkeys, clientbuttons)
         -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
         
         return setmetatable(
-            {},
-        {__call = function(_, ...) return _M.get(...) end})
+            { },
+        { __call = function( _, ... ) return _M.get( ... ) end })
         

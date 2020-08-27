@@ -2,18 +2,22 @@
 -- moved here in module as local variable
 -- }}}
 
-local home = os.getenv("HOME")
+local home = os.getenv( "HOME" )
 
 local _M = {
-    -- This is used later as the default terminal and editor to run.
-    -- terminal = "xterm",
+    -- terminal
     terminal = "kitty",
-    
-    -- Default modkey.
-    -- Usually, Mod4 is the key with a logo between Control and Alt.
-    -- If you do not like this or do not have such a key,
-    -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
-    -- However, you can use another modifier like Mod1, but it may interact with others.
+    -- Application Menu (with xcape means just hit the windows key and BAM! system menu)
+    launcher = 'rofi  -show drun -theme ~/.config/awesome/configuration/rofi/appmenu/rofi.rasi',
+    -- Screensaver
+    lock = "xscreensaver",
+    -- Take screenshots
+    screenshot = "maim -s $HOME/Pictures/Screenshots/$(date +%s).png",
+    -- File Manager, since XFCE components are used throughout, I am using Thunar for now as a GUI file manager.
+    filebrowser = "thunar",
+    -- browser of choice
+    browser = "firefox",
+    -- aka the Windows Key, its not like saying Windows is the same as Voldemort, come on people
     modkey = "Mod4",
 }
 

@@ -1,17 +1,17 @@
 --  _____                            __
--- |     |_.---.-.--.--.-----.--.--.|  |_
--- |       |  _  |  |  |  _  |  |  ||   _|
--- |_______|___._|___  |_____|_____||____|
+-- |     |_.---.-.--.--.-----.--.--.|  |_.-----.
+-- |       |  _  |  |  |  _  |  |  ||   _|__ --|
+-- |_______|___._|___  |_____|_____||____|_____|
 --               |_____|
 
 -- Standard awesome library
-local awful = require("awful")
-local lain = require("lain")
-local _M = {}
+local awful = require( "awful" )
+local lain = require( "lain" )
+local _M = { }
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-function _M.get ()
+function _M.get ( )
     -- Table of layouts to cover with awful.layout.inc, order matters.
     awful.layout.layouts = {
         awful.layout.suit.spiral, --1
@@ -46,5 +46,5 @@ end
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 return setmetatable(
-    {},
-{__call = function(_, ...) return _M.get(...) end})
+    { },
+{ __call = function( _, ... ) return _M.get( ... ) end })
