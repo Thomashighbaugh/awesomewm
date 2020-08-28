@@ -1,3 +1,11 @@
+--  _______
+-- |   |   |.-----.-----.--.--.
+-- |       ||  -__|     |  |  |
+-- |__|_|__||_____|__|__|_____|
+
+-- ===================================================================
+-- Initialization
+-- ===================================================================
 -- Standard awesome library
 local awful = require( "awful" )
 local hotkeys_popup = require( "awful.hotkeys_popup" ).widget
@@ -22,40 +30,48 @@ local terminal = RC.vars.terminal
 local editor = os.getenv( "EDITOR" ) or "subl3"
 local editor_cmd = terminal .. " -e " .. editor
 
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
+-- ===================================================================
+-- SubMenu Item Declaration
+-- ===================================================================
 M.awesome = {
     { "hotkeys", function( )
         hotkeys_popup.show_help( nil, awful.screen.focused( ))
-    end, "/usr/share/icons/Flatery-Dark/apps/48/accessories-character-map.svg" },
-    { "manual", terminal .. " -e man awesome", "/usr/share/icons/Flatery-Dark/apps/48/accessories-notes.svg" },
-    { "edit config", editor_cmd .. " " .. awesome.conffile, "/usr/share/icons/Flatery-Dark/apps/48/vim.svg" },
-    { "Terminal", terminal, "/usr/share/icons/Flatery-Dark/apps/48/kitty.svg" },
-    { "Shutdown/Logout", "oblogout", "/usr/share/icons/Flatery-Dark/actions/24/system-log-out.svg" },
-    { "restart", awesome.restart, "/usr/share/icons/Flatery-Dark/actions/24/system-reboot.svg" },
-{ "quit", function( ) awesome.quit( ) end, "/usr/share/icons/Flatery-Dark/apps/48/preferences-system-power.svg" }}
+    end, "/usr/share/icons/eSuru++/apps/48/accessories-character-map.svg" },
+    { "manual", terminal .. " -e man awesome", "/usr/share/icons/eSuru++/apps/48/accessories-notes.svg" },
+    { "edit config", editor_cmd .. " " .. awesome.conffile, "/usr/share/icons/eSuru++/apps/48/vim.svg" },
+    { "Terminal", terminal, "/usr/share/icons/eSuru++/apps/48/kitty.svg" },
+    { "Shutdown/Logout", "oblogout", "/usr/share/icons/eSuru++/actions/24/system-log-out.svg" },
+    { "restart", awesome.restart, "/usr/share/icons/eSuru++/actions/24/system-reboot.svg" },
+{ "quit", function( ) awesome.quit( ) end, "/usr/share/icons/eSuru++/apps/48/preferences-system-power.svg" }}
 
 M.favorite = {
-    { "thunar", "thunar", "/usr/share/icons/Flatery-Dark/apps/48/thunar.svg" },
-    { "firefox", "firefox", "/usr/share/icons/Flatery-Dark/apps/48/firefox.svg" },
-    { "chromium", "chromium", "/usr/share/icons/Flatery-Dark/apps/48/chromium.svg" },
-    { "&thunderbird", "thunderbird", "/usr/share/icons/Flatery-Dark/apps/48/thunderbird.svg" },
-    { "gimp", "gimp", "/usr/share/icons/Flatery-Dark/apps/48/gimp.svg" },
-{ "inkscape", "inkscape", "/usr/share/icons/Flatery-Dark/apps/48/inkscape.svg" }}
+    { "thunar", "thunar", "/usr/share/icons/eSuru++/apps/48/thunar.svg" },
+    { "firefox", "firefox", "/usr/share/icons/eSuru++/apps/48/firefox-mozilla.svg" },
+    { "chromium", "chromium", "/usr/share/icons/eSuru++/apps/48/chromium.svg" },
+{ "&thunderbird", "thunderbird", "/usr/share/icons/eSuru++/apps/48/thunderbird.svg" }, }
 
 M.network_main = {
-    { "Connection Editor", "nm-connection-editor", "/usr/share/icons/Flatery-Dark/apps/48/network-manager.svg" },
-{ "Network Manager", "nmtui", "/usr/share/icons/Flatery-Dark/apps/48/network-manager.svg" }}
+    { "Connection Editor", "nm-connection-editor", "/usr/share/icons/eSuru++/apps/48/network-manager.svg" },
+{ "Network Manager", "nmtui", "/usr/share/icons/eSuru++/apps/48/network-manager.svg" }}
 
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
+M.graphics = {
+    { "gimp", "gimp", "/usr/share/icons/eSuru++/apps/48/gimp.svg" },
+    { "inkscape", "inkscape", "/usr/share/icons/eSuru++/apps/48/inkscape.svg" }
+}
+M.dev = {
+    { "sublime", "subl3", "/usr/share/icons/eSuru++/apps/scalable/sublime-text-alt1.svg" },
+    { "webstorm", "webstorm", "/usr/share/icons/eSuru++/apps/scalable/webstorm.svg" }
+}
+-- ===================================================================
+-- Menu Items
+-- ===================================================================
 function _M.get( )
     
     -- Main Menu
     local menu_items = {
         { "awesome", M.awesome, beautiful.awesome_subicon },
-        { "open terminal", terminal, "/usr/share/icons/Flatery-Dark/apps/48/kitty.svg" },
-        { "network", M.network_main, "/usr/share/icons/Flatery-Dark/apps/48/network-manager.svg" },
+        { "open terminal", terminal, "/usr/share/icons/eSuru++/apps/48/kitty.svg" },
+        { "network", M.network_main, "/usr/share/icons/eSuru++/apps/48/network-manager.svg" },
     { "favorite", M.favorite, beautiful.awesome_subicon }}
     
     return menu_items

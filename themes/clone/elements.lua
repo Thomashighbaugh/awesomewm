@@ -146,3 +146,4 @@ theme.hotkeys_modifiers_fg = theme.xcolor4 .. 'cc'
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
 --theme.bg_widget = "#cc0000"
+

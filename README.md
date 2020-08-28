@@ -33,8 +33,8 @@ I went through and experimented with a lot of other configs before arriving at t
 | No scripts/wibar modules running async callbacks | because one sanctified config nearly melted my PC with its attempts to get MPV running when I don't use or install it on my systems |
 | Global namespace | this makes cross dependencies less troublesome, even if you still require them at the beginning of the file, sometimes it won't work due to you or to the fickle nature of lua, this minimizes that immensely |
 | Not all jammed into a directory with my annoyingly long user name as its title | meaning you can plug and play with much of this in your own configuration if you so please |
-| Annoying title ASCII art on each file | because it helps me keep track of what the hell I am doing, plus my font choice is rather tasteful |
+| Annoying title ASCII art on each file | because it helps me keep track of what the hell I am doing, plus why not its Linux  |
 | Each file is split into sections | making it clear what is going on in them, for others to understand and me in a few months when I rewrite the config again |
-| Call the Windows key the Windows Key | I mean come on, its not voldemort and saying its name isn't going to implicate us in some horrorific lawsuit (still suspicious of VSCode though) |
+| Call the Windows key the Windows Key | I mean come on, its not voldemort and saying its name isn't going to implicate us in some horrorific lawsuit, or worse mean that Bill Gates is going to show up to our house at 3 am asking to be let in the window.  |
 | Modified Titlebar Icons to make sense | I really like these titlebar icons, but needed to adjust the shapes to fit what I expect them to do, so I used inkscape and I rotated, simple as that. |
 | 
