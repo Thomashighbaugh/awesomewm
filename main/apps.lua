@@ -25,8 +25,8 @@ apps.default = {
     terminal = "kitty",
     launcher = 'rofi  -show drun -theme ~/.config/awesome/configuration/rofi/appmenu/rofi.rasi',
     lock = "xlock",
-    screenshot = "maim -s $HOME/Pictures/Screenshots/$(date +%s).png",
-    filebrowser = "thunar"
+    screenshot = "$HOME/.config/awesome/configuration/screenshots",
+    filebrowser = "thunar",
 }
 
 -- List of apps to start once on start-up

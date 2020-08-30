@@ -121,7 +121,7 @@ function _M.get( )
                     { modkey, },
                     "F4",
                     function( )
-                        awful.spawn.easy_async_with_shell( "fa - rofi" )
+                        awful.spawn.easy_async_with_shell( "fa-rofi" )
                     end,
                 { description = "Copy Font - Awesome Icons to Clipboard", group = 'Launcher' }),
                 
@@ -140,7 +140,7 @@ function _M.get( )
                     { modkey, },
                     "F5",
                     function( )
-                        awful.spawn.with_shell( "sudo picom - b && notify - send 'Compton Activated'" )
+                        awful.spawn.with_shell( "sudo picom - b && notify -send 'Compton Activated'" )
                     end,
                 { description = "Turn on Picom", group = 'Launcher' }),
                 
@@ -150,7 +150,7 @@ function _M.get( )
                     { modkey, "Shift" },
                     "F5",
                     function( )
-                        awful.spawn.with_shell( "sudo pkill picom && notify - send 'Compton Deactivated'" )
+                        awful.spawn.with_shell( "sudo pkill picom && notify -send 'Compton Deactivated'" )
                     end,
                 { description = "Turn off Picom", group = 'Launcher' }),
                 
@@ -176,7 +176,7 @@ function _M.get( )
                 -- Screenshot on prtscn using scrot
                 awful.key({ modkey }, "Print",
                     function( )
-                        awful.util.spawn( "maim - s $HOME / Pictures / Screenshots / $( date +% s ).png" )
+                        awful.spawn.with_shell( _M.screenshot )
                     end
                 ),
                 

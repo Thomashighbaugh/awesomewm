@@ -7,8 +7,11 @@
 -- |   |   ||  _  |   _||  ||  _  ||  _  ||  ||  -__|__ --|
 --  \_____/ |___._|__|  |__||___._||_____||__||_____|_____|
 
-local home = os.getenv( "HOME" )
+-- ===================================================================
+-- Variable Definition
+-- ===================================================================
 
+local home = os.getenv( "HOME" )
 local _M = {
     -- terminal
     terminal = "kitty",
@@ -17,7 +20,7 @@ local _M = {
     -- Screensaver
     lock = "xscreensaver",
     -- Take screenshots
-    screenshot = "maim -s $HOME/Pictures/Screenshots/$(date +%s).png",
+    screenshot = "$HOME/.config/awesome/configuration/screenshots area",
     -- File Manager, since XFCE components are used throughout, I am using Thunar for now as a GUI file manager.
     filebrowser = "thunar",
     -- browser of choice
