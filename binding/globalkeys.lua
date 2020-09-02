@@ -27,7 +27,8 @@ revelation.init( )
 -- Resource Configuration
 local modkey = RC.vars.modkey
 local terminal = RC.vars.terminal
-
+local browser = RC.vars.browser
+local screenshot = RC.vars.screenshot
 local _M = { }
 
 -- reading
@@ -83,7 +84,7 @@ function _M.get( )
                     { modkey, },
                     "F2",
                     function ( )
-                        awful.spawn( RC.vars.browser )
+                        awful.spawn( browser )
                     end,
                 { description = "Launch Firefox", group = 'Launcher' }),
                 -- ===================================================================
@@ -176,7 +177,7 @@ function _M.get( )
                 -- Screenshot on prtscn using scrot
                 awful.key({ modkey }, "Print",
                     function( )
-                        awful.spawn.with_shell( _M.screenshot )
+                        awful.spawn( screenshot )
                     end
                 ),
                 

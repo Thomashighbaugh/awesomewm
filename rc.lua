@@ -5,103 +5,98 @@
 --
 --                                                  Thomas Leon Highbaugh
 -- ========================================================================
--- Warning the following configuration contains so much spaghetti code, it 
+-- Warning the following configuration contains so much spaghetti code, it
 -- may soon transcend into the Flying Spaghetti Monster.
 -- ========================================================================
 
-
 -- ===================================================================
---  External Libraries 
+--  External Libraries
 -- ===================================================================
 -- External Package Manager Call
-pcall(require, "luarocks.loader")
+pcall( require, "luarocks.loader" )
 
 -- Standard AwesomeWM Libraries
-local gears = require("gears")
-local awful = require("awful")
-local freedesktop = require("lib.freedesktop")
+local gears = require( "gears" )
+local awful = require( "awful" )
+local freedesktop = require( "lib.freedesktop" )
 
 -- Theme Handling Library
-local beautiful = require("beautiful")
+local beautiful = require( "beautiful" )
 
 -- Miscellanous AwesomeWM Libraries
-local menubar = require("menubar")
-local lain = require("lain")
-local vicious = require("vicious")
+local menubar = require( "menubar" )
+local lain = require( "lain" )
+local vicious = require( "vicious" )
 -- ===================================================================
--- My Configuration 
+-- My Configuration
 -- ===================================================================
 
--- Global Namespace,     
-RC = {}
+-- Global Namespace,
+RC = { }
 -- User Variables
-RC.vars = require("main.user-variables")
-local apps = require("main.apps")
-apps.autostart()
+RC.vars = require( "main.user-variables" )
+RC.autostart( )
 
 -- Mod Key declared Globally
-	-- Meaning I do not have to worry about the import process later
+-- Meaning I do not have to worry about the import process later
 modkey = RC.vars.modkey
 
 -- Error handling
-require("main.error-handling")
+require( "main.error-handling" )
 
--- Load the user themes 
-require("main.theme")
+-- Load the user themes
+require( "main.theme" )
 
--- Custom Local Libraries 
+-- Custom Local Libraries
 local main = {
-    layouts = require("main.layouts"),
-    tags = require("main.tags"),
-    menu = require("main.menu"),
-    rules = require("main.rules"),
+    layouts = require( "main.layouts" ),
+    tags = require( "main.tags" ),
+    menu = require( "main.menu" ),
+    rules = require( "main.rules" ),
 }
 -- Layouts
-RC.layouts = main.layouts()
+RC.layouts = main.layouts( )
 
 -- Tags
-RC.tags = main.tags()
+RC.tags = main.tags( )
 
 -- Custom Local Library: Keys and Mouse Binding
 local binding = {
-    globalbuttons = require("binding.globalbuttons"),
-    clientbuttons = require("binding.clientbuttons"),
-    globalkeys = require("binding.globalkeys"),
-    clientkeys = require("binding.clientkeys"),
-bindtotags = require("binding.bindtotags")}
+    globalbuttons = require( "binding.globalbuttons" ),
+    clientbuttons = require( "binding.clientbuttons" ),
+    globalkeys = require( "binding.globalkeys" ),
+    clientkeys = require( "binding.clientkeys" ),
+bindtotags = require( "binding.bindtotags" )}
 
 -- Menu
-RC.mainmenu = awful.menu({items = main.menu()}) -- in globalkeys
+RC.mainmenu = awful.menu({ items = main.menu( )}) -- in globalkeys
 RC.launcher = awful.widget.launcher(
-{image = beautiful.awesome_icon, menu = RC.mainmenu})
+{ image = beautiful.awesome_icon, menu = RC.mainmenu })
 menubar.utils.terminal = RC.vars.terminal
 
 -- Mouse and Key bindings
-RC.globalkeys = binding.globalkeys()
-RC.globalkeys = binding.bindtotags(RC.globalkeys)
+RC.globalkeys = binding.globalkeys( )
+RC.globalkeys = binding.bindtotags( RC.globalkeys )
 
 -- Set root
-root.buttons(binding.globalbuttons())
-root.keys(RC.globalkeys)
+root.buttons( binding.globalbuttons( ))
+root.keys( RC.globalkeys )
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+mykeyboardlayout = awful.widget.keyboardlayout( )
 
 -- Statusbar: Wibar
-require("layout.statusbar")
+require( "layout.statusbar" )
 
 -- Rules
 awful.rules.rules = main.rules(
-    binding.clientkeys(),
-binding.clientbuttons())
+    binding.clientkeys( ),
+binding.clientbuttons( ))
 -- Signals
-require("main.signals")
-
-
-
+require( "main.signals" )
 
 -- ===================================================================
 -- Garbage Collection
 -- ===================================================================
-collectgarbage("setpause", 110)
-collectgarbage("setstepmul", 1000)
+collectgarbage( "setpause", 110 )
+collectgarbage( "setstepmul", 1000 )
