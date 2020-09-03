@@ -136,7 +136,7 @@ awful.screen.connect_for_each_screen( function( s )
     -- ===================================================================
     
     -- Create the bottom wibox
-    s.bottomwibox = awful.wibar({ position = "bottom", screen = s, bg = "#292b35cc", height = 35 })
+    s.bottomwibox = awful.wibar({ position = "bottom", screen = s, bg = "#292b35cc", height = 42 })
     
     -- Add widgets to the wibox
     s.bottomwibox:setup {

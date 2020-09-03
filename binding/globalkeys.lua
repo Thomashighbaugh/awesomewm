@@ -24,11 +24,6 @@ local switcher = require( "lib.awesome-switcher" )
 -- lib variables  and init
 revelation.init( )
 
--- Resource Configuration
-local modkey = RC.vars.modkey
-local terminal = RC.vars.terminal
-local browser = RC.vars.browser
-local screenshot = RC.vars.screenshot
 local _M = { }
 
 -- reading
@@ -42,7 +37,8 @@ function _M.get( )
     local globalkeys = gears.table.join(
         -- ===================================================================
         -- Show Keybindings Help
-        awful.key({ modkey, }, "Insert", hotkeys_popup.show_help,
+        awful.key({ modkey, }, "Insert",
+            hotkeys_popup.show_help,
         { description = "show help", group = "awesome" }),
         
         -- ===================================================================
@@ -58,6 +54,7 @@ function _M.get( )
                 function ( )
                     switcher.switch( -1, "Mod1", "Alt_L", "Shift", "Tab" )
                 end ),
+                
                 -- ===================================================================
                 
                 awful.key({ modkey }, "`",
@@ -69,6 +66,13 @@ function _M.get( )
                 -- Revelation
                 awful.key({ modkey, }, "e", revelation,
                 { description = "show all windows", group = "awesome" }),
+                
+                -- Screenshot on prtscn using configuration/screenshots program
+                awful.key({ modkey, }, "Print",
+                    function ( )
+                        awful.spawn( "/home/tlh/.config/awesome/configuration/screenshots area" )
+                    end,
+                { description = "open a terminal", group = "launcher" }),
                 
                 -- ===================================================================
                 -- launch rofi app menu *Note this is bound to just mod4 thanks to xcape see main/apps.lua
@@ -174,13 +178,6 @@ function _M.get( )
                 { description = "open system monitor", group = 'Launcher' }),
                 
                 -- ===================================================================
-                -- Screenshot on prtscn using scrot
-                awful.key({ modkey }, "Print",
-                    function( )
-                        awful.spawn( screenshot )
-                    end
-                ),
-                
                 --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
                 -- Tag browsing
                 awful.key({ modkey, }, "Escape", awful.tag.history.restore,

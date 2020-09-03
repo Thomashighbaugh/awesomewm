@@ -10,11 +10,8 @@
 local awful = require( "awful" )
 -- Theme handling library
 local beautiful = require( "beautiful" )
-
+-- Global namespace call
 local _M = { }
-
--- reading
--- https://awesomewm.org/apidoc/libraries/awful.rules.html
 
 -- ===================================================================
 --  Rule Declaration
@@ -75,10 +72,6 @@ function _M.get( clientkeys, clientbuttons )
                 properties = {
                     titlebars_enabled = true
                 }},
-                
-                -- Set Firefox to always map on the tag named "2" on screen 1.
-                -- { rule = { class = "Firefox" },
-                --   properties = { screen = 1, tag = "2" } },
                 
             }
             

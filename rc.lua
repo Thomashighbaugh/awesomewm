@@ -37,10 +37,12 @@ RC = { }
 RC.vars = require( "main.user-variables" )
 RC.autostart( )
 
--- Mod Key declared Globally
+-- Variables declared Globally
 -- Meaning I do not have to worry about the import process later
 modkey = RC.vars.modkey
-
+terminal = RC.vars.terminal
+browser = RC.vars.browser
+screenshot = RC.vars.screenshot
 -- Error handling
 require( "main.error-handling" )
 
@@ -74,6 +76,9 @@ RC.launcher = awful.widget.launcher(
 { image = beautiful.awesome_icon, menu = RC.mainmenu })
 menubar.utils.terminal = RC.vars.terminal
 
+-- Keyboard map indicator and switcher
+mykeyboardlayout = awful.widget.keyboardlayout( )
+
 -- Mouse and Key bindings
 RC.globalkeys = binding.globalkeys( )
 RC.globalkeys = binding.bindtotags( RC.globalkeys )
@@ -81,9 +86,6 @@ RC.globalkeys = binding.bindtotags( RC.globalkeys )
 -- Set root
 root.buttons( binding.globalbuttons( ))
 root.keys( RC.globalkeys )
-
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout( )
 
 -- Statusbar: Wibar
 require( "layout.statusbar" )

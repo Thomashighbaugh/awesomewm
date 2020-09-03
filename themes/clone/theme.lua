@@ -2,13 +2,17 @@
 -- |_     _|  |--.-----.--------.-----.
 --   |   | |     |  -__|        |  -__|
 --   |___| |__|__|_____|__|__|__|_____|
-
+-- ===================================================================
+--  Import Libraries and Utilities
+-- ===================================================================
 local awful = require( "awful" )
 awful.util = require( "awful.util" )
 
 theme_path = awful.util.getdir( "config" ) .. "/themes/clone/"
 
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+-- ===================================================================
+-- Theme Configuration
+-- ===================================================================
 -- default variables
 
 theme = { }
@@ -20,6 +24,7 @@ dofile( theme_path .. "layouts.lua" )
 theme.wallpaper = theme_path .. "background.jpg"
 theme.awesome_icon = theme_path .. "launcher/logo20_arch.png"
 theme.awesome_subicon = theme_path .. "launcher/submenu.png"
-theme.taglist_font = "awesomewm-font 18"
+-- taglist font, if placed elsewhere it won't work
+theme.taglist_font = "awesomewm-font 22"
 
 return theme

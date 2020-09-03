@@ -15,8 +15,8 @@ local xrdb = xresources.get_current_theme( )
 --  Theme Fonts
 -- ===================================================================
 
-theme.font = 'Share Tech Medium 13'
-theme.font_bold = 'Share Tech Bold 13'
+theme.font = 'Iceland Bold 13'
+theme.font_bold = 'Iceland Bold 13'
 
 -- ===================================================================
 -- Theme Colors
@@ -102,7 +102,7 @@ theme.taglist_fg_urgent = theme.xcolor1 .. '55'
 theme.taglist_bg_occupied = theme.xcolor0 .. 'cc'
 theme.taglist_fg_occupied = theme.xcolor9 .. 'bb'
 theme.taglist_bg_empty = theme.xcolor0 .. 'cc'
-theme.taglist_fg_empty = theme.xcolor7 .. 'aa'
+theme.taglist_fg_empty = theme.xcolor15 .. '33'
 theme.taglist_shape_border_color_focus = theme.xcolor4
 theme.taglist_shape_border_color = theme.xcolor0
 theme.taglist_shape_border_width = 0
@@ -137,7 +137,7 @@ theme.menu_border_width = 1
 
 --  Hotkeys Pop Up
 theme.hotkeys_font = 'Share Tech Bold 12'
-theme.hotkeys_description_font = 'Share Tech Medium 12'
+theme.hotkeys_description_font = 'Iceland Bold 12'
 theme.hotkeys_bg = theme.background .. 'cc'
 theme.hotkeys_group_margin = dpi( 2 )
 theme.hotkeys_label_fg = theme.xcolor0
