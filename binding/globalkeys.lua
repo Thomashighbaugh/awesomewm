@@ -61,7 +61,7 @@ function _M.get( )
                     function( )
                         poppin.pop( "terminal", "kitty", "top", { height = 400, border_width = 5, border_color = beautiful.xcolor7 })
                     end,
-                { description = "pop up terminal Launcher", group = "Launcher" }),
+                { description = "Popup Terminal Launcher", group = "Launcher" }),
                 -- ===================================================================
                 -- Revelation
                 awful.key({ modkey, }, "e", revelation,
@@ -72,7 +72,7 @@ function _M.get( )
                     function ( )
                         awful.spawn( "/home/tlh/.config/awesome/configuration/screenshots area" )
                     end,
-                { description = "open a terminal", group = "launcher" }),
+                { description = "Take a Selection Screenshot", group = "Launcher" }),
                 
                 -- ===================================================================
                 -- launch rofi app menu *Note this is bound to just mod4 thanks to xcape see main/apps.lua
@@ -80,7 +80,7 @@ function _M.get( )
                     function( )
                         awful.spawn( "rofi  -show drun -theme ~/.config/awesome/configuration/rofi/appmenu/rofi.rasi" )
                     end,
-                { description = "application Launcher", group = "Launcher" }),
+                { description = "Application Launcher", group = "Launcher" }),
                 
                 -- ===================================================================
                 --Browser Launch
@@ -220,7 +220,7 @@ function _M.get( )
                 --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
                 -- Standard program
                 awful.key({ modkey, }, "Return", function ( ) awful.spawn( terminal ) end,
-                { description = "open a terminal", group = "launcher" }),
+                { description = "open a terminal", group = "Launcher" }),
                 awful.key({ modkey, }, "r", awesome.restart,
                 { description = "reload awesome", group = "awesome" }),
                 awful.key({ modkey, "Shift" }, "q", awesome.quit,
@@ -259,7 +259,7 @@ function _M.get( )
                 --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
                 -- Prompt
                 awful.key({ modkey, "Shift" }, "r", function ( ) awful.screen.focused( ).mypromptbox:run( ) end,
-                { description = "run prompt", group = "launcher" }),
+                { description = "run prompt", group = "Launcher" }),
                 
                 awful.key({ modkey, "Shift", }, "x",
                     function ( )
@@ -275,7 +275,7 @@ function _M.get( )
                 --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
                 -- Menubar
                 awful.key({ modkey }, "p", function( ) menubar.show( ) end,
-                { description = "show the menubar", group = "launcher" })
+                { description = "show the menubar", group = "Launcher" })
                 
             )
             

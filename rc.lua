@@ -97,6 +97,9 @@ binding.clientbuttons( ))
 -- Signals
 require( "main.signals" )
 
+-- @TODO change the titlebars created by nice to include my modified elenapan
+--local nice = require("lib.nice")
+--nice()
 -- ===================================================================
 -- Garbage Collection
 -- ===================================================================

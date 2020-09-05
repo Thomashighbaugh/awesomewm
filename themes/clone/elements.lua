@@ -64,7 +64,7 @@ theme.systray_icon_spacing = dpi( 16 )
 
 -- Background
 theme.bg_normal = theme.xcolor0 .. "22"
-theme.bg_focus = theme.xcolor0 .. "cc"
+theme.bg_focus = theme.xcolor0 .. "22"
 theme.bg_urgent = theme.xcolor0 .. "22"
 theme.bg_minimize = theme.xcolor0 .. "22"
 theme.bg_systray = theme.xcolor0 .. "22"
@@ -80,28 +80,30 @@ theme.fg_minimize = theme.xcolor7
 -- ===================================================================
 
 -- Window Border
-theme.border_normal = theme.xcolor0 .. "55"
-theme.border_focus = theme.xcolor8 .. "11"
+theme.border_normal = theme.xcolor8 .. "55"
+theme.border_focus = theme.xcolor7 .. "11"
 theme.border_marked = theme.xcolor1 .. "55"
-theme.border_radius = dpi( 25 )
-theme.client_radius = dpi( 18 )
-theme.groups_radius = dpi( 18 )
+theme.border_radius = dpi( 12 )
+theme.client_radius = dpi( 12 )
+theme.groups_radius = dpi( 12 )
+theme.border_width = dpi( 1 )
+
 -- ===================================================================
 
 -- Window Gaps
 theme.useless_gap = dpi( 6 )
-theme.border_width = dpi( 1 )
 -- ===================================================================
 
 --Taglist
-theme.taglist_bg_focus = theme.xcolor0 .. 'cc'
-theme.taglist_bg_normal = theme.xcolor0 .. 'cc'
+theme.taglist_bg = transparent
+theme.taglist_bg_focus = transparent
+theme.taglist_bg_normal = transparent
 theme.taglist_fg_focus = theme.xcolor4.. 'bb'
-theme.taglist_bg_urgent = theme.xcolor0 .. '22'
+theme.taglist_bg_urgent = transparent
 theme.taglist_fg_urgent = theme.xcolor1 .. '55'
-theme.taglist_bg_occupied = theme.xcolor0 .. 'cc'
+theme.taglist_bg_occupied = transparent
 theme.taglist_fg_occupied = theme.xcolor9 .. 'bb'
-theme.taglist_bg_empty = theme.xcolor0 .. 'cc'
+theme.taglist_bg_empty = transparent
 theme.taglist_fg_empty = theme.xcolor15 .. '33'
 theme.taglist_shape_border_color_focus = theme.xcolor4
 theme.taglist_shape_border_color = theme.xcolor0

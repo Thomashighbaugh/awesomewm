@@ -14,8 +14,8 @@ local _M = { }
 function _M.get ( )
     -- Table of layouts to cover with awful.layout.inc, order matters.
     awful.layout.layouts = {
-        awful.layout.suit.spiral, --1
-        awful.layout.suit.max, -- 2
+        awful.layout.suit.max, -- 1
+        awful.layout.suit.spiral, -- 2
         lain.layout.centerwork, --3
         lain.layout.cascade, --4
         lain.layout.termfair, -- 5
