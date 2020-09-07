@@ -1,0 +1,100 @@
+configuration{
+location: 0;
+bw: 0;
+lines:15;
+columns: 3;
+padding: 0;
+yoffset: 0;
+xoffset: 0;
+}
+@import "./colors.rasi"
+
+* {
+  text-font:                            "Iceland Bold 22";
+  icon-font:                            "FontAwesome Regular 96";
+  icon-font-small:                      "FontAwesome Regular 48";
+  option-6-listview-spacing:             5px;
+  menu-window-padding:                   5px;
+  menu-inputbar-margin:                  0px 0px;
+  menu-prompt-padding:                   5px 10px 5px 10px;
+  menu-prompt-margin:                    0px 0px 0px 0px;
+  menu-element-padding:                  5px;
+  background-color: @background;
+  text-color: @foreground;
+  font: @icon-font;
+}
+
+#window {
+  width: 100%;
+  height: 100%;
+}
+
+
+#horibox {
+  children: [ listview ];
+}
+#element {
+  padding:  @option-6-listview-spacing;
+  background-color: @background-light;
+}
+#element.selected {
+  background-color: @accent;
+  text-color: @background;
+}
+
+/* ########### */
+
+* {
+  font: @text-font;
+}
+#window {
+  padding: @menu-window-padding;
+  children: [ inputbar, horibox ];
+}
+#inputbar {
+  children: [ textbox-prompt-colon, prompt ];
+  margin: @menu-inputbar-margin;
+}
+prompt{
+  padding: @menu-prompt-padding;
+
+  border-color: @accent;
+}
+#prompt {
+  margin: @menu-prompt-margin;
+  background-color: @background;
+  text-color: @accent;
+  border-color: @accent;
+}
+#textbox-prompt-colon {
+  expand: false;
+  background-color: @background;
+  text-color: @background;
+  
+}
+#horibox {
+  padding: 1px;
+
+}
+#listview {
+  lines: inherit;
+}
+#element {
+  font: @text-font;
+  background-color: @background;
+    expand: true;
+  padding:  @option-6-listview-spacing;
+  border-color: @background;
+  text-color: @background;
+}
+#element.selected {
+  border-color: @background;
+}
+element.active,
+element.selected.urgent {
+  background-color: @on;
+  text-color: @background;
+  border-color: @on;
+}
+
+

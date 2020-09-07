@@ -158,8 +158,13 @@ function _M.get( )
                 c.maximized_horizontal = not c.maximized_horizontal
                 c:raise( )
             end,
-        { description = "(un)maximize horizontally", group = "Client" }))
-        
+        { description = "(un)maximize horizontally", group = "Client" })),
+        --     scratch.pad.set(c, width, height, sticky, screen)
+        awful.key({ modkey }, "`",
+            function( )
+                scratch.pad.set( c, width, height, sticky, screen )
+            end,
+        { description = "Popup Terminal Launcher", group = "Launcher" })
         return clientkeys
     end
     

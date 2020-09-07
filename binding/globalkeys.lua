@@ -126,7 +126,7 @@ function _M.get( )
                     { modkey, },
                     "F4",
                     function( )
-                        awful.spawn.easy_async_with_shell( "fa-rofi" )
+                        awful.spawn.easy_async_with_shell( "~/.config/awesome/configuration/rofi/icon-browser/fa-rofi.sh" )
                     end,
                 { description = "Copy Font - Awesome Icons to Clipboard", group = 'Launcher' }),
                 
