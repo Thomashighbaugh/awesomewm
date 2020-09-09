@@ -1,5 +1,5 @@
 configuration {
-	font:                       	"SF Pro Text Regular 10";
+	font:                       	"Iceland Bold 16";
 	show-icons:                		true;
 	fullscreen:                     false;
     threads:                        0;
@@ -62,7 +62,7 @@ prompt {
 button {
     action:                         "ok";
     str:                            " ";
-    font:                           "FantasqueSansMono Nerd Font 32";
+    font:                           "Iceland Bold 16";
     expand:                         false;
     text-color:                     @foreground;
     background-color:               @background;
@@ -72,7 +72,7 @@ button {
 
 
 entry {
-	font:            				"Future Forces Regular 16";
+	font:            				"Iceland Bold 16";
 	background-color:               @background;
 	placeholder-color:          	@foreground;
 	placeholder:                	"Global Search";
@@ -119,7 +119,7 @@ element-icon {
 }
 
 element-text {
-	font:                      		"Future Forces Regular 13";
+	font:                      		"Iceland Bold 16";
 	expand:                        	true;
 	horizontal-align:              	0.0;
 	vertical-align: 				0.5;

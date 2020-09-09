@@ -157,7 +157,6 @@ awful.screen.connect_for_each_screen( function( s )
     }
     
     -- ===================================================================
-    
     -- Create the wibox
     s.topwibox = awful.wibar({ position = "top", screen = s, bg = "#292b35cc", height = 20 })
     

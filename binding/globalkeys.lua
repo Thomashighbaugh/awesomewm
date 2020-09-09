@@ -20,6 +20,7 @@ local beautiful = require( "beautiful" )
 local revelation = require( "lib.revelation" )
 local poppin = require( 'lib.poppin' )
 local switcher = require( "lib.awesome-switcher" )
+local quake = require( "layout.quake" )
 
 -- lib variables  and init
 revelation.init( )
@@ -32,7 +33,12 @@ local _M = { }
 -- ===================================================================
 --  Bind functions to Keys
 -- ===================================================================
-
+local quakeconsole = { }
+for s = 1, screen.count( ) do
+    quakeconsole[ s ] = quake({ terminal = terminal,
+        height = 0.3,
+    screen = s })
+end
 function _M.get( )
     local globalkeys = gears.table.join(
         -- ===================================================================
@@ -56,12 +62,12 @@ function _M.get( )
                 end ),
                 
                 -- ===================================================================
+                -- local quake = require("quake")
                 
                 awful.key({ modkey }, "`",
-                    function( )
-                        poppin.pop( "terminal", "kitty", "top", { height = 400, border_width = 5, border_color = beautiful.xcolor7 })
-                    end,
-                { description = "Popup Terminal Launcher", group = "Launcher" }),
+                    function ( )
+                    quakeconsole[ s ]:toggle( ) end,
+                { description = "Quake Terminal Hopefully" }),
                 -- ===================================================================
                 -- Revelation
                 awful.key({ modkey, }, "e", revelation,
