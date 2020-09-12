@@ -38,7 +38,8 @@ local run_on_start_up = {
     ' sh dropbox-dist/dropboxd & ',
     ' xscreensaver &',
     -- the next one will be dependent on your set up, configure with arandr and then save, open that file and copy over the below
-    ' xranr --output DVI-D-0 --off --output HDMI-0 --off --output DP-0 --off --output DP-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-2 --off --output DP-3 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-4 --mode 2560x1440 --pos 3840x0 --rotate normal --output DP-5 --off '
+    'xrandr --output DVI-D-1 --off --output DP-1 --primary --mode 2560x1440 --pos 3840x0 --rotate normal --output DP-2 --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-1 --off --output DP-3 --mode 1920x1080 --pos 0x0 --rotate normal'
+    
 }
 
 -- ===================================================================

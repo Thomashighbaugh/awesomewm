@@ -3,6 +3,7 @@
 
 This repository houses my heavily customized AwesomeWM configuration. This configuration has been the result of my blending of some of the ideas and functionality I liked in various `popular` configurations, like the [Glorious Dotfiles] and [elenapan's configuration] to name a few, while expanding into its own direction entirely. 
 
+<img src="./Screenshots/awesomescreenshot.png" alt="recent screenshot">
 ## Directory Structure
 
 No subdirectories name noodle here, I have tried to keep the names as informative and functional as possible, nonetheless I have decided to provide you with this key just to reduce ambiguity as much as possible. 
