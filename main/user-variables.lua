@@ -30,6 +30,9 @@ local _M = {
     modkey = "Mod4",
 }
 
+-- ===================================================================
+-- Run commands and create start up function
+-- ===================================================================
 -- List of apps to start once on start-up
 local run_on_start_up = {
     ' picom -b --experimental-backends --dbus --config ' .. config_dir .. '/configuration/picom.conf & ',
@@ -41,10 +44,6 @@ local run_on_start_up = {
     'xrandr --output DVI-D-1 --off --output DP-1 --primary --mode 2560x1440 --pos 3840x0 --rotate normal --output DP-2 --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-1 --off --output DP-3 --mode 1920x1080 --pos 0x0 --rotate normal'
     
 }
-
--- ===================================================================
--- Functionality
--- ===================================================================
 
 -- Run all the apps listed in run_on_start_up
 function RC.autostart( )
