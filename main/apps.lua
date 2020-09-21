@@ -31,7 +31,7 @@ apps.default = {
 
 -- List of apps to start once on start-up
 local run_on_start_up = {
-    'picom -b --experimental-backends --dbus --config ' .. config_dir .. '/configuration/picom.conf & ',
+    'picom -b --experimental-backends --dbus --config ' .. '/home/tlh/.config/awesome/configuration/picom.conf & ',
     'xcape -e "Super_L=Super_L|Control_L|Escape" & ',
     'xfsettingsd & ',
     'sh dropbox-dist/dropboxd & ',

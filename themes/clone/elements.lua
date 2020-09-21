@@ -63,11 +63,11 @@ theme.bg_systray = theme.background
 theme.systray_icon_spacing = dpi( 16 )
 
 -- Background
-theme.bg_normal = xrdb.background .. "ff"
-theme.bg_focus = theme.xcolor0 .. "00"
-theme.bg_urgent = xrdb.background .. "00"
-theme.bg_minimize = xrdb.background .. "22"
-theme.bg_systray = xrdb.background .. "22"
+theme.bg_normal = transparent
+theme.bg_focus = transparent
+theme.bg_urgent = transparent
+theme.bg_minimize = transparent
+theme.bg_systray = transparent
 
 -- Foreground
 theme.fg_normal = theme.xcolor7
@@ -121,7 +121,7 @@ theme.tasklist_fg_focus = theme.xcolor7 .. 'cc'
 -- Titlebar
 theme.titlebar_bg_normal = xrdb.background .. "aa"
 theme.titlebar_bg_focus = xrdb.background .. "ee"
-theme.titlebar_fg_focus = theme.xcolor7 .. "ff"
+theme.titlebar_fg_focus = theme.xcolor7 .. "00"
 theme.titlebar_size = dpi( 20 )
 theme.titlebar_fg_normal = theme.xcolor15 .. 'ff'
 -- ===================================================================
