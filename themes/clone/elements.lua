@@ -63,11 +63,11 @@ theme.bg_systray = theme.background
 theme.systray_icon_spacing = dpi( 16 )
 
 -- Background
-theme.bg_normal = theme.xcolor0 .. "22"
-theme.bg_focus = theme.xcolor0 .. "22"
-theme.bg_urgent = theme.xcolor0 .. "22"
-theme.bg_minimize = theme.xcolor0 .. "22"
-theme.bg_systray = theme.xcolor0 .. "22"
+theme.bg_normal = xrdb.background .. "ff"
+theme.bg_focus = theme.xcolor0 .. "00"
+theme.bg_urgent = xrdb.background .. "00"
+theme.bg_minimize = xrdb.background .. "22"
+theme.bg_systray = xrdb.background .. "22"
 
 -- Foreground
 theme.fg_normal = theme.xcolor7
@@ -106,21 +106,21 @@ theme.taglist_fg_occupied = theme.xcolor9 .. 'bb'
 theme.taglist_bg_empty = transparent
 theme.taglist_fg_empty = theme.xcolor15 .. '33'
 theme.taglist_shape_border_color_focus = theme.xcolor4
-theme.taglist_shape_border_color = theme.xcolor0
+theme.taglist_shape_border_color = xrdb.background
 theme.taglist_shape_border_width = 0
 theme.taglist_shape_border_color_occupied = theme.xcolor7
-theme.taglist_shape_border_color_urgent = theme.xcolor0
+theme.taglist_shape_border_color_urgent = xrdb.background
 -- ===================================================================
 
 -- Tasklist
-theme.tasklist_bg_normal = theme.xcolor0 .. "55"
-theme.tasklist_bg_focus = theme.xcolor0 .. "88"
+theme.tasklist_bg_normal = xrdb.background .. "55"
+theme.tasklist_bg_focus = xrdb.background .. "88"
 theme.tasklist_fg_focus = theme.xcolor7 .. 'cc'
 -- ===================================================================
 
 -- Titlebar
-theme.titlebar_bg_normal = theme.xcolor0 .. "aa"
-theme.titlebar_bg_focus = theme.xcolor0 .. "ee"
+theme.titlebar_bg_normal = xrdb.background .. "aa"
+theme.titlebar_bg_focus = xrdb.background .. "ee"
 theme.titlebar_fg_focus = theme.xcolor7 .. "ff"
 theme.titlebar_size = dpi( 20 )
 theme.titlebar_fg_normal = theme.xcolor15 .. 'ff'
@@ -130,7 +130,7 @@ theme.titlebar_fg_normal = theme.xcolor15 .. 'ff'
 theme.menu_submenu_icon = theme_path .. "misc/default/submenu.png"
 theme.menu_height = 20 -- dpi(15)
 theme.menu_width = 180 -- dpi(100)
-theme.menu_bg_normal = theme.xcolor0 .. "cc"
+theme.menu_bg_normal = xrdb.background .. "cc"
 theme.menu_bg_focus = theme.xcolor12 .. "cc"
 theme.menu_fg_focus = theme.xcolor7
 theme.menu_border_color = theme.xcolor12 .. "00"
@@ -139,10 +139,10 @@ theme.menu_border_width = 1
 
 --  Hotkeys Pop Up
 theme.hotkeys_font = 'Share Tech Bold 12'
-theme.hotkeys_description_font = 'Iceland Bold 12'
+theme.hotkeys_description_font = 'Share Tech Mono Bold 12'
 theme.hotkeys_bg = theme.background .. 'cc'
 theme.hotkeys_group_margin = dpi( 2 )
-theme.hotkeys_label_fg = theme.xcolor0
+theme.hotkeys_label_fg = xrdb.background
 theme.hotkeys_modifiers_fg = theme.xcolor4 .. 'cc'
 -- You can add as many variables as
 -- you wish and access them by using
