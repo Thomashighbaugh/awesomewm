@@ -48,19 +48,21 @@ require( "main.error-handling" )
 
 -- Load the user themes
 require( "main.theme" )
-
+local lockscreen = ( "layout.lockscreen" )
 -- Custom Local Libraries
 local main = {
     layouts = require( "main.layouts" ),
     tags = require( "main.tags" ),
     menu = require( "main.menu" ),
     rules = require( "main.rules" ),
+    helpers = require( "main.helpers" ),
 }
 -- Layouts
 RC.layouts = main.layouts( )
 
 -- Tags
 RC.tags = main.tags( )
+require( "layout.exit-screen" )
 
 -- Custom Local Library: Keys and Mouse Binding
 local binding = {
@@ -71,6 +73,7 @@ local binding = {
 bindtotags = require( "binding.bindtotags" )}
 
 -- Menu
+
 RC.mainmenu = awful.menu({ items = main.menu( )}) -- in globalkeys
 RC.launcher = awful.widget.launcher(
 { image = beautiful.awesome_icon, menu = RC.mainmenu })

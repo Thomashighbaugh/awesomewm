@@ -28,7 +28,6 @@ tasklist = require( "layout.tasklist" )}
 
 local taglist_buttons = layout.taglist( )
 local tasklist_buttons = layout.tasklist( )
-
 local _M = { }
 local W = { }
 local F = { } -- Format

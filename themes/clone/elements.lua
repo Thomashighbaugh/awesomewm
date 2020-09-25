@@ -15,8 +15,8 @@ local xrdb = xresources.get_current_theme( )
 --  Theme Fonts
 -- ===================================================================
 
-theme.font = 'Iceland Bold 13'
-theme.font_bold = 'Iceland Bold 13'
+theme.font = 'Share Tech Mono Bold 12'
+theme.font_bold = 'Share Tech Mono Bold 12'
 
 -- ===================================================================
 -- Theme Colors
@@ -63,11 +63,8 @@ theme.bg_systray = theme.background
 theme.systray_icon_spacing = dpi( 16 )
 
 -- Background
-theme.bg_normal = transparent
-theme.bg_focus = transparent
-theme.bg_urgent = transparent
-theme.bg_minimize = transparent
-theme.bg_systray = transparent
+
+theme.bg_systray = theme.background .. 'aa'
 
 -- Foreground
 theme.fg_normal = theme.xcolor7
@@ -91,19 +88,13 @@ theme.border_width = dpi( 1 )
 -- ===================================================================
 
 -- Window Gaps
-theme.useless_gap = dpi( 6 )
+theme.useless_gap = dpi( 8 )
 -- ===================================================================
 
 --Taglist
-theme.taglist_bg = transparent
-theme.taglist_bg_focus = transparent
-theme.taglist_bg_normal = transparent
 theme.taglist_fg_focus = theme.xcolor4.. 'bb'
-theme.taglist_bg_urgent = transparent
 theme.taglist_fg_urgent = theme.xcolor1 .. '55'
-theme.taglist_bg_occupied = transparent
 theme.taglist_fg_occupied = theme.xcolor9 .. 'bb'
-theme.taglist_bg_empty = transparent
 theme.taglist_fg_empty = theme.xcolor15 .. '33'
 theme.taglist_shape_border_color_focus = theme.xcolor4
 theme.taglist_shape_border_color = xrdb.background
@@ -144,8 +135,3 @@ theme.hotkeys_bg = theme.background .. 'cc'
 theme.hotkeys_group_margin = dpi( 2 )
 theme.hotkeys_label_fg = xrdb.background
 theme.hotkeys_modifiers_fg = theme.xcolor4 .. 'cc'
--- You can add as many variables as
--- you wish and access them by using
--- beautiful.variable in your rc.lua
---theme.bg_widget = "#cc0000"
-
