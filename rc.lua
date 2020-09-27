@@ -70,7 +70,8 @@ local binding = {
     clientbuttons = require( "binding.clientbuttons" ),
     globalkeys = require( "binding.globalkeys" ),
     clientkeys = require( "binding.clientkeys" ),
-bindtotags = require( "binding.bindtotags" )}
+    bindtotags = require( "binding.bindtotags" ),
+}
 
 -- Menu
 
@@ -100,9 +101,7 @@ binding.clientbuttons( ))
 -- Signals
 require( "main.signals" )
 
--- @TODO change the titlebars created by nice to include my modified elenapan
---local nice = require("lib.nice")
---nice()
+local nice = require( "lib.nice.local" )
 -- ===================================================================
 -- Garbage Collection
 -- ===================================================================

@@ -18,8 +18,6 @@ local modkey = RC.vars.modkey
 -- Bind Tags to Number Keys
 -- ===================================================================
 
--- {{{ Key bindings
-
 function _M.get( globalkeys )
     -- Bind all key numbers to tags.
     -- Be careful: we use keycodes to make it work on any keyboard layout.

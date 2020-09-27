@@ -3,6 +3,8 @@
 -- |  -__||  ||  -__|        |  -__|     ||   _|__ --|
 -- |_____||__||_____|__|__|__|_____|__|__||____|_____|
 
+-- NOTE: Essentially called by the theme file, enables using of
+-- different themes or configurations in a modular sense.
 -- ===================================================================
 --  External Libraries
 -- ===================================================================
@@ -15,8 +17,8 @@ local xrdb = xresources.get_current_theme( )
 --  Theme Fonts
 -- ===================================================================
 
-theme.font = 'Share Tech Mono Bold 12'
-theme.font_bold = 'Share Tech Mono Bold 12'
+theme.font = 'agave Nerd Font Bold 12'
+theme.font_bold = 'agave Nerd Font Bold 12'
 
 -- ===================================================================
 -- Theme Colors
@@ -64,7 +66,7 @@ theme.systray_icon_spacing = dpi( 16 )
 
 -- Background
 
-theme.bg_systray = theme.background .. 'aa'
+theme.bg_systray = theme.background .. '11'
 
 -- Foreground
 theme.fg_normal = theme.xcolor7
@@ -92,10 +94,10 @@ theme.useless_gap = dpi( 8 )
 -- ===================================================================
 
 --Taglist
-theme.taglist_fg_focus = theme.xcolor4.. 'bb'
-theme.taglist_fg_urgent = theme.xcolor1 .. '55'
-theme.taglist_fg_occupied = theme.xcolor9 .. 'bb'
-theme.taglist_fg_empty = theme.xcolor15 .. '33'
+theme.taglist_fg_focus = theme.xcolor4.. 'cc'
+theme.taglist_fg_urgent = theme.xcolor1 .. 'cc'
+theme.taglist_fg_occupied = theme.xcolor9 .. 'cc'
+theme.taglist_fg_empty = theme.xcolor15 .. '55'
 theme.taglist_shape_border_color_focus = theme.xcolor4
 theme.taglist_shape_border_color = xrdb.background
 theme.taglist_shape_border_width = 0
@@ -104,34 +106,34 @@ theme.taglist_shape_border_color_urgent = xrdb.background
 -- ===================================================================
 
 -- Tasklist
-theme.tasklist_bg_normal = xrdb.background .. "55"
-theme.tasklist_bg_focus = xrdb.background .. "88"
+theme.tasklist_bg_normal = xrdb.background .. "11"
+theme.tasklist_bg_focus = xrdb.background .. "cc"
 theme.tasklist_fg_focus = theme.xcolor7 .. 'cc'
 -- ===================================================================
 
 -- Titlebar
-theme.titlebar_bg_normal = xrdb.background .. "aa"
-theme.titlebar_bg_focus = xrdb.background .. "ee"
-theme.titlebar_fg_focus = theme.xcolor7 .. "00"
-theme.titlebar_size = dpi( 20 )
-theme.titlebar_fg_normal = theme.xcolor15 .. 'ff'
+theme.titlebar_bg_normal = xrdb.background .. "99"
+theme.titlebar_bg_focus = xrdb.background .. "cc"
+theme.titlebar_fg_focus = theme.xcolor7 .. "cc"
+theme.titlebar_size = dpi( 25 )
+theme.titlebar_fg_normal = theme.xcolor15 .. '66'
 -- ===================================================================
 
 -- Menu
 theme.menu_submenu_icon = theme_path .. "misc/default/submenu.png"
-theme.menu_height = 20 -- dpi(15)
-theme.menu_width = 180 -- dpi(100)
+theme.menu_height = dpi( 25 )
+theme.menu_width = dpi( 200 )
 theme.menu_bg_normal = xrdb.background .. "cc"
 theme.menu_bg_focus = theme.xcolor12 .. "cc"
-theme.menu_fg_focus = theme.xcolor7
+theme.menu_fg_focus = theme.xcolor7 .. "cc"
 theme.menu_border_color = theme.xcolor12 .. "00"
 theme.menu_border_width = 1
 -- ===================================================================
 
 --  Hotkeys Pop Up
-theme.hotkeys_font = 'Share Tech Bold 12'
-theme.hotkeys_description_font = 'Share Tech Mono Bold 12'
-theme.hotkeys_bg = theme.background .. 'cc'
+theme.hotkeys_font = 'agave Nerd Font Bold 12'
+theme.hotkeys_description_font = 'agave Nerd Font Bold 12'
+theme.hotkeys_bg = theme.background
 theme.hotkeys_group_margin = dpi( 2 )
 theme.hotkeys_label_fg = xrdb.background
 theme.hotkeys_modifiers_fg = theme.xcolor4 .. 'cc'

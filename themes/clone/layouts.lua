@@ -3,8 +3,11 @@
 -- |       |  _  |  |  |  _  |  |  ||   _|  _|   |_ |  __|  _  |     |__ --|
 -- |_______|___._|___  |_____|_____||____| |_______||____|_____|__|__|_____|
 --               |_____|
--- You can use your own layout icons like this:
+-- ===================================================================
+-- Icon declarations
+-- ===================================================================
 
+-- define the theme used
 local layout_icons = "default-white"
 local layout_path = theme_path .. "layouts/" .. layout_icons .. "/"
 

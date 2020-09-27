@@ -3,6 +3,11 @@
 -- |   _|  |   _|  ||  -__||  _  |  _  |   _| |  ||  __|  _  |     |__ --|
 -- |____|__|____|__||_____||_____|___._|__|   |__||____|_____|__|__|_____|
 
+-- ===================================================================
+-- Path Variatble Declarations
+-- ===================================================================
+
+--declare variable empty
 local icondir = ""
 
 -- Modified variant of elenapan's configuration.
@@ -11,6 +16,10 @@ local icondir = ""
 icondir = theme_path .. "titlebar/"
 
 icondir = icondir .. "clone/"
+
+-- ===================================================================
+-- Titlebar Icons
+-- ===================================================================
 
 -- Define the image to load
 theme.titlebar_close_button_normal = icondir .. "close_normal.svg"
