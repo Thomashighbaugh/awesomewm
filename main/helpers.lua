@@ -4,9 +4,9 @@
 -- |___|___||_____||__||   __|_____|__| |_____|
 --                     |__|
 
--- Functions that you use more than once and in different files would
--- be nice to define here.
-
+-- ===================================================================
+-- Initialization
+-- ===================================================================
 local awful = require( "awful" )
 local gears = require( "gears" )
 local beautiful = require( "beautiful" )
@@ -17,9 +17,13 @@ local icons = require( "themes.clone.icons" )
 local notifications = require( "notifications" )
 local naughty = require( "naughty" )
 
+-- ===================================================================
+-- Define Helper Functions
+-- ===================================================================
 local helpers = { }
 
--- Create rounded rectangle shape (in one line)
+-- ===================================================================
+-- Create rounded rectangle shapes (in one line)
 helpers.rrect = function( radius )
     return function( cr, width, height )
         gears.shape.rounded_rect( cr, width, height, radius )
@@ -43,10 +47,14 @@ helpers.psquircle = function( rate, delta, tl, tr, br, bl )
     end
 end
 
+-- ===================================================================
+-- Colorize Text
 helpers.colorize_text = function( text, color )
     return "<span foreground='"..color.."'>"..text.."</span>"
 end
 
+-- ===================================================================
+-- Toggle Client Menus
 function helpers.client_menu_toggle( )
     local instance = nil
     
@@ -60,6 +68,7 @@ function helpers.client_menu_toggle( )
     end
 end
 
+-- ===================================================================
 -- Escapes a string so that it can be displayed inside pango markup
 -- tags. Modified from:
 -- https://github.com/kernelsauce/turbo/blob/master/turbo/escape.lua
@@ -71,13 +80,16 @@ function helpers.pango_escape( s )
     }))
 end
 
+-- ===================================================================
+-- Vertical Pad
 function helpers.vertical_pad( height )
     return wibox.widget{
         forced_height = height,
         layout = wibox.layout.fixed.vertical
     }
 end
-
+-- ===================================================================
+-- Horizontal Pad
 function helpers.horizontal_pad( width )
     return wibox.widget{
         forced_width = width,

@@ -21,7 +21,7 @@ function _M.get( )
         
         -- ===================================================================
         -- Toggle Fullscreen
-        awful.key({ modkey, }, "f",
+        awful.key({ modkey, "Control" }, "f",
             function ( c )
                 c.fullscreen = not c.fullscreen
                 c:raise( )
@@ -38,22 +38,29 @@ function _M.get( )
         
         -- ===================================================================
         -- Toggle Floating
-        awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle,
+        awful.key({ modkey, }, "f",
+            awful.client.floating.toggle,
         { description = "toggle floating", group = "Client" }),
         
         -- ===================================================================
         -- Move to Master
-        awful.key({ modkey, "Control" }, "Return", function ( c ) c:swap( awful.client.getmaster( )) end,
+        awful.key({ modkey, "Control" }, "m",
+            function ( c ) c:swap( awful.client.getmaster( ))
+            end,
         { description = "move to master", group = "Client" }),
         
         -- ===================================================================
         -- Move to Screen
-        awful.key({ modkey, }, "o", function ( c ) c:move_to_screen( ) end,
+        awful.key({ modkey, }, "o",
+            function ( c ) c:move_to_screen( )
+            end,
         { description = "move to screen", group = "Client" }),
         
         -- ===================================================================
         -- Keep On Top
-        awful.key({ modkey, }, "t", function ( c ) c.ontop = not c.ontop end,
+        awful.key({ modkey, }, "t",
+            function ( c ) c.ontop = not c.ontop
+            end,
         { description = "toggle keep on top", group = "Client" }),
         
         -- ===================================================================
@@ -67,17 +74,19 @@ function _M.get( )
         { description = "minimize", group = "Client" }),
         
         -- ===================================================================
-        -- Size Controls
+        --  1100x600 Screen Size
         awful.key({ modkey, "Shift", "Control" }, "Up",
             function ( c )
                 c.floating = not c.floating
-                c.width = 1200
+                c.width = 1100
                 c.x = ( c.screen.geometry.width - c.width ) * 0.5
-                c.height = 1200
+                c.height = 600
                 c.y = ( c.screen.geometry.height - c.height ) * 0.5
             end,
         { description = "1200px * 1200px", group = "Client" }),
         
+        -- ===================================================================
+        -- 25% Screen Size
         awful.key({ modkey, "Shift", "Control" }, "Down",
             function ( c )
                 c.floating = not c.floating
@@ -88,6 +97,8 @@ function _M.get( )
             end,
         { description = "25% X 25%", group = "Client" }),
         
+        -- ===================================================================
+        -- 50% Screen Size
         awful.key({ modkey, "Shift", "Control" }, "Left",
             function ( c )
                 c.floating = not c.floating
@@ -97,6 +108,9 @@ function _M.get( )
                 c.y = c.screen.geometry.height * 0.25
             end,
         { description = "50% X 50%", group = "Client" }),
+        
+        -- ===================================================================
+        -- 75% Screen Size
         
         awful.key({ modkey, "Shift", "Control" }, "Right",
             function ( c )
@@ -109,57 +123,92 @@ function _M.get( )
         { description = "75% X 75%", group = "Client" }),
         
         -- ===================================================================
-        -- Resize
-        --awful.key({ modkey, "Control" }, "Left",  function () awful.client.moveresize( 20,  20, -40, -40) end),
-        --awful.key({ modkey, "Control" }, "Right", function () awful.client.moveresize(-20, -20,  40,  40) end),
-        awful.key({ modkey, }, "Down",
-        function ( ) awful.client.moveresize( 0, 0, 0, -20 ) end ),
-        awful.key({ modkey, }, "Up",
-        function ( ) awful.client.moveresize( 0, 0, 0, 20 ) end ),
-        awful.key({ modkey, }, "Left",
-        function ( ) awful.client.moveresize( 0, 0, -20, 0 ) end ),
-        awful.key({ modkey, }, "Right",
-        function ( ) awful.client.moveresize( 0, 0, 20, 0 ) end ),
+        -- Shrink from Bottom
+        awful.key({ modkey, "Control" }, "Down",
+            function ( )
+                awful.client.moveresize( 0, 0, 0, -20 )
+            end
+        { description = "Shrink from bottom", group = "Client" }),
+        
         -- ===================================================================
-        -- Move
+        awful.key({ modkey, "Control" }, "Up",
+            function ( )
+                awful.client.moveresize( 0, 0, 0, 20 )
+            end
+        { description = "Grow From Bottom", group = "Client" }),
+        
+        -- ===================================================================
+        awful.key({ modkey, "Control" }, "Left",
+            function ( )
+                awful.client.moveresize( 0, 0, -20, 0 )
+            end
+        { description = "Shrink From Right", group = "Client" }),
+        
+        -- ===================================================================
+        awful.key({ modkey, "Control" }, "Right",
+            function ( )
+                awful.client.moveresize( 0, 0, 20, 0 )
+            end
+        { description = "Grow from Right", group = "Client" }),
+        
+        -- ===================================================================
+        -- Move Down
         awful.key({ modkey, "Shift" }, "Down",
-        function ( ) awful.client.moveresize( 0, 20, 0, 0 ) end ),
+            function ( )
+                awful.client.moveresize( 0, 20, 0, 0 )
+            end
+        { description = "Move Down", group = "Client" }),
+        
+        -- ===================================================================
+        -- Move Up
         awful.key({ modkey, "Shift" }, "Up",
-        function ( ) awful.client.moveresize( 0, -20, 0, 0 ) end ),
+            function ( )
+                awful.client.moveresize( 0, -20, 0, 0 )
+            end
+        { description = "Move Up", group = "Client" }),
+        
+        -- ===================================================================
+        
         awful.key({ modkey, "Shift" }, "Left",
-        function ( ) awful.client.moveresize( -20, 0, 0, 0 ) end ),
+            function ( )
+                awful.client.moveresize( -20, 0, 0, 0 )
+            end
+        { description = "Move Left", group = "Client" }),
+        
+        -- ===================================================================
+        
         awful.key({ modkey, "Shift" }, "Right",
-        function ( ) awful.client.moveresize( 20, 0, 0, 0 ) end ),
+            function ( )
+                awful.client.moveresize( 20, 0, 0, 0 )
+            end
+        { description = "Move Right", group = "Client" }),
         
         -- ===================================================================
-        -- Toggle Titlebar
-        awful.key({ modkey, "Control" }, "t",
-            function ( c )
-                awful.titlebar.toggle ( c, "top" )
-            end,
-        { description = "toggle titlebar", group = "Client" }),
-        
-        -- ===================================================================
-        -- Maximized
+        -- Maximize
         awful.key({ modkey, }, "m",
             function ( c )
                 c.maximized = not c.maximized
                 c:raise( )
             end,
-        { description = "(un)maximize", group = "Client" }),
+        { description = "maximize", group = "Client" }),
+        -- ===================================================================
+        -- Un-Maximize Vertically
         awful.key({ modkey, "Control" }, "m",
             function ( c )
                 c.maximized_vertical = not c.maximized_vertical
                 c:raise( )
             end,
         { description = "(un)maximize vertically", group = "Client" }),
+        -- ===================================================================
+        -- Un-Maximize Horizontally
         awful.key({ modkey, "Shift" }, "m",
             function ( c )
                 c.maximized_horizontal = not c.maximized_horizontal
                 c:raise( )
             end,
         { description = "(un)maximize horizontally", group = "Client" })),
-        --     scratch.pad.set(c, width, height, sticky, screen)
+        -- ===================================================================
+        -- Dropdown Terminal
         awful.key({ modkey }, "`",
             function( )
                 scratch.pad.set( c, width, height, sticky, screen )
@@ -169,7 +218,8 @@ function _M.get( )
     end
     
     -- ===================================================================
-    
+    -- Add Key Bindings to Table
+    -- ===================================================================
     return setmetatable({ }, {
         __call = function( _, ... ) return _M.get( ... ) end
     })

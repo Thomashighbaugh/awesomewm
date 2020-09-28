@@ -4,13 +4,15 @@
 -- |_______||__| |__| |_____|__|   |___|___||___._|__|__|_____|__|__||__|__|___  |
 --                                                                         |_____|
 
--- Notification library
+-- ===================================================================
+-- Initialization
+-- ===================================================================
 local naughty = require( "naughty" )
 
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+-- ===================================================================
+-- Display Notifications Upon Errors
+-- ===================================================================
 
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
     naughty.notify({
         preset = naughty.config.presets.critical,

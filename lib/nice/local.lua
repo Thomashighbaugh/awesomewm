@@ -1,12 +1,20 @@
 
 local nice = require( "lib.nice" )
+local beautiful = require( "beautiful" )
 nice {
-    titlebar_color = "#0e121a11",
     
     -- Swap the designated buttons for resizing, and opening the context menu
     mb_resize = nice.MB_MIDDLE,
     mb_contextmenu = nice.MB_RIGHT,
-    
+    sticky_color = beautiful.xcolor5,
+    ontop_color = beautiful.xcolor4,
+    floating_color = beautiful.xcolor6,
+    maximize_color = beautiful.xcolor2,
+    minimize_color = beautiful.xcolor3,
+    close_color = beautiful.xcolor1,
+    titlebar_font = "agave Nerd Font Bold 11",
+    button_size = 10,
+    titlebar_height = 25,
     titlebar_items = {
         left = { "floating", },
         middle = "title",
@@ -14,13 +22,13 @@ nice {
     },
     
     context_menu_theme = {
-        bg_focus = "#0e121a11",
-        bg_normal = "#292d3511",
-        border_color = "#00000000",
+        bg_focus = beautiful.background,
+        bg_normal = beautiful.xcolor0,
+        border_color = beautiful.xcolor0,
         border_width = 0,
-        fg_focus = "#edeeff",
-        fg_normal = "#fafafa",
-        font = "Sans 11",
+        fg_focus = beautiful.xcolor7,
+        fg_normal = beautiful.xcolor15,
+        font = "agave Nerd Font Bold 11",
         height = 27.5,
         width = 250,
     },
