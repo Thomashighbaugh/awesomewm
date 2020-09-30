@@ -1,6 +1,14 @@
-local helpers = require("helpers")
-local icons = require("icons")
-local notifications = require("notifications")
+--  ______         __   __
+-- |   __ \.---.-.|  |_|  |_.-----.----.--.--.
+-- |   __ <|  _  ||   _|   _|  -__|   _|  |  |
+-- |______/|___._||____|____|_____|__| |___  |
+--                                     |_____|
+-- ===================================================================
+-- Initialization
+-- ===================================================================
+local helpers = require( "main.helpers" )
+local icons = require( "theme.clone.icons" )
+local notifications = require( "notifications" )
 
 -- Helper variables
 local charger_first_time = true
@@ -12,9 +20,11 @@ local battery_critical_already_notified = false
 local notif
 local battery_current = 100
 local battery_full_threshold = 96
-
+-- ===================================================================
+-- Define Battery Notifications
+-- ===================================================================
 -- Full / Low / Critical notifications
-awesome.connect_signal("evil::battery", function(battery)
+awesome.connect_signal( "evil::battery", function( battery )
     local message
     local icon
     local timeout
@@ -45,15 +55,15 @@ awesome.connect_signal("evil::battery", function(battery)
             timeout = 6
         end
     end
-
+    
     -- If message has been initialized, then we need to send a notification
     if message then
-        notif = notifications.notify_dwim({ title = "Battery", message = message, icon = icon, timeout = timeout, app_name = "battery" }, notif)
+        notif = notifications.notify_dwim({ title = "Battery", message = message, icon = icon, timeout = timeout, app_name = "battery" }, notif )
     end
-end)
+end )
 
 -- Charger notifications
-awesome.connect_signal("evil::charger", function(plugged)
+awesome.connect_signal( "evil::charger", function( plugged )
     charger_plugged = plugged
     local message
     local icon
@@ -69,11 +79,11 @@ awesome.connect_signal("evil::charger", function(plugged)
         message = "Unplugged"
         icon = icons.image.battery
     end
-
+    
     -- Do not send a notification the first time (when AwesomeWM (re)starts)
     if charger_first_time then
         charger_first_time = false
     else
-        notif = notifications.notify_dwim({ title = "Charger", message = message, icon = icon, timeout = 3, app_name = "charger" }, notif)
+        notif = notifications.notify_dwim({ title = "Charger", message = message, icon = icon, timeout = 3, app_name = "charger" }, notif )
     end
-end)
+end )

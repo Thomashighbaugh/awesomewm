@@ -57,8 +57,8 @@ function _M.get( )
                 end ),
                 
                 -- ===================================================================
-                -- exit screen
-                awful.key({ modkey, "Mod1" }, "Escape",
+                -- exit Screen
+                awful.key({ modkey, }, "Escape",
                     function ( )
                         exit_screen_show( )
                     end,
@@ -66,11 +66,10 @@ function _M.get( )
                 
                 -- ===================================================================
                 -- Dropdown Terminal
-                
                 awful.key({ modkey }, "`",
                     function ( )
                     quakeconsole[ s ]:toggle( ) end,
-                { description = "Quake Terminal Hopefully" }),
+                { description = "Quake Terminal" }),
                 
                 -- ===================================================================
                 -- Revelation
@@ -132,36 +131,17 @@ function _M.get( )
                 { description = "Launch Terminal File Manager", group = 'Launcher' }),
                 
                 -- ===================================================================
-                --File Manager
-                awful.key(
-                    { modkey, "Shift", },
-                    "F3",
-                    function ( )
-                        awful.spawn.easy_async_with_shell( "ranger" )
-                    end,
-                { description = "Launch File Manager", group = 'Launcher' }),
-                
-                -- ===================================================================
-                -- Terminal File Manager
-                awful.key(
-                    { modkey, "Shift", "Control" },
-                    "F3",
-                    function ( )
-                        awful.spawn.easy_async_with_shell( "sudo ranger" )
-                    end,
-                { description = "Launch Terminal File Manager", group = 'Launcher' }),
-                
-                -- ===================================================================
                 -- Font Awesome Clipboard
                 awful.key(
                     { modkey, },
                     "F4",
                     function( )
-                        awful.spawn.easy_async_with_shell( "~/.config/awesome/external/rofi/icon-browser/fa-rofi.sh" )
+                        awful.spawn.easy_async_with_shell( "~/.config/awesome/external/rofi/fontawesome_menu/fontawesome-menu" )
                     end,
                 { description = "Copy Font - Awesome Icons to Clipboard", group = 'Launcher' }),
                 
                 -- ===================================================================
+                -- Emoji
                 awful.key(
                     { modkey, "Control" },
                     "F4",
@@ -191,6 +171,7 @@ function _M.get( )
                 { description = "Turn off Picom", group = 'Launcher' }),
                 
                 -- ===================================================================
+                -- HTOP
                 awful.key(
                     { modkey, "Control" },
                     'Delete',
@@ -223,8 +204,9 @@ function _M.get( )
                 { description = "focus the previous screen", group = "screen" }),
                 
                 -- ===================================================================
-                
-                awful.key({ modkey, }, "u", awful.client.urgent.jumpto,
+                -- Jump to Urgent Client
+                awful.key({ modkey, }, "u",
+                    awful.client.urgent.jumpto,
                 { description = "jump to urgent client", group = "client" }),
                 
                 -- ===================================================================
@@ -246,13 +228,13 @@ function _M.get( )
                     end,
                 { description = "open a terminal", group = "Launcher" }),
                 -- ===================================================================
-                
+                -- Restart Awesome
                 awful.key({ modkey, }, "r",
                     awesome.restart,
                 { description = "reload awesome", group = "awesome" }),
                 
                 -- ===================================================================
-                
+                -- Quit Awesome
                 awful.key({ modkey, "Shift" }, "q",
                     awesome.quit,
                 { description = "quit awesome", group = "awesome" }),

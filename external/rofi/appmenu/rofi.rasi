@@ -3,45 +3,43 @@ configuration {
     drun-display-format: "{icon} {name}";
     display-drun: "Apps";
     show-icons: true;
-    icon-theme: "Flatery-Dark";
-    font: "Future Forces Regular 22";
+    icon-theme: "chhinamasta";
     location: 1;
     yoffset: 0;
     xoffset: 0;
-    fake-transparency: false;
+    fake-transparency: true;
     hide-scrollbar: true;
     fullscreen: false;
     show-icons: true;
     terminal: "kitty";
-    sidebar-mode: false;
+    sidebar-mode: true;
 }
 
 /* colors */
 * {
-    red: #ff9cff;
-    blue: #00caff;
-    green: #2ABB9C;
-    purple: #00caff;
-    white: #ebf0f8;
+    red: #ff59b8cc;
+    blue: #00caffcc;
+    green: #76dcddcc;
+    purple: #6c71c4cc;
+    white: #e9e9ffcc;
 }
 
-// black
    * {
-       bg:  #121116;
-       bg-sel: #1a191f;
-       fg: #ebf0f8;
+       bg:  #0e121acc;
+       bg-sel: #2f303dcc;
+       fg: #e9e9ffcc;
    }
 
 
 
 * {
-    background-color: #00000000;
-    font: "Future Forces Regular 16";
+    background-color: @bg;
+    font: "agave Nerd Font Regular 22";
 }
 
 window {
     height: 100%;
-    width: 18%;
+    width: 15%;
     transparency: "real";
 }
 
@@ -49,15 +47,15 @@ mainbox {
     children: [ inputbar, listview ];
     padding: 0% 0% 0% 0%;
     background-color: @bg;
-    border: 0;
+    border: 5;
     border-radius: 0;
     border-color: @bg;
 }
 
 listview {
     columns: 1;
-    padding: 0;
-    spacing: 14;
+    padding: 5;
+    spacing: 5;
     border-radius: 0;
 }
 
@@ -79,10 +77,11 @@ inputbar {
     children: [entry];
     
     background-color: @bg;
-    border: 0 0 0 0;
-    border-color: @fg;
+    border: 0 0 1 0;
+    border-color: #404758;
     border-radius: 0;
-    text-color:#00caff;
+    padding: 12;
+    text-color:@fg;
 }
 
 prompt {

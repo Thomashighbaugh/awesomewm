@@ -20,7 +20,7 @@ HIST_FILE="${MY_PATH}/history.txt"
 OPENER=xdg-open
 TERM_EMU=kitty
 TEXT_EDITOR=${EDITOR}
-FILE_MANAGER=dolphin
+FILE_MANAGER=thunar
 BLUETOOTH_SEND=blueman-sendto
 
 CUR_DIR=$PWD

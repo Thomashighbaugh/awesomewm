@@ -1,5 +1,5 @@
  configuration {
-	font:                       	"Iceland Bold 16";
+	font:                       	"agave Nerd Font Bold 16";
 	show-icons:                		true;
 	fullscreen:                     false;
     threads:                        0;
@@ -9,14 +9,14 @@
 }
 
 * {
-    background:                     #00000000;
-    background-color:               #00000066;
-    background-entry:               #00000033;
-    background-alt:                 #f2f2f215;
-    foreground:                     #f2f2f2EE;
-    foreground-selected:            #ffffffFF;
-    urgent:                         #E91E6366;
-    urgent-selected:                #E91E6377;
+    background:                     #0e121acc;
+    background-color:               #0e121acc;
+    background-entry:               #0e121acc;
+    background-alt:                 #2f303dcc;
+    foreground:                     #e9e9ff;
+    foreground-selected:            #edeeff;
+    urgent:                         #ff59b8;
+    urgent-selected:                #ff3684;
 }
 
 window {
@@ -63,7 +63,7 @@ prompt {
 button {
     action:                         "ok";
     str:                            " ";
-    font:                           "FantasqueSansMono Nerd Font 16";
+    font:                           "agave Nerd Font Bold 16";
     expand:                         false;
     text-color:                     @foreground;
     background-color:               @background;
@@ -73,7 +73,7 @@ button {
 
 
 entry {
-	font:            				"Iceland Bold 16";
+	font:            				 "agave Nerd Font Bold 16";
 	background-color:               @background;
 	placeholder-color:          	@foreground;
 	placeholder:                	"Global Search";
@@ -120,7 +120,7 @@ element-icon {
 }
 
 element-text {
-	font:                      		"Iceland Bold 16";
+	font:                      		 "agave Nerd Font Bold 16";
 	expand:                        	true;
 	horizontal-align:              	0.0;
 	vertical-align: 				0.5;
@@ -130,7 +130,7 @@ element normal.urgent,
 element alternate.urgent {
     background-color:               @urgent;
     text-color:                     @foreground;
-    border-radius:                  9px;
+    border-radius:                  8px;
 }
 
 element normal.active,

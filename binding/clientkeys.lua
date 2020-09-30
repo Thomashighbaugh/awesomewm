@@ -125,62 +125,65 @@ function _M.get( )
         -- ===================================================================
         -- Shrink from Bottom
         awful.key({ modkey, "Control" }, "Down",
-            function ( )
+            function ( c )
                 awful.client.moveresize( 0, 0, 0, -20 )
-            end
+            end,
         { description = "Shrink from bottom", group = "Client" }),
         
         -- ===================================================================
+        -- Grow From Bottom
         awful.key({ modkey, "Control" }, "Up",
-            function ( )
+            function ( c )
                 awful.client.moveresize( 0, 0, 0, 20 )
-            end
+            end,
         { description = "Grow From Bottom", group = "Client" }),
         
         -- ===================================================================
+        -- Shrink Right
         awful.key({ modkey, "Control" }, "Left",
-            function ( )
+            function ( c )
                 awful.client.moveresize( 0, 0, -20, 0 )
-            end
+            end,
         { description = "Shrink From Right", group = "Client" }),
         
         -- ===================================================================
+        -- Grow Right
         awful.key({ modkey, "Control" }, "Right",
-            function ( )
+            function ( c )
                 awful.client.moveresize( 0, 0, 20, 0 )
-            end
+            end,
         { description = "Grow from Right", group = "Client" }),
         
         -- ===================================================================
         -- Move Down
         awful.key({ modkey, "Shift" }, "Down",
-            function ( )
+            function ( c )
                 awful.client.moveresize( 0, 20, 0, 0 )
-            end
+            end,
         { description = "Move Down", group = "Client" }),
         
         -- ===================================================================
         -- Move Up
         awful.key({ modkey, "Shift" }, "Up",
-            function ( )
+            function ( c )
                 awful.client.moveresize( 0, -20, 0, 0 )
-            end
+            end,
         { description = "Move Up", group = "Client" }),
         
         -- ===================================================================
-        
+        -- Move Left
         awful.key({ modkey, "Shift" }, "Left",
-            function ( )
+            function ( c )
                 awful.client.moveresize( -20, 0, 0, 0 )
-            end
+            end,
         { description = "Move Left", group = "Client" }),
         
         -- ===================================================================
-        
+        --Move Right
         awful.key({ modkey, "Shift" }, "Right",
-            function ( )
+            function ( c )
                 awful.client.moveresize( 20, 0, 0, 0 )
-            end
+            end,
         { description = "Move Right", group = "Client" }),
         
         -- ===================================================================

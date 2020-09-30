@@ -80,9 +80,6 @@ RC.launcher = awful.widget.launcher(
 { image = beautiful.awesome_icon, menu = RC.mainmenu })
 menubar.utils.terminal = RC.vars.terminal
 
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout( )
-
 -- Mouse and Key bindings
 RC.globalkeys = binding.globalkeys( )
 RC.globalkeys = binding.bindtotags( RC.globalkeys )
@@ -100,6 +97,7 @@ awful.rules.rules = main.rules(
 binding.clientbuttons( ))
 -- Signals
 require( "main.signals" )
+require( "notifications" )
 
 local nice = require( "lib.nice.local" )
 -- ===================================================================

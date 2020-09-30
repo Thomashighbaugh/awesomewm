@@ -286,7 +286,7 @@ function helpers.fake_escape( )
     root.fake_input( 'key_release', "Escape" )
 end
 
-local prompt_font = beautiful.prompt_font or "sans bold 8"
+local prompt_font = beautiful.prompt_font or "agave Nerd Font Bold 11"
 function helpers.prompt( action, textbox, prompt, callback )
     if action == "run" then
         awful.prompt.run {

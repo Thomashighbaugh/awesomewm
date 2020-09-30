@@ -36,31 +36,30 @@ local editor_cmd = terminal .. " -e " .. editor
 M.awesome = {
     { "Hotkeys", function( )
         hotkeys_popup.show_help( nil, awful.screen.focused( ))
-    end, "/usr/share/icons/Suru++/apps/48/accessories-character-map.svg" },
-    { "Manual", terminal .. " -e man awesome", "/usr/share/icons/Suru++/apps/48/accessories-notes.svg" },
-    { "Edit Config", editor_cmd .. " " .. awesome.conffile, "/usr/share/icons/Suru++/apps/48/vim.svg" },
-    { "Terminal", terminal, "/usr/share/icons/Suru++/apps/48/kitty.svg" },
-    { "Shutdown/Logout", "oblogout", "/usr/share/icons/Suru++/actions/24/system-log-out.svg" },
-    { "Restart", awesome.restart, "/usr/share/icons/Suru++/actions/24/system-reboot.svg" },
-{ "Quit", function( ) awesome.quit( ) end, "/usr/share/icons/Suru++/apps/48/preferences-system-power.svg" }}
+    end, "/usr/share/icons/chhinamasta/512x512/apps/accessories-character-map.png" },
+    { "Edit Config", editor_cmd .. " " .. awesome.conffile, "/usr/share/icons/chhinamasta/512x512/apps/text-editor.png" },
+    { "Terminal", terminal, "/usr/share/icons/chhinamasta/512x512/apps/utilities-terminal-alt.png" },
+    { "Shutdown/Logout", "oblogout", "/usr/share/icons/chhinamasta/512x512/actions/system-shutdown.png" },
+    { "Restart", awesome.restart, "/usr/share/icons/chhinamasta/512x512/actions/system-reboot.png" },
+{ "Quit", function( ) awesome.quit( ) end, "/usr/share/icons/chhinamasta/512x512/actions/system-log-out.png" }}
 
 M.favorite = {
-    { "Thunar", "thunar", "/usr/share/icons/Suru++/apps/48/thunar.svg" },
-    { "Firefox", "firefox", "/usr/share/icons/Suru++/apps/48/firefox-mozilla.svg" },
-    { "Chromium", "chromium", "/usr/share/icons/Suru++/apps/48/chromium.svg" },
-{ "Thunderbird", "thunderbird", "/usr/share/icons/Suru++/apps/48/thunderbird.svg" }, }
+    { "Thunar", "thunar", "/usr/share/icons/chhinamasta/512x512/apps/thunar.png" },
+    { "Firefox", "firefox", "/usr/share/icons/chhinamasta/512x512/apps/firefox.png" },
+    { "Chromium", "chromium", "/usr/share/icons/chhinamasta/512x512/apps/chromium.png" },
+{ "Thunderbird", "thunderbird", "/usr/share/icons/chhinamasta/512x512/apps/thunderbird.png" }, }
 
 M.network_main = {
-    { "Connection Editor", "nm-connection-editor", "/usr/share/icons/Suru++/apps/48/network-manager.svg" },
-{ "Network Manager", "nmtui", "/usr/share/icons/Suru++/apps/48/network-manager.svg" }}
+    { "Connection Editor", "nm-connection-editor", "/usr/share/icons/chhinamasta/apps/48/network-manager.png" },
+{ "Network Manager", "nmtui", "/usr/share/icons/chhinamasta/512x512/apps/network-manager.png" }}
 
 M.graphics = {
-    { "GIMP", "gimp", "/usr/share/icons/Suru++/apps/48/gimp.svg" },
-    { "inkscape", "inkscape", "/usr/share/icons/Suru++/apps/48/inkscape.svg" }
+    { "GIMP", "gimp", "/usr/share/icons/chhinamasta/48x48/apps/gimp.png" },
+    { "inkscape", "inkscape", "/usr/share/icons/chhinamasta/512x512/apps/inkscape.png" }
 }
 M.dev = {
-    { "Sublime", "subl3", "/usr/share/icons/Suru++/apps/scalable/sublime-text-alt1.svg" },
-    { "Webstorm", "webstorm", "/usr/share/icons/Suru++/apps/scalable/webstorm.svg" }
+    { "Sublime", "subl3", "/usr/share/icons/chhinamasta/512x512/apps/sublime.png" },
+    { "Webstorm", "webstorm", "/usr/share/icons/chhinamasta/512x512/apps/text-editor.png" }
 }
 -- ===================================================================
 -- Menu Items
@@ -70,11 +69,11 @@ function _M.get( )
     -- Main Menu
     local menu_items = {
         { "Awesome", M.awesome, beautiful.awesome_subicon },
-        { "Open Terminal", terminal, "/usr/share/icons/Suru++/apps/48/kitty.svg" },
-        { "Network", M.network_main, "/usr/share/icons/Suru++/apps/48/network-manager.svg" },
-        { "Favorite", M.favorite, beautiful.awesome_subicon, "/usr/share/icons/Suru++/apps/48/vim.svg" },
-        { "Graphics", M.graphics, beautiful.awesome_subicon, "/usr/share/icons/Suru++/apps/48/gimp.svg" },
-        { "Development", M.dev, beautiful.awesome_subicon, "/usr/share/icons/Suru++/apps/48/vim.svg" },
+        { "Open Terminal", terminal, "/usr/share/icons/chhinamasta/512x512/apps/terminal.png" },
+        { "Network", M.network_main, "/usr/share/icons/chhinamasta/512x512/devices/nm-device-wireless.png" },
+        { "Favorite", M.favorite, beautiful.awesome_subicon, "/usr/share/icons/chhinamasta/512x512/apps/text-editor.png" },
+        { "Graphics", M.graphics, beautiful.awesome_subicon, "/usr/share/icons/chhinamasta/512x512/apps/gimp.png" },
+        { "Development", M.dev, beautiful.awesome_subicon, "/usr/share/icons/chhinamasta/512x512/apps/vim.png" },
     }
     
     return menu_items

@@ -1,0 +1,74 @@
+configuration{
+location:  0;
+bw:        0;
+columns:   12;
+padding:   0;
+yoffset:   0;
+xoffset:   0;
+}
+
+* {
+    red:                       #ff59b8;
+    blue:                        #00caff;
+    lightfg:                    #e9e9ff;
+    lightbg:                     #2f303d;
+    foreground:               #edeeff;
+    background:                  #0e121a;
+    background-color:            #0e121a;
+}
+
+* {
+  text-font:                            "agave Nerd Font Bold 64";
+  background-color: @background;
+  text-color: @foreground;
+  font: @icon-font;
+}
+
+#window {
+  width: 100%;
+  height: 100%;
+}
+
+
+#horibox {
+  children: [ listview ];
+}
+#element {
+  background-color: @background-light;
+}
+
+
+/* ########### */
+
+* {
+  font: @text-font;
+}
+#window {
+  children: [ horibox ];
+}
+
+#horibox {
+  padding: 1px;
+
+}
+#listview {
+  lines: inherit;
+}
+#element {
+  font: @text-font;
+  background-color: @background;
+  border-color: @background;
+  text-color: @background;
+
+}
+#element.selected {
+  background-color: @lightbg;
+  text-color: @lightbg;
+  }
+element.active,
+element.selected.urgent {
+  background-color: @lightbg;
+  text-color: @lightbg;
+}
+
+
