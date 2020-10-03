@@ -1,93 +1,162 @@
 
 configuration {
-    drun-display-format: "{icon} {name}";
-    display-drun: "Apps";
-    show-icons: true;
-    icon-theme: "chhinamasta";
-    location: 1;
-    yoffset: 0;
-    xoffset: 0;
-    fake-transparency: true;
-    hide-scrollbar: true;
-    fullscreen: false;
-    show-icons: true;
-    terminal: "kitty";
-    sidebar-mode: true;
+    font:                           "agave Nerd Font Mono Bold 12";
+    show-icons:                     true;
+    icon-theme:                     "chhinamasta";
+    display-drun:                   "";
+    drun-display-format:            "{name}";
+    threads:                        0;
+    scroll-method:                  0;
+    disable-history:                false;
+    fullscreen:                     false;
+    hide-scrollbar:                 true;
+    sidebar-mode:                   false;
 }
 
-/* colors */
+/* -- Light -- */
 * {
-    red: #ff59b8cc;
-    blue: #00caffcc;
-    green: #76dcddcc;
-    purple: #6c71c4cc;
-    white: #e9e9ffcc;
+    background:                     #0e121a;
+    background-alt:                 #0e121a;
+    background-ib:                  #0e121a;
+    foreground:                     #e9e9ff;
+    border:                         #80808066;
+    border-sel:                     #1A73E9FF;
+    selected:                       #141822;
+    urgent:                         #DA4453FF;
 }
 
-   * {
-       bg:  #0e121acc;
-       bg-sel: #2f303dcc;
-       fg: #e9e9ffcc;
-   }
-
-
-
+/* -- Dark -- */
+/*
 * {
-    background-color: @bg;
-    font: "agave Nerd Font Regular 22";
+    background:                     #212121ff;
+    background-alt:                 #212121ff;
+    background-ib:                  #151515FF;
+    foreground:                     #EDEDEDFF;
+    border:                         #EDEDED4d;
+    border-sel:                     #1A73E9FF;
+    selected:                       #151515ff;
+    urgent:                         #DA4453FF;
 }
+*/
 
 window {
-    height: 100%;
-    width: 15%;
-    transparency: "real";
-}
-
-mainbox {
-    children: [ inputbar, listview ];
-    padding: 0% 0% 0% 0%;
-    background-color: @bg;
-    border: 5;
-    border-radius: 0;
-    border-color: @bg;
-}
-
-listview {
-    columns: 1;
-    padding: 5;
-    spacing: 5;
-    border-radius: 0;
-}
-
-element {
-    border: 0;
-    text-color: @fg;
-    orientation: horizontal;
-    padding: 12;
-    border-radius: 0;
-}
-
-element selected {
-    background-color: @bg-sel;
-    border-color: @bg;
-    text-color: @fg;
-}
-
-inputbar {
-    children: [entry];
-    
-    background-color: @bg;
-    border: 0 0 1 0;
-    border-color: #404758;
-    border-radius: 0;
-    padding: 12;
-    text-color:@fg;
+    transparency:                   "real";
+    background-color:               @background;
+    text-color:                     @foreground;
+    border:                         0px;
+    border-radius:                  25px 25px 0px 0px;
+    border-color:                   @border;
+    height:                         40%;
+    width:                          100%;
+    location:                       south;
+    anchor:                         south;
+    x-offset:                       0;
+    y-offset:                       0;
 }
 
 prompt {
-    enabled: true;
+    enabled:                        false;
+    padding:                        0px 8px 0px 8px;
+    background-color:               @background-ib;
+    text-color:                     @foreground;
+    font:                           "FantasqueSansMono Nerd Font 20";
+}
+
+
+inputbar {
+    background-color:               @background-ib;
+    text-color:                     @foreground;
+    expand:                         false;
+    border:                         0px 0px 2px 0px;
+    border-radius:                  30px;
+    border-color:                   @border;
+    margin:                         10px 35% 0% 35%;
+    padding:                        6px 6px 6px 6px;
+    position:                       center;
 }
 
 entry {
-    text-color: @white;
-    }
+    background-color:               @background-ib;
+    text-color:                     @foreground;
+    placeholder-color:              @foreground;
+    expand:                         true;
+    horizontal-align:               0.5;
+    padding:                        3px 0px 3px 0px;
+    placeholder:                    "Search Applications";
+    blink:                          true;
+}
+
+case-indicator {
+    background-color:               @background-ib;
+    text-color:                     @foreground;
+    spacing:                        0;
+}
+
+
+listview {
+    background-color:               @background;
+    columns:                        10;
+    spacing:                        4px;
+    cycle:                          false;
+    dynamic:                        true;
+    layout:                         vertical;
+}
+
+mainbox {
+    background-color:               @background;
+    children:                       [ inputbar, listview ];
+    spacing:                        10px;
+    padding:                        5px 5px 5px 5px;
+}
+
+element {
+    background-color:               @background;
+    text-color:                     @foreground;
+    orientation:                    vertical;
+    border-radius:                  0px;
+    margin:                         0px 5px 0px 5px;
+    padding:                        10px 0px 10px 0px;
+}
+
+element-icon {
+    size:                           64px;
+    border:                         0px;
+}
+
+element-text {
+    expand:                         true;
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+    margin:                         5px 10px 0px 10px;
+}
+
+element normal.urgent,
+element alternate.urgent {
+    background-color:               @urgent;
+    text-color:                     @foreground;
+    border-radius:                  9px;
+}
+
+element normal.active,
+element alternate.active {
+    background-color:               @background-alt;
+    text-color:                     @foreground;
+}
+
+element selected {
+    background-color:               @selected;
+    text-color:                     @foreground;
+    border:                         0px 0px 3px 0px;
+    border-radius:                  15px;
+    border-color:                   @border-sel;
+}
+
+element selected.urgent {
+    background-color:               @urgent;
+    text-color:                     @foreground;
+}
+
+element selected.active {
+    background-color:               @background-alt;
+    color:                          @foreground;
+}

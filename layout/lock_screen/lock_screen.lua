@@ -87,11 +87,11 @@ local fancy_date = wibox.widget {
 
 local time = {
     {
-        font = "sans bold 16",
+        font = "agave Nerd Font Mono Bold 16",
         widget = wibox.widget.textclock( "%H" )
     },
     {
-        font = "sans 16",
+        font = "agave Nerd Font Mono 16",
         widget = wibox.widget.textclock( "%M" )
     },
     spacing = dpi( 2 ),
@@ -109,7 +109,7 @@ end
 
 local lock_animation_arc = wibox.widget {
     shape = arc( ),
-    bg = "#00000000",
+    bg = "#0e121acc",
     forced_width = dpi( 100 ),
     forced_height = dpi( 100 ),
     widget = wibox.container.background

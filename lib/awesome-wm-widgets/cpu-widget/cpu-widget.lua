@@ -170,15 +170,15 @@ local function worker( args )
                             max_value = 100,
                             value = diff_usage,
                             forced_height = 20,
-                            forced_width = 250,
+                            forced_width = 350,
                             paddings = 0,
                             margins = 2,
                             border_width = 1,
-                            border_color = beautiful.xcolor8,
-                            background_color = beautiful.xcolor0,
+                            border_color = beautiful.xcolor0,
+                            background_color = '#0e121a33',
                             bar_border_width = 2,
-                            bar_border_color = beautiful.xcolor8,
-                            color = "linear:150,0:0,0:0,#D08770:0.3,#BF616A:0.6," .. beautiful.fg_normal,
+                            bar_border_color = beautiful.xcolor0,
+                            color = "linear:150,0:0,0:0,"..beautiful.xcolor1 .. ",#BF616A:0.6," .. beautiful.xcolor2,
                             widget = wibox.widget.progressbar,
                             
                         },
@@ -231,7 +231,7 @@ local function worker( args )
                             
                             kill_proccess_button:buttons(
                                 awful.util.table.join( awful.button({ }, 1, function( )
-                                    row:set_bg( '#ff0000' )
+                                    row:set_bg( '#0e121a33' )
                                     awful.spawn.with_shell( 'kill -9 ' .. pid )
                                 end )))
                             end
