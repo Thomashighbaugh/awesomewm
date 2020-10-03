@@ -13,40 +13,27 @@ configuration {
     sidebar-mode:                   false;
 }
 
-/* -- Light -- */
 * {
-    background:                     #0e121a;
-    background-alt:                 #0e121a;
-    background-ib:                  #0e121a;
-    foreground:                     #e9e9ff;
-    border:                         #80808066;
+    background:                     #0e121aff;
+    background-alt:                 #0e121aff;
+    background-ib:                  #0e121aff;
+    foreground:                     #e9e9ffff;
+    border:                         #555566ff;
     border-sel:                     #1A73E9FF;
-    selected:                       #141822;
+    selected:                       #14182299;
     urgent:                         #DA4453FF;
 }
 
-/* -- Dark -- */
-/*
-* {
-    background:                     #212121ff;
-    background-alt:                 #212121ff;
-    background-ib:                  #151515FF;
-    foreground:                     #EDEDEDFF;
-    border:                         #EDEDED4d;
-    border-sel:                     #1A73E9FF;
-    selected:                       #151515ff;
-    urgent:                         #DA4453FF;
-}
-*/
+
 
 window {
     transparency:                   "real";
     background-color:               @background;
     text-color:                     @foreground;
-    border:                         0px;
-    border-radius:                  25px 25px 0px 0px;
-    border-color:                   @border;
-    height:                         40%;
+    border:                         2px;
+    border-radius:                  8px 8px 0px 0px;
+    border-color:                   @foreground;
+    height:                         37%;
     width:                          100%;
     location:                       south;
     anchor:                         south;
@@ -56,10 +43,10 @@ window {
 
 prompt {
     enabled:                        false;
-    padding:                        0px 8px 0px 8px;
+    padding:                        8px 8px 8px 8px;
     background-color:               @background-ib;
     text-color:                     @foreground;
-    font:                           "FantasqueSansMono Nerd Font 20";
+    font:                           "agave Nerd Font Bold 14";
 }
 
 
@@ -68,8 +55,8 @@ inputbar {
     text-color:                     @foreground;
     expand:                         false;
     border:                         0px 0px 2px 0px;
-    border-radius:                  30px;
-    border-color:                   @border;
+    border-radius:                  8px;
+    border-color:                   @foreground;
     margin:                         10px 35% 0% 35%;
     padding:                        6px 6px 6px 6px;
     position:                       center;
@@ -81,7 +68,7 @@ entry {
     placeholder-color:              @foreground;
     expand:                         true;
     horizontal-align:               0.5;
-    padding:                        3px 0px 3px 0px;
+    padding:                        3px 3px 3px 3px;
     placeholder:                    "Search Applications";
     blink:                          true;
 }
@@ -95,9 +82,9 @@ case-indicator {
 
 listview {
     background-color:               @background;
-    columns:                        10;
-    spacing:                        4px;
-    cycle:                          false;
+    columns:                        9;
+    spacing:                        5px;
+    cycle:                          true;
     dynamic:                        true;
     layout:                         vertical;
 }
@@ -105,21 +92,22 @@ listview {
 mainbox {
     background-color:               @background;
     children:                       [ inputbar, listview ];
-    spacing:                        10px;
-    padding:                        5px 5px 5px 5px;
+    spacing:                        0px;
 }
 
 element {
     background-color:               @background;
     text-color:                     @foreground;
     orientation:                    vertical;
-    border-radius:                  0px;
-    margin:                         0px 5px 0px 5px;
+    border:                         0px 0px 1px 0px;
+    border-radius:                  22px;
+    border-color:                   @border;
+    margin:                         0px 2px 0px 2px;
     padding:                        10px 0px 10px 0px;
 }
 
 element-icon {
-    size:                           64px;
+    size:                           66px;
     border:                         0px;
 }
 
@@ -134,26 +122,29 @@ element normal.urgent,
 element alternate.urgent {
     background-color:               @urgent;
     text-color:                     @foreground;
-    border-radius:                  9px;
+    border-radius:                  22px;
 }
 
 element normal.active,
 element alternate.active {
     background-color:               @background-alt;
     text-color:                     @foreground;
+
+
+
 }
 
 element selected {
     background-color:               @selected;
     text-color:                     @foreground;
-    border:                         0px 0px 3px 0px;
-    border-radius:                  15px;
+    border:                         0px 0px 5px 0px;
+    border-radius:                  22px;
     border-color:                   @border-sel;
 }
 
 element selected.urgent {
-    background-color:               @urgent;
-    text-color:                     @foreground;
+    background-color:               @background-alt;
+    text-color:                     @urgent;
 }
 
 element selected.active {
