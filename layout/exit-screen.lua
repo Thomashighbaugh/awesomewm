@@ -14,15 +14,15 @@ local helpers = require( "main.helpers" )
 local pad = helpers.pad
 
 -- Appearance
-local icon_font = "Font Awesome  45"
-local poweroff_text_icon = ""
-local reboot_text_icon = ""
-local suspend_text_icon = ""
-local exit_text_icon = ""
+local icon_font = "Font Awesome Regular 64"
+local poweroff_text_icon = ""
+local reboot_text_icon = ""
+local suspend_text_icon = ""
+local exit_text_icon = ""
 local lock_text_icon = ""
-local exitscreen_bg = beautiful.background .. "95"
+local exitscreen_bg = beautiful.background .. "cc"
 
-local button_bg = beautiful.xcolor0
+local button_bg = beautiful.background .. 'aa'
 local button_size = dpi( 120 )
 
 -- Commands
@@ -53,10 +53,11 @@ local create_button = function( symbol, hover_color, text, command )
         forced_height = button_size,
         forced_width = button_size,
         border_width = dpi( 3 ),
-        border_color = button_bg,
-        shape = helpers.rrect( 10 ),
-        bg = button_bg,
-        widget = wibox.container.background
+        border_color = beautiful.xcolor7 .. 'aa',
+        shape = helpers.rrect( 15 ),
+        bg = beautiful.background .. 'aa',
+        widget = wibox.container.background,
+        color = beautiful.xcolor7 .. 'aa'
     }
     
     -- Bind left click to run the command
@@ -65,12 +66,12 @@ local create_button = function( symbol, hover_color, text, command )
     
     -- Change color on hover
     button:connect_signal( "mouse::enter", function( )
-        icon.markup = helpers.colorize_text( icon.text, hover_color )
-        button.border_color = hover_color
+        icon.markup = helpers.colorize_text( icon.text, beautiful.xcolor3 .. 'aa' )
+        button.border_color = beautiful.xcolor3 .. 'aa'
     end )
     button:connect_signal( "mouse::leave", function( )
-        icon.markup = helpers.colorize_text( icon.text, beautiful.xforeground )
-        button.border_color = button_bg
+        icon.markup = helpers.colorize_text( icon.text, beautiful.xcolor7 .. 'aa' )
+        button.border_color = beautiful.xcolor7 .. 'aa'
     end )
     
     -- Use helper function to change the cursor on hover
@@ -80,23 +81,23 @@ local create_button = function( symbol, hover_color, text, command )
 end
 
 -- Create the buttons
-local poweroff = create_button( poweroff_text_icon, beautiful.xcolor1,
+local poweroff = create_button( poweroff_text_icon, beautiful.xcolor7 .. 'aa',
 "Poweroff", poweroff_command )
-local reboot = create_button( reboot_text_icon, beautiful.xcolor2, "Reboot",
+local reboot = create_button( reboot_text_icon, beautiful.xcolor7 .. 'aa', "Reboot",
 reboot_command )
-local suspend = create_button( suspend_text_icon, beautiful.xcolor3, "Suspend",
+local suspend = create_button( suspend_text_icon, beautiful.xcolor7 .. 'aa', "Suspend",
 suspend_command )
-local exit = create_button( exit_text_icon, beautiful.xcolor4, "Exit",
+local exit = create_button( exit_text_icon, beautiful.xcolor7 .. 'aa', "Exit",
 exit_command )
-local lock = create_button( lock_text_icon, beautiful.xcolor5, "Lock",
+local lock = create_button( lock_text_icon, beautiful.xcolor7 .. 'aa', "Lock",
 lock_command )
 
 -- Create the exit screen wibox
 exit_screen = wibox({ visible = false, ontop = true, type = "dock" })
 awful.placement.maximize( exit_screen )
 
-exit_screen.bg = beautiful.exit_screen_bg or exitscreen_bg or "#292d35"
-exit_screen.fg = beautiful.exit_screen_fg or beautiful.wibar_fg or "#F2F2F2"
+exit_screen.bg = beautiful.exit_screen_bg or exitscreen_bg or beautiful.background .. 'aa'
+exit_screen.fg = beautiful.exit_screen_fg or beautiful.wibar_fg or beautiful.foreground .. 'aa'
 
 local exit_screen_grabber
 function exit_screen_hide( )
@@ -149,7 +150,7 @@ function exit_screen_show( )
                 suspend,
                 exit,
                 lock,
-                spacing = dpi( 50 ),
+                spacing = dpi( 75 ),
                 layout = wibox.layout.fixed.horizontal
             },
             expand = "none",

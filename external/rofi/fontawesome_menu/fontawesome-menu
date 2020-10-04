@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NAME="fontawesome-menu"
-VERSION="0.001"
+VERSION="0.1"
 AUTHOR="Thomas Highbaugh (forked from wstam88)"
 CONTACT='thighbaugh@zoho.com'
 CREATED="2020-09-21"
@@ -23,7 +23,7 @@ main(){
 
   echo "$LISTFILE"
 
-  LISTFILE="${LISTFILE:-$HOME/.config/awesome/external/rofi/fontawesome_menu/fa5-icon-list-tags.txt}"
+  LISTFILE="${LISTFILE:-$HOME/.config/awesome/external/rofi/fontawesome_menu/unicode-list.txt}"
   ROFI_PROMPT="${ROFI_PROMPT:-""}"
 
   [[ ! -f "$LISTFILE" ]] \
