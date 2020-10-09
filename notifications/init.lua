@@ -2,24 +2,22 @@
 -- |    |  |.-----.|  |_|__|.'  _|__|.----.---.-.|  |_|__|.-----.-----.-----.
 -- |       ||  _  ||   _|  ||   _|  ||  __|  _  ||   _|  ||  _  |     |__ --|
 -- |__|____||_____||____|__||__| |__||____|___._||____|__||_____|__|__|_____|
-
 -- ===================================================================
 -- Initialize
 -- ===================================================================
-
-local beautiful = require( "beautiful" )
-local naughty = require( "naughty" )
-local menubar = require( "menubar" )
+local beautiful = require("beautiful")
+local naughty = require("naughty")
+local menubar = require("menubar")
 
 -- ===================================================================
 -- Configure Notifications
 -- ===================================================================
-local notifications = { }
+local notifications = {}
 
 -- Notification settings
 -- Icon size
-naughty.config.defaults[ 'icon_size' ] = beautiful.notification_icon_size
-naughty.config.defaults[ 'border_width' ] = beautiful.notification_border_width
+naughty.config.defaults['icon_size'] = beautiful.notification_icon_size
+naughty.config.defaults['border_width'] = beautiful.notification_border_width
 
 -- Timeouts
 naughty.config.defaults.timeout = 5
@@ -33,7 +31,7 @@ naughty.config.presets.critical.timeout = 12
 --     local my_notif = notifications.notify_dwim({ title = "hello", message = "there" }, my_notif)
 --     -- After a while, use this to update or recreate the notification if it is expired / dismissed
 --     my_notif = notifications.notify_dwim({ title = "good", message = "bye" }, my_notif)
-function notifications.notify_dwim( args, notif )
+function notifications.notify_dwim(args, notif)
     local n = notif
     if n and not n._private.is_destroyed and not n.is_expired then
         notif.title = args.title or notif.title
@@ -42,38 +40,36 @@ function notifications.notify_dwim( args, notif )
         notif.icon = args.icon or notif.icon
         notif.timeout = args.timeout or notif.timeout
     else
-        n = naughty.notification( args )
+        n = naughty.notification(args)
     end
     return n
 end
 
 -- call other notification related files
-function notifications.init( theme_name )
+function notifications.init(theme_name)
     -- Initialize various notification daemons
-    require( "notifications.volume" )
-    require( "notifications.brightness" )
-    require( "notifications.battery" )
+    require("notifications.volume")
+    require("notifications.brightness")
+    require("notifications.battery")
     -- Load theme
-    require( "notifications.theme" )
+    require("notifications.theme")
 end
 
 -- Handle notification icon
-naughty.connect_signal( "request::icon", function( n, context, hints )
+naughty.connect_signal("request::icon", function(n, context, hints)
     -- Handle other contexts here
     if context ~= "app_icon" then return end
-    
+
     -- Use XDG icon
-    local path = menubar.utils.lookup_icon( hints.app_icon ) or
-    menubar.utils.lookup_icon( hints.app_icon:lower( ))
-    
-    if path then
-        n.icon = path
-    end
-end )
+    local path = menubar.utils.lookup_icon(hints.app_icon) or
+                     menubar.utils.lookup_icon(hints.app_icon:lower())
+
+    if path then n.icon = path end
+end)
 
 -- Use XDG icon
-naughty.connect_signal( "request::action_icon", function( a, context, hints )
-    a.icon = menubar.utils.lookup_icon( hints.id )
-end )
+naughty.connect_signal("request::action_icon", function(a, context, hints)
+    a.icon = menubar.utils.lookup_icon(hints.id)
+end)
 
 return notifications

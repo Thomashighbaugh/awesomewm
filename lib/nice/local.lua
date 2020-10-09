@@ -11,14 +11,14 @@ nice {
     floating_color = beautiful.xcolor6,
     maximize_color = beautiful.xcolor2,
     minimize_color = beautiful.xcolor3,
-    close_color = beautiful.xcolor1,
-    titlebar_font = "agave Nerd Font Bold 11",
-    button_size = 10,
-    titlebar_height = 25,
+    close_color = beautiful.xcolor9,
+    titlebar_font = "agave Nerd Font Bold 12",
+    button_size = 15,
+    titlebar_height = 32,
     titlebar_items = {
         left = { "floating", },
         middle = "title",
-        right = { "sticky", "ontop", "maximize", "minimize", "close", },
+        right = { "minimize", "maximize",  "close", },
     },
     
     context_menu_theme = {

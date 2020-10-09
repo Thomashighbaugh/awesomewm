@@ -2,7 +2,6 @@
 -- |_     _|  |--.-----.--------.-----.
 --   |   | |     |  -__|        |  -__|
 --   |___| |__|__|_____|__|__|__|_____|
-
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
