@@ -15,12 +15,10 @@ local wibox = require("wibox")
 local icons = require("themes.clone.icons")
 local notifications = require("notifications")
 local naughty = require("naughty")
-
 -- ===================================================================
 -- Define Helper Functions
 -- ===================================================================
 local helpers = {}
-
 -- ===================================================================
 -- Create rounded rectangle shapes (in one line)
 helpers.rrect = function(radius)
@@ -28,14 +26,12 @@ helpers.rrect = function(radius)
         gears.shape.rounded_rect(cr, width, height, radius)
     end
 end
-
 helpers.prrect = function(radius, tl, tr, br, bl)
     return function(cr, width, height)
         gears.shape.partially_rounded_rect(cr, width, height, tl, tr, br, bl,
                                            radius)
     end
 end
-
 helpers.squircle = function(rate, delta)
     return function(cr, width, height)
         gears.shape.squircle(cr, width, height, rate, delta)
@@ -47,18 +43,15 @@ helpers.psquircle = function(rate, delta, tl, tr, br, bl)
                                      delta)
     end
 end
-
 -- ===================================================================
 -- Colorize Text
 helpers.colorize_text = function(text, color)
     return "<span foreground='" .. color .. "'>" .. text .. "</span>"
 end
-
 -- ===================================================================
 -- Toggle Client Menus
 function helpers.client_menu_toggle()
     local instance = nil
-
     return function()
         if instance and instance.wibox.visible then
             instance:hide()
@@ -68,7 +61,6 @@ function helpers.client_menu_toggle()
         end
     end
 end
-
 -- ===================================================================
 -- Escapes a string so that it can be displayed inside pango markup
 -- tags. Modified from:
@@ -77,7 +69,6 @@ function helpers.pango_escape(s)
     return (string.gsub(s, "[&<>]",
                         {["&"] = "&amp;", ["<"] = "&lt;", [">"] = "&gt;"}))
 end
-
 -- ===================================================================
 -- Vertical Pad
 function helpers.vertical_pad(height)
@@ -94,13 +85,16 @@ function helpers.horizontal_pad(width)
         layout = wibox.layout.fixed.horizontal
     }
 end
-
+-- ===================================================================
+-- translates directions
 local direction_translate = {
     ['up'] = 'top',
     ['down'] = 'bottom',
     ['left'] = 'left',
     ['right'] = 'right'
 }
+-- ===================================================================
+-- moves to edge
 function helpers.move_to_edge(c, direction)
     local old = c:geometry()
     local new = awful.placement[direction_translate[direction]](c, {
@@ -115,17 +109,17 @@ function helpers.move_to_edge(c, direction)
         c:geometry({x = new.x, y = old.y})
     end
 end
-
+-- ===================================================================
+-- time between double clicks for relevent gesture based functionality
 local double_tap_timer = nil
 function helpers.single_double_tap(single_tap_function, double_tap_function)
     if double_tap_timer then
         double_tap_timer:stop()
         double_tap_timer = nil
         double_tap_function()
-        -- naughty.notify({text = "We got a double tap"})
+        naughty.notify({text = "We got a double tap"})
         return
     end
-
     double_tap_timer = gears.timer.start_new(0.20, function()
         double_tap_timer = nil
         -- naughty.notify({text = "We got a single tap"})
@@ -133,45 +127,31 @@ function helpers.single_double_tap(single_tap_function, double_tap_function)
         return false
     end)
 end
-
--- Used as a custom command in rofi to move a window into the current tag
--- instead of following it.
+-- ===================================================================
 -- Rofi has access to the X window id of the client.
 function helpers.rofi_move_client_here(window)
     local win = function(c) return awful.rules.match(c, {window = window}) end
-
     for c in awful.client.iterate(win) do
         c.minimized = false
         c:move_to_tag(mouse.screen.selected_tag)
         client.focus = c
     end
 end
-
--- Add a hover cursor to a widget by changing the cursor on
--- mouse::enter and mouse::leave
--- You can find the names of the available cursors by opening any
--- cursor theme and looking in the "cursors folder"
--- For example: "hand1" is the cursor that appears when hovering over
--- links
+-- ===================================================================
+-- provides a conventional change in cursor to the hand when over clickable items
 function helpers.add_hover_cursor(w, hover_cursor)
     local original_cursor = "left_ptr"
-
     w:connect_signal("mouse::enter", function()
         local w = _G.mouse.current_wibox
         if w then w.cursor = hover_cursor end
     end)
-
     w:connect_signal("mouse::leave", function()
         local w = _G.mouse.current_wibox
         if w then w.cursor = original_cursor end
     end)
 end
-
--- Tag back and forth:
--- If you try to focus the tag you are already at, go back to the previous tag.
--- Useful for quick switching after for example checking an incoming chat
--- message at tag 2 and coming back to your work at tag 1 with the same
--- keypress.
+-- ===================================================================
+-- Tag back and forth
 function helpers.tag_back_and_forth(tag_index)
     local s = mouse.screen
     local tag = s.tags[tag_index]
@@ -183,13 +163,13 @@ function helpers.tag_back_and_forth(tag_index)
         end
     end
 end
-
 -- Resize DWIM (Do What I Mean)
 -- Resize client or factor
 -- Constants --
 local floating_resize_amount = dpi(20)
 local tiling_resize_factor = 0.05
----------------
+-- ===================================================================
+-- Do What I Mean, Resizing
 function helpers.resize_dwim(c, direction)
     if c and c.floating then
         if direction == "up" then
@@ -213,7 +193,6 @@ function helpers.resize_dwim(c, direction)
         end
     end
 end
-
 -- Move client DWIM (Do What I Mean)
 -- Move to edge if the client / layout is floating
 -- Swap by index if maximized
@@ -232,7 +211,6 @@ function helpers.move_client_dwim(c, direction)
         awful.client.swap.bydirection(direction, c, nil)
     end
 end
-
 -- Make client floating and snap to the desired edge
 local axis_translate = {
     ['up'] = 'horizontally',
@@ -255,13 +233,11 @@ function helpers.float_and_edge_snap(c, direction)
         margins = beautiful.useless_gap * 2
     })
 end
-
 -- Rounds a number to any number of decimals
 function helpers.round(number, decimals)
     local power = 10 ^ decimals
     return math.floor(number * power) / power
 end
-
 function helpers.volume_control(step)
     local cmd
     if step == 0 then
@@ -274,22 +250,18 @@ function helpers.volume_control(step)
     end
     awful.spawn.with_shell(cmd)
 end
-
 function helpers.send_key(c, key)
     awful.spawn.with_shell(
         "xdotool key --window " .. tostring(c.window) .. " " .. key)
 end
-
 function helpers.send_key_sequence(c, seq)
     awful.spawn.with_shell("xdotool type --delay 5 --window " ..
                                tostring(c.window) .. " " .. seq)
 end
-
 function helpers.fake_escape()
     root.fake_input('key_press', "Escape")
     root.fake_input('key_release', "Escape")
 end
-
 local prompt_font = beautiful.prompt_font or "agave Nerd Font Bold 11"
 function helpers.prompt(action, textbox, prompt, callback)
     if action == "run" then
@@ -325,12 +297,10 @@ function helpers.prompt(action, textbox, prompt, callback)
         }
     end
 end
-
 -- Given a `match` condition, returns an array with clients that match it, or
 -- just the first found client if `first_only` is true
 function helpers.find_clients(match, first_only)
     local matcher = function(c) return awful.rules.match(c, match) end
-
     if first_only then
         for c in awful.client.iterate(matcher) do return c end
     else
@@ -342,18 +312,14 @@ function helpers.find_clients(match, first_only)
     end
     return nil
 end
-
 -- Given a `match` condition, calls the specified function `f_do` on all the
 -- clients that match it
 function helpers.find_clients_and_do(match, f_do)
     local matcher = function(c) return awful.rules.match(c, match) end
-
     for c in awful.client.iterate(matcher) do f_do(c) end
 end
-
 function helpers.run_or_raise(match, move, spawn_cmd, spawn_args)
     local matcher = function(c) return awful.rules.match(c, match) end
-
     -- Find and raise
     local found = false
     for c in awful.client.iterate(matcher) do
@@ -367,11 +333,9 @@ function helpers.run_or_raise(match, move, spawn_cmd, spawn_args)
         end
         break
     end
-
     -- Spawn if not found
     if not found then awful.spawn(spawn_cmd, spawn_args) end
 end
-
 -- Run raise or minimize a client (scratchpad style)
 -- Depends on helpers.run_or_raise
 -- If it not running, spawn it
@@ -385,7 +349,6 @@ function helpers.scratchpad(match, spawn_cmd, spawn_args)
         helpers.run_or_raise(match, true, spawn_cmd, spawn_args)
     end
 end
-
 function helpers.float_and_resize(c, width, height)
     c.maximized = false
     c.width = width
@@ -395,7 +358,6 @@ function helpers.float_and_resize(c, width, height)
     c.floating = true
     c:raise()
 end
-
 -- Adds a maximized mask to a screen
 function helpers.screen_mask(s, bg)
     local mask = wibox({
@@ -408,7 +370,6 @@ function helpers.screen_mask(s, bg)
     mask.bg = bg
     return mask
 end
-
 -- Useful for periodically checking the output of a command that
 -- requires internet access.
 -- Ensures that `command` will be run EXACTLY once during the desired
@@ -422,7 +383,6 @@ function helpers.remote_watch(command, interval, output_file, callback)
         awful.spawn.easy_async_with_shell(command .. " | tee " .. output_file,
                                           function(out) callback(out) end)
     end
-
     local timer
     timer = gears.timer {
         timeout = interval,
@@ -439,7 +399,6 @@ function helpers.remote_watch(command, interval, output_file, callback)
                         run_the_thing()
                         return
                     end
-
                     local diff = os.time() - tonumber(last_update)
                     if diff >= interval then
                         run_the_thing()
@@ -449,7 +408,6 @@ function helpers.remote_watch(command, interval, output_file, callback)
                                                           function(out)
                             callback(out)
                         end)
-
                         -- Schedule an update for when the remaining time to complete the interval passes
                         timer:stop()
                         gears.timer.start_new(interval - diff, function()
@@ -461,12 +419,10 @@ function helpers.remote_watch(command, interval, output_file, callback)
         end
     }
 end
-
 -- The directory of the currently executed lua script
 -- Requires the `debug` library to be available in the build of Lua that is running
 function helpers.this_dir()
     local str = debug.getinfo(2, "S").source:sub(2)
     return str:match("(.*/)")
 end
-
 return helpers

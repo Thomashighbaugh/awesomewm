@@ -20,7 +20,6 @@ local beautiful = require("beautiful")
 local revelation = require("lib.revelation")
 local poppin = require('lib.poppin')
 local switcher = require("lib.awesome-switcher")
-local quake = require("layout.quake")
 require("layout.exit-screen")
 -- lib variables  and init
 revelation.init()

@@ -1,3 +1,12 @@
+--  _                 _  _       _   
+-- | |_  __ _   __ _ | |(_) ___ | |_ 
+-- | __|/ _` | / _` || || |/ __|| __|
+-- | |_| (_| || (_| || || |\__ \| |_ 
+--  \__|\__,_| \__, ||_||_||___/ \__|
+--             |___/                 
+-- ===================================================================
+--  External Libraries
+-- ===================================================================
 -- {{{ Required libraries
 local gears = require("gears")
 local awful = require("awful")
@@ -5,8 +14,10 @@ local awful = require("awful")
 
 local _M = {}
 
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
+-- ===================================================================
+--  Add button controls to the taglist, more can be found in 
+-- `themes/elements`
+-- ===================================================================
 function _M.get()
     -- Create a wibox for each screen and add it
     local taglist_buttons = gears.table.join(
