@@ -75,7 +75,7 @@ theme.groups_radius = dpi( 12 )
 theme.border_width = dpi( 1 )
 -- ===================================================================
 -- Window Gaps
-theme.useless_gap = dpi( 8 )
+theme.useless_gap = dpi( 3 )
 -- ===================================================================
 --Taglist
 theme.taglist_fg_focus = theme.xcolor4 .. 'cc'
