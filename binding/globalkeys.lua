@@ -72,7 +72,12 @@ function _M.get()
     awful.key({modkey}, "Print", function()
         awful.spawn("/home/tlh/.config/awesome/external/screenshots area")
     end, {description = "Take a Selection Screenshot", group = "Launcher"}),
-
+    -- ===================================================================
+    -- Rofi-Todo 
+ awful.key({modkey}, "a", function()
+        awful.spawn("rofi-todo -f /home/tlh/dotfiles/todos.json")
+    end, {description = "Take a Selection Screenshot", group = "Launcher"}),
+   
     -- ===================================================================
     -- launch rofi app menu *Note this is bound to just mod4 thanks to xcape see main/apps.lua
     awful.key({modkey, "Control"}, "Escape", function()
