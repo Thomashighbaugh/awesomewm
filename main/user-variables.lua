@@ -16,15 +16,15 @@ local _M = {
     terminal = "kitty",
     -- Application Menu (with xcape means just hit the windows key and BAM! system menu)
     launcher = 'rofi  -show drun -theme ~/.config/awesome/external/rofi/appmenu/rofi.rasi',
-    -- Screensaver
+    -- Screensaver, I prefer using 'Unknown Pleasures' which emulates that Joy Division album cover hipsters love to have on t shirts
     lock = "xscreensaver",
-    -- Take screenshots
+    -- Take screenshots using script stored within this repo, for simplicity's sake 
     screenshot = "$HOME/.config/awesome/configuration/screenshots area",
     -- File Manager, since XFCE components are used throughout, I am using Thunar for now as a GUI file manager.
     filebrowser = "thunar",
     -- browser of choice
     browser = "firefox",
-    -- aka the Windows Key, its not like saying Windows is the same as Voldemort, come on people
+    -- aka the [Voldemort/Windows] Key, Apple hardware users may need to adjust
     modkey = "Mod4"
 }
 
@@ -35,11 +35,13 @@ local _M = {
 local run_on_start_up = {
     ' picom -b --experimental-backends --dbus --config ' .. config_dir ..
         '/configuration/picom.conf & ',
+        -- I like when I press the Windows key, a menu to come up
     ' xcape -e "Super_L=Super_L|Control_L|Escape" & ', ' xfsettingsd & ',
     ' sh dropbox-dist/dropboxd & ', 'xscreensaver &',
-    -- the next one will be dependent on your set up, configure with arandr and then save, open that file and copy over the below
-    'xrandr --output DVI-D-1 --off --output DP-1 --primary --mode 2560x1440 --pos 3840x0 --rotate normal --output DP-2 --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-3 --mode 1920x1080 --pos 1920x0 --rotate normal'
-
+    -- back to using the laptop for now, motel life for the win!
+    'sudo threshy &',
+    'tp-battery-icon &',
+     
 }
 
 -- Run all the apps listed in run_on_start_up
