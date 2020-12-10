@@ -101,9 +101,9 @@ local lock = create_button(lock_text_icon, beautiful.xcolor7 .. 'aa', "Lock",
 exit_screen = wibox({visible = false, ontop = true, type = "dock"})
 awful.placement.maximize(exit_screen)
 exit_screen.bg = beautiful.exit_screen_bg or exitscreen_bg or
-                     beautiful.background .. 'aa'
+                     beautiful.background .. '66'
 exit_screen.fg = beautiful.exit_screen_fg or beautiful.wibar_fg or
-                     beautiful.foreground .. 'aa'
+                     beautiful.foreground .. '66'
 local exit_screen_grabber
 function exit_screen_hide()
     awful.keygrabber.stop(exit_screen_grabber)
