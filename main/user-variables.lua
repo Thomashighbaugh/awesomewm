@@ -40,7 +40,7 @@ local run_on_start_up = {
     ' sh dropbox-dist/dropboxd & ', 'xscreensaver &',
     -- back to using the laptop for now, motel life for the win!
     'sudo threshy &',
-    'tp-battery-icon &',
+    
      
 }
 

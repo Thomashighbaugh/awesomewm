@@ -5,7 +5,7 @@
 --                                                    |_____|
 -- ===================================================================
 --  Import Libraries and Utilities
--- ===================================================================
+-- ==================================== ===============================
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -26,7 +26,7 @@ revelation.init()
 
 local _M = {}
 
--- reading
+  -- reading
 -- https://awesomewm.org/wiki/Global_Keybindings
 
 -- ===================================================================
