@@ -26,7 +26,7 @@ theme.fg_urgent = xrdb.color15
 theme.bat_fg_critical = xrdb.color8
 -- Colorscheme
 -- here we import the Xresources colors, if they exist on your system. This provides ease of themeing for me and makes this theme adaptable to different contexts than its present one.
-theme.background = xrdb.background
+theme.background = xrdb.background 
 theme.foreground = xrdb.foreground
 -- blacks
 theme.xcolor0 = xrdb.color0
@@ -53,10 +53,8 @@ theme.xcolor14 = xrdb.color11
 theme.xcolor7 = xrdb.color7
 theme.xcolor15 = xrdb.color15
 -- System tray
-theme.bg_systray = theme.background
+theme.bg_systray = theme.background .. 'cc'
 theme.systray_icon_spacing = dpi( 16 )
--- Background
-theme.bg_systray = theme.background .. '11'
 -- Foreground
 theme.fg_normal = theme.xcolor7
 theme.fg_focus = theme.xcolor15
@@ -66,36 +64,36 @@ theme.fg_minimize = theme.xcolor7
 -- Theme Component Options
 -- ===================================================================
 -- Window Border
-theme.border_normal = theme.xcolor8 .. "55"
-theme.border_focus = theme.xcolor7 .. "11"
-theme.border_marked = theme.xcolor1 .. "55"
-theme.border_radius = dpi( 12 )
-theme.client_radius = dpi( 12 )
-theme.groups_radius = dpi( 12 )
+theme.border_normal = theme.xcolor8 .. "cc"
+theme.border_focus = theme.xcolor7 .. "cc"
+theme.border_marked = theme.xcolor1 .. "cc"
+theme.border_radius = dpi( 8 )
+theme.client_radius = dpi( 8 )
+theme.groups_radius = dpi( 8 )
 theme.border_width = dpi( 1 )
 -- ===================================================================
 -- Window Gaps
-theme.useless_gap = dpi( 3 )
+theme.useless_gap = dpi( 5 )
 -- ===================================================================
 --Taglist
-theme.taglist_fg_focus = theme.xcolor4 .. 'cc'
-theme.taglist_fg_urgent = theme.xcolor1 .. 'cc'
-theme.taglist_fg_occupied = theme.xcolor3 .. 'cc'
-theme.taglist_fg_empty = theme.xcolor15 .. '55'
-theme.taglist_shape_border_color_focus = theme.xcolor4
-theme.taglist_shape_border_color = xrdb.background
-theme.taglist_shape_border_width = 0
-theme.taglist_shape_border_color_occupied = theme.xcolor7
-theme.taglist_shape_border_color_urgent = xrdb.background
+theme.taglist_fg_focus = theme.xcolor15 .. 'cc'
+theme.taglist_fg_urgent = theme.xcolor3 .. 'cc'
+theme.taglist_fg_occupied = theme.xcolor9 .. 'cc'
+theme.taglist_fg_empty = theme.xcolor12 .. 'cc'
+theme.taglist_bg_focus = xrdb.background ..'cc'
+theme.taglist_bg_empty = xrdb.background ..'cc'
+theme.taglist_bg_occupied = xrdb.background ..'cc'
+theme.taglist_bg_urgent = xrdb.background .. 'cc'
+theme.taglist_bg_normal = xrdb.background .. 'cc'
 -- ===================================================================
 -- Tasklist
-theme.tasklist_bg_normal = xrdb.background .. "11"
-theme.tasklist_bg_focus = xrdb.background .. "cc"
-theme.tasklist_fg_focus = theme.xcolor7 .. 'cc'
+theme.tasklist_bg_normal = xrdb.background .. "00"
+theme.tasklist_bg_focus = xrdb.background .. "00"
+theme.tasklist_fg_focus = theme.xcolor7 .. '00'
 -- ===================================================================
 -- Titlebar
-theme.titlebar_bg_normal = xrdb.background .. "99"
-theme.titlebar_bg_focus = xrdb.background .. "cc"
+theme.titlebar_bg_normal = xrdb.background .. "bb"
+theme.titlebar_bg_focus = xrdb.background .. "dd"
 theme.titlebar_fg_focus = theme.xcolor7 .. "cc"
 theme.titlebar_size = dpi( 25 )
 theme.titlebar_fg_normal = theme.xcolor15 .. '66'
@@ -111,9 +109,9 @@ theme.menu_border_color = theme.xcolor12 .. "00"
 theme.menu_border_width = 1
 -- ===================================================================
 --  Hotkeys Pop Up
-theme.hotkeys_font = 'agave Nerd Font Bold 12'
-theme.hotkeys_description_font = 'agave Nerd Font Bold 12'
-theme.hotkeys_bg = theme.background .. '99'
-theme.hotkeys_group_margin = dpi( 2 )
+theme.hotkeys_font = 'agave Nerd Font Bold 14'
+theme.hotkeys_description_font = 'agave Nerd Font Bold 13'
+theme.hotkeys_bg = theme.background .. 'dd'
+theme.hotkeys_group_margin = dpi( 12 )
 theme.hotkeys_label_fg = xrdb.background
 theme.hotkeys_modifiers_fg = theme.xcolor4 .. 'cc'

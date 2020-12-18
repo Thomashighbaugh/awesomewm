@@ -10,7 +10,7 @@
 -- ===================================================================
 local awful = require("awful")
 local home = os.getenv("HOME")
-local config_dir = home .. '.config/awesome'
+local config_dir = home .. '.config/awesome/external'
 local _M = {
     -- terminal
     terminal = "kitty",
@@ -25,7 +25,7 @@ local _M = {
     -- browser of choice
     browser = "firefox",
     -- aka the [Voldemort/Windows] Key, Apple hardware users may need to adjust
-    modkey = "Mod4"
+    modkey = "Mod4",
 }
 
 -- ===================================================================
@@ -34,10 +34,12 @@ local _M = {
 -- List of apps to start once on start-up
 local run_on_start_up = {
     ' picom -b --experimental-backends --dbus --config ' .. config_dir ..
-        '/configuration/picom.conf & ',
+        '/picom.conf & ',
         -- I like when I press the Windows key, a menu to come up
-    ' xcape -e "Super_L=Super_L|Control_L|Escape" & ', ' xfsettingsd & ',
-    ' sh dropbox-dist/dropboxd & ', 'xscreensaver &',
+    ' xcape -e "Super_L=Super_L|Control_L|Escape" & ', 
+    ' xfsettingsd & ',
+    ' sh dropbox-dist/dropboxd & ', 
+    'xscreensaver &',
     -- back to using the laptop for now, motel life for the win!
     'sudo threshy &',
     
