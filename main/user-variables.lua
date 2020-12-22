@@ -37,11 +37,8 @@ local run_on_start_up = {
         '/picom.conf & ',
         -- I like when I press the Windows key, a menu to come up
     ' xcape -e "Super_L=Super_L|Control_L|Escape" & ', 
-    ' xfsettingsd & ',
-    ' sh dropbox-dist/dropboxd & ', 
-    'xscreensaver &',
-    -- back to using the laptop for now, motel life for the win!
-    'sudo threshy &',
+   
+    
     
      
 }
