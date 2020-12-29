@@ -16,18 +16,12 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local pairs = pairs
 local tonumber = tonumber
-local table = {
-    insert = table.insert
-}
+local table = {insert = table.insert}
 
-local math = {
-    floor = math.floor,
-    modf = math.modf
-}
+local math = {floor = math.floor, modf = math.modf}
 
 local helpers = require("vicious.helpers")
 -- }}}
@@ -48,46 +42,47 @@ function bat_openbsd.async(format, warg, callback)
     for _, v in pairs(fields) do table.insert(sysctl_args, v) end
 
     local battery = {}
-    helpers.sysctl_async(sysctl_args, function (ret)
-            for k, v in pairs(fields) do
-                -- discard the description that comes after the values
-                battery[k] = tonumber(ret[v]:match("(.-) "))
-            end
+    helpers.sysctl_async(sysctl_args, function(ret)
+        for k, v in pairs(fields) do
+            -- discard the description that comes after the values
+            battery[k] = tonumber(ret[v]:match("(.-) "))
+        end
 
-            local states = {
-                [0] = "↯",      -- not charging
-                [1] = "-",      -- discharging
-                [2] = "!",      -- critical
-                [3] = "+",      -- charging
-                [4] = "N/A",    -- unknown status
-                [255] = "N/A"   -- unimplemented by the driver
-            }
-            local state = states[battery.state]
+        local states = {
+            [0] = "↯", -- not charging
+            [1] = "-", -- discharging
+            [2] = "!", -- critical
+            [3] = "+", -- charging
+            [4] = "N/A", -- unknown status
+            [255] = "N/A" -- unimplemented by the driver
+        }
+        local state = states[battery.state]
 
-            local charge = tonumber(battery.remaining_capacity
-                                    / battery.last_full_capacity * 100)
+        local charge = tonumber(battery.remaining_capacity /
+                                    battery.last_full_capacity * 100)
 
-            local remaining_time
-            if battery.charging_rate < 1 then
-                remaining_time = "∞"
-            else
-                local raw_time = battery.remaining_capacity / battery.rate
-                local hours, hour_fraction = math.modf(raw_time)
-                local minutes = math.floor(60 * hour_fraction)
-                remaining_time = ("%d:%0.2d"):format(hours, minutes)
-            end
+        local remaining_time
+        if battery.charging_rate < 1 then
+            remaining_time = "∞"
+        else
+            local raw_time = battery.remaining_capacity / battery.rate
+            local hours, hour_fraction = math.modf(raw_time)
+            local minutes = math.floor(60 * hour_fraction)
+            remaining_time = ("%d:%0.2d"):format(hours, minutes)
+        end
 
-            local wear = math.floor(battery.last_full_capacity,
-                                    battery.design_capacity)
+        local wear = math.floor(battery.last_full_capacity,
+                                battery.design_capacity)
 
-            -- Pass the following arguments to callback function:
-            --  * battery state symbol (↯, -, !, + or N/A)
-            --  * remaining capacity (in percent)
-            --  * remaining time, as reported by the battery
-            --  * wear level (in percent)
-            --  * present_rate (in Watts/hour)
-            return callback({ state, charge, remaining_time,
-                              wear, battery.charging_rate })
+        -- Pass the following arguments to callback function:
+        --  * battery state symbol (↯, -, !, + or N/A)
+        --  * remaining capacity (in percent)
+        --  * remaining time, as reported by the battery
+        --  * wear level (in percent)
+        --  * present_rate (in Watts/hour)
+        return callback({
+            state, charge, remaining_time, wear, battery.charging_rate
+        })
     end)
 end
 

@@ -3,11 +3,9 @@
 -- Shows the current volume level
 -- More details could be found here:
 -- https://github.com/streetturtle/awesome-wm-widgets/tree/master/volumebar-widget
-
 -- @author Pavel Makhov
 -- @copyright 2018 Pavel Makhov
 -------------------------------------------------
-
 local awful = require("awful")
 local beautiful = require("beautiful")
 local gears = require("gears")
@@ -44,22 +42,17 @@ local function worker(args)
         color = main_color,
         background_color = bg_color,
         shape = gears.shape[shape],
-        margins = {
-            top = margins,
-            bottom = margins,
-        },
+        margins = {top = margins, bottom = margins},
         widget = wibox.widget.progressbar
     }
 
     local update_graphic = function(widget, stdout, _, _, _)
-        local mute = string.match(stdout, "%[(o%D%D?)%]")    -- \[(o\D\D?)\] - [on] or [off]
-        local volume = string.match(stdout, "(%d?%d?%d)%%")  -- (\d?\d?\d)\%)
+        local mute = string.match(stdout, "%[(o%D%D?)%]") -- \[(o\D\D?)\] - [on] or [off]
+        local volume = string.match(stdout, "(%d?%d?%d)%%") -- (\d?\d?\d)\%)
         volume = tonumber(string.format("% 3d", volume))
 
         widget.value = volume / 100;
-        widget.color = mute == "off"
-                and mute_color
-                or main_color
+        widget.color = mute == "off" and mute_color or main_color
 
     end
 
@@ -72,8 +65,10 @@ local function worker(args)
             awful.spawn(tog_volume_cmd)
         end
 
-        spawn.easy_async(get_volume_cmd, function(stdout, stderr, exitreason, exitcode)
-            update_graphic(volumebar_widget, stdout, stderr, exitreason, exitcode)
+        spawn.easy_async(get_volume_cmd,
+                         function(stdout, stderr, exitreason, exitcode)
+            update_graphic(volumebar_widget, stdout, stderr, exitreason,
+                           exitcode)
         end)
     end)
 
@@ -82,5 +77,5 @@ local function worker(args)
     return volumebar_widget
 end
 
-return setmetatable(widget, { __call = function(_, ...) return worker(...) end })
+return setmetatable(widget, {__call = function(_, ...) return worker(...) end})
 

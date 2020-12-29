@@ -16,23 +16,17 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local tonumber = tonumber
-local io = { popen = io.popen }
+local io = {popen = io.popen}
 local setmetatable = setmetatable
-local table = { insert = table.insert }
-local string = {
-    gsub = string.gsub,
-    match = string.match
-}
+local table = {insert = table.insert}
+local string = {gsub = string.gsub, match = string.match}
 -- }}}
-
 
 -- Sensors: provides access to lm_sensors data
 -- vicious.contrib.sensors
 local sensors_linux = {}
-
 
 -- {{{ Split helper function
 local function datasplit(str)
@@ -41,16 +35,14 @@ local function datasplit(str)
     str = string.gsub(str, "\n", ":")
 
     local tbl = {}
-    string.gsub(str, "([^:]*)", function (v)
-        if string.match(v, ".") then
-            table.insert(tbl, v)
-        end
+    string.gsub(str, "([^:]*)", function(v)
+        if string.match(v, ".") then table.insert(tbl, v) end
     end)
 
     local assoc = {}
     for c = 1, #tbl, 2 do
-        local k  = string.gsub(tbl[c], ".*_", "")
-        local v  = tonumber(string.match(tbl[c+1], "[%d]+"))
+        local k = string.gsub(tbl[c], ".*_", "")
+        local v = tonumber(string.match(tbl[c + 1], "[%d]+"))
         assoc[k] = v
     end
 
@@ -65,12 +57,13 @@ local function worker(format, warg)
     local lm_sensors = f:read("*all")
     f:close()
 
-    local sensor_data = string.gsub(
-        string.match(lm_sensors, warg..":\n(%s%s.-)\n[^ ]"), " ", "")
+    local sensor_data = string.gsub(string.match(lm_sensors,
+                                                 warg .. ":\n(%s%s.-)\n[^ ]"),
+                                    " ", "")
 
     -- One of: crit, max
     local divisor = "crit"
-    local s_data  =  datasplit(sensor_data)
+    local s_data = datasplit(sensor_data)
 
     if s_data[divisor] and s_data[divisor] > 0 then
         s_data.percent = s_data.input / s_data[divisor] * 100
@@ -80,4 +73,5 @@ local function worker(format, warg)
 end
 -- }}}
 
-return setmetatable(sensors_linux, { __call = function(_, ...) return worker(...) end })
+return setmetatable(sensors_linux,
+                    {__call = function(_, ...) return worker(...) end})

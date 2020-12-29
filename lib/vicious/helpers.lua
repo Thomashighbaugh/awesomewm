@@ -29,7 +29,6 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local ipairs = ipairs
 local pairs = pairs
@@ -37,7 +36,7 @@ local rawget = rawget
 local require = require
 local tonumber = tonumber
 local tostring = tostring
-local io = { open = io.open, popen = io.popen }
+local io = {open = io.open, popen = io.popen}
 local setmetatable = setmetatable
 local getmetatable = getmetatable
 local string = {
@@ -45,14 +44,13 @@ local string = {
     lower = string.lower,
     format = string.format,
     match = string.match,
-    find = string.find,
+    find = string.find
 }
-local table = { concat = table.concat }
+local table = {concat = table.concat}
 local pcall = pcall
 local assert = assert
 local spawn = require("vicious.spawn")
 -- }}}
-
 
 -- Helpers: provides helper functions for vicious widgets
 -- vicious.helpers
@@ -73,9 +71,7 @@ local scroller = {}
 -- {{{ Determine operating system
 local kernel_name
 function helpers.getos()
-    if kernel_name ~= nil then
-      return kernel_name
-    end
+    if kernel_name ~= nil then return kernel_name end
 
     local f = io.popen("uname -s")
     kernel_name = string.lower(f:read("*line"))
@@ -89,14 +85,12 @@ end
 function helpers.wrequire(collection, key)
     local ret = rawget(collection, key)
 
-    if ret then
-        return ret
-    end
+    if ret then return ret end
 
     local ostable = {
-        linux = { "linux", "all" },
-        freebsd = { "freebsd", "bsd", "all" },
-        openbsd = { "openbsd", "bsd", "all" }
+        linux = {"linux", "all"},
+        freebsd = {"freebsd", "bsd", "all"},
+        openbsd = {"openbsd", "bsd", "all"}
     }
 
     local platform = ostable[helpers.getos()]
@@ -125,8 +119,7 @@ end
 
 -- {{{ Set widget type's __call metamethod to given worker function
 function helpers.setcall(worker)
-    return setmetatable(
-        {}, { __call = function(_, ...) return worker(...) end })
+    return setmetatable({}, {__call = function(_, ...) return worker(...) end})
 end
 -- }}}
 
@@ -134,19 +127,19 @@ end
 function helpers.setasyncall(wtype)
     local function worker(format, warg)
         local ret
-        wtype.async(format, warg, function (data) ret = data end)
+        wtype.async(format, warg, function(data) ret = data end)
         while ret == nil do end
         return ret
     end
-    local metatable = { __call = function (_, ...) return worker(...) end }
+    local metatable = {__call = function(_, ...) return worker(...) end}
     return setmetatable(wtype, metatable)
 end
 -- }}}
 
 -- {{{ Expose path as a Lua table
 function helpers.pathtotable(dir)
-    return setmetatable({ _path = dir },
-        { __index = function(self, index)
+    return setmetatable({_path = dir}, {
+        __index = function(self, index)
             local path = self._path .. '/' .. index
             local f = io.open(path)
             if f then
@@ -155,7 +148,7 @@ function helpers.pathtotable(dir)
                 if s then
                     return s
                 else
-                    local o = { _path = path }
+                    local o = {_path = path}
                     setmetatable(o, getmetatable(self))
                     return o
                 end
@@ -168,9 +161,12 @@ end
 -- {{{ Format a string with args
 function helpers.format(format, args)
     for var, val in pairs(args) do
-        format = format:gsub("$" .. (tonumber(var) and var or
-            var:gsub("[-+?*]", function(i) return "%"..i end)),
-        val)
+        format = format:gsub("$" ..
+                                 (tonumber(var) and var or
+                                     var:gsub("[-+?*]",
+                                              function(i)
+                    return "%" .. i
+                end)), val)
     end
 
     return format
@@ -180,7 +176,7 @@ end
 -- {{{ Format units to one decimal point
 function helpers.uformat(array, key, value, unit)
     for u, v in pairs(unit) do
-        array["{"..key.."_"..u.."}"] = string.format("%.1f", value/v)
+        array["{" .. key .. "_" .. u .. "}"] = string.format("%.1f", value / v)
     end
 
     return array
@@ -191,10 +187,10 @@ end
 function helpers.escape(text)
     local xml_entities = {
         ["\""] = "&quot;",
-        ["&"]  = "&amp;",
-        ["'"]  = "&apos;",
-        ["<"]  = "&lt;",
-        [">"]  = "&gt;"
+        ["&"] = "&amp;",
+        ["'"] = "&apos;",
+        ["<"] = "&lt;",
+        [">"] = "&gt;"
     }
 
     return text and text:gsub("[\"&'<>]", xml_entities)
@@ -203,19 +199,19 @@ end
 
 -- {{{ Escape a string for safe usage on the command line
 function helpers.shellquote(arg)
-   local s = tostring(arg)
-   if s == nil then return "" end
-   -- use single quotes, and put single quotes into double quotes
-   -- the string $'b is then quoted as '$'"'"'b'"'"'
-   return "'" .. s:gsub("'", "'\"'\"'") .. "'"
+    local s = tostring(arg)
+    if s == nil then return "" end
+    -- use single quotes, and put single quotes into double quotes
+    -- the string $'b is then quoted as '$'"'"'b'"'"'
+    return "'" .. s:gsub("'", "'\"'\"'") .. "'"
 end
 -- }}}
 
 -- {{{ Capitalize a string
 function helpers.capitalize(text)
-    return text and text:gsub("([%w])([%w]*)", function(c, s)
-        return string.upper(c) .. s
-    end)
+    return text and
+               text:gsub("([%w])([%w]*)",
+                         function(c, s) return string.upper(c) .. s end)
 end
 -- }}}
 
@@ -223,9 +219,7 @@ end
 function helpers.truncate(text, maxlen)
     local txtlen = text:len()
 
-    if txtlen > maxlen then
-        text = text:sub(1, maxlen - 3) .. "..."
-    end
+    if txtlen > maxlen then text = text:sub(1, maxlen - 3) .. "..." end
 
     return text
 end
@@ -233,28 +227,22 @@ end
 
 -- {{{ Scroll through a string
 function helpers.scroll(text, maxlen, widget)
-    if not scroller[widget] then
-        scroller[widget] = { i = 1, d = true }
-    end
+    if not scroller[widget] then scroller[widget] = {i = 1, d = true} end
 
     local txtlen = text:len()
-    local state  = scroller[widget]
+    local state = scroller[widget]
 
     if txtlen > maxlen then
         if state.d then
             text = text:sub(state.i, state.i + maxlen) .. "..."
             state.i = state.i + 3
 
-            if maxlen + state.i >= txtlen then
-                state.d = false
-            end
+            if maxlen + state.i >= txtlen then state.d = false end
         else
             text = "..." .. text:sub(state.i, state.i + maxlen)
             state.i = state.i - 3
 
-            if state.i <= 1 then
-                state.d = true
-            end
+            if state.i <= 1 then state.d = true end
         end
     end
 
@@ -267,29 +255,25 @@ function helpers.sysctl_async(path_table, parse)
     local ret = {}
     local path = {}
 
-    for i=1,#path_table do
-        path[i] = helpers.shellquote(path_table[i])
-    end
+    for i = 1, #path_table do path[i] = helpers.shellquote(path_table[i]) end
 
     path = table.concat(path, " ")
 
     spawn.with_line_callback("sysctl " .. path, {
-        stdout = function (line)
-            local separators = {
-                freebsd = ": ",
-                linux = " = ",
-                openbsd = "="
-            }
+        stdout = function(line)
+            local separators = {freebsd = ": ", linux = " = ", openbsd = "="}
             local pattern = ("(.+)%s(.+)"):format(separators[helpers.getos()])
             local key, value = string.match(line, pattern)
             ret[key] = value
         end,
-        stderr = function (line)
+        stderr = function(line)
             local messages = {
-                openbsd = { "level name .+ in (.+) is invalid" },
-                linux = { "cannot stat /proc/sys/(.+):",
-                          "permission denied on key '(.+)'" },
-                freebsd = { "unknown oid '(.+)'" }
+                openbsd = {"level name .+ in (.+) is invalid"},
+                linux = {
+                    "cannot stat /proc/sys/(.+):",
+                    "permission denied on key '(.+)'"
+                },
+                freebsd = {"unknown oid '(.+)'"}
             }
 
             for _, error_message in ipairs(messages[helpers.getos()]) do
@@ -300,7 +284,7 @@ function helpers.sysctl_async(path_table, parse)
                 end
             end
         end,
-        output_done = function () parse(ret) end
+        output_done = function() parse(ret) end
     })
 end
 --  }}}

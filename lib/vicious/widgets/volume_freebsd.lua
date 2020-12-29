@@ -16,10 +16,9 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local tonumber = tonumber
-local string = { match = string.match }
+local string = {match = string.match}
 local helpers = require("vicious.helpers")
 local spawn = require("vicious.spawn")
 -- }}}
@@ -29,19 +28,19 @@ local spawn = require("vicious.spawn")
 local volume_freebsd = {}
 
 -- {{{ Volume widget type
-local STATE = { on = '🔉', off = '🔈' }
+local STATE = {on = '🔉', off = '🔈'}
 
 local function parse(stdout, stderr, exitreason, exitcode)
     -- Capture mixer control state, e.g.       42   :  42
     local voll, volr = string.match(stdout, "([%d]+):([%d]+)\n$")
-    if voll == "0" and volr == "0" then return { 0, 0, STATE.off } end
-    return { tonumber(voll), tonumber(volr), STATE.on }
+    if voll == "0" and volr == "0" then return {0, 0, STATE.off} end
+    return {tonumber(voll), tonumber(volr), STATE.on}
 end
 
 function volume_freebsd.async(format, warg, callback)
-    if not warg then return callback{} end
+    if not warg then return callback {} end
     spawn.easy_async("mixer " .. helpers.shellquote(warg),
-                     function (...) callback(parse(...)) end)
+                     function(...) callback(parse(...)) end)
 end
 -- }}}
 

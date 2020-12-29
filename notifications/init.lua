@@ -1,75 +1,105 @@
---  _______         __   __   ___ __              __   __
--- |    |  |.-----.|  |_|__|.'  _|__|.----.---.-.|  |_|__|.-----.-----.-----.
--- |       ||  _  ||   _|  ||   _|  ||  __|  _  ||   _|  ||  _  |     |__ --|
--- |__|____||_____||____|__||__| |__||____|___._||____|__||_____|__|__|_____|
--- ===================================================================
--- Initialize
--- ===================================================================
-local beautiful = require("beautiful")
 local naughty = require("naughty")
-local menubar = require("menubar")
+local beautiful = require("beautiful")
+local gears = require("gears")
+local wibox = require("wibox")
+local awful = require("awful")
+local dpi = beautiful.xresources.apply_dpi
+local helpers = require("main.helpers")
 
--- ===================================================================
--- Configure Notifications
--- ===================================================================
-local notifications = {}
+require("notifications.brightness")
+require("notifications.volume")
+require("notifications.battery")
 
--- Notification settings
--- Icon size
-naughty.config.defaults['icon_size'] = beautiful.notification_icon_size
-naughty.config.defaults['border_width'] = beautiful.notification_border_width
+naughty.config.defaults.ontop = true
+naughty.config.defaults.icon_size = dpi (42)
+naughty.config.defaults.screen = awful.screen.focused()
+naughty.config.defaults.timeout = 3
+naughty.config.defaults.title = "System Notification"
+naughty.config.defaults.margin = dpi(10)
+naughty.config.defaults.border_width = beautiful.widget_border_width
+naughty.config.defaults.border_color = beautiful.widget_border_color
+naughty.config.defaults.position = "bottom_right"
+naughty.config.defaults.shape = helpers.rrect(15)
+
+naughty.config.padding = dpi(10)
+naughty.config.spacing = dpi(5)
+naughty.config.icon_dirs = {
+    "/usr/share/icons/chhinamasta/24x24/apps/", "/usr/share/pixmaps/"
+}
+naughty.config.icon_formats = {"png", "svg"}
 
 -- Timeouts
-naughty.config.defaults.timeout = 5
-naughty.config.presets.low.timeout = 2
-naughty.config.presets.critical.timeout = 12
+naughty.config.presets.low.timeout = 3
+naughty.config.presets.critical.timeout = 3
 
--- >> Notify DWIM (Do What I Mean):
--- Create or update notification automagically. Requires storing the
--- notification in a variable.
--- Example usage:
---     local my_notif = notifications.notify_dwim({ title = "hello", message = "there" }, my_notif)
---     -- After a while, use this to update or recreate the notification if it is expired / dismissed
---     my_notif = notifications.notify_dwim({ title = "good", message = "bye" }, my_notif)
-function notifications.notify_dwim(args, notif)
-    local n = notif
-    if n and not n._private.is_destroyed and not n.is_expired then
-        notif.title = args.title or notif.title
-        notif.message = args.message or notif.message
-        -- notif.text = args.text or notif.text
-        notif.icon = args.icon or notif.icon
-        notif.timeout = args.timeout or notif.timeout
-    else
-        n = naughty.notification(args)
-    end
-    return n
-end
+naughty.config.presets.normal = {
+    font = beautiful.font,
+    fg = beautiful.fg_normal,
+    bg = beautiful.bg_normal,
+    position = "bottom_right"
+}
 
--- call other notification related files
-function notifications.init(theme_name)
-    -- Initialize various notification daemons
-    require("notifications.volume")
-    require("notifications.brightness")
-    require("notifications.battery")
-    -- Load theme
-    require("notifications.theme")
-end
+naughty.config.presets.low = {
+    font = beautiful.font,
+    fg = beautiful.fg_normal,
+    bg = beautiful.bg_normal,
+    position = "bottom_right"
+}
 
--- Handle notification icon
-naughty.connect_signal("request::icon", function(n, context, hints)
-    -- Handle other contexts here
-    if context ~= "app_icon" then return end
+naughty.config.presets.critical = {
+    font = "FuraCode Nerd Font Mono Bold 13",
+    fg = beautiful.xcolor7,
+    bg = beautiful.xcolor1,
+    position = "bottom_right",
+    timeout = 3
+}
 
-    -- Use XDG icon
-    local path = menubar.utils.lookup_icon(hints.app_icon) or
-                     menubar.utils.lookup_icon(hints.app_icon:lower())
+naughty.config.presets.ok = naughty.config.presets.normal
+naughty.config.presets.info = naughty.config.presets.normal
+naughty.config.presets.warn = naughty.config.presets.critical
 
-    if path then n.icon = path end
-end)
-
--- Use XDG icon
-naughty.connect_signal("request::action_icon", function(a, context, hints)
-    a.icon = menubar.utils.lookup_icon(hints.id)
-end)
-
-return notifications
+naughty.connect_signal("request::display", function(n)
+    
+    naughty.layout.box {
+        notification = n,
+        type = "notification",
+        widget_template = {
+            {
+                {
+                    {
+                        {
+                            {
+                                naughty.widget.icon,
+                                {
+                                    naughty.widget.title,
+                                    naughty.widget.message,
+                                    spacing = 3,
+                                    layout = wibox.layout.fixed.vertical
+                                },
+                                fill_space = true,
+                                spacing = 4,
+                                layout = wibox.layout.fixed.horizontal
+                            },
+                            naughty.list.actions,
+                            spacing = 5,
+                            layout = wibox.layout.fixed.vertical
+                        },
+                        margins = 5,
+                        widget = wibox.container.margin
+                    },
+                    id = "background_role",
+                    widget = naughty.container.background
+                },
+                strategy = "max",
+                width = beautiful.notification_max_width or
+                beautiful.xresources.apply_dpi(800),
+                widget = wibox.container.constraint
+            },
+            bg = beautiful.xbackground,
+            border_color = beautiful.widget_border_color,
+            border_width = beautiful.widget_border_width,
+            shape = helpers.rrect(beautiful.client_radius),
+            widget = wibox.container.background
+        }}
+    end)
+    

@@ -18,11 +18,10 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local type = type
 local tonumber = tonumber
-local string = { match = string.match }
+local string = {match = string.match}
 
 local helpers = require("vicious.helpers")
 local spawn = require("vicious.spawn")
@@ -34,8 +33,8 @@ local gmail_all = {}
 
 -- {{{ Gmail widget type
 local function parse(warg, stdout, stderr, exitreason, exitcode)
-    local count =   -- Count comes before messages and matches at least 0
-        tonumber(string.match(stdout, "<fullcount>([%d]+)</fullcount>")) or 0
+    local count = -- Count comes before messages and matches at least 0
+    tonumber(string.match(stdout, "<fullcount>([%d]+)</fullcount>")) or 0
 
     -- Find subject tag
     local title = string.match(stdout, "<entry>.-<title>(.-)</title>") or "N/A"
@@ -47,7 +46,7 @@ local function parse(warg, stdout, stderr, exitreason, exitcode)
         title = helpers.scroll(title, warg[1], warg[2])
     end
 
-    return { ["{count}"] = count, ["{subject}"] = title }
+    return {["{count}"] = count, ["{subject}"] = title}
 end
 
 function gmail_all.async(format, warg, callback)
@@ -57,7 +56,7 @@ function gmail_all.async(format, warg, callback)
     -- machine mail.google.com login user password pass
     -- BE AWARE THAT MAKING THESE SETTINGS IS A SECURITY RISK!
     spawn.easy_async("curl -fsn https://mail.google.com/mail/feed/atom",
-                     function (...) callback(parse(warg, ...)) end)
+                     function(...) callback(parse(warg, ...)) end)
 end
 -- }}}
 

@@ -17,10 +17,9 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local type = type
-local io = { open = io.open }
+local io = {open = io.open}
 local helpers = require("vicious.helpers")
 -- }}}
 
@@ -28,7 +27,7 @@ local helpers = require("vicious.helpers")
 local subject = "N/A"
 
 -- {{{ Mailbox widget type
-return helpers.setcall(function (format, warg)
+return helpers.setcall(function(format, warg)
     if not warg then return end
 
     local f = io.open(type(warg) == "table" and warg[1] or warg)
@@ -39,7 +38,7 @@ return helpers.setcall(function (format, warg)
     f:close()
 
     -- Find all Subject lines
-    for i in txt:gmatch"Subject: ([^\n]*)" do subject = i end
+    for i in txt:gmatch "Subject: ([^\n]*)" do subject = i end
 
     -- Check if we should scroll, or maybe truncate
     if type(warg) == "table" then
@@ -50,6 +49,6 @@ return helpers.setcall(function (format, warg)
         end
     end
 
-    return { subject }
+    return {subject}
 end)
 -- }}}

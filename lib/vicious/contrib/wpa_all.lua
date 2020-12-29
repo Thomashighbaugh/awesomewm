@@ -16,38 +16,30 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local tonumber = tonumber
-local math = { ceil = math.ceil }
+local math = {ceil = math.ceil}
 local setmetatable = setmetatable
 local helpers = require("vicious.helpers")
-local io = {
-    open = io.open,
-    popen = io.popen
-}
-local string = {
-    find = string.find,
-    match = string.match
-}
+local io = {open = io.open, popen = io.popen}
+local string = {find = string.find, match = string.match}
 -- }}}
-
 
 -- Wifi: provides wireless information for a requested interface
 local wpa_all = {}
 
 local info = {
-  ["{ssid}"] = "N/A",
-  ["{bssid}"]  = "N/A",
-  ["{ip}"]  = "N/A",
-  ["{qual}"]  = "N/A",
+    ["{ssid}"] = "N/A",
+    ["{bssid}"] = "N/A",
+    ["{ip}"] = "N/A",
+    ["{qual}"] = "N/A"
 }
 
 -- {{{ Wireless widget type
 local function worker(format, warg)
     if not warg then return info end
 
-    local wpa_cmd = "wpa_cli -i'" .. warg ..  "' status 2>&1"
+    local wpa_cmd = "wpa_cli -i'" .. warg .. "' status 2>&1"
     local f = io.popen(wpa_cmd)
     local output = f:read("*all")
     f:close()
@@ -59,11 +51,9 @@ local function worker(format, warg)
     info["{ssid}"] = string.match(output, 'ssid=([%a]+)') or 'N/A'
     info["{ip}"] = string.match(output, 'ip_address=([%d.]+)') or 'N/A'
 
-    if not state == 'COMPLETED' then
-        return info
-    end
+    if not state == 'COMPLETED' then return info end
 
-    local wpa_cmd = "wpa_cli -i'" .. warg ..  "' bss " .. bssid .. " 2>&1"
+    local wpa_cmd = "wpa_cli -i'" .. warg .. "' bss " .. bssid .. " 2>&1"
     local f = io.popen(wpa_cmd)
     local output = f:read("*all")
     f:close()
@@ -76,4 +66,4 @@ local function worker(format, warg)
 end
 -- }}}
 
-return setmetatable(wpa_all, { __call = function(_, ...) return worker(...) end })
+return setmetatable(wpa_all, {__call = function(_, ...) return worker(...) end})

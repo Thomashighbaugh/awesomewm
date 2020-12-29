@@ -1,40 +1,90 @@
---  ______        __         __     __
--- |   __ \.----.|__|.-----.|  |--.|  |_.-----.-----.-----.-----.
--- |   __ <|   _||  ||  _  ||     ||   _|     |  -__|__ --|__ --|
--- |______/|__|  |__||___  ||__|__||____|__|__|_____|_____|_____|
---                   |_____|
--- ===================================================================
--- Initialization
--- ===================================================================
-local naughty = require("naughty")
+local wibox = require("wibox")
+local awful = require("awful")
+local gears = require("gears")
+local beautiful = require("beautiful")
+local helpers = require("main.helpers")
+local dpi = beautiful.xresources.apply_dpi
+
+local offsetx = dpi(26)
+local offsety = dpi(50)
+local screen = awful.screen.focused()
+
+local icon_theme = "sheet"
 local icons = require("icons")
-local notifications = require("notifications")
+icons.init(icon_theme)
 
-local notif
-local first_time = true
-local timeout = 1.5
+local bright_icon = icons.brightness
 
--- ===================================================================
---  Set notification to run if condition is met
--- ===================================================================
-awesome.connect_signal("evil::brightness", function(percentage)
-    if first_time then
-        first_time = false
+local active_color_1 = {
+    type = 'linear',
+    from = {0, 0},
+    to = {200, 50}, -- replace with w,h later
+    stops = {{0, beautiful.xcolor6}, {0.50, beautiful.xcolor4}}
+}
+
+-- create the bright_adjust component
+local bright_adjust = wibox({
+    screen = awful.screen.focused(),
+    x = screen.geometry.width - offsetx - 8,
+    y = (screen.geometry.height / 2) - (offsety / 2),
+    width = dpi(48),
+    height = offsety,
+    shape = helpers.rrect(beautiful.client_radius),
+    visible = false,
+    border_width = 0,
+    border_color = beautiful.xbackground .. '22',
+    ontop = true
+})
+
+local bright_bar = wibox.widget {
+    widget = wibox.widget.progressbar,
+    shape = gears.shape.rounded_bar,
+    bar_shape = gears.shape.rounded_bar,
+    color = active_color_1,
+    background_color = beautiful.xcolor0,
+    max_value = 100,
+    value = 0
+}
+
+bright_adjust:setup{
+    {
+        {
+            layout = wibox.layout.align.vertical,
+            {
+                wibox.container.margin(bright_bar, dpi(14), dpi(20), dpi(20),
+                                       dpi(20)),
+                forced_height = offsety * 0.75,
+                direction = "east",
+                layout = wibox.container.rotate
+            },
+            wibox.container.margin(wibox.widget {
+                image = bright_icon,
+                widget = wibox.widget.imagebox
+            }, dpi(3), dpi(3), dpi(7), dpi(7))
+        },
+        shape = helpers.rrect(beautiful.client_radius),
+        border_width = beautiful.widget_border_width,
+        border_color = beautiful.widget_border_color,
+        widget = wibox.container.background
+    },
+    bg = beautiful.xbackground .. "00",
+    widget = wibox.container.background
+}
+
+-- create a 3 second timer to hide the volume adjust
+-- component whenever the timer is started
+local hide_bright_adjust = gears.timer {
+    timeout = 3,
+    autostart = true,
+    callback = function() bright_adjust.visible = false end
+}
+
+awesome.connect_signal("ears::brightness", function(value)
+    bright_bar.value = value
+    if bright_adjust.visible then
+        hide_bright_adjust:again()
     else
-        if (sidebar and sidebar.visible) or (dashboard and dashboard.visible) then
-            -- Sidebar and dashboard already show brightness, so
-            -- destroy notification if it exists
-            if notif then notif:destroy() end
-        else
-            -- Send notification
-            notif = notifications.notify_dwim(
-                        {
-                    title = "Brightness",
-                    message = tostring(percentage),
-                    icon = icons.image.redshift,
-                    timeout = timeout,
-                    app_name = "brightness"
-                }, notif)
-        end
+        bright_adjust.visible = true
+        hide_bright_adjust:start()
     end
 end)

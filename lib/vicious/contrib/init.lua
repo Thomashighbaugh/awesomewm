@@ -17,15 +17,14 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Setup environment
 local setmetatable = setmetatable
 local wrequire = require("vicious.helpers").wrequire
 
 -- Vicious: widgets for the awesome window manager
 -- vicious.contrib
-local contrib = { _NAME = "vicious.contrib" }
+local contrib = {_NAME = "vicious.contrib"}
 -- }}}
 
 -- Load modules at runtime as needed
-return setmetatable(contrib, { __index = wrequire })
+return setmetatable(contrib, {__index = wrequire})

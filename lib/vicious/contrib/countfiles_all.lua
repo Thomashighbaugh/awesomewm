@@ -15,9 +15,8 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
-local io = { popen = io.popen }
+local io = {popen = io.popen}
 local setmetatable = setmetatable
 local pairs = pairs
 -- }}}
@@ -36,29 +35,27 @@ local countfiles_all = {}
 
 -- {{{ Sum up widget type
 local function worker(format, warg)
-   if not warg then return end
-   -- Initialise counter table
-   local store = {}
+    if not warg then return end
+    -- Initialise counter table
+    local store = {}
 
-   -- Match by default all files
-   warg.pattern = warg.pattern or ".*"
+    -- Match by default all files
+    warg.pattern = warg.pattern or ".*"
 
-   for key, value in pairs(warg.paths) do
-      local f =  io.popen("find '"..value.."'"..
-                          " -type f -regextype posix-egrep"..
-                          " -regex '"..warg.pattern.."'")
+    for key, value in pairs(warg.paths) do
+        local f = io.popen("find '" .. value .. "'" ..
+                               " -type f -regextype posix-egrep" .. " -regex '" ..
+                               warg.pattern .. "'")
 
-      local lines = 0
-      for line in f:lines() do
-         lines = lines + 1
-      end
+        local lines = 0
+        for line in f:lines() do lines = lines + 1 end
 
-      store[key] = (store[key] or 0) + lines
+        store[key] = (store[key] or 0) + lines
 
-      f:close()
-   end
-   return store 
+        f:close()
+    end
+    return store
 end
 -- }}}
 
-setmetatable(countfiles_all, { __call = function(_, ...) return worker(...) end })
+setmetatable(countfiles_all, {__call = function(_, ...) return worker(...) end})

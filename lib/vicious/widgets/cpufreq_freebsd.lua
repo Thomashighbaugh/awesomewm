@@ -16,7 +16,6 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local tonumber = tonumber
 local helpers = require("vicious.helpers")
@@ -32,25 +31,21 @@ function cpufreq_freebsd.async(format, warg, callback)
 
     -- Default frequency and voltage values
     local freqv = {
-        ["mhz"] = "N/A", ["ghz"] = "N/A",
-        ["v"]   = "N/A", ["mv"]  = "N/A",
-        ["governor"] = "N/A",
+        ["mhz"] = "N/A",
+        ["ghz"] = "N/A",
+        ["v"] = "N/A",
+        ["mv"] = "N/A",
+        ["governor"] = "N/A"
     }
 
-    helpers.sysctl_async(
-        { "dev.cpu." .. warg .. ".freq" },
-        function (ret)
-            freqv.mhz = tonumber(ret["dev.cpu." .. warg .. ".freq"])
-            freqv.ghz = freqv.mhz / 1000
+    helpers.sysctl_async({"dev.cpu." .. warg .. ".freq"}, function(ret)
+        freqv.mhz = tonumber(ret["dev.cpu." .. warg .. ".freq"])
+        freqv.ghz = freqv.mhz / 1000
 
-            return callback({
-                freqv.mhz,
-                freqv.ghz,
-                freqv.mv,
-                freqv.v,
-                freqv.governor
-            })
-        end)
+        return callback({
+            freqv.mhz, freqv.ghz, freqv.mv, freqv.v, freqv.governor
+        })
+    end)
 end
 -- }}}
 

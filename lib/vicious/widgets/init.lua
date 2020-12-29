@@ -17,8 +17,7 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 local setmetatable = setmetatable
 local wrequire = require("vicious.helpers").wrequire
 
-return setmetatable({ _NAME = "vicious.widgets" }, { __index = wrequire })
+return setmetatable({_NAME = "vicious.widgets"}, {__index = wrequire})

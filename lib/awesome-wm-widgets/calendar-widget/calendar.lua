@@ -3,11 +3,9 @@
 -- Shows the current month and supports scroll up/down to switch month
 -- More details could be found here:
 -- https://github.com/streetturtle/awesome-wm-widgets/tree/master/calendar-widget
-
 -- @author Pavel Makhov
 -- @copyright 2019 Pavel Makhov
 -------------------------------------------------
-
 local awful = require("awful")
 local beautiful = require("beautiful")
 local wibox = require("wibox")
@@ -77,13 +75,13 @@ local function worker(args)
         naughty.notify({
             preset = naughty.config.presets.critical,
             title = 'Calendar Widget',
-            text = 'Theme "' .. args.theme .. '" not found, fallback to default'})
+            text = 'Theme "' .. args.theme .. '" not found, fallback to default'
+        })
         args.theme = 'nord'
     end
 
     local theme = args.theme or 'nord'
     local placement = args.placement or 'top'
-
 
     local styles = {}
     local function rounded_shape(size)
@@ -95,7 +93,7 @@ local function worker(args)
     styles.month = {
         padding = 4,
         bg_color = calendar_themes[theme].bg,
-        border_width = 0,
+        border_width = 0
     }
 
     styles.normal = {
@@ -119,7 +117,7 @@ local function worker(args)
     styles.weekday = {
         fg_color = calendar_themes[theme].weekday_fg,
         bg_color = calendar_themes[theme].bg,
-        markup = function(t) return '<b>' .. t .. '</b>' end,
+        markup = function(t) return '<b>' .. t .. '</b>' end
     }
 
     local function decorate_cell(widget, flag, date)
@@ -130,9 +128,7 @@ local function worker(args)
         -- highlight only today's day
         if flag == 'focus' then
             local today = os.date('*t')
-            if today.month ~= date.month then
-                flag = 'normal'
-            end
+            if today.month ~= date.month then flag = 'normal' end
         end
 
         local props = styles[flag] or {}
@@ -140,16 +136,18 @@ local function worker(args)
             widget:set_markup(props.markup(widget:get_text()))
         end
         -- Change bg color for weekends
-        local d = { year = date.year, month = (date.month or 1), day = (date.day or 1) }
+        local d = {
+            year = date.year,
+            month = (date.month or 1),
+            day = (date.day or 1)
+        }
         local weekday = tonumber(os.date('%w', os.time(d)))
-        local default_bg = (weekday == 0 or weekday == 6) and calendar_themes[theme].weekend_day_bg or calendar_themes[theme].bg
+        local default_bg = (weekday == 0 or weekday == 6) and
+                               calendar_themes[theme].weekend_day_bg or
+                               calendar_themes[theme].bg
         local ret = wibox.widget {
             {
-                {
-                    widget,
-                    halign = 'center',
-                    widget = wibox.container.place
-                },
+                {widget, halign = 'center', widget = wibox.container.place},
                 margins = (props.padding or 2) + (props.border_width or 0),
                 widget = wibox.container.margin
             },
@@ -176,30 +174,25 @@ local function worker(args)
         ontop = true,
         visible = false,
         shape = gears.shape.rounded_rect,
-        offset = { y = 5 },
+        offset = {y = 5},
         border_width = 1,
         border_color = calendar_themes[theme].border,
         widget = cal
     }
 
-    popup:buttons(
-            awful.util.table.join(
-                    awful.button({}, 4, function()
-                        local a = cal:get_date()
-                        a.month = a.month + 1
-                        cal:set_date(nil)
-                        cal:set_date(a)
-                        popup:set_widget(cal)
-                    end),
-                    awful.button({}, 5, function()
-                        local a = cal:get_date()
-                        a.month = a.month - 1
-                        cal:set_date(nil)
-                        cal:set_date(a)
-                        popup:set_widget(cal)
-                    end)
-            )
-    )
+    popup:buttons(awful.util.table.join(awful.button({}, 4, function()
+        local a = cal:get_date()
+        a.month = a.month + 1
+        cal:set_date(nil)
+        cal:set_date(a)
+        popup:set_widget(cal)
+    end), awful.button({}, 5, function()
+        local a = cal:get_date()
+        a.month = a.month - 1
+        cal:set_date(nil)
+        cal:set_date(a)
+        popup:set_widget(cal)
+    end)))
 
     function calendar_widget.toggle()
 
@@ -212,13 +205,25 @@ local function worker(args)
             popup.visible = not popup.visible
         else
             if placement == 'top' then
-                awful.placement.top(popup, { margins = { top = 30 }, parent = awful.screen.focused() })
+                awful.placement.top(popup, {
+                    margins = {top = 30},
+                    parent = awful.screen.focused()
+                })
             elseif placement == 'top_right' then
-                awful.placement.top_right(popup, { margins = { top = 30, right = 10}, parent = awful.screen.focused() })
+                awful.placement.top_right(popup, {
+                    margins = {top = 30, right = 10},
+                    parent = awful.screen.focused()
+                })
             elseif placement == 'bottom_right' then
-                awful.placement.bottom_right(popup, { margins = { bottom = 30, right = 10}, parent = awful.screen.focused() })
+                awful.placement.bottom_right(popup, {
+                    margins = {bottom = 30, right = 10},
+                    parent = awful.screen.focused()
+                })
             else
-                awful.placement.top(popup, { margins = { top = 30 }, parent = awful.screen.focused() })
+                awful.placement.top(popup, {
+                    margins = {top = 30},
+                    parent = awful.screen.focused()
+                })
             end
 
             popup.visible = true
@@ -230,6 +235,5 @@ local function worker(args)
 
 end
 
-return setmetatable(calendar_widget, { __call = function(_, ...)
-    return worker(...)
-end })
+return setmetatable(calendar_widget,
+                    {__call = function(_, ...) return worker(...) end})

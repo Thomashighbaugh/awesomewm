@@ -16,32 +16,29 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local ipairs = ipairs
 local setmetatable = setmetatable
-local table = { insert = table.insert }
-local string = { gmatch = string.gmatch }
+local table = {insert = table.insert}
+local string = {gmatch = string.gmatch}
 local helpers = require("vicious.helpers")
 -- }}}
-
 
 -- Disk I/O: provides I/O statistics for requested storage devices
 -- vicious.contrib.dio
 local dio_linux = {}
 
-
 -- Initialize function tables
 local disk_usage = {}
 local disk_total = {}
 -- Variable definitions
-local unit = { ["s"] = 1, ["kb"] = 2, ["mb"] = 2048 }
+local unit = {["s"] = 1, ["kb"] = 2, ["mb"] = 2048}
 
 -- {{{ Disk I/O widget type
 local function worker(format, disk)
     if not disk then return end
 
-    local disk_lines = { [disk] = {} }
+    local disk_lines = {[disk] = {}}
     local disk_stats = helpers.pathtotable("/sys/block/" .. disk)
 
     if disk_stats.stat then
@@ -52,7 +49,7 @@ local function worker(format, disk)
     end
 
     -- Ensure tables are initialized correctly
-    local diff_total = { [disk] = {} }
+    local diff_total = {[disk] = {}}
     if not disk_total[disk] then
         disk_usage[disk] = {}
         disk_total[disk] = {}
@@ -71,17 +68,20 @@ local function worker(format, disk)
     end
 
     -- Calculate and store I/O
-    helpers.uformat(disk_usage[disk], "read",  diff_total[disk][3], unit)
+    helpers.uformat(disk_usage[disk], "read", diff_total[disk][3], unit)
     helpers.uformat(disk_usage[disk], "write", diff_total[disk][7], unit)
-    helpers.uformat(disk_usage[disk], "total", diff_total[disk][7] + diff_total[disk][3], unit)
+    helpers.uformat(disk_usage[disk], "total",
+                    diff_total[disk][7] + diff_total[disk][3], unit)
 
     -- Store I/O scheduler
     if disk_stats.queue and disk_stats.queue.scheduler then
-        disk_usage[disk]["{sched}"] = string.gmatch(disk_stats.queue.scheduler, "%[([%a]+)%]")
+        disk_usage[disk]["{sched}"] = string.gmatch(disk_stats.queue.scheduler,
+                                                    "%[([%a]+)%]")
     end
 
     return disk_usage[disk]
 end
 -- }}}
 
-return setmetatable(dio_linux, { __call = function(_, ...) return worker(...) end })
+return setmetatable(dio_linux,
+                    {__call = function(_, ...) return worker(...) end})

@@ -17,25 +17,24 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
-local math = { floor = math.floor }
-local string = { match = string.match }
+local math = {floor = math.floor}
+local string = {match = string.match}
 local helpers = require("vicious.helpers")
 -- }}}
 
 -- {{{ Uptime widget type
-return helpers.setcall(function ()
+return helpers.setcall(function()
     local proc = helpers.pathtotable("/proc")
 
     -- Get system uptime
     local up_t = math.floor(string.match(proc.uptime, "[%d]+"))
-    local up_d = math.floor(up_t   / (3600 * 24))
-    local up_h = math.floor((up_t  % (3600 * 24)) / 3600)
+    local up_d = math.floor(up_t / (3600 * 24))
+    local up_h = math.floor((up_t % (3600 * 24)) / 3600)
     local up_m = math.floor(((up_t % (3600 * 24)) % 3600) / 60)
 
     local l1, l5, l15 = -- Get load averages for past 1, 5 and 15 minutes
-        string.match(proc.loadavg, "([%d%.]+)[%s]([%d%.]+)[%s]([%d%.]+)")
+    string.match(proc.loadavg, "([%d%.]+)[%s]([%d%.]+)[%s]([%d%.]+)")
     return {up_d, up_h, up_m, l1, l5, l15}
 end)
 -- }}}

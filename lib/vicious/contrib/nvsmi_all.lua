@@ -16,19 +16,16 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local tonumber = tonumber
-local io = { popen = io.popen }
+local io = {popen = io.popen}
 local setmetatable = setmetatable
-local string = { match = string.match }
+local string = {match = string.match}
 -- }}}
-
 
 -- nvsmi: provides GPU information from nvidia SMI
 -- vicious.contrib.nvsmi
 local nvsmi_all = {}
-
 
 -- {{{ GPU Information widget type
 local function worker(format, warg)
@@ -53,4 +50,5 @@ local function worker(format, warg)
 end
 -- }}}
 
-return setmetatable(nvsmi_all, { __call = function(_, ...) return worker(...) end })
+return setmetatable(nvsmi_all,
+                    {__call = function(_, ...) return worker(...) end})

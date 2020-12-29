@@ -9,16 +9,16 @@ configuration {
     disable-history:                false;
     fullscreen:                     false;
     hide-scrollbar:                 true;
-    sidebar-mode:                   true;
+    sidebar-mode:                   false;
 }
 
 /* -- Light -- */
 * {
-    background:                     #0B0C0Faa;
+    background:                     #23262Caa;
     background-alt:                 #555e70CC;
-    background-ib:                  #23262Caa;
-    foreground:                     #EDEEFFFF;
-    border:                         #313040FF;
+    background-ib:                  #313040aa;
+    foreground:                     #e9e9ffcc;
+    border:                         #e9e9ffcc;
     border-sel:                     #FF29a8ff;
     selected:                       #00CAFFFF;
     urgent:                         #FF29a8ff;
@@ -27,18 +27,17 @@ configuration {
 
 
 window {
-    transparency:                   "real";
     background-color:               @background;
     text-color:                     @foreground;
-    border:                         0px;
-    border-radius:                  0px;
+    border:                         1px;
+    border-radius:                  30px;
     border-color:                   @border;
-    height:                         100%;
+    height:                         50%;
     width:                          35%;
-    location:                       west;
-    anchor:                         west;
-    x-offset:                       0;
+location: west;
+    x-offset:                       30;
     y-offset:                       0;
+
 }
 
 prompt {
@@ -46,7 +45,7 @@ prompt {
     padding:                        5px 12px 0px 4px;
     background-color:               @background-ib;
     text-color:                     @foreground;
-    font:                           "FantasqueSansMono Nerd Font 12";
+    font:                           "agave Nerd Font Bold 12";
 }
 
 
@@ -54,11 +53,11 @@ inputbar {
     background-color:               @background-ib;
     text-color:                     @foreground;
     expand:                         false;
-    border:                         0px 0px 2% 0px;
+    border:                         0px 0px 6px 0px;
     border-radius:                  30px;
     border-color:                   @border;
-    margin:                         10px 5px 0px 5px;
-    padding:                        6px 6px 6px 6px;
+    margin:                         5px;
+    padding:                        10px;
     position:                       center;
 }
 
@@ -66,11 +65,13 @@ entry {
     background-color:               @background-ib;
     text-color:                     @foreground;
     placeholder-color:              @foreground;
-    expand:                         true;
-    horizontal-align:               0;
-    padding:                        3px 0px 3px 0px;
-    placeholder:                    "Search Apps";
+    expand:                         false;
+    horizontal-align:               0.5;
+    vertical-align:                 0.8;
+    placeholder:                    "Search System";
     blink:                          true;
+        font:                           "agave Nerd Font Bold 12";
+
 }
 
 case-indicator {
@@ -92,8 +93,9 @@ listview {
 mainbox {
     background-color:               @background;
     children:                       [ inputbar, listview ];
-    spacing:                        10px;
+    spacing:                        5px;
     padding:                        8px 15px 8px 15px;
+
 }
 
 element {
@@ -106,7 +108,7 @@ element {
 }
 
 element-icon {
-    size:                           61px;
+    size:                           88px;
     border:                         0px;
 }
 
@@ -114,7 +116,9 @@ element-text {
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
-    margin:                         5px 10px 0px 10px;
+    margin:                         5px 5px 0px 5px;
+   font:                           "agave Nerd Font Bold 12";
+
 }
 
 element normal.urgent,
@@ -133,7 +137,7 @@ element alternate.active {
 element selected {
     background-color:               @selected;
     text-color:                     @foreground;
-    border:                         0px 0px 2px 0px;
+    border:                         0px 0px 5px 0px;
     border-radius:                  4px;
     border-color:                   @border-sel;
 }

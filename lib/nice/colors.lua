@@ -157,5 +157,5 @@ return {
     rand_hex = rand_hex,
     rotate_hue = rotate_hue,
     lighten = lighten,
-    darken = darken,
+    darken = darken
 }

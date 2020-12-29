@@ -2,16 +2,11 @@
 -- Run Shell for Awesome Window Manager
 -- More details could be found here:
 -- https://github.com/streetturtle/awesome-wm-widgets/tree/master/run-shell
-
 -- @author Pavel Makhov
 -- @copyright 2018 Pavel Makhov
 -- @copyright 2019 Pavel Makhov
 -------------------------------------------------
-
-local capi = {
-    screen = screen,
-    client = client,
-}
+local capi = {screen = screen, client = client}
 local awful = require("awful")
 local gfs = require("gears.filesystem")
 local wibox = require("wibox")
@@ -38,23 +33,19 @@ function widget.new()
             width = 1920
         }
 
-        w:setup {
+        w:setup{
             {
                 {
                     {
                         {
                             markup = '<span font="awesomewm-font 14" color="#ffffff">a</span>',
-                            widget = wibox.widget.textbox,
+                            widget = wibox.widget.textbox
                         },
                         id = 'icon',
                         left = 10,
                         layout = wibox.container.margin
                     },
-                    {
-                        run_shell,
-                        left = 10,
-                        layout = wibox.container.margin,
-                    },
+                    {run_shell, left = 10, layout = wibox.container.margin},
                     id = 'left',
                     layout = wibox.layout.fixed.horizontal
                 },
@@ -88,11 +79,17 @@ function widget.new()
         end
         local w = self._cached_wiboxes[s][1]
         local rnd = math.random()
-        awful.spawn.with_line_callback(string.format(self._cmd_blur, tostring(awful.screen.focused().geometry.x), rnd), {
+        awful.spawn.with_line_callback(string.format(self._cmd_blur, tostring(
+                                                         awful.screen.focused()
+                                                             .geometry.x), rnd),
+                                       {
             stdout = function(line)
                 w.visible = true
-                w.bgimage = '/tmp/i3lock-' .. rnd ..'.png'
-                awful.placement.top(w, { margins = { top = 20 }, parent = awful.screen.focused() })
+                w.bgimage = '/tmp/i3lock-' .. rnd .. '.png'
+                awful.placement.top(w, {
+                    margins = {top = 20},
+                    parent = awful.screen.focused()
+                })
                 awful.prompt.run {
                     prompt = 'Run: ',
                     bg_cursor = '#74aeab',
@@ -110,8 +107,8 @@ function widget.new()
                 }
             end,
             stderr = function(line)
-                naughty.notify { text = "ERR:" .. line }
-            end,
+                naughty.notify {text = "ERR:" .. line}
+            end
         })
 
     end
@@ -120,15 +117,11 @@ function widget.new()
 end
 
 local function get_default_widget()
-    if not widget.default_widget then
-        widget.default_widget = widget.new()
-    end
+    if not widget.default_widget then widget.default_widget = widget.new() end
     return widget.default_widget
 end
 
-function widget.launch(...)
-    return get_default_widget():launch(...)
-end
+function widget.launch(...) return get_default_widget():launch(...) end
 
 return widget
 

@@ -3,11 +3,9 @@
 -- Shows the number of currently assigned issues
 -- More details could be found here:
 -- https://github.com/streetturtle/awesome-wm-widgets/tree/master/jira-widget
-
 -- @author Pavel Makhov
 -- @copyright 2019 Pavel Makhov
 -------------------------------------------------
-
 local awful = require("awful")
 local wibox = require("wibox")
 local watch = require("awful.widget.watch")
@@ -22,32 +20,32 @@ local color = require("gears.color")
 
 local HOME_DIR = os.getenv("HOME")
 
-local GET_ISSUES_CMD = [[bash -c "curl -s --show-error -X GET -n '%s/rest/api/2/search?%s&fields=id,assignee,summary,status'"]]
-local DOWNLOAD_AVATAR_CMD = [[bash -c "curl -n --create-dirs -o  %s/.cache/awmw/jira-widget/avatars/%s %s"]]
+local GET_ISSUES_CMD =
+    [[bash -c "curl -s --show-error -X GET -n '%s/rest/api/2/search?%s&fields=id,assignee,summary,status'"]]
+local DOWNLOAD_AVATAR_CMD =
+    [[bash -c "curl -n --create-dirs -o  %s/.cache/awmw/jira-widget/avatars/%s %s"]]
 
 local function show_warning(message)
-    naughty.notify{
+    naughty.notify {
         preset = naughty.config.presets.critical,
         title = 'Jira Widget',
-        text = message}
+        text = message
+    }
 end
 
 local jira_widget = wibox.widget {
     {
         {
-            {
-                id = 'c',
-                widget = wibox.widget.imagebox
-            },
+            {id = 'c', widget = wibox.widget.imagebox},
             {
                 id = 'd',
                 draw = function(self, context, cr, width, height)
                     cr:set_source(color(beautiful.fg_urgent))
-                    cr:arc(height/4, height/4, height/4, 0, math.pi*2)
+                    cr:arc(height / 4, height / 4, height / 4, 0, math.pi * 2)
                     cr:fill()
                 end,
                 visible = false,
-                layout = wibox.widget.base.make_widget,
+                layout = wibox.widget.base.make_widget
             },
             id = 'b',
             layout = wibox.layout.stack
@@ -56,14 +54,9 @@ local jira_widget = wibox.widget {
         margins = 4,
         layout = wibox.container.margin
     },
-    {
-        id = "txt",
-        widget = wibox.widget.textbox
-    },
+    {id = "txt", widget = wibox.widget.textbox},
     layout = wibox.layout.fixed.horizontal,
-    set_text = function(self, new_value)
-        self.txt.text = new_value
-    end,
+    set_text = function(self, new_value) self.txt.text = new_value end,
     set_icon = function(self, path)
         self:get_children_by_id('c')[1]:set_image(path)
     end,
@@ -81,14 +74,14 @@ local jira_widget = wibox.widget {
     end
 }
 
-local popup = awful.popup{
+local popup = awful.popup {
     ontop = true,
     visible = false,
     shape = gears.shape.rounded_rect,
     border_width = 1,
     border_color = beautiful.bg_focus,
     maximum_width = 400,
-    offset = { y = 5 },
+    offset = {y = 5},
     widget = {}
 }
 
@@ -97,16 +90,18 @@ local number_of_issues
 local warning_shown = false
 local tooltip = awful.tooltip {
     mode = 'outside',
-    preferred_positions = {'bottom'},
- }
+    preferred_positions = {'bottom'}
+}
 
 local function worker(args)
 
     local args = args or {}
 
-    local icon = args.icon or HOME_DIR .. '/.config/awesome/awesome-wm-widgets/jira-widget/jira-mark-gradient-blue.svg'
+    local icon = args.icon or HOME_DIR ..
+                     '/.config/awesome/awesome-wm-widgets/jira-widget/jira-mark-gradient-blue.svg'
     local host = args.host or show_warning('Jira host is unknown')
-    local query = args.query or 'jql=assignee=currentuser() AND resolution=Unresolved'
+    local query = args.query or
+                      'jql=assignee=currentuser() AND resolution=Unresolved'
 
     jira_widget:set_icon(icon)
 
@@ -118,7 +113,8 @@ local function worker(args)
                 widget:is_everything_ok(false)
                 tooltip:add_to_object(widget)
 
-                widget:connect_signal('mouse::enter', function()
+                widget:connect_signal('mouse::enter',
+                                      function()
                     tooltip.text = stderr
                 end)
             end
@@ -142,20 +138,20 @@ local function worker(args)
         widget:set_text(number_of_issues)
 
         local rows = {
-            { widget = wibox.widget.textbox },
-            layout = wibox.layout.fixed.vertical,
+            {widget = wibox.widget.textbox},
+            layout = wibox.layout.fixed.vertical
         }
 
-        for i = 0, #rows do rows[i]=nil end
+        for i = 0, #rows do rows[i] = nil end
         for _, issue in ipairs(result.issues) do
-            local path_to_avatar = os.getenv("HOME") ..'/.cache/awmw/jira-widget/avatars/' .. issue.fields.assignee.accountId
+            local path_to_avatar = os.getenv("HOME") ..
+                                       '/.cache/awmw/jira-widget/avatars/' ..
+                                       issue.fields.assignee.accountId
 
             if not gfs.file_readable(path_to_avatar) then
-                spawn.easy_async(string.format(
-                        DOWNLOAD_AVATAR_CMD,
-                        HOME_DIR,
-                        issue.fields.assignee.accountId,
-                        issue.fields.assignee.avatarUrls['48x48']))
+                spawn.easy_async(string.format(DOWNLOAD_AVATAR_CMD, HOME_DIR,
+                                               issue.fields.assignee.accountId,
+                                               issue.fields.assignee.avatarUrls['48x48']))
             end
 
             local row = wibox.widget {
@@ -199,17 +195,21 @@ local function worker(args)
                 widget = wibox.container.background
             }
 
-            row:connect_signal("mouse::enter", function(c) c:set_bg(beautiful.bg_focus) end)
-            row:connect_signal("mouse::leave", function(c) c:set_bg(beautiful.bg_normal) end)
+            row:connect_signal("mouse::enter",
+                               function(c)
+                c:set_bg(beautiful.bg_focus)
+            end)
+            row:connect_signal("mouse::leave",
+                               function(c)
+                c:set_bg(beautiful.bg_normal)
+            end)
 
-            row:buttons(
-                    awful.util.table.join(
+            row:buttons(awful.util.table.join(
                             awful.button({}, 1, function()
-                                spawn.with_shell("xdg-open " .. host .. '/browse/' .. issue.key)
-                                popup.visible = false
-                            end)
-                    )
-            )
+                    spawn.with_shell("xdg-open " .. host .. '/browse/' ..
+                                         issue.key)
+                    popup.visible = false
+                end)))
 
             table.insert(rows, row)
         end
@@ -217,20 +217,18 @@ local function worker(args)
         popup:setup(rows)
     end
 
-    jira_widget:buttons(
-            awful.util.table.join(
-                    awful.button({}, 1, function()
-                        if popup.visible then
-                            popup.visible = not popup.visible
-                        else
-                            popup:move_next_to(mouse.current_widget_geometry)
-                        end
-                    end)
-            )
-    )
-    watch(string.format(GET_ISSUES_CMD, host, query:gsub(' ', '+')),
-            10, update_widget, jira_widget)
+    jira_widget:buttons(awful.util.table.join(
+                            awful.button({}, 1, function()
+            if popup.visible then
+                popup.visible = not popup.visible
+            else
+                popup:move_next_to(mouse.current_widget_geometry)
+            end
+        end)))
+    watch(string.format(GET_ISSUES_CMD, host, query:gsub(' ', '+')), 10,
+          update_widget, jira_widget)
     return jira_widget
 end
 
-return setmetatable(jira_widget, { __call = function(_, ...) return worker(...) end })
+return setmetatable(jira_widget,
+                    {__call = function(_, ...) return worker(...) end})

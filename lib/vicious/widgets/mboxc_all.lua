@@ -16,21 +16,20 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
-local io = { open = io.open }
-local helpers = require"vicious.helpers"
+local io = {open = io.open}
+local helpers = require "vicious.helpers"
 -- }}}
 
 -- {{{ Mbox count widget type
-return helpers.setcall(function (format, warg)
+return helpers.setcall(function(format, warg)
     if not warg then return end
 
     -- Initialize counters
-    local count = { old = 0, total = 0, new = 0 }
+    local count = {old = 0, total = 0, new = 0}
 
     -- Get data from mbox files
-    for i=1, #warg do
+    for i = 1, #warg do
         local f = io.open(warg[i])
 
         while true do
@@ -41,15 +40,16 @@ return helpers.setcall(function (format, warg)
 
             -- Find all messages
             --  * http://www.jwz.org/doc/content-length.html
-            local _, from = lines:find"^From[%s]"
+            local _, from = lines:find "^From[%s]"
             if from ~= nil then count.total = count.total + 1 end
 
             -- Read messages have the Status header
-            local _, status = lines:find"^Status:[%s]RO$"
+            local _, status = lines:find "^Status:[%s]RO$"
             if status ~= nil then count.old = count.old + 1 end
 
             -- Skip the folder internal data
-            local _, int = lines:find"^Subject:[%s].*FOLDER[%s]INTERNAL[%s]DATA"
+            local _, int =
+                lines:find "^Subject:[%s].*FOLDER[%s]INTERNAL[%s]DATA"
             if int ~= nil then count.total = count.total - 1 end
         end
         f:close()

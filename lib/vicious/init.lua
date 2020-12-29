@@ -30,30 +30,25 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Setup environment
-local type  = type
+local type = type
 local pairs = pairs
 local tonumber = tonumber
 local timer = type(timer) == "table" and timer or require("gears.timer")
-local os    = { time = os.time }
-local table = {
-    insert  = table.insert,
-    remove  = table.remove
-}
+local os = {time = os.time}
+local table = {insert = table.insert, remove = table.remove}
 local helpers = require("vicious.helpers")
 
 -- Vicious: widgets for the awesome window manager
 local vicious = {}
 vicious.widgets = require("vicious.widgets")
---vicious.contrib = require("vicious.contrib")
+-- vicious.contrib = require("vicious.contrib")
 
 -- Initialize tables
-local timers       = {}
-local registered   = {}
+local timers = {}
+local registered = {}
 local widget_cache = {}
 -- }}}
-
 
 -- {{{ Local functions
 -- {{{ Update a widget
@@ -119,9 +114,7 @@ local function update(widget, reg, disablecache)
 
     local function update_cache(data, t, cache)
         -- Update cache
-        if t and cache then
-            cache.time, cache.data = t, data
-        end
+        if t and cache then cache.time, cache.data = t, data end
     end
 
     -- Check for cached output newer than the last update
@@ -132,13 +125,11 @@ local function update(widget, reg, disablecache)
         if type(reg.wtype) == "table" and reg.wtype.async then
             if not reg.lock then
                 reg.lock = true
-                return reg.wtype.async(reg.format,
-                    reg.warg,
-                    function(data)
-                        update_cache(data, update_time, c)
-                        update_value(data)
-                        reg.lock=false
-                    end)
+                return reg.wtype.async(reg.format, reg.warg, function(data)
+                    update_cache(data, update_time, c)
+                    update_value(data)
+                    reg.lock = false
+                end)
             end
         else
             local data = reg.wtype(reg.format, reg.warg)
@@ -167,9 +158,7 @@ local function regregister(reg)
                         end
                     end
 
-                    if already then
-                        break
-                    end
+                    if already then break end
                 end
             end
 
@@ -181,20 +170,18 @@ local function regregister(reg)
         -- Start the timer
         if reg.timeout > 0 then
             local tm = timers[reg.timeout] and timers[reg.timeout].timer
-            tm = tm or timer({ timeout = reg.timeout })
+            tm = tm or timer({timeout = reg.timeout})
             if tm.connect_signal then
                 tm:connect_signal("timeout", reg.update)
             else
                 tm:add_signal("timeout", reg.update)
             end
             if not timers[reg.timeout] then
-                timers[reg.timeout] = { timer = tm, refs = 1 }
+                timers[reg.timeout] = {timer = tm, refs = 1}
             else
                 timers[reg.timeout].refs = timers[reg.timeout].refs + 1
             end
-            if not tm.started then
-                tm:start()
-            end
+            if not tm.started then tm:start() end
             -- Initial update
             reg.update()
         end
@@ -204,25 +191,22 @@ end
 -- }}}
 -- }}}
 
-
 -- {{{ Global functions
 -- {{{ Register a widget
 function vicious.register(widget, wtype, format, timeout, warg)
     local reg = {
         -- Set properties
-        wtype   = wtype,
-        lock    = false,
-        format  = format,
+        wtype = wtype,
+        lock = false,
+        format = format,
         timeout = timeout or 2,
-        warg    = warg,
-        widget  = widget,
+        warg = warg,
+        widget = widget
     }
-    reg.timer = timeout  -- For backward compatibility.
+    reg.timer = timeout -- For backward compatibility.
 
     -- Set functions
-    function reg.update()
-        update(widget, reg)
-    end
+    function reg.update() update(widget, reg) end
 
     -- Register a reg object
     regregister(reg)
@@ -258,12 +242,10 @@ function vicious.unregister(widget, keep, reg)
         end
     end
 
-    if not reg.running then
-        return reg
-    end
+    if not reg.running then return reg end
 
     -- Disconnect from timer
-    local tm  = timers[reg.timeout]
+    local tm = timers[reg.timeout]
     if tm.timer.disconnect_signal then
         tm.timer:disconnect_signal("timeout", reg.update)
     else
@@ -272,9 +254,7 @@ function vicious.unregister(widget, keep, reg)
     reg.running = false
     -- Stop the timer
     tm.refs = tm.refs - 1
-    if tm.refs == 0 and tm.timer.started then
-        tm.timer:stop()
-    end
+    if tm.refs == 0 and tm.timer.started then tm.timer:stop() end
 
     return reg
 end
@@ -284,7 +264,7 @@ end
 function vicious.cache(wtype)
     if wtype ~= nil then
         if widget_cache[wtype] == nil then
-            widget_cache[wtype] = { data = nil, time = 0 }
+            widget_cache[wtype] = {data = nil, time = 0}
         end
     end
 end
@@ -293,9 +273,7 @@ end
 -- {{{ Force update of widgets
 function vicious.force(wtable)
     if type(wtable) == "table" then
-        for _, w in pairs(wtable) do
-            update(w, nil, true)
-        end
+        for _, w in pairs(wtable) do update(w, nil, true) end
     end
 end
 -- }}}
@@ -303,9 +281,7 @@ end
 -- {{{ Suspend all widgets
 function vicious.suspend()
     for w, i in pairs(registered) do
-        for _, v in pairs(i) do
-            vicious.unregister(w, true, v)
-        end
+        for _, v in pairs(i) do vicious.unregister(w, true, v) end
     end
 end
 -- }}}
@@ -314,9 +290,7 @@ end
 function vicious.activate(widget)
     for w, i in pairs(registered) do
         if widget == nil or w == widget then
-            for _, v in pairs(i) do
-                regregister(v)
-            end
+            for _, v in pairs(i) do regregister(v) end
         end
     end
 end

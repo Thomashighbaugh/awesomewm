@@ -8,139 +8,136 @@
 -- Warning the following configuration contains so much spaghetti code, it
 -- may soon transcend into the Flying Spaghetti Monster.
 -- ========================================================================
--- ===================================================================
+-- ========================================================================
 --  External Libraries
--- ===================================================================
--- External Package Manager Call
+-- ========================================================================
+-- External Package Manager Call ------------------------------------------
 pcall(require, "luarocks.loader")
 
--- Standard AwesomeWM Libraries
+-- Libraries --------------------------------------------------------------
 local gears = require("gears")
 local awful = require("awful")
-local freedesktop = require("lib.freedesktop")
-
--- ===================================================================
--- Theme Handling Library
-
-local beautiful = require("beautiful")
-
--- ===================================================================
--- Miscellanous AwesomeWM Libraries
-
+require("awful.autofocus")
+local wibox = require("wibox")
+local naughty = require("naughty")
+local hotkeys_popup = require("awful.hotkeys_popup")
 local menubar = require("menubar")
 local lain = require("lain")
 local vicious = require("vicious")
+require("lib.collision")()
+
+-- Theme Handling Library
+local beautiful = require("beautiful")
+local dpi = require("beautiful.xresources").apply_dpi
+
+require("awful.hotkeys_popup.keys")
+
 -- ===================================================================
 -- My Configuration
 -- ===================================================================
+-- The below are the portions of the configuration that are either mine
+-- or have been borrowed from other configurations (thanks everyone). Thus
+-- can be relatively easily modified by whomever so dares to fiddle with it.
+
+local helpers = require("main.helpers")
+
+local autostart = require("main.autostart")
+
+require ("notifications.errors")
 
 -- ===================================================================
--- Global Namespace,
+-- Variables ---------------------------------------------------------
+-- ===================================================================
 
+--Global Namespace ----------------------------------------------------
 RC = {}
 
--- ===================================================================
--- User Variables
-
 RC.vars = require("main.user-variables")
-RC.autostart()
 
--- ===================================================================
--- Variables declared Globally
-
--- Meaning I do not have to worry about the import process later (but
--- still do it anyway most of the time ;])
-
-modkey = RC.vars.modkey
+-- Not the most elegant solution, but enables using the
+-- variables name directly, saving typing and keeps the
+-- variables values elsewhere, thus reducing some of the
+-- confusing visual clutter in this file
+theme = RC.vars.theme
+screen_width = RC.vars.screen_width
+screen_height = RC.vars.screen_height
 terminal = RC.vars.terminal
+editor = RC.vars.editor
+editor_cmd = RC.vars.editor_cmd
 browser = RC.vars.browser
-screenshot = RC.vars.screenshot
+filemanager = RC.vars.filemanager
+discord = RC.vars.discord
+music = RC.vars.music
+modkey = RC.vars.modkey
+altkey = RC.vars.altkey
+shift = RC.vars.shift
+ctrl = RC.vars.crtl
 
 -- ===================================================================
--- Error handling
-require("main.error-handling")
+-- Set Theme (tests variable assignments) ----------------------------
+-- ===================================================================
+beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/" .. theme .. "/theme.lua")
 
 -- ===================================================================
--- Load the user themes
-require("main.theme")
-local lockscreen = ("layout.lockscreen")
+-- Window Decorations and Layout -------------------------------------
+-- ===================================================================
+
+require("main.windows")
 
 -- ===================================================================
--- Custom Local Libraries
-local main = {
-    layouts = require("main.layouts"),
-    tags = require("main.tags"),
-    menu = require("main.menu"),
-    rules = require("main.rules"),
-    helpers = require("main.helpers")
-}
+-- Icons ----------------------------------------------------------------
+-- ===================================================================
+local icons = require("icons")
+
+-- Icon theme -----------------------------------------------------------
+icons.init("sheet")
 
 -- ===================================================================
--- Layouts
-
-RC.layouts = main.layouts()
-
+-- Menu -----------------------------------------------------------------
 -- ===================================================================
--- Tags
-RC.tags = main.tags()
-require("layout.exit-screen")
-
--- ===================================================================
--- Custom Local Library: Keys and Mouse Binding
-local binding = {
-    globalbuttons = require("binding.globalbuttons"),
-    clientbuttons = require("binding.clientbuttons"),
-    globalkeys = require("binding.globalkeys"),
-    clientkeys = require("binding.clientkeys"),
-    bindtotags = require("binding.bindtotags")
-}
-
--- ===================================================================
--- Menu
-
-RC.mainmenu = awful.menu({items = main.menu()}) -- in globalkeys
+mymainmenu = require("layout.menu")
+RC.mainmenu = awful.menu({items = mymainmenu()}) -- in globalkeys
 RC.launcher = awful.widget.launcher({
     image = beautiful.awesome_icon,
     menu = RC.mainmenu
 })
-menubar.utils.terminal = RC.vars.terminal
 
 -- ===================================================================
--- Mouse and Key bindings
-
-RC.globalkeys = binding.globalkeys()
-RC.globalkeys = binding.bindtotags(RC.globalkeys)
+-- Tags + Wallpaper -----------------------------------------------------------
+-- ===================================================================
+require("layout.tags")
 
 -- ===================================================================
--- Set root
+-- Key bindings ------------------------------------------------------
+-- ===================================================================
+require("main.keys")
+buttons = require("main.buttons")
 
-root.buttons(binding.globalbuttons())
-root.keys(RC.globalkeys)
+root.buttons(buttons())
 
 -- ===================================================================
--- Statusbar: Wibar
-
-require("layout.statusbar")
-
+-- Rules -------------------------------------------------------------
 -- ===================================================================
--- Rules
-
-awful.rules.rules = main.rules(binding.clientkeys(), binding.clientbuttons())
-
+require("main.rules")
 -- ===================================================================
--- Signals
-
+-- Signals ----------------------------------------------------------
+-- ===================================================================
 require("main.signals")
+-- ===================================================================
+-- Daemons ---------------------------------------------------------
+-- ===================================================================
+require("event-listeners")
+
+-- ===================================================================
+-- Notifications -----------------------------------------------------
+-- ===================================================================
 require("notifications")
 
 -- ===================================================================
--- Uncomment the below if you like the lib nice window icons better,
--- otherwise the present default will provide you with my modified 
--- elenapan icons. 
--- local nice = require( "lib.nice.local" )
+-- Layout ------------------------------------------------------------
+-- ===================================================================
+require("layout")
 
 -- ===================================================================
--- Garbage Collection
+-- EOF ---------------------------------------------------------------
 -- ===================================================================
-collectgarbage("setpause", 110)
-collectgarbage("setstepmul", 1000)

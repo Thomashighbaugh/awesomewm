@@ -16,23 +16,19 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 ---------------------------------------------------
 -- This is now a standalone RSS reader for awesome:
 --  * http://github.com/olcc/aware
 ---------------------------------------------------
-
 -- {{{ Grab environment
 local pairs = pairs
-local io = { popen = io.popen }
+local io = {popen = io.popen}
 local setmetatable = setmetatable
 -- }}}
-
 
 -- RSS: provides latest world news
 -- vicious.contrib.rss
 local rss_all = {}
-
 
 -- {{{ RSS widget type
 local function worker(format, input)
@@ -41,21 +37,19 @@ local function worker(format, input)
     --         * fields - fields to read (example: 'link', 'title', 'description')
     -- output: * count  - number of entities found
     --         * one table for each field, containing wanted values
-    local feed   = input.feed
+    local feed = input.feed
     local object = input.object
     local fields = input.fields
 
     -- Initialise tables
     local out = {}
 
-    for _, v in pairs(fields) do
-        out[v] = {}
-    end
+    for _, v in pairs(fields) do out[v] = {} end
 
     -- Initialise variables
-    local ob    = nil
-    local i,j,k = 1, 1, 0
-    local curl  = "curl -A 'Mozilla/4.0' -fsm 5 --connect-timeout 3 "
+    local ob = nil
+    local i, j, k = 1, 1, 0
+    local curl = "curl -A 'Mozilla/4.0' -fsm 5 --connect-timeout 3 "
 
     -- Get the feed
     local f = io.popen(curl .. '"' .. feed .. '"')
@@ -63,15 +57,16 @@ local function worker(format, input)
     f:close()
 
     while true do
-        i, j, ob = feed.find(feed, "<" .. object .. ">(.-)</" .. object .. ">", i)
+        i, j, ob = feed.find(feed, "<" .. object .. ">(.-)</" .. object .. ">",
+                             i)
         if not ob then break end
 
         for _, v in pairs(fields) do
             out[v][k] = ob:match("<" .. v .. ">(.*)</" .. v .. ">")
         end
 
-        k = k+1
-        i = j+1
+        k = k + 1
+        i = j + 1
     end
 
     -- Update the entity count
@@ -81,4 +76,4 @@ local function worker(format, input)
 end
 -- }}}
 
-return setmetatable(rss_all, { __call = function(_, ...) return worker(...) end })
+return setmetatable(rss_all, {__call = function(_, ...) return worker(...) end})

@@ -1,106 +1,36 @@
---  ______         __   __
--- |   __ \.---.-.|  |_|  |_.-----.----.--.--.
--- |   __ <|  _  ||   _|   _|  -__|   _|  |  |
--- |______/|___._||____|____|_____|__| |___  |
---                                     |_____|
--- ===================================================================
--- Initialization
--- ===================================================================
-local helpers = require("main.helpers")
-local icons = require("theme.clone.icons")
-local notifications = require("notifications")
+local naughty = require("naughty")
+local icons = require('icons')
+icons.init("sheet")
 
--- Helper variables
-local charger_first_time = true
-local battery_first_time = true
-local charger_plugged = true
-local battery_full_already_notified = true
-local battery_low_already_notified = false
-local battery_critical_already_notified = false
-local notif
-local battery_current = 100
-local battery_full_threshold = 96
--- ===================================================================
--- Define Battery Notifications
--- ===================================================================
--- Full / Low / Critical notifications
-awesome.connect_signal("evil::battery", function(battery)
-    local message
-    local icon
-    local timeout
-    battery_current = battery
-    if battery_first_time then
-        battery_first_time = false
-        return
-    end
-    if not charger_plugged then
-        icon = icons.image.battery
-        if battery <= user.battery_threshold_critical and
-            not battery_critical_already_notified then
-            battery_critical_already_notified = true
-            message = "CRITICAL"
-            -- message = helpers.colorize_text("CRITICAL", x.color9)
-            timeout = 0
-        elseif battery <= user.battery_threshold_low and
-            not battery_low_already_notified then
-            battery_low_already_notified = true
-            message = "Low"
-            -- message = helpers.colorize_text("Low", x.color11)
-            timeout = 6
-        end
-    else
-        icon = icons.image.battery_charging
-        if battery > battery_full_threshold and
-            not battery_full_already_notified then
-            battery_full_already_notified = true
-            message = "Full"
-            -- message = helpers.colorize_text("Full", x.color10)
-            timeout = 6
-        end
-    end
+local display = true
 
-    -- If message has been initialized, then we need to send a notification
-    if message then
-        notif = notifications.notify_dwim(
-                    {
-                title = "Battery",
-                message = message,
-                icon = icon,
-                timeout = timeout,
-                app_name = "battery"
-            }, notif)
+awesome.connect_signal("ears::battery", function(value)
+    if value < 11 then
+        naughty.notification({
+            title = "Critical Battery",
+            text = "Charge at " .. value .. "%",
+            image = icons.battery
+        })
+    end
+    
+    if (value > 99 and display) then
+        naughty.notification({
+            title = "Charged",
+            text = "Battery at " .. value .. "%",
+            image = icons.battery
+        })
+        display = true
     end
 end)
 
--- Charger notifications
-awesome.connect_signal("evil::charger", function(plugged)
-    charger_plugged = plugged
-    local message
-    local icon
+awesome.connect_signal("ears::charger", function(plugged)
     if plugged then
-        battery_critical_already_notified = false
-        battery_low_already_notified = false
-        -- Avoids notifying of a full battery if it was almost full after plugging
-        battery_full_already_notified = battery_current > battery_full_threshold
-        message = "Plugged"
-        icon = icons.image.battery_charging
-    else
-        battery_full_already_notified = false
-        message = "Unplugged"
-        icon = icons.image.battery
+        naughty.notification({
+            title = "Battery Status:",
+            text = "Charging",
+            image = icons.battery_charging
+        })
+        display = true
     end
-
-    -- Do not send a notification the first time (when AwesomeWM (re)starts)
-    if charger_first_time then
-        charger_first_time = false
-    else
-        notif = notifications.notify_dwim(
-                    {
-                title = "Charger",
-                message = message,
-                icon = icon,
-                timeout = 3,
-                app_name = "charger"
-            }, notif)
-    end
+    
 end)

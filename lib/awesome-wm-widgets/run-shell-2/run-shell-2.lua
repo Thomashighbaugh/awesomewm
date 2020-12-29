@@ -3,11 +3,9 @@
 -- Simplifies interaction with Spotify for Linux
 -- More details could be found here:
 -- https://github.com/streetturtle/awesome-wm-widgets/tree/master/spotify-shell
-
 -- @author Pavel Makhov
 -- @copyright 2018 Pavel Makhov
 -------------------------------------------------
-
 local awful = require("awful")
 local gfs = require("gears.filesystem")
 local wibox = require("wibox")
@@ -33,22 +31,20 @@ local w = wibox {
 }
 
 local g = {
-    {
-        layout = wibox.container.margin,
-        left = 10,
-        run_shell,
-    },
+    {layout = wibox.container.margin, left = 10, run_shell},
     id = 'left',
     layout = wibox.layout.fixed.horizontal
 }
-
 
 local function launch(type)
 
     if type == 'run' then
         table.insert(g, 1, run.icon)
         w:setup(g)
-        awful.placement.top(w, { margins = { top = 40 }, parent = awful.screen.focused() })
+        awful.placement.top(w, {
+            margins = {top = 40},
+            parent = awful.screen.focused()
+        })
         w.visible = true
         awful.prompt.run {
             prompt = run.text,
@@ -77,7 +73,10 @@ local function launch(type)
             layout = wibox.container.margin
         })
         w:setup(g)
-        awful.placement.top(w, { margins = { top = 40 }, parent = awful.screen.focused() })
+        awful.placement.top(w, {
+            margins = {top = 40},
+            parent = awful.screen.focused()
+        })
         w.visible = true
 
         awful.prompt.run {
@@ -97,6 +96,4 @@ local function launch(type)
     end
 end
 
-return {
-    launch = launch
-}
+return {launch = launch}

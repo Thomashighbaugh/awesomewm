@@ -19,35 +19,31 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local tonumber = tonumber
-local string = { format = string.format }
-local math = {
-    min = math.min,
-    floor = math.floor
-}
+local string = {format = string.format}
+local math = {min = math.min, floor = math.floor}
 
-local helpers = require"vicious.helpers"
+local helpers = require "vicious.helpers"
 -- }}}
 
 -- {{{ Battery widget type
-return helpers.setcall(function (format, warg)
+return helpers.setcall(function(format, warg)
     if not warg then return end
 
-    local battery = helpers.pathtotable("/sys/class/power_supply/"..warg)
+    local battery = helpers.pathtotable("/sys/class/power_supply/" .. warg)
     local battery_state = {
-        ["Full\n"]        = "↯",
-        ["Unknown\n"]     = "⌁",
-        ["Charged\n"]     = "↯",
-        ["Charging\n"]    = "+",
+        ["Full\n"] = "↯",
+        ["Unknown\n"] = "⌁",
+        ["Charged\n"] = "↯",
+        ["Charging\n"] = "+",
         ["Discharging\n"] = "-"
     }
 
     -- Get current power usage in watt
     local curpower = "N/A"
     if battery.power_now then
-        curpower = string.format("%.2f", tonumber(battery.power_now) /1000000)
+        curpower = string.format("%.2f", tonumber(battery.power_now) / 1000000)
     end
 
     -- Check if the battery is present
@@ -90,7 +86,8 @@ return helpers.setcall(function (format, warg)
     if rate ~= nil and rate ~= 0 then
         local timeleft
         if state == "+" then
-            timeleft = (tonumber(capacity)-tonumber(remaining)) / tonumber(rate)
+            timeleft = (tonumber(capacity) - tonumber(remaining)) /
+                           tonumber(rate)
         elseif state == "-" then
             timeleft = tonumber(remaining) / tonumber(rate)
         else
@@ -98,8 +95,8 @@ return helpers.setcall(function (format, warg)
         end
 
         -- Calculate time
-        local hoursleft   = math.floor(timeleft)
-        local minutesleft = math.floor((timeleft - hoursleft) * 60 )
+        local hoursleft = math.floor(timeleft)
+        local minutesleft = math.floor((timeleft - hoursleft) * 60)
 
         time = string.format("%02d:%02d", hoursleft, minutesleft)
     end

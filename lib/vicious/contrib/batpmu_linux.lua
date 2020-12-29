@@ -16,15 +16,11 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local tonumber = tonumber
-local io = { open = io.open }
+local io = {open = io.open}
 local setmetatable = setmetatable
-local math = {
-    min = math.min,
-    floor = math.floor
-}
+local math = {min = math.min, floor = math.floor}
 local string = {
     find = string.find,
     match = string.match,
@@ -32,11 +28,9 @@ local string = {
 }
 -- }}}
 
-
 -- Batpmu: provides state, charge and remaining time for a requested battery using PMU
 -- vicious.contrib.batpmu
 local batpmu_linux = {}
-
 
 -- {{{ Battery widget type
 local function worker(format, batid)
@@ -64,14 +58,12 @@ local function worker(format, batid)
         return {battery_state["unknown"], 0, "N/A"}
     end
 
-
     -- Get capacity and charge information
     local capacity = string.match(statefile, "max_charge[%s]+:[%s]([%d]+).*")
     local remaining = string.match(statefile, "charge[%s]+:[%s]([%d]+).*")
 
     -- Calculate percentage
     local percent = math.min(math.floor(remaining / capacity * 100), 100)
-
 
     -- Get timer information
     local timer = string.match(statefile, "time rem%.[%s]+:[%s]([%d]+).*")
@@ -90,4 +82,5 @@ local function worker(format, batid)
 end
 -- }}}
 
-return setmetatable(batpmu_linux, { __call = function(_, ...) return worker(...) end })
+return setmetatable(batpmu_linux,
+                    {__call = function(_, ...) return worker(...) end})

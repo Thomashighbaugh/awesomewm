@@ -16,30 +16,31 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local tonumber = tonumber
 local helpers = require("vicious.helpers")
 -- }}}
 
 local GOVERNOR_STATE = {
-    ["ondemand\n"]     = "↯",
-    ["powersave\n"]    = "⌁",
-    ["userspace\n"]    = "¤",
-    ["performance\n"]  = "⚡",
+    ["ondemand\n"] = "↯",
+    ["powersave\n"] = "⌁",
+    ["userspace\n"] = "¤",
+    ["performance\n"] = "⚡",
     ["conservative\n"] = "⊚"
 }
 
 -- {{{ CPU frequency widget type
-return helpers.setcall(function (format, warg)
+return helpers.setcall(function(format, warg)
     if not warg then return end
 
     local _cpufreq = helpers.pathtotable(
-        ("/sys/devices/system/cpu/%s/cpufreq"):format(warg))
+                         ("/sys/devices/system/cpu/%s/cpufreq"):format(warg))
     -- Default frequency and voltage values
     local freqv = {
-        ["mhz"] = "N/A", ["ghz"] = "N/A",
-        ["v"]   = "N/A", ["mv"]  = "N/A",
+        ["mhz"] = "N/A",
+        ["ghz"] = "N/A",
+        ["v"] = "N/A",
+        ["mv"] = "N/A"
     }
 
     -- Get the current frequency
@@ -51,10 +52,10 @@ return helpers.setcall(function (format, warg)
 
         -- Get the current voltage
         if _cpufreq.scaling_voltages then
-            freqv.mv = tonumber(
-                _cpufreq.scaling_voltages:match(freq .. "[%s]([%d]+)"))
+            freqv.mv = tonumber(_cpufreq.scaling_voltages:match(
+                                    freq .. "[%s]([%d]+)"))
             -- Calculate voltage from mV
-            freqv.v  = freqv.mv / 1000
+            freqv.v = freqv.mv / 1000
         end
     end
 

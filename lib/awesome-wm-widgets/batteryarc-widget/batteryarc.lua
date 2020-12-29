@@ -3,11 +3,9 @@
 -- Shows the battery level of the laptop
 -- More details could be found here:
 -- https://github.com/streetturtle/awesome-wm-widgets/tree/master/batteryarc-widget
-
 -- @author Pavel Makhov
 -- @copyright 2020 Pavel Makhov
 -------------------------------------------------
-
 local awful = require("awful")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
@@ -33,14 +31,14 @@ local function worker(args)
     local medium_level_color = args.medium_level_color or '#c0ca33'
     local charging_color = args.charging_color or '#43a047'
 
-    local warning_msg_title = args.warning_msg_title or 'Huston, we have a problem'
+    local warning_msg_title = args.warning_msg_title or
+                                  'Huston, we have a problem'
     local warning_msg_text = args.warning_msg_text or 'Battery is dying'
     local warning_msg_position = args.warning_msg_position or 'bottom_right'
-    local warning_msg_icon = args.warning_msg_icon or HOME .. '/.config/awesome/awesome-wm-widgets/batteryarc-widget/spaceman.jpg'
+    local warning_msg_icon = args.warning_msg_icon or HOME ..
+                                 '/.config/awesome/awesome-wm-widgets/batteryarc-widget/spaceman.jpg'
     local enable_battery_warning = args.enable_battery_warning
-    if enable_battery_warning == nil then
-        enable_battery_warning = true
-    end
+    if enable_battery_warning == nil then enable_battery_warning = true end
 
     local text = wibox.widget {
         font = font,
@@ -70,8 +68,9 @@ local function worker(args)
         local charge = 0
         local status
         for s in stdout:gmatch("[^\r\n]+") do
-            local cur_status, charge_str, time = string.match(s, '.+: (%a+), (%d?%d?%d)%%,?(.*)')
-            if cur_status ~= nil and charge_str ~=nil then
+            local cur_status, charge_str, time =
+                string.match(s, '.+: (%a+), (%d?%d?%d)%%,?(.*)')
+            if cur_status ~= nil and charge_str ~= nil then
                 local cur_charge = tonumber(charge_str)
                 if cur_charge > charge then
                     status = cur_status
@@ -92,25 +91,24 @@ local function worker(args)
 
         if show_current_level == true then
             --- if battery is fully charged (100) there is not enough place for three digits, so we don't show any text
-            text.text = charge == 100
-                    and ''
-                    or string.format('%d', charge)
+            text.text = charge == 100 and '' or string.format('%d', charge)
         else
             text.text = ''
         end
 
         if charge < 15 then
-            widget.colors = { low_level_color }
-            if enable_battery_warning and status ~= 'Charging' and os.difftime(os.time(), last_battery_check) > 300 then
+            widget.colors = {low_level_color}
+            if enable_battery_warning and status ~= 'Charging' and
+                os.difftime(os.time(), last_battery_check) > 300 then
                 -- if 5 minutes have elapsed since the last warning
                 last_battery_check = os.time()
 
                 show_battery_warning()
             end
         elseif charge > 15 and charge < 40 then
-            widget.colors = { medium_level_color }
+            widget.colors = {medium_level_color}
         else
-            widget.colors = { main_color }
+            widget.colors = {main_color}
         end
     end
 
@@ -119,25 +117,21 @@ local function worker(args)
     -- Popup with battery info
     local notification
     function show_battery_status()
-        awful.spawn.easy_async([[bash -c 'acpi']],
-                function(stdout, _, _, _)
-                    naughty.destroy(notification)
-                    notification = naughty.notify {
-                        text = stdout,
-                        title = "Battery status",
-                        timeout = 5,
-                        hover_timeout = 0.5,
-                        width = 200,
-                    }
-                end)
+        awful.spawn.easy_async([[bash -c 'acpi']], function(stdout, _, _, _)
+            naughty.destroy(notification)
+            notification = naughty.notify {
+                text = stdout,
+                title = "Battery status",
+                timeout = 5,
+                hover_timeout = 0.5,
+                width = 200
+            }
+        end)
     end
 
-    widget:connect_signal("mouse::enter", function()
-        show_battery_status()
-    end)
-    widget:connect_signal("mouse::leave", function()
-        naughty.destroy(notification)
-    end)
+    widget:connect_signal("mouse::enter", function() show_battery_status() end)
+    widget:connect_signal("mouse::leave",
+                          function() naughty.destroy(notification) end)
 
     --[[ Show warning notification ]]
     function show_battery_warning()
@@ -151,7 +145,7 @@ local function worker(args)
             position = warning_msg_position,
             bg = "#F06060",
             fg = "#EEE9EF",
-            width = 300,
+            width = 300
         }
     end
 
@@ -159,6 +153,4 @@ local function worker(args)
 
 end
 
-return setmetatable(widget, { __call = function(_, ...)
-    return worker(...)
-end })
+return setmetatable(widget, {__call = function(_, ...) return worker(...) end})

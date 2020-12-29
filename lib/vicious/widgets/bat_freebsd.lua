@@ -16,14 +16,10 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local tonumber = tonumber
-local math = { floor = math.floor }
-local string = {
-    gmatch = string.gmatch,
-    format = string.format
-}
+local math = {floor = math.floor}
+local string = {gmatch = string.gmatch, format = string.format}
 
 local helpers = require("vicious.helpers")
 local spawn = require("vicious.spawn")
@@ -37,7 +33,7 @@ local bat_freebsd = {}
 local function parse(stdout, stderr, exitreason, exitcode)
     local bat_info = {}
     for line in string.gmatch(stdout, "[^\n]+") do
-        for key,value in string.gmatch(line, "(.+):%s+(.+)") do
+        for key, value in string.gmatch(line, "(.+):%s+(.+)") do
             bat_info[key] = value
         end
     end
@@ -45,34 +41,32 @@ local function parse(stdout, stderr, exitreason, exitcode)
     -- current state
     -- see: https://github.com/freebsd/freebsd/blob/master/usr.sbin/acpi/acpiconf/acpiconf.c
     local battery_state = {
-        ["high"]                    = "↯",
-        ["charging"]                = "+",
-        ["critical charging"]       = "+",
-        ["discharging"]             = "-",
-        ["critical discharging"]    = "!",
-        ["critical"]                = "!",
+        ["high"] = "↯",
+        ["charging"] = "+",
+        ["critical charging"] = "+",
+        ["discharging"] = "-",
+        ["critical discharging"] = "!",
+        ["critical"] = "!"
     }
     local state = battery_state[bat_info["State"]] or "N/A"
 
     -- battery capacity in percent
-    local percent = tonumber(bat_info["Remaining capacity"]:match"[%d]+")
+    local percent = tonumber(bat_info["Remaining capacity"]:match "[%d]+")
 
     -- use remaining (charging or discharging) time calculated by acpiconf
     local time = bat_info["Remaining time"]
-    if time == "unknown" then
-        time = "∞"
-    end
+    if time == "unknown" then time = "∞" end
 
     -- calculate wear level from (last full / design) capacity
     local wear = "N/A"
     if bat_info["Last full capacity"] and bat_info["Design capacity"] then
-        local l_full = tonumber(bat_info["Last full capacity"]:match"[%d]+")
-        local design = tonumber(bat_info["Design capacity"]:match"[%d]+")
+        local l_full = tonumber(bat_info["Last full capacity"]:match "[%d]+")
+        local design = tonumber(bat_info["Design capacity"]:match "[%d]+")
         wear = math.floor(l_full / design * 100)
     end
 
     -- dis-/charging rate as presented by battery
-    local rate = bat_info["Present rate"]:match"([%d]+)%smW"
+    local rate = bat_info["Present rate"]:match "([%d]+)%smW"
     rate = string.format("%2.1f", tonumber(rate / 1000))
 
     -- returns
@@ -87,7 +81,7 @@ end
 function bat_freebsd.async(format, warg, callback)
     local battery = warg or "batt"
     spawn.easy_async("acpiconf -i " .. helpers.shellquote(battery),
-                     function (...) callback(parse(...)) end)
+                     function(...) callback(parse(...)) end)
 end
 -- }}}
 

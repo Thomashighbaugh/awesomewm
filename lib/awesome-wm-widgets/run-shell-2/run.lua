@@ -3,7 +3,7 @@ local wibox = require("wibox")
 local icon = {
     {
         markup = '<span font="awesomewm-font 14" color="#ffffff">a</span>',
-        widget = wibox.widget.textbox,
+        widget = wibox.widget.textbox
     },
     id = 'icon',
     top = 2,

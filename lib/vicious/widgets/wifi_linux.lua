@@ -17,14 +17,13 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local type = type
 local tonumber = tonumber
-local math = { floor = math.floor }
+local math = {floor = math.floor}
 
-local helpers = require"vicious.helpers"
-local spawn = require"vicious.spawn"
+local helpers = require "vicious.helpers"
+local spawn = require "vicious.spawn"
 -- }}}
 
 -- Wifi: provides wireless information for a requested interface using iwconfig
@@ -37,30 +36,30 @@ local function parser(stdout, stderr, exitreason, exitcode)
     -- Output differs from system to system, stats can be separated by
     -- either = or :. Some stats may not be supported by driver.
     -- SSID can have almost anything in it.
-    winfo["{ssid}"] = stdout:match'ESSID[=:]"(.-)"' or "N/A"
+    winfo["{ssid}"] = stdout:match 'ESSID[=:]"(.-)"' or "N/A"
     -- Modes are simple, but also match the "-" in Ad-Hoc
-    winfo["{mode}"] = stdout:match"Mode[=:]([%w%-]+)" or "N/A"
-    winfo["{chan}"] = tonumber(stdout:match"Channel[=:](%d+)" or 0)
+    winfo["{mode}"] = stdout:match "Mode[=:]([%w%-]+)" or "N/A"
+    winfo["{chan}"] = tonumber(stdout:match "Channel[=:](%d+)" or 0)
     winfo["{rate}"] = -- Bitrate without unit (Mb/s)
-        tonumber(stdout:match"Bit Rate[=:]%s?([%d%.]+)" or 0)
+    tonumber(stdout:match "Bit Rate[=:]%s?([%d%.]+)" or 0)
     winfo["{freq}"] = -- Frequency in MHz (is output always in GHz?)
-        tonumber(stdout:match"Frequency[=:]%s?([%d%.]+)" or 0) * 1000
+    tonumber(stdout:match "Frequency[=:]%s?([%d%.]+)" or 0) * 1000
     winfo["{txpw}"] = -- Transmission power in dBm
-        tonumber(stdout:match"Tx%-Power[=:](%d+)" or 0)
+    tonumber(stdout:match "Tx%-Power[=:](%d+)" or 0)
     winfo["{link}"] = -- Link quality over 70
-        tonumber(stdout:match"Link Quality[=:](%d+)" or 0)
+    tonumber(stdout:match "Link Quality[=:](%d+)" or 0)
     winfo["{linp}"] = -- Link quality percentage if quality was available
-        winfo["{link}"] ~= 0 and math.floor(winfo["{link}"]/0.7 + 0.5) or 0
+    winfo["{link}"] ~= 0 and math.floor(winfo["{link}"] / 0.7 + 0.5) or 0
     -- Signal level without unit (dBm), can be negative value
-    winfo["{sign}"] = tonumber(stdout:match"Signal level[=:](%-?%d+)" or 0)
+    winfo["{sign}"] = tonumber(stdout:match "Signal level[=:](%-?%d+)" or 0)
     return winfo
 end
 
 function wifi_linux.async(format, warg, callback)
-    if type(warg) ~= "string" then return callback{} end
+    if type(warg) ~= "string" then return callback {} end
     spawn.easy_async_with_shell(
         "PATH=$PATH:/sbin:/usr/sbin:/usr/local/sbin iwconfig " .. warg,
-        function (...) callback(parser(...)) end)
+        function(...) callback(parser(...)) end)
 end
 -- }}}
 

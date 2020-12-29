@@ -16,9 +16,8 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
-local string = { match = string.match }
+local string = {match = string.match}
 local type = type
 
 local helpers = require("vicious.helpers")
@@ -30,13 +29,13 @@ local thermal_freebsd = {}
 
 -- {{{ Thermal widget type
 function thermal_freebsd.async(format, warg, callback)
-    if not warg then return callback{} end
-    if type(warg) ~= "table" then warg = { warg } end
+    if not warg then return callback {} end
+    if type(warg) ~= "table" then warg = {warg} end
 
     helpers.sysctl_async(warg, function(ret)
         local thermals = {}
 
-        for i=1,#warg do
+        for i = 1, #warg do
             if ret[warg[i]] ~= nil then
                 thermals[i] = string.match(ret[warg[i]], "[%d]+")
             else

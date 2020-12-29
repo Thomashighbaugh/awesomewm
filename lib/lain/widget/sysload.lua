@@ -4,19 +4,17 @@
       * (c) 2013,      Luca CPZ
       * (c) 2010-2012, Peter Hofmann
 
---]]
-
-local helpers     = require("lain.helpers")
-local wibox       = require("wibox")
+--]] local helpers = require("lain.helpers")
+local wibox = require("wibox")
 local open, match = io.open, string.match
 
 -- System load
 -- lain.widget.sysload
 
 local function factory(args)
-    local sysload  = { widget = wibox.widget.textbox() }
-    local args     = args or {}
-    local timeout  = args.timeout or 2
+    local sysload = {widget = wibox.widget.textbox()}
+    local args = args or {}
+    local timeout = args.timeout or 2
     local settings = args.settings or function() end
 
     function sysload.update()

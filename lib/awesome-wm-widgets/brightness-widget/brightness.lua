@@ -3,17 +3,16 @@
 -- Shows the brightness level of the laptop display
 -- More details could be found here:
 -- https://github.com/streetturtle/awesome-wm-widgets/tree/master/brightness-widget
-
 -- @author Pavel Makhov
 -- @copyright 2017-2019 Pavel Makhov
 -------------------------------------------------
-
 local wibox = require("wibox")
 local watch = require("awful.widget.watch")
 local spawn = require("awful.spawn")
 
-local PATH_TO_ICON = "/usr/share/icons/Arc/status/symbolic/display-brightness-symbolic.svg"
-local GET_BRIGHTNESS_CMD = "light -G"   -- "xbacklight -get"
+local PATH_TO_ICON =
+    "/usr/share/icons/Arc/status/symbolic/display-brightness-symbolic.svg"
+local GET_BRIGHTNESS_CMD = "light -G" -- "xbacklight -get"
 local INC_BRIGHTNESS_CMD = "light -A 5" -- "xbacklight -inc 5"
 local DEC_BRIGHTNESS_CMD = "light -U 5" -- "xbacklight -dec 5"
 
@@ -33,11 +32,7 @@ local function worker(args)
     brightness_text:set_font(font)
 
     local brightness_icon = wibox.widget {
-        {
-            image = path_to_icon,
-            resize = false,
-            widget = wibox.widget.imagebox,
-        },
+        {image = path_to_icon, resize = false, widget = wibox.widget.imagebox},
         top = 3,
         widget = wibox.container.margin
     }
@@ -45,15 +40,13 @@ local function worker(args)
     widget = wibox.widget {
         brightness_icon,
         brightness_text,
-        layout = wibox.layout.fixed.horizontal,
+        layout = wibox.layout.fixed.horizontal
     }
 
     local update_widget = function(widget, stdout, _, _, _)
         local brightness_level = tonumber(string.format("%.0f", stdout))
         widget:set_text(" " .. brightness_level .. "%")
-    end,
-
-    widget:connect_signal("button::press", function(_, _, _, button)
+    end, widget:connect_signal("button::press", function(_, _, _, button)
         if (button == 4) then
             spawn(inc_brightness_cmd, false)
         elseif (button == 5) then
@@ -66,6 +59,4 @@ local function worker(args)
     return widget
 end
 
-return setmetatable(widget, { __call = function(_, ...)
-    return worker(...)
-end })
+return setmetatable(widget, {__call = function(_, ...) return worker(...) end})

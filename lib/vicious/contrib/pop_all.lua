@@ -16,7 +16,6 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 ---------------------------------------------------
 -- This widget type depends on luasocket.
 --
@@ -24,26 +23,19 @@
 -- password, i.e.:
 --    {"mail.myhost.com", 110, "John", "132435"}
 ---------------------------------------------------
-
 -- {{{ Grab environment
 local tonumber = tonumber
 local setmetatable = setmetatable
-local sock_avail, socket = pcall(function()
-    return require("socket")
-end)
+local sock_avail, socket = pcall(function() return require("socket") end)
 -- }}}
-
 
 -- POP: provides the count of new messages in a POP3 mailbox
 -- vicious.contrib.pop
 local pop_all = {}
 
-
 -- {{{ POP3 count widget type
 local function worker(format, warg)
-    if not sock_avail or (not warg or #warg ~= 4) then
-        return {"N/A"}
-    end
+    if not sock_avail or (not warg or #warg ~= 4) then return {"N/A"} end
 
     local host, port = warg[1], tonumber(warg[2])
     local user, pass = warg[3], warg[4]
@@ -60,12 +52,10 @@ local function worker(format, warg)
     local response = client:receive("*l")
     client:close()
 
-    if response:find("%+OK") then
-        response = response:match("%+OK (%d+)")
-    end
+    if response:find("%+OK") then response = response:match("%+OK (%d+)") end
 
     return {response}
 end
 -- }}}
 
-return setmetatable(pop_all, { __call = function(_, ...) return worker(...) end })
+return setmetatable(pop_all, {__call = function(_, ...) return worker(...) end})

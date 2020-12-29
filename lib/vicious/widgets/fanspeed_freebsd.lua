@@ -16,7 +16,6 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local tonumber = tonumber
 local type = type
@@ -34,12 +33,12 @@ local fanspeed_freebsd = {}
 -- {{{ fanspeed widget type
 function fanspeed_freebsd.async(format, warg, callback)
     if not warg then return callback({}) end
-    if type(warg) ~= "table" then warg = { warg } end
+    if type(warg) ~= "table" then warg = {warg} end
 
     helpers.sysctl_async(warg, function(ret)
         local fanspeed = {}
 
-        for i=1,#warg do
+        for i = 1, #warg do
             if ret[warg[i]] ~= nil then
                 fanspeed[i] = tonumber(ret[warg[i]])
             else

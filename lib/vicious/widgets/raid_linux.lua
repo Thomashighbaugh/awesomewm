@@ -16,9 +16,8 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
-local io = { open = io.open }
+local io = {open = io.open}
 local string = {
     len = string.len,
     sub = string.sub,
@@ -26,20 +25,16 @@ local string = {
     gmatch = string.gmatch
 }
 
-local helpers = require"vicious.helpers"
+local helpers = require "vicious.helpers"
 -- }}}
 
 -- Initialize function tables
 local mddev = {}
 
 -- {{{ RAID widget type
-return helpers.setcall(function (format, warg)
+return helpers.setcall(function(format, warg)
     if not warg then return end
-    mddev[warg] = {
-        ["found"]    = false,
-        ["active"]   = 0,
-        ["assigned"] = 0
-    }
+    mddev[warg] = {["found"] = false, ["active"] = 0, ["assigned"] = 0}
 
     -- Linux manual page: md(4)
     local f = io.open("/proc/mdstat")

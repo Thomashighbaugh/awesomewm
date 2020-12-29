@@ -17,36 +17,38 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
-local io = { lines = io.lines }
-local os = { time = os.time, date = os.date }
-local helpers = require"vicious.helpers"
+local io = {lines = io.lines}
+local os = {time = os.time, date = os.date}
+local helpers = require "vicious.helpers"
 -- }}}
 
 -- {{{ OrgMode widget type
-return helpers.setcall(function (format, warg)
+return helpers.setcall(function(format, warg)
     if not warg then return end
 
     -- Compute delays
-    local today  = os.time{ year = os.date("%Y"), month = os.date("%m"),
-    day = os.date("%d") }
-    local soon   = today + 24*3600*3  -- 3 days ahead is close
-    local future = today + 24*3600*7  -- 7 days ahead is maximum
+    local today = os.time {
+        year = os.date("%Y"),
+        month = os.date("%m"),
+        day = os.date("%d")
+    }
+    local soon = today + 24 * 3600 * 3 -- 3 days ahead is close
+    local future = today + 24 * 3600 * 7 -- 7 days ahead is maximum
 
     -- Initialize counters
-    local count = { past = 0, today = 0, soon = 0, future = 0 }
+    local count = {past = 0, today = 0, soon = 0, future = 0}
 
     -- Get data from agenda files
-    for i = 1,#warg do
+    for i = 1, #warg do
         for line in io.lines(warg[i]) do
-            local scheduled = line:find"SCHEDULED:"
-            local deadline = line:find"DEADLINE:"
-            local closed = line:find"CLOSED:"
-            local b, _, y, m, d = line:find"(%d%d%d%d)-(%d%d)-(%d%d)"
+            local scheduled = line:find "SCHEDULED:"
+            local deadline = line:find "DEADLINE:"
+            local closed = line:find "CLOSED:"
+            local b, _, y, m, d = line:find "(%d%d%d%d)-(%d%d)-(%d%d)"
 
             if (scheduled or deadline) and not closed and b then
-                local t = os.time{ year = y, month = m, day = d }
+                local t = os.time {year = y, month = m, day = d}
                 if t < today then
                     count.past = count.past + 1
                 elseif t == today then
@@ -60,6 +62,6 @@ return helpers.setcall(function (format, warg)
         end
     end
 
-    return { count.past, count.today, count.soon, count.future }
+    return {count.past, count.today, count.soon, count.future}
 end)
 -- }}}

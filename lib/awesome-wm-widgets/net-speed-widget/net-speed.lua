@@ -3,17 +3,16 @@
 -- Shows current upload/download speed
 -- More details could be found here:
 -- https://github.com/streetturtle/awesome-wm-widgets/tree/master/net-speed-widget
-
 -- @author Pavel Makhov
 -- @copyright 2020 Pavel Makhov
 -------------------------------------------------
-
 local naughty = require("naughty")
 local watch = require("awful.widget.watch")
 local wibox = require("wibox")
 
 local HOME_DIR = os.getenv("HOME")
-local WIDGET_DIR = HOME_DIR .. '/.config/awesome/awesome-wm-widgets/net-speed-widget/'
+local WIDGET_DIR = HOME_DIR ..
+                       '/.config/awesome/awesome-wm-widgets/net-speed-widget/'
 local ICONS_DIR = WIDGET_DIR .. 'icons/'
 
 local function show_warning(message)
@@ -31,14 +30,8 @@ local net_speed_widget = wibox.widget {
         align = 'right',
         widget = wibox.widget.textbox
     },
-    {
-        image = ICONS_DIR .. 'down.svg',
-        widget = wibox.widget.imagebox
-    },
-    {
-        image =  ICONS_DIR .. 'up.svg',
-        widget = wibox.widget.imagebox
-    },
+    {image = ICONS_DIR .. 'down.svg', widget = wibox.widget.imagebox},
+    {image = ICONS_DIR .. 'up.svg', widget = wibox.widget.imagebox},
     {
         id = 'tx_speed',
         forced_width = 55,
@@ -65,13 +58,13 @@ local function convert_to_h(bytes)
         speed = bits
         dim = 'b/s'
     elseif bits < 1000000 then
-        speed = bits/1000
+        speed = bits / 1000
         dim = 'kb/s'
     elseif bits < 1000000000 then
-        speed = bits/1000000
+        speed = bits / 1000000
         dim = 'mb/s'
     elseif bits < 1000000000000 then
-        speed = bits/1000000000
+        speed = bits / 1000000000
         dim = 'gb/s'
     else
         speed = tonumber(bits)
@@ -84,7 +77,7 @@ local function split(string_to_split, separator)
     if separator == nil then separator = "%s" end
     local t = {}
 
-    for str in string.gmatch(string_to_split, "([^".. separator .."]+)") do
+    for str in string.gmatch(string_to_split, "([^" .. separator .. "]+)") do
         table.insert(t, str)
     end
 
@@ -105,8 +98,8 @@ local function worker(args)
         local cur_tx = 0
 
         for i, v in ipairs(cur_vals) do
-            if i%2 == 1 then cur_rx = cur_rx + cur_vals[i] end
-            if i%2 == 0 then cur_tx = cur_tx + cur_vals[i] end
+            if i % 2 == 1 then cur_rx = cur_rx + cur_vals[i] end
+            if i % 2 == 0 then cur_tx = cur_tx + cur_vals[i] end
         end
 
         local speed_rx = cur_rx - prev_rx
@@ -119,10 +112,12 @@ local function worker(args)
         prev_tx = cur_tx
     end
 
-    watch(string.format([[bash -c "cat /sys/class/net/%s/statistics/*_bytes"]], interface), 1, update_widget, net_speed_widget)
+    watch(string.format([[bash -c "cat /sys/class/net/%s/statistics/*_bytes"]],
+                        interface), 1, update_widget, net_speed_widget)
 
     return net_speed_widget
 
 end
 
-return setmetatable(net_speed_widget, { __call = function(_, ...) return worker(...) end })
+return setmetatable(net_speed_widget,
+                    {__call = function(_, ...) return worker(...) end})

@@ -3,11 +3,9 @@
 -- Shows the current volume level
 -- More details could be found here:
 -- https://github.com/streetturtle/awesome-wm-widgets/tree/master/volumearc-widget
-
 -- @author Pavel Makhov
 -- @copyright 2018 Pavel Makhov
 -------------------------------------------------
-
 local awful = require("awful")
 local beautiful = require("beautiful")
 local spawn = require("awful.spawn")
@@ -19,7 +17,8 @@ local INC_VOLUME_CMD = 'amixer -q -D pulse sset Master 5%+'
 local DEC_VOLUME_CMD = 'amixer -q -D pulse sset Master 5%-'
 local TOG_VOLUME_CMD = 'amixer -q -D pulse sset Master toggle'
 
-local PATH_TO_ICON = "/usr/share/icons/Arc/status/symbolic/audio-volume-muted-symbolic.svg"
+local PATH_TO_ICON =
+    "/usr/share/icons/Arc/status/symbolic/audio-volume-muted-symbolic.svg"
 
 local widget = {}
 
@@ -43,7 +42,7 @@ local function worker(args)
         id = "icon",
         image = path_to_icon,
         resize = true,
-        widget = wibox.widget.imagebox,
+        widget = wibox.widget.imagebox
     }
 
     local volumearc = wibox.widget {
@@ -59,23 +58,25 @@ local function worker(args)
     }
 
     local update_graphic = function(widget, stdout, _, _, _)
-        local mute = string.match(stdout, "%[(o%D%D?)%]")   -- \[(o\D\D?)\] - [on] or [off]
+        local mute = string.match(stdout, "%[(o%D%D?)%]") -- \[(o\D\D?)\] - [on] or [off]
         local volume = string.match(stdout, "(%d?%d?%d)%%") -- (\d?\d?\d)\%)
         volume = tonumber(string.format("% 3d", volume))
 
         widget.value = volume / 100;
-        widget.colors = mute == 'off'
-                and { mute_color }
-                or { main_color }
+        widget.colors = mute == 'off' and {mute_color} or {main_color}
     end
 
-    local button_press = args.button_press or  function(_, _, _, button)
-        if (button == 4) then awful.spawn(inc_volume_cmd, false)
-        elseif (button == 5) then awful.spawn(dec_volume_cmd, false)
-        elseif (button == 1) then awful.spawn(tog_volume_cmd, false)
+    local button_press = args.button_press or function(_, _, _, button)
+        if (button == 4) then
+            awful.spawn(inc_volume_cmd, false)
+        elseif (button == 5) then
+            awful.spawn(dec_volume_cmd, false)
+        elseif (button == 1) then
+            awful.spawn(tog_volume_cmd, false)
         end
 
-        spawn.easy_async(get_volume_cmd, function(stdout, stderr, exitreason, exitcode)
+        spawn.easy_async(get_volume_cmd,
+                         function(stdout, stderr, exitreason, exitcode)
             update_graphic(volumearc, stdout, stderr, exitreason, exitcode)
         end)
     end
@@ -86,4 +87,4 @@ local function worker(args)
     return volumearc
 end
 
-return setmetatable(widget, { __call = function(_, ...) return worker(...) end })
+return setmetatable(widget, {__call = function(_, ...) return worker(...) end})

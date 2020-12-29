@@ -16,16 +16,15 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local tonumber = tonumber
-local io = { lines = io.lines }
-local string = { gmatch = string.gmatch }
-local helpers = require"vicious.helpers"
+local io = {lines = io.lines}
+local string = {gmatch = string.gmatch}
+local helpers = require "vicious.helpers"
 -- }}}
 
 -- {{{ CPU Information widget type
-return helpers.setcall(function ()
+return helpers.setcall(function()
     local id = nil
 
     local cpu_info = {} -- Get CPU info
@@ -35,12 +34,12 @@ return helpers.setcall(function ()
                 id = v
             elseif k == "cpu MHz\t" or k == "cpu MHz" then
                 local speed = tonumber(v)
-                cpu_info["{cpu"..id.." mhz}"] = speed
-                cpu_info["{cpu"..id.." ghz}"] = speed / 1000
+                cpu_info["{cpu" .. id .. " mhz}"] = speed
+                cpu_info["{cpu" .. id .. " ghz}"] = speed / 1000
             elseif k == "cache size" then
                 local cache = tonumber(v)
-                cpu_info["{cpu"..id.." kb}"] = cache
-                cpu_info["{cpu"..id.." mb}"] = cache / 1024
+                cpu_info["{cpu" .. id .. " kb}"] = cache
+                cpu_info["{cpu" .. id .. " mb}"] = cache / 1024
             end
         end
     end

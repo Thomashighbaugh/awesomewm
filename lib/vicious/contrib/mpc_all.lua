@@ -18,20 +18,17 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local type = type
-local io = { popen = io.popen }
+local io = {popen = io.popen}
 local setmetatable = setmetatable
-local string = { find = string.find }
+local string = {find = string.find}
 local helpers = require("vicious.helpers")
 -- }}}
-
 
 -- Mpc: provides the currently playing song in MPD
 -- vicious.contrib.mpc
 local mpc_all = {}
-
 
 -- {{{ MPC widget type
 local function worker(format, warg)
@@ -42,8 +39,7 @@ local function worker(format, warg)
 
     -- Not installed,
     if np == nil or --  off         or                 stoppped.
-       (string.find(np, "MPD_HOST") or string.find(np, "volume:"))
-    then
+    (string.find(np, "MPD_HOST") or string.find(np, "volume:")) then
         return {"Stopped"}
     end
 
@@ -60,4 +56,4 @@ local function worker(format, warg)
 end
 -- }}}
 
-return setmetatable(mpc_all, { __call = function(_, ...) return worker(...) end })
+return setmetatable(mpc_all, {__call = function(_, ...) return worker(...) end})

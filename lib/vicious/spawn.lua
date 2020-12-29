@@ -15,17 +15,16 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 local status, awful = pcall(require, "awful")
 if status then
     local spawn = awful.spawn
     function spawn.with_line_callback_with_shell(cmd, callbacks)
-        spawn.with_line_callback({ awful.util.shell, "-c", cmd }, callbacks)
+        spawn.with_line_callback({awful.util.shell, "-c", cmd}, callbacks)
     end
     return spawn
 end
 
-local io = { popen = io.popen }
+local io = {popen = io.popen}
 
 -- In case the Awesome library is not available,
 -- fall back to this synchronous, handicapped API.
@@ -57,7 +56,7 @@ function spawn.with_line_callback_with_shell(cmd, callbacks)
     end
     if callbacks.output_done then callbacks.output_done() end
 
-    local success, reason, code = stdout:close()    -- this requires Lua 5.2
+    local success, reason, code = stdout:close() -- this requires Lua 5.2
     if callbacks.exit then callbacks.exit(reason, code) end
     return success
 end
@@ -75,7 +74,7 @@ end
 function spawn.easy_async_with_shell(cmd, callback)
     local out_stream = io.popen(cmd)
     local stdout = out_stream:read("*all")
-    local success, reason, code = out_stream:close()    -- requiring Lua 5.2
+    local success, reason, code = out_stream:close() -- requiring Lua 5.2
     callback(stdout, "", reason, code)
     return success
 end

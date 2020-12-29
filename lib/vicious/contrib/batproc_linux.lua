@@ -16,15 +16,11 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
 local tonumber = tonumber
-local io = { open = io.open }
+local io = {open = io.open}
 local setmetatable = setmetatable
-local math = {
-    min = math.min,
-    floor = math.floor
-}
+local math = {min = math.min, floor = math.floor}
 local string = {
     find = string.find,
     match = string.match,
@@ -32,11 +28,9 @@ local string = {
 }
 -- }}}
 
-
 -- Batproc: provides state, charge, and remaining time for a requested battery using procfs
 -- vicious.contrib.batproc
 local batproc_linux = {}
-
 
 -- {{{ Battery widget type
 local function worker(format, batid)
@@ -49,7 +43,7 @@ local function worker(format, batid)
     }
 
     -- Get /proc/acpi/battery info
-    local f = io.open("/proc/acpi/battery/"..batid.."/info")
+    local f = io.open("/proc/acpi/battery/" .. batid .. "/info")
     -- Handler for incompetent users
     if not f then return {battery_state["unknown"], 0, "N/A"} end
     local infofile = f:read("*all")
@@ -63,9 +57,8 @@ local function worker(format, batid)
     -- Get capacity information
     local capacity = string.match(infofile, "last full capacity:[%s]+([%d]+).*")
 
-
     -- Get /proc/acpi/battery state
-    local f = io.open("/proc/acpi/battery/"..batid.."/state")
+    local f = io.open("/proc/acpi/battery/" .. batid .. "/state")
     local statefile = f:read("*all")
     f:close()
 
@@ -75,8 +68,8 @@ local function worker(format, batid)
 
     -- Get charge information
     local rate = string.match(statefile, "present rate:[%s]+([%d]+).*")
-    local remaining = string.match(statefile, "remaining capacity:[%s]+([%d]+).*")
-
+    local remaining = string.match(statefile,
+                                   "remaining capacity:[%s]+([%d]+).*")
 
     -- Calculate percentage (but work around broken BAT/ACPI implementations)
     local percent = math.min(math.floor(remaining / capacity * 100), 100)
@@ -90,11 +83,12 @@ local function worker(format, batid)
         return {state, percent, "N/A"}
     end
     local hoursleft = math.floor(timeleft)
-    local minutesleft = math.floor((timeleft - hoursleft) * 60 )
+    local minutesleft = math.floor((timeleft - hoursleft) * 60)
     local time = string.format("%02d:%02d", hoursleft, minutesleft)
 
     return {state, percent, time}
 end
 -- }}}
 
-return setmetatable(batproc_linux, { __call = function(_, ...) return worker(...) end })
+return setmetatable(batproc_linux,
+                    {__call = function(_, ...) return worker(...) end})

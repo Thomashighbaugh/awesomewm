@@ -4,15 +4,13 @@
       * (c) 2013, Luca CPZ
       * (c) 2013, Rman
 
---]]
-
-local helpers  = require("lain.helpers")
-local awful    = require("awful")
-local naughty  = require("naughty")
-local wibox    = require("wibox")
-local math     = math
-local string   = string
-local type     = type
+--]] local helpers = require("lain.helpers")
+local awful = require("awful")
+local naughty = require("naughty")
+local wibox = require("wibox")
+local math = math
+local string = string
+local type = type
 local tonumber = tonumber
 
 -- ALSA volume bar
@@ -20,61 +18,60 @@ local tonumber = tonumber
 
 local function factory(args)
     local alsabar = {
-        colors = {
-            background = "#000000",
-            mute       = "#EB8F8F",
-            unmute     = "#A4CE8A"
-        },
+        colors = {background = "#000000", mute = "#EB8F8F", unmute = "#A4CE8A"},
 
         _current_level = 0,
-        _playback      = "off"
+        _playback = "off"
     }
 
-    local args       = args or {}
-    local timeout    = args.timeout or 5
-    local settings   = args.settings or function() end
-    local width      = args.width or 63
-    local height     = args.height or 1
-    local margins    = args.margins or 1
-    local paddings   = args.paddings or 1
-    local ticks      = args.ticks or false
+    local args = args or {}
+    local timeout = args.timeout or 5
+    local settings = args.settings or function() end
+    local width = args.width or 63
+    local height = args.height or 1
+    local margins = args.margins or 1
+    local paddings = args.paddings or 1
+    local ticks = args.ticks or false
     local ticks_size = args.ticks_size or 7
-    local tick       = args.tick or "|"
-    local tick_pre   = args.tick_pre or "["
-    local tick_post  = args.tick_post or "]"
-    local tick_none  = args.tick_none or " "
+    local tick = args.tick or "|"
+    local tick_pre = args.tick_pre or "["
+    local tick_post = args.tick_post or "]"
+    local tick_none = args.tick_none or " "
 
-    alsabar.cmd                 = args.cmd or "amixer"
-    alsabar.channel             = args.channel or "Master"
-    alsabar.togglechannel       = args.togglechannel
-    alsabar.colors              = args.colors or alsabar.colors
-    alsabar.followtag           = args.followtag or false
+    alsabar.cmd = args.cmd or "amixer"
+    alsabar.channel = args.channel or "Master"
+    alsabar.togglechannel = args.togglechannel
+    alsabar.colors = args.colors or alsabar.colors
+    alsabar.followtag = args.followtag or false
     alsabar.notification_preset = args.notification_preset
 
     if not alsabar.notification_preset then
-        alsabar.notification_preset = { font = "Monospace 10" }
+        alsabar.notification_preset = {font = "Monospace 10"}
     end
 
     local format_cmd = string.format("%s get %s", alsabar.cmd, alsabar.channel)
 
     if alsabar.togglechannel then
-        format_cmd = { awful.util.shell, "-c", string.format("%s get %s; %s get %s",
-        alsabar.cmd, alsabar.channel, alsabar.cmd, alsabar.togglechannel) }
+        format_cmd = {
+            awful.util.shell, "-c",
+            string.format("%s get %s; %s get %s", alsabar.cmd, alsabar.channel,
+                          alsabar.cmd, alsabar.togglechannel)
+        }
     end
 
     alsabar.bar = wibox.widget {
-        color            = alsabar.colors.unmute,
+        color = alsabar.colors.unmute,
         background_color = alsabar.colors.background,
-        forced_height    = height,
-        forced_width     = width,
-        margins          = margins,
-        paddings         = margins,
-        ticks            = ticks,
-        ticks_size       = ticks_size,
-        widget           = wibox.widget.progressbar
+        forced_height = height,
+        forced_width = width,
+        margins = margins,
+        paddings = margins,
+        ticks = ticks,
+        ticks_size = ticks_size,
+        widget = wibox.widget.progressbar
     }
 
-    alsabar.tooltip = awful.tooltip({ objects = { alsabar.bar } })
+    alsabar.tooltip = awful.tooltip({objects = {alsabar.bar}})
 
     function alsabar.update(callback)
         helpers.async(format_cmd, function(mixer)
@@ -91,12 +88,13 @@ local function factory(args)
                     alsabar.bar.color = alsabar.colors.mute
                 else
                     alsabar._playback = "on"
-                    alsabar.tooltip:set_text(string.format("%s: %s", alsabar.channel, vol))
+                    alsabar.tooltip:set_text(
+                        string.format("%s: %s", alsabar.channel, vol))
                     alsabar.bar.color = alsabar.colors.unmute
                 end
 
                 volume_now = {
-                    level  = alsabar._current_level,
+                    level = alsabar._current_level,
                     status = alsabar._playback
                 }
 
@@ -111,7 +109,8 @@ local function factory(args)
         alsabar.update(function()
             local preset = alsabar.notification_preset
 
-            preset.title = string.format("%s - %s%%", alsabar.channel, alsabar._current_level)
+            preset.title = string.format("%s - %s%%", alsabar.channel,
+                                         alsabar._current_level)
 
             if alsabar._playback == "off" then
                 preset.title = preset.title .. " Muted"
@@ -130,35 +129,39 @@ local function factory(args)
                     else
                         tot = wib.height
                     end
-                -- fallback: default horizontal wibox height
+                    -- fallback: default horizontal wibox height
                 else
                     tot = 20
                 end
             end
 
             int = math.modf((alsabar._current_level / 100) * tot)
-            preset.text = string.format(
-                "%s%s%s%s",
-                tick_pre,
-                string.rep(tick, int),
-                string.rep(tick_none, tot - int),
-                tick_post
-            )
+            preset.text = string.format("%s%s%s%s", tick_pre,
+                                        string.rep(tick, int),
+                                        string.rep(tick_none, tot - int),
+                                        tick_post)
 
-            if alsabar.followtag then preset.screen = awful.screen.focused() end
+            if alsabar.followtag then
+                preset.screen = awful.screen.focused()
+            end
 
             if not alsabar.notification then
                 alsabar.notification = naughty.notify {
-                    preset  = preset,
-                    destroy = function() alsabar.notification = nil end
+                    preset = preset,
+                    destroy = function()
+                        alsabar.notification = nil
+                    end
                 }
             else
-                naughty.replace_text(alsabar.notification, preset.title, preset.text)
+                naughty.replace_text(alsabar.notification, preset.title,
+                                     preset.text)
             end
         end)
     end
 
-    helpers.newtimer(string.format("alsabar-%s-%s", alsabar.cmd, alsabar.channel), timeout, alsabar.update)
+    helpers.newtimer(
+        string.format("alsabar-%s-%s", alsabar.cmd, alsabar.channel), timeout,
+        alsabar.update)
 
     return alsabar
 end

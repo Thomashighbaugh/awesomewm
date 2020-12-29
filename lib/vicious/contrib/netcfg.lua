@@ -17,18 +17,15 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-
 -- {{{ Grab environment
-local io = { popen = io.popen }
+local io = {popen = io.popen}
 local setmetatable = setmetatable
-local table = { insert = table.insert }
+local table = {insert = table.insert}
 -- }}}
-
 
 -- Netcfg: provides active netcfg network profiles
 -- vicious.contrib.netcfg
 local netcfg = {}
-
 
 -- {{{ Netcfg widget type
 local function worker(format)
@@ -37,9 +34,7 @@ local function worker(format)
 
     local f = io.popen("ls -1 /var/run/network/profiles")
     for line in f:lines() do
-        if line ~= nil then
-            table.insert(profiles, line)
-        end
+        if line ~= nil then table.insert(profiles, line) end
     end
     f:close()
 
@@ -47,4 +42,4 @@ local function worker(format)
 end
 -- }}}
 
-return setmetatable(netcfg, { __call = function(_, ...) return worker(...) end })
+return setmetatable(netcfg, {__call = function(_, ...) return worker(...) end})

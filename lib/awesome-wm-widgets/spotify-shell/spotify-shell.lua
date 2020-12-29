@@ -3,11 +3,9 @@
 -- Simplifies interaction with Spotify for Linux
 -- More details could be found here:
 -- https://github.com/streetturtle/awesome-wm-widgets/tree/master/spotify-shell
-
 -- @author Pavel Makhov
 -- @copyright 2018 Pavel Makhov
 -------------------------------------------------
-
 local awful = require("awful")
 local gfs = require("gears.filesystem")
 local wibox = require("wibox")
@@ -30,23 +28,15 @@ local w = wibox {
     end
 }
 
-w:setup {
+w:setup{
     {
-        {
-            image = ICON,
-            widget = wibox.widget.imagebox,
-            resize = false
-        },
+        {image = ICON, widget = wibox.widget.imagebox, resize = false},
         id = 'icon',
         top = 9,
         left = 10,
         layout = wibox.container.margin
     },
-    {
-        layout = wibox.container.margin,
-        left = 10,
-        spotify_shell,
-    },
+    {layout = wibox.container.margin, left = 10, spotify_shell},
     id = 'left',
     layout = wibox.layout.fixed.horizontal
 }
@@ -54,8 +44,9 @@ w:setup {
 local function launch()
     w.visible = true
 
-    awful.placement.top(w, { margins = {top = 40}, parent = awful.screen.focused()})
-    awful.prompt.run{
+    awful.placement.top(w,
+                        {margins = {top = 40}, parent = awful.screen.focused()})
+    awful.prompt.run {
         prompt = "<b>Spotify Shell</b>: ",
         bg_cursor = '#84bd00',
         textbox = spotify_shell.widget,
@@ -64,12 +55,8 @@ local function launch()
             if not input_text or #input_text == 0 then return end
             awful.spawn("sp " .. input_text)
         end,
-        done_callback = function()
-            w.visible = false
-        end
+        done_callback = function() w.visible = false end
     }
 end
 
-return {
-    launch = launch
-}
+return {launch = launch}

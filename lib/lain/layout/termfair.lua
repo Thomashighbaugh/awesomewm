@@ -6,14 +6,12 @@
       * (c) 2010,      Nicolas Estibals
       * (c) 2010-2012, Peter Hofmann
 
---]]
-
-local math     = math
-local screen   = screen
+--]] local math = math
+local screen = screen
 local tonumber = tonumber
 
-local termfair  = { name = "termfair" }
-termfair.center = { name = "centerfair" }
+local termfair = {name = "termfair"}
+termfair.center = {name = "centerfair"}
 
 local function do_fair(p, orientation)
     local t = p.tag or screen[p.screen].selected_tag
@@ -43,28 +41,26 @@ local function do_fair(p, orientation)
 
         -- How many vertical columns? Read from nmaster on the tag.
         local num_x = tonumber(termfair.nmaster) or t.master_count
-        local ncol  = tonumber(termfair.ncol) or t.column_count
+        local ncol = tonumber(termfair.ncol) or t.column_count
 
         if num_x <= 2 then num_x = 2 end
-        if ncol  <= 1 then ncol  = 1 end
-        local width = math.floor(wa.width/num_x)
+        if ncol <= 1 then ncol = 1 end
+        local width = math.floor(wa.width / num_x)
 
-        local num_y     = math.max(math.ceil(#cls / num_x), ncol)
-        local height    = math.floor(wa.height/num_y)
+        local num_y = math.max(math.ceil(#cls / num_x), ncol)
+        local height = math.floor(wa.height / num_y)
         local cur_num_x = num_x
-        local at_x      = 0
-        local at_y      = 0
+        local at_x = 0
+        local at_y = 0
 
         local remaining_clients = #cls
 
         -- We start the first row. Left-align by limiting the number of
         -- available slots.
-        if remaining_clients < num_x then
-            cur_num_x = remaining_clients
-        end
+        if remaining_clients < num_x then cur_num_x = remaining_clients end
 
         -- Iterate in reversed order.
-        for i = #cls,1,-1 do
+        for i = #cls, 1, -1 do
             -- Get x and y position.
             local c = cls[i]
             local this_x = cur_num_x - at_x - 1
@@ -73,21 +69,21 @@ local function do_fair(p, orientation)
             -- Calculate geometry.
             local g = {}
             if this_x == (num_x - 1) then
-                g.width = wa.width - (num_x - 1)*width
+                g.width = wa.width - (num_x - 1) * width
             else
                 g.width = width
             end
 
             if this_y == (num_y - 1) then
-                g.height = wa.height - (num_y - 1)*height
+                g.height = wa.height - (num_y - 1) * height
             else
                 g.height = height
             end
 
-            g.x = wa.x + this_x*width
-            g.y = wa.y + this_y*height
+            g.x = wa.x + this_x * width
+            g.y = wa.y + this_y * height
 
-            if g.width  < 1 then g.width  = 1 end
+            if g.width < 1 then g.width = 1 end
             if g.height < 1 then g.height = 1 end
 
             p.geometries[c] = g
@@ -130,19 +126,19 @@ local function do_fair(p, orientation)
 
         -- How many vertical columns? Read from nmaster on the tag.
         local num_x = tonumber(termfair.center.nmaster) or t.master_count
-        local ncol  = tonumber(termfair.center.ncol) or t.column_count
+        local ncol = tonumber(termfair.center.ncol) or t.column_count
 
         if num_x <= 2 then num_x = 2 end
-        if ncol  <= 1 then ncol  = 1 end
+        if ncol <= 1 then ncol = 1 end
 
         local width = math.floor(wa.width / num_x)
 
         if #cls < num_x then
             -- Less clients than the number of columns, let's center it!
-            local offset_x = wa.x + (wa.width - #cls*width) / 2
+            local offset_x = wa.x + (wa.width - #cls * width) / 2
             for i = 1, #cls do
-                local g = { y = wa.y }
-                g.width  = width
+                local g = {y = wa.y}
+                g.width = width
                 g.height = wa.height
                 if g.width < 1 then g.width = 1 end
                 if g.height < 1 then g.height = 1 end
@@ -153,7 +149,7 @@ local function do_fair(p, orientation)
             -- More clients than the number of columns, let's arrange it!
             -- Master client deserves a special treatement
             local g = {}
-            g.width = wa.width - (num_x - 1)*width
+            g.width = wa.width - (num_x - 1) * width
             g.height = wa.height
             if g.width < 1 then g.width = 1 end
             if g.height < 1 then g.height = 1 end
@@ -165,30 +161,30 @@ local function do_fair(p, orientation)
 
             -- Compute distribution of clients among columns
             local num_y = {}
-            local remaining_clients = #cls-1
-            local ncol_min = math.ceil(remaining_clients/(num_x-1))
+            local remaining_clients = #cls - 1
+            local ncol_min = math.ceil(remaining_clients / (num_x - 1))
 
             if ncol >= ncol_min then
-                for i = (num_x-1), 1, -1 do
-                    if (remaining_clients-i+1) < ncol then
-                        num_y[i] = remaining_clients-i + 1
+                for i = (num_x - 1), 1, -1 do
+                    if (remaining_clients - i + 1) < ncol then
+                        num_y[i] = remaining_clients - i + 1
                     else
                         num_y[i] = ncol
                     end
                     remaining_clients = remaining_clients - num_y[i]
                 end
             else
-                local rem = remaining_clients % (num_x-1)
+                local rem = remaining_clients % (num_x - 1)
                 if rem == 0 then
-                    for i = 1, num_x-1 do
+                    for i = 1, num_x - 1 do
                         num_y[i] = ncol_min
                     end
                 else
-                    for i = 1, num_x-1 do
+                    for i = 1, num_x - 1 do
                         num_y[i] = ncol_min - 1
                     end
-                    for i = 0, rem-1 do
-                        num_y[num_x-1-i] = num_y[num_x-1-i] + 1
+                    for i = 0, rem - 1 do
+                        num_y[num_x - 1 - i] = num_y[num_x - 1 - i] + 1
                     end
                 end
             end
@@ -196,10 +192,10 @@ local function do_fair(p, orientation)
             -- Compute geometry of the other clients
             local nclient = 2 -- we start with the 2nd client
             local wx = g.x + g.width
-            for i = 1, (num_x-1) do
+            for i = 1, (num_x - 1) do
                 local height = math.floor(wa.height / num_y[i])
                 local wy = wa.y
-                for j = 0, (num_y[i]-2) do
+                for j = 0, (num_y[i] - 2) do
                     local g = {}
                     g.x = wx
                     g.y = wy
@@ -214,7 +210,7 @@ local function do_fair(p, orientation)
                 local g = {}
                 g.x = wx
                 g.y = wy
-                g.height = wa.height - (num_y[i] - 1)*height
+                g.height = wa.height - (num_y[i] - 1) * height
                 g.width = width
                 if g.width < 1 then g.width = 1 end
                 if g.height < 1 then g.height = 1 end
@@ -226,12 +222,8 @@ local function do_fair(p, orientation)
     end
 end
 
-function termfair.center.arrange(p)
-    return do_fair(p, "center")
-end
+function termfair.center.arrange(p) return do_fair(p, "center") end
 
-function termfair.arrange(p)
-    return do_fair(p, "west")
-end
+function termfair.arrange(p) return do_fair(p, "west") end
 
 return termfair

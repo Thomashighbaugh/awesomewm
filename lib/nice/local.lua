@@ -1,8 +1,7 @@
-
-local nice = require( "lib.nice" )
-local beautiful = require( "beautiful" )
+local nice = require("lib.nice")
+local beautiful = require("beautiful")
 nice {
-    
+
     -- Swap the designated buttons for resizing, and opening the context menu
     mb_resize = nice.MB_MIDDLE,
     mb_contextmenu = nice.MB_RIGHT,
@@ -16,11 +15,11 @@ nice {
     button_size = 15,
     titlebar_height = 32,
     titlebar_items = {
-        left = { "floating", },
+        left = {"floating"},
         middle = "title",
-        right = { "minimize", "maximize",  "close", },
+        right = {"minimize", "maximize", "close"}
     },
-    
+
     context_menu_theme = {
         bg_focus = beautiful.background,
         bg_normal = beautiful.xcolor0,
@@ -30,7 +29,7 @@ nice {
         fg_normal = beautiful.xcolor15,
         font = "agave Nerd Font Bold 11",
         height = 27.5,
-        width = 250,
+        width = 250
     },
     tooltip_messages = {
         close = "close",
@@ -42,8 +41,8 @@ nice {
         ontop_active = "don't keep above other windows",
         ontop_inactive = "keep above other windows",
         sticky_active = "disable sticky mode",
-        sticky_inactive = "enable sticky mode",
+        sticky_inactive = "enable sticky mode"
     }
-    
+
 }
 return nice
