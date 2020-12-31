@@ -15,8 +15,8 @@ local empty_notifbox = wibox.widget {
             {
                 image = beautiful.notification_none_icon,
                 resize = true,
-                forced_height = dpi(55),
-                forced_width = dpi(55),
+                forced_height = dpi(72),
+                forced_width = dpi(72),
                 widget = wibox.widget.imagebox
             },
             nil
@@ -29,7 +29,7 @@ local empty_notifbox = wibox.widget {
             widget = wibox.widget.textbox
         }
     },
-    margins = dpi(10),
+    margins = dpi(1),
     widget = wibox.container.margin
 
 }

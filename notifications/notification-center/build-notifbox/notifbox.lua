@@ -57,8 +57,8 @@ notifbox.create = function(icon, title, message, width)
                         },
                         layout = wibox.layout.fixed.vertical
                     },
-                    expand = "none",
-                    layout = wibox.layout.align.vertical
+                    expand = true,
+                    layout = wibox.layout.flex.vertical
                 },
                 left = dpi(20),
                 bottom = dpi(0),

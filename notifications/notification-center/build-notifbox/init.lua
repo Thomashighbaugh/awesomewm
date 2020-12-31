@@ -16,7 +16,7 @@ local widget_icon_dir = config_dir .. 'notifications/notification-center/icons/'
 
 -- Application Logic
 
-local width = dpi(580)
+local width = dpi(1200)
 
 -- Boolean variable to remove empty message
 local remove_notifbox_empty = true

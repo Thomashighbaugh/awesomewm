@@ -30,7 +30,7 @@ awesome.connect_signal("ears::charger", function(plugged)
             text = "Charging",
             image = icons.battery_charging
         })
-        display = true
+        display = false
     end
     
 end)

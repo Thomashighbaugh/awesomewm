@@ -15,7 +15,7 @@ local pad = helpers.pad
 -- Poster (image)
 ------------------------------------------------------------
 local box_image = wibox.widget {
-    shape = helpers.rrect(dpi(10)),
+    shape = helpers.rrect(dpi(18)),
     widget = wibox.widget.imagebox
 }
 
@@ -27,29 +27,11 @@ local image_cont = wibox.widget {
 
 box_image:set_image(gears.filesystem.get_configuration_dir() .. "images/4.jpg")
 
-------------------------------------------------------------
 
--- Text lines
-------------------------------------------------------------
-local mpd_title = wibox.widget {
-    markup = "<span foreground='" .. beautiful.xcolor6 ..
-    "'><b>AWESOME.WM</b></span>",
-    widget = wibox.widget.textbox
-}
-local mpd_artist = wibox.widget {
-    markup = "<span foreground='" .. beautiful.xcolor4 ..
-    "'><b>E.T.L</b></span>",
-    widget = wibox.widget.textbox
-}
-
-mpd_title:set_font(beautiful.font)
-mpd_title:set_valign("top")
-mpd_artist:set_font("FuraCode Nerd Font Mono Bold 14")
-mpd_artist:set_valign("top")
 
 local text_area = wibox.layout.fixed.vertical()
-text_area:add(wibox.container.constraint(mpd_artist, "exact", nil, dpi(26)))
-text_area:add(wibox.container.constraint(mpd_title, "exact", nil, dpi(26)))
+text_area:add(wibox.container.constraint(mpd_artist, "exact", nil, dpi(2)))
+text_area:add(wibox.container.constraint(mpd_title, "exact", nil, dpi(2)))
 ------------------------------------------------------------
 
 -- Bring it all together
@@ -60,7 +42,7 @@ align_vertical:set_middle(text_area)
 align_vertical:set_bottom(nil)
 local area = wibox.layout.fixed.horizontal()
 area:add(image_cont)
-area:add(wibox.container.margin(align_vertical, dpi(30), dpi(20), dpi(25), 0))
+area:add(wibox.container.margin(align_vertical, dpi(3), dpi(2), dpi(2), 0))
 area.bg = beautiful.xcolor0
 
 local main_wd = wibox.widget {

@@ -11,18 +11,18 @@ require("notifications.volume")
 require("notifications.battery")
 
 naughty.config.defaults.ontop = true
-naughty.config.defaults.icon_size = dpi (42)
+naughty.config.defaults.icon_size = dpi(72)
 naughty.config.defaults.screen = awful.screen.focused()
 naughty.config.defaults.timeout = 3
 naughty.config.defaults.title = "System Notification"
-naughty.config.defaults.margin = dpi(10)
+naughty.config.defaults.margin = dpi(1)
 naughty.config.defaults.border_width = beautiful.widget_border_width
 naughty.config.defaults.border_color = beautiful.widget_border_color
 naughty.config.defaults.position = "bottom_right"
-naughty.config.defaults.shape = helpers.rrect(15)
+naughty.config.defaults.shape = helpers.rrect(18)
 
-naughty.config.padding = dpi(10)
-naughty.config.spacing = dpi(5)
+naughty.config.padding = dpi(5)
+naughty.config.spacing = dpi(1)
 naughty.config.icon_dirs = {
     "/usr/share/icons/chhinamasta/24x24/apps/", "/usr/share/pixmaps/"
 }
@@ -92,7 +92,7 @@ naughty.connect_signal("request::display", function(n)
                 },
                 strategy = "max",
                 width = beautiful.notification_max_width or
-                beautiful.xresources.apply_dpi(800),
+                beautiful.xresources.apply_dpi(1200),
                 widget = wibox.container.constraint
             },
             bg = beautiful.xbackground,

@@ -56,21 +56,14 @@ fancy_time_widget.font = "FuraCode Nerd Font Mono Bold 10"
 
 local fancy_time = {fancy_time_widget, layout = wibox.layout.fixed.vertical}
 
-local notifPop = require("layout.pop.notif")
-local notif_icon = wibox.widget {
-    widget = wibox.widget.imagebox,
-    image = icons.notif,
-    resize = true
-}
 
-notif_icon:connect_signal("mouse::enter", function() notifPop.visible = true end)
-notifPop:connect_signal("mouse::leave", function() notifPop.visible = false end)
 
 -- Battery Bar Widget ---------------------------------------------------------
 
 local battery_bar = require("widgets.battery_bar")
 local battery = format_progress_bar(battery_bar)
 
+local battery_widget = require("lib.awesome-wm-widgets.battery-widget.battery")
 -- Systray Widget -------------------------------------------------------------
 
 local mysystray = wibox.widget.systray()
@@ -182,15 +175,15 @@ awful.screen.connect_for_each_screen(function(s)
             shape_border_width = beautiful.widget_border_width,
             shape_border_color = beautiful.widget_border_color
         },
-        layout = {spacing = 2, layout = wibox.layout.fixed.horizontal},
+        layout = {spacing = 5, layout = wibox.layout.fixed.horizontal},
         widget_template = {
             {
                 {
                     {id = 'text_role', widget = wibox.widget.textbox},
                     layout = wibox.layout.align.horizontal
                 },
-                left = dpi(2),
-                right = dpi(2),
+                left = dpi(5),
+                right = dpi(5),
                 widget = wibox.container.margin
             },
             id = 'background_role',
@@ -248,8 +241,8 @@ awful.screen.connect_for_each_screen(function(s)
                 {
                     {
                         battery,
-                        right = 5,
-                        left = 5,
+                        right = 1,
+                        left = 1,
                         widget = wibox.container.margin
                     },
                     shape = helpers.rrect(beautiful.border_radius),
@@ -284,30 +277,13 @@ awful.screen.connect_for_each_screen(function(s)
                 left = 5,
                 widget = wibox.container.margin
             },
-            helpers.horizontal_pad(0),
-            {
-                {
-                    {
-                        notif_icon,
-                        margins = dpi(1),
-                        widget = wibox.container.margin
-                    },
-                    shape = helpers.rrect(beautiful.border_radius),
-                    bg = beautiful.xbackground,
-                    border_width = beautiful.widget_border_width,
-                    border_color = beautiful.widget_border_color,
-                    widget = wibox.container.background
-                },
-                top = 5,
-                right = 5,
-                left = 5,
-                widget = wibox.container.margin
-            },
+            helpers.horizontal_pad(3),
+
             {
                 {
                     {
                         fancy_time,
-                        margins = dpi(5),
+                        margins = dpi(2),
                         widget = wibox.container.margin
                     },
                     shape = helpers.rrect(beautiful.border_radius),

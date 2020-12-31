@@ -14,7 +14,9 @@ local horizontal = bling.layout.horizontal
 -- Set the layouts
 tag.connect_signal("request::default_layouts", function()
     awful.layout.append_default_layouts({
-        awful.layout.suit.tile, awful.layout.suit.floating, centered, mstab,
+        --awful.layout.suit.tile, 
+        --awful.layout.suit.floating,
+         centered, mstab,
         vertical, horizontal, awful.layout.suit.spiral,
         awful.layout.suit.corner.nw
     })
@@ -32,16 +34,16 @@ local ll = awful.widget.layoutlist({
         {
             {
                 id = 'icon_role',
-                forced_height = dpi(68),
-                forced_width = dpi(68),
+                forced_height = dpi(72),
+                forced_width = dpi(72),
                 widget = wibox.widget.imagebox
             },
-            margins = dpi(12),
+            margins = dpi(2),
             widget = wibox.container.margin
         },
         id = 'background_role',
-        forced_width = dpi(68),
-        forced_height = dpi(68),
+        forced_width = dpi(72),
+        forced_height = dpi(72),
         widget = wibox.container.background
     }
 })
@@ -49,7 +51,7 @@ local ll = awful.widget.layoutlist({
 local layout_popup = awful.popup({
     widget = wibox.widget({
         ll,
-        margins = dpi(12),
+        margins = dpi(3),
         widget = wibox.container.margin
     }),
     border_color = beautiful.layoutlist_border_color,
@@ -57,7 +59,7 @@ local layout_popup = awful.popup({
     placement = awful.placement.centered,
     ontop = true,
     visible = false,
-    bg = beautiful.bg_normal
+    bg = beautiful.bg_normal .. '00'
 })
 -- Key Bindings for Widget ----------------------------------------------------
 

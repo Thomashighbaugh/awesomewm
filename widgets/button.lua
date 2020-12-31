@@ -39,7 +39,7 @@ end
 
 button.create_widget = function(widget, command)
     local button = wibox.widget {
-        {widget, margins = dpi(10), widget = wibox.container.margin},
+        {widget, margins = dpi(5), widget = wibox.container.margin},
         bg = beautiful.bg_normal,
         shape = function(cr, width, height)
             gears.shape.rounded_rect(cr, width, height, dpi(10))
