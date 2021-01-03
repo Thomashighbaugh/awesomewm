@@ -43,13 +43,13 @@ local helpers = require("main.helpers")
 
 local autostart = require("main.autostart")
 
-require ("notifications.errors")
+require("notifications.errors")
 
 -- ===================================================================
 -- Variables ---------------------------------------------------------
 -- ===================================================================
 
---Global Namespace ----------------------------------------------------
+-- Global Namespace ----------------------------------------------------
 RC = {}
 
 RC.vars = require("main.user-variables")
@@ -76,7 +76,8 @@ ctrl = RC.vars.crtl
 -- ===================================================================
 -- Set Theme (tests variable assignments) ----------------------------
 -- ===================================================================
-beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/" .. theme .. "/theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/" .. theme ..
+                   "/theme.lua")
 
 -- ===================================================================
 -- Window Decorations and Layout -------------------------------------
@@ -137,7 +138,6 @@ require("notifications")
 -- Layout ------------------------------------------------------------
 -- ===================================================================
 require("layout")
-
 
 -- ===================================================================
 -- Garbage Collection

@@ -10,7 +10,8 @@ local helpers = require("main.helpers")
 local icon_theme = "sheet"
 local icons = require("icons")
 
-local systray_margin = (beautiful.wibar_height - beautiful.systray_icon_size) / 2
+local systray_margin = (beautiful.wibar_height - beautiful.systray_icon_size) /
+                           2
 
 -- Helper function that changes the appearance of progress bars and their icons
 -- Create horizontal rounded bars
@@ -33,37 +34,22 @@ local awesome_icon = wibox.widget {
     layout = wibox.container.margin
 }
 
-awesome_icon:connect_signal("mouse::enter",
-                            function() panelPop.visible = true end)
-
-panelPop:connect_signal("mouse::leave", function() panelPop.visible = false end)
 
 -- Notifs Panel ---------------------------------------------------------------
-local fancy_time_widget = wibox.widget.textclock("%H%M")
-fancy_time_widget.markup = fancy_time_widget.text:sub(1, 2) ..
-                               "<span foreground='" .. beautiful.xcolor12 ..
-                               "'>" .. fancy_time_widget.text:sub(3, 4) ..
-                               "</span>"
-fancy_time_widget:connect_signal("widget::redraw_needed", function()
-    fancy_time_widget.markup = fancy_time_widget.text:sub(1, 2) ..
-                                   "<span foreground='" .. beautiful.xcolor12 ..
-                                   "'>" .. fancy_time_widget.text:sub(3, 4) ..
-                                   "</span>"
-end)
+local fancy_time_widget = wibox.widget.textclock()
+
 fancy_time_widget.align = "center"
 fancy_time_widget.valign = "center"
-fancy_time_widget.font = "FuraCode Nerd Font Mono Bold 10"
+fancy_time_widget.font = "FuraCode Nerd Font Mono Bold 13"
 
-local fancy_time = {fancy_time_widget, layout = wibox.layout.fixed.vertical}
-
-
+local fancy_time = {fancy_time_widget, layout = wibox.layout.flex.vertical}
 
 -- Battery Bar Widget ---------------------------------------------------------
 
 local battery_bar = require("widgets.battery_bar")
 local battery = format_progress_bar(battery_bar)
 
-local battery_widget = require("lib.awesome-wm-widgets.battery-widget.battery")
+local battery_widget = require("lib.awesome-wm-widgets.batteryarc-widget.batteryarc")
 -- Systray Widget -------------------------------------------------------------
 
 local mysystray = wibox.widget.systray()
@@ -237,27 +223,7 @@ awful.screen.connect_for_each_screen(function(s)
         },
         {
 
-            {
-                {
-                    {
-                        battery,
-                        right = 1,
-                        left = 1,
-                        widget = wibox.container.margin
-                    },
-                    shape = helpers.rrect(beautiful.border_radius),
-                    bg = beautiful.xbackground,
-                    border_width = beautiful.widget_border_width,
-                    border_color = beautiful.widget_border_color,
-                    widget = wibox.container.background
-                },
-                top = 5,
-                right = 5,
-                left = 5,
-                widget = wibox.container.margin
-            },
-
-            helpers.horizontal_pad(0),
+          helpers.horizontal_pad(0),
             {
                 {
                     {

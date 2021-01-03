@@ -4,7 +4,6 @@
 -- |  |_|  |--.-----.--------.-----.
 -- |   _|     |  -__|        |  -__|
 -- |____|__|__|_____|__|__|__|_____|
-
 -- ========================================================================
 --  External Libraries
 -- ========================================================================
@@ -40,34 +39,52 @@ theme.delete_icon = icon_path .. "notif-center/delete.png"
 theme.delete_grey_icon = icon_path .. "notif-center/delete_grey.png"
 
 -- ========================================================================
---Icons for Titlebar
+-- Icons for Titlebar
 -- ========================================================================
 
 theme.titlebar_close_button_normal = titlebar_icon_path .. "close_normal.svg"
 theme.titlebar_close_button_focus = titlebar_icon_path .. "close_focus.svg"
 
-theme.titlebar_minimize_button_normal = titlebar_icon_path .. "minimize_normal.svg"
-theme.titlebar_minimize_button_focus = titlebar_icon_path .. "minimize_focus.svg"
+theme.titlebar_minimize_button_normal = titlebar_icon_path ..
+                                            "minimize_normal.svg"
+theme.titlebar_minimize_button_focus = titlebar_icon_path ..
+                                           "minimize_focus.svg"
 
-theme.titlebar_ontop_button_normal_inactive = titlebar_icon_path .. "ontop_normal_inactive.svg"
-theme.titlebar_ontop_button_focus_inactive = titlebar_icon_path .. "ontop_focus_inactive.svg"
-theme.titlebar_ontop_button_normal_active = titlebar_icon_path .. "ontop_normal_active.svg"
-theme.titlebar_ontop_button_focus_active = titlebar_icon_path .. "ontop_focus_active.svg"
+theme.titlebar_ontop_button_normal_inactive =
+    titlebar_icon_path .. "ontop_normal_inactive.svg"
+theme.titlebar_ontop_button_focus_inactive =
+    titlebar_icon_path .. "ontop_focus_inactive.svg"
+theme.titlebar_ontop_button_normal_active =
+    titlebar_icon_path .. "ontop_normal_active.svg"
+theme.titlebar_ontop_button_focus_active =
+    titlebar_icon_path .. "ontop_focus_active.svg"
 
-theme.titlebar_sticky_button_normal_inactive = titlebar_icon_path .. "sticky_normal_inactive.svg"
-theme.titlebar_sticky_button_focus_inactive = titlebar_icon_path .. "sticky_focus_inactive.svg"
-theme.titlebar_sticky_button_normal_active = titlebar_icon_path .. "sticky_normal_active.svg"
-theme.titlebar_sticky_button_focus_active = titlebar_icon_path .. "sticky_focus_active.svg"
+theme.titlebar_sticky_button_normal_inactive =
+    titlebar_icon_path .. "sticky_normal_inactive.svg"
+theme.titlebar_sticky_button_focus_inactive =
+    titlebar_icon_path .. "sticky_focus_inactive.svg"
+theme.titlebar_sticky_button_normal_active =
+    titlebar_icon_path .. "sticky_normal_active.svg"
+theme.titlebar_sticky_button_focus_active =
+    titlebar_icon_path .. "sticky_focus_active.svg"
 
-theme.titlebar_floating_button_normal_inactive = titlebar_icon_path .. "floating_normal_inactive.svg"
-theme.titlebar_floating_button_focus_inactive = titlebar_icon_path .. "floating_focus_inactive.svg"
-theme.titlebar_floating_button_normal_active = titlebar_icon_path .. "floating_normal_active.svg"
-theme.titlebar_floating_button_focus_active = titlebar_icon_path .. "floating_focus_active.svg"
+theme.titlebar_floating_button_normal_inactive =
+    titlebar_icon_path .. "floating_normal_inactive.svg"
+theme.titlebar_floating_button_focus_inactive =
+    titlebar_icon_path .. "floating_focus_inactive.svg"
+theme.titlebar_floating_button_normal_active =
+    titlebar_icon_path .. "floating_normal_active.svg"
+theme.titlebar_floating_button_focus_active =
+    titlebar_icon_path .. "floating_focus_active.svg"
 
-theme.titlebar_maximized_button_normal_inactive = titlebar_icon_path .. "maximized_normal_inactive.svg"
-theme.titlebar_maximized_button_focus_inactive = titlebar_icon_path .. "maximized_focus_inactive.svg"
-theme.titlebar_maximized_button_normal_active = titlebar_icon_path .. "maximized_normal_active.svg"
-theme.titlebar_maximized_button_focus_active = titlebar_icon_path .. "maximized_focus_active.svg"
+theme.titlebar_maximized_button_normal_inactive =
+    titlebar_icon_path .. "maximized_normal_inactive.svg"
+theme.titlebar_maximized_button_focus_inactive =
+    titlebar_icon_path .. "maximized_focus_inactive.svg"
+theme.titlebar_maximized_button_normal_active =
+    titlebar_icon_path .. "maximized_normal_active.svg"
+theme.titlebar_maximized_button_focus_active =
+    titlebar_icon_path .. "maximized_focus_active.svg"
 
 -- ========================================================================
 --  Xresources Color Import
@@ -137,9 +154,9 @@ theme.widget_border_color = theme.xcolor0
 -- Generate taglist squares:
 local taglist_square_size = dpi(0)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-taglist_square_size, theme.fg_normal)
+                                taglist_square_size, theme.fg_normal)
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-taglist_square_size, theme.fg_normal)
+                                  taglist_square_size, theme.fg_normal)
 theme.taglist_font = theme.font_taglist
 theme.taglist_bg = theme.xbackground
 theme.taglist_bg_focus = theme.xbackground
@@ -214,7 +231,7 @@ theme.menu_fg_focus = theme.xcolor7
 theme.menu_bg_normal = theme.xbackground
 theme.menu_fg_normal = theme.xcolor7
 theme.menu_submenu_icon = gears.filesystem.get_configuration_dir() ..
-"theme/icons/submenu.png"
+                              "theme/icons/submenu.png"
 theme.menu_height = dpi(70)
 theme.menu_width = dpi(230)
 theme.menu_border_color = theme.xcolor0

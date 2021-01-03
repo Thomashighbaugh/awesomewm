@@ -25,7 +25,7 @@ local function worker(args)
 
     local font = args.font or 'Play 8'
     local path_to_icons = args.path_to_icons or HOME ..
-                                 '/.config/awesome/awesome-wm-widgets/batteryarc-widget/spaceman.jpg'
+                              '/.config/awesome/awesome-wm-widgets/batteryarc-widget/spaceman.jpg'
     local show_current_level = args.show_current_level or false
     local margin_left = args.margin_left or 0
     local margin_right = args.margin_right or 0
@@ -85,7 +85,7 @@ local function worker(args)
     end
 
     -- Alternative to naughty.notify - tooltip. You can compare both and choose the preferred one
-    -- battery_popup = awful.tooltip({objects = {battery_widget}})
+    battery_popup = awful.tooltip({objects = {battery_widget}})
 
     -- To use colors from beautiful theme put
     -- following lines in rc.lua before require("battery"):
@@ -172,17 +172,17 @@ local function worker(args)
         widget.icon:set_image(path_to_icons .. batteryType .. ".svg")
 
         -- Update popup text
-        -- battery_popup.text = string.gsub(stdout, "\n$", "")
+        battery_popup.text = string.gsub(stdout, "\n$", "")
     end, icon_widget)
 
-    if display_notification then
-        battery_widget:connect_signal("mouse::enter", function()
-            show_battery_status(batteryType)
-        end)
-        battery_widget:connect_signal("mouse::leave", function()
-            naughty.destroy(notification)
-        end)
-    end
+    -- if display_notification then
+    --     battery_widget:connect_signal("mouse::enter", function()
+    --         show_battery_status(batteryType)
+    --     end)
+    --     battery_widget:connect_signal("mouse::leave", function()
+    --         naughty.destroy(notification)
+    --     end)
+    -- end
     return wibox.container.margin(battery_widget, margin_left, margin_right)
 end
 
