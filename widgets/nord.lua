@@ -10,34 +10,34 @@ local c_cmd = function() awful.spawn.with_shell("nordvpn c United_States") end
 local d_cmd = function() awful.spawn.with_shell("nordvpn d") end
 
 local create_button = function(cmd, mkup)
-
+    
     local text = wibox.widget {
         markup = mkup,
         align = 'center',
-        font = 'JetBrains Mono 8',
+        font = 'FuraCode Nerd Font Mono Bold 18',
         forced_width = dpi(60),
         widget = wibox.widget.textbox
     }
-
+    
     local button = wibox.widget {
         {text, margins = dpi(10), layout = wibox.container.margin},
         shape = helpers.rrect(dpi(6)),
         bg = beautiful.xbackground,
         widget = wibox.container.background
     }
-
+    
     button:buttons(gears.table.join(awful.button({}, 1, function() cmd() end)))
-
+    
     button:connect_signal("mouse::enter", function()
         text.markup = helpers.colorize_text(text.text, beautiful.xcolor4)
     end)
-
+    
     button:connect_signal("mouse::leave", function()
         text.markup = helpers.colorize_text(text.text, beautiful.xforeground)
     end)
-
+    
     return button
-
+    
 end
 
 local connect_button = create_button(c_cmd, "Connect")
@@ -46,13 +46,13 @@ local d_connect_button = create_button(d_cmd, "Disconnect")
 local nord_box = wibox.widget {
     markup = 'Disconnected',
     align = 'center',
-    font = 'JetBrains Mono 12',
+    font = 'FuraCode Nerd Font Mono 12',
     widget = wibox.widget.textbox
 }
 
 local box_image = wibox.widget {
     image = gears.surface.load_uncached(
-        gears.filesystem.get_configuration_dir() .. "images/nord_d.png"),
+    gears.filesystem.get_configuration_dir() .. "images/nord_d.png"),
     shape = helpers.rrect(dpi(10)),
     widget = wibox.widget.imagebox
 }
@@ -64,7 +64,7 @@ local image_cont = wibox.widget {
 }
 
 local align_vertical = {
-
+    
     nil,
     nord_box,
     {
@@ -99,13 +99,13 @@ awesome.connect_signal("ears::nord_status", function(status, city, country)
     if status then
         nord_box.markup = city .. ", " .. country
         box_image:set_image(gears.surface.load_uncached(
-                                gears.filesystem.get_configuration_dir() ..
-                                    "images/nord_c.png"))
+            gears.filesystem.get_configuration_dir() ..
+        "images/nord_c.png"))
     else
         nord_box.markup = "Disconnected"
         box_image:set_image(gears.surface.load_uncached(
-                                gears.filesystem.get_configuration_dir() ..
-                                    "images/nord_d.png"))
+            gears.filesystem.get_configuration_dir() ..
+        "images/nord_d.png"))
     end
 end)
 

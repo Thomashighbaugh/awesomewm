@@ -24,7 +24,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 local menubar = require("menubar")
 local lain = require("lain")
 local vicious = require("vicious")
-require("lib.collision")()
+--require("lib.collision")()
 
 -- Theme Handling Library
 local beautiful = require("beautiful")
@@ -77,7 +77,7 @@ ctrl = RC.vars.crtl
 -- Set Theme (tests variable assignments) ----------------------------
 -- ===================================================================
 beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/" .. theme ..
-                   "/theme.lua")
+"/theme.lua")
 
 -- ===================================================================
 -- Window Decorations and Layout -------------------------------------
@@ -107,7 +107,6 @@ RC.launcher = awful.widget.launcher({
 -- Tags + Wallpaper -----------------------------------------------------------
 -- ===================================================================
 require("layout.tags")
-
 -- ===================================================================
 -- Key bindings ------------------------------------------------------
 -- ===================================================================
@@ -115,7 +114,6 @@ require("main.keys")
 buttons = require("main.buttons")
 
 root.buttons(buttons())
-
 -- ===================================================================
 -- Rules -------------------------------------------------------------
 -- ===================================================================

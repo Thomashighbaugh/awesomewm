@@ -16,11 +16,11 @@ return wibox.widget {
         nil,
         require("notifications.notification-center.clear-all"),
         expand = "none",
-        spacing = dpi(10),
+        spacing = dpi(2),
         layout = wibox.layout.align.horizontal
     },
     require('notifications.notification-center.build-notifbox'),
 
-    spacing = dpi(5),
+    spacing = dpi(2),
     layout = wibox.layout.fixed.vertical
 }

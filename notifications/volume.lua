@@ -4,7 +4,7 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 local helpers = require("main.helpers")
 local dpi = beautiful.xresources.apply_dpi
-
+local bling = require("lib.bling")
 local offsetx = dpi(56)
 local offsety = dpi(300)
 local screen = awful.screen.focused()
@@ -71,7 +71,7 @@ volume_adjust:setup{
 -- create a 3 second timer to hide the volume adjust
 -- component whenever the timer is started
 local hide_volume_adjust = gears.timer {
-    timeout = 3,
+    timeout = 5,
     autostart = true,
     callback = function() volume_adjust.visible = false end
 }

@@ -43,8 +43,8 @@ end
 function icons.init(theme_name)
     -- Set the path to icons
     p = gears.filesystem.get_configuration_dir() .. "icons/" .. theme_name ..
-    "/"
-    
+            "/"
+
     for i = 1, #icon_names do set_icon(icon_names[i]) end
 end
 return icons

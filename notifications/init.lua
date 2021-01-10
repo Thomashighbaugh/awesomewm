@@ -59,7 +59,7 @@ naughty.config.presets.info = naughty.config.presets.normal
 naughty.config.presets.warn = naughty.config.presets.critical
 
 naughty.connect_signal("request::display", function(n)
-    
+
     naughty.layout.box {
         notification = n,
         type = "notification",
@@ -92,7 +92,7 @@ naughty.connect_signal("request::display", function(n)
                 },
                 strategy = "max",
                 width = beautiful.notification_max_width or
-                beautiful.xresources.apply_dpi(1200),
+                    beautiful.xresources.apply_dpi(1200),
                 widget = wibox.container.constraint
             },
             bg = beautiful.xbackground,
@@ -100,6 +100,7 @@ naughty.connect_signal("request::display", function(n)
             border_width = beautiful.widget_border_width,
             shape = helpers.rrect(beautiful.client_radius),
             widget = wibox.container.background
-        }}
-    end)
-    
+        }
+    }
+end)
+

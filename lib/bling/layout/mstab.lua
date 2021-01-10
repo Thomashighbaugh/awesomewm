@@ -10,53 +10,52 @@ mylayout.name = "mstab"
 
 local tabbar_ontop = beautiful.mstab_bar_ontop or false
 local tabbar_padding = beautiful.mstab_bar_padding or "default"
-local border_radius =
-    beautiful.mstab_border_radius or beautiful.border_radius or 0
+local border_radius = beautiful.border_radius or 0
 local tabbar_position = beautiful.mstab_tabbar_position or
-                            beautiful.tabbar_position or "top"
+beautiful.tabbar_position or "top"
 
 local bar_style = beautiful.mstab_tabbar_style or beautiful.tabbar_style or
-                      "default"
+"default"
 local bar = require(tostring(...):match(".*bling") .. ".widget.tabbar." ..
-                        bar_style)
+bar_style)
 local tabbar_size = bar.size or beautiful.mstab_bar_height or
-                        beautiful.tabbar_size or 40
+beautiful.tabbar_size or 40
 local dont_resize_slaves = beautiful.mstab_dont_resize_slaves or false
 
--- The top_idx is the idx of the slave clients (excluding all master clients) 
+-- The top_idx is the idx of the slave clients (excluding all master clients)
 -- that should be on top of all other slave clients ("the focused slave")
 -- by creating a variable outside of the arrange function, this layout can "remember" that client
--- by creating it as a new property of every tag, this layout can be active on different tags and 
+-- by creating it as a new property of every tag, this layout can be active on different tags and
 -- still have different "focused slave clients"
 for idx, tag in ipairs(root.tags()) do tag.top_idx = 1 end
 
 -- Haven't found a signal that is emitted when a new tag is added. That should work though
 -- since you can't use a layout on a tag that you haven't selected previously
 tag.connect_signal("property::selected",
-                   function(t) if not t.top_idx then t.top_idx = 1 end end)
+function(t) if not t.top_idx then t.top_idx = 1 end end)
 
 function update_tabbar(clients, t, top_idx, area, master_area_width,
-                       slave_area_width)
+slave_area_width)
 
-    local s = t.screen
+local s = t.screen
 
-    -- create the list of clients for the tabbar
-    local clientlist = bar.layout()
-    for idx, c in ipairs(clients) do
-        -- focus with right click, kill with mid click, minimize with left click
-        local buttons = gears.table.join(
-                            awful.button({}, 1, function()
-                c:raise()
-                client.focus = c
-            end), awful.button({}, 2, function() c:kill() end), awful.button({},
-                                                                             3,
-                                                                             function()
-                c.minimized = true
-            end))
+-- create the list of clients for the tabbar
+local clientlist = bar.layout()
+for idx, c in ipairs(clients) do
+    -- focus with right click, kill with mid click, minimize with left click
+    local buttons = gears.table.join(
+        awful.button({}, 1, function()
+            c:raise()
+            client.focus = c
+        end), awful.button({}, 2, function() c:kill() end), awful.button({},
+        3,
+        function()
+            c.minimized = true
+        end))
         local client_box = bar.create(c, (idx == top_idx), buttons)
         clientlist:add(client_box)
     end
-
+    
     -- if no tabbar exists, create one
     if not s.tabbar then
         s.tabbar = wibox {
@@ -64,30 +63,30 @@ function update_tabbar(clients, t, top_idx, area, master_area_width,
             shape = function(cr, width, height)
                 gears.shape.rounded_rect(cr, width, height, border_radius)
             end,
-            bg = bar.bg_normal,
+            bg = bar.bg_normal .. 'dd',
             visible = true
         }
-
+        
         -- Change visibility of the tab bar when layout, selected tag or number of clients (visible, master, slave) changes
         local function adjust_visiblity(t)
             s.tabbar.visible = (#t:clients() - t.master_count > 1) and
-                                   (t.layout.name == mylayout.name)
+            (t.layout.name == mylayout.name)
         end
-
+        
         tag.connect_signal("property::selected",
-                           function(t) adjust_visiblity(t) end)
+        function(t) adjust_visiblity(t) end)
         tag.connect_signal("property::layout",
-                           function(t, layout) adjust_visiblity(t) end)
+        function(t, layout) adjust_visiblity(t) end)
         tag.connect_signal("tagged", function(t, c) adjust_visiblity(t) end)
         tag.connect_signal("untagged", function(t, c) adjust_visiblity(t) end)
         tag.connect_signal("property::master_count",
-                           function(t) adjust_visiblity(t) end)
+        function(t) adjust_visiblity(t) end)
         client.connect_signal("property::minimized", function(c)
             local t = c.first_tag
             adjust_visiblity(t)
         end)
     end
-
+    
     -- update the tabbar size and position (to support gap size change on the fly)
     if tabbar_position == "top" then
         s.tabbar.x = area.x + master_area_width + t.gap
@@ -106,15 +105,15 @@ function update_tabbar(clients, t, top_idx, area, master_area_width,
         s.tabbar.height = area.height - 2 * t.gap
     elseif tabbar_position == "right" then
         s.tabbar.x =
-            area.x + master_area_width + slave_area_width - tabbar_size - t.gap
+        area.x + master_area_width + slave_area_width - tabbar_size - t.gap
         s.tabbar.y = area.y + t.gap
         s.tabbar.width = tabbar_size
         s.tabbar.height = area.height - 2 * t.gap
     end
-
-    -- update clientlist 
+    
+    -- update clientlist
     s.tabbar:setup{layout = wibox.layout.flex.horizontal, clientlist}
-
+    
 end
 
 function mylayout.arrange(p)
@@ -124,28 +123,28 @@ function mylayout.arrange(p)
     local mwfact = t.master_width_factor
     local nmaster = math.min(t.master_count, #p.clients)
     local nslaves = #p.clients - nmaster
-
+    
     local master_area_width = area.width * mwfact
     local slave_area_width = area.width - master_area_width
-
+    
     -- "default" means that it uses standard useless gap size
     if tabbar_padding == "default" then tabbar_padding = 2 * t.gap end
-
+    
     -- Special case: No masters -> full screen slave width
     if nmaster == 0 then
         master_area_width = 1
         slave_area_width = area.width
     end
-
+    
     -- Special case: One or zero slaves -> no tabbar (essentially tile right)
     if nslaves <= 1 then
         -- since update_tabbar isnt called that way we have to hide it manually
         if s.tabbar then s.tabbar.visible = false end
-        -- otherwise just do tile right 
+        -- otherwise just do tile right
         awful.layout.suit.tile.right.arrange(p)
         return
     end
-
+    
     -- Iterate through masters
     for idx = 1, nmaster do
         local c = p.clients[idx]
@@ -157,7 +156,7 @@ function mylayout.arrange(p)
         }
         p.geometries[c] = g
     end
-
+    
     local tabbar_size_change = 0
     local tabbar_width_change = 0
     local tabbar_y_change = 0
@@ -173,7 +172,7 @@ function mylayout.arrange(p)
     elseif tabbar_position == "right" then
         tabbar_width_change = tabbar_size + tabbar_padding
     end
-
+    
     -- Iterate through slaves
     -- (also creates a list of all slave clients for update_tabbar)
     local slave_clients = {}
@@ -197,14 +196,14 @@ function mylayout.arrange(p)
         end
         p.geometries[c] = g
     end
-
+    
     update_tabbar(slave_clients, t, t.top_idx, area, master_area_width,
-                  slave_area_width)
+    slave_area_width)
 end
 
 local icon_raw = gears.filesystem.get_configuration_dir() ..
-                     tostring(...):match("^.*bling"):gsub("%.", "/") ..
-                     "/icons/layouts/mstab.png"
+tostring(...):match("^.*bling"):gsub("%.", "/") ..
+"/icons/layouts/mstab.png"
 
 local function get_icon()
     if icon_raw ~= nil then

@@ -1,5 +1,5 @@
 --[[
-
+ 
 This module currently works by adding a new property to each client that is tabbed.
 That new property is called bling_tabbed. 
 So each client in a tabbed state has the property "bling_tabbed" which is a table.
@@ -7,7 +7,7 @@ Each client that is not tabbed doesn't have that property.
 In the function themselves, the same object is refered to as "tabobj" which is why
 you will often see something like: "local tabobj = some_client.bling_tabbed" at the beginning
 of a function.
-
+ 
 --]] local awful = require("awful")
 local wibox = require("wibox")
 local gears = require("gears")
@@ -16,7 +16,7 @@ local helpers = require(tostring(...):match(".*bling.module") .. ".helpers")
 
 local bar_style = beautiful.tabbar_style or "default"
 local bar = require(tostring(...):match(".*bling") .. ".widget.tabbar." ..
-                        bar_style)
+bar_style)
 
 local function copy_size(c, parent_client)
     if not c or not parent_client then return end
@@ -30,7 +30,7 @@ end
 
 tabbed = {}
 
--- used to change focused tab relative to the currently focused one 
+-- used to change focused tab relative to the currently focused one
 tabbed.iter = function(idx)
     if not idx then idx = 1 end
     if not client.focus or not client.focus.bling_tabbed then return end
@@ -63,7 +63,7 @@ tabbed.add = function(c, tabobj)
     tabobj.clients[#tabobj.clients + 1] = c
     tabobj.focused_idx = #tabobj.clients
     -- calls update even though switch_to calls update again
-    -- but the new client needs to have the tabobj property 
+    -- but the new client needs to have the tabobj property
     -- before a clean switch can happen
     tabbed.update(tabobj)
     tabbed.switch_to(tabobj, #tabobj.clients)
@@ -74,9 +74,9 @@ tabbed.pick = function()
     if not client.focus then return end
     if not client.focus.bling_tabbed then tabbed.init(client.focus) end
     local tabobj = client.focus.bling_tabbed
-    -- this function uses xprop to grab a client pid which is then 
+    -- this function uses xprop to grab a client pid which is then
     -- compared to all other client process ids
-
+    
     local xprop_cmd = [[ xprop _NET_WM_PID | cut -d' ' -f3 ]]
     awful.spawn.easy_async_with_shell(xprop_cmd, function(output)
         for _, c in ipairs(client.get()) do
@@ -87,14 +87,14 @@ tabbed.pick = function()
     end)
 end
 
--- use dmenu to select a client and make it tab in the currently focused tab 
+-- use dmenu to select a client and make it tab in the currently focused tab
 tabbed.pick_with_dmenu = function(dmenu_command)
     if not client.focus then return end
     if not client.focus.bling_tabbed then tabbed.init(client.focus) end
     local tabobj = client.focus.bling_tabbed
-
+    
     if not dmenu_command then dmenu_command = "rofi -dmenu -i" end
-
+    
     -- get all clients from the current tag
     -- ignores the case where multiple tags are selected
     local t = awful.screen.focused().selected_tag
@@ -107,15 +107,15 @@ tabbed.pick_with_dmenu = function(dmenu_command)
                 list_clients_string = list_clients_string .. "\\n"
             end
             list_clients_string = list_clients_string .. tostring(c.window) ..
-                                      " " .. c.name
+            " " .. c.name
         end
     end
-
+    
     if #list_clients == 0 then return end
-
+    
     -- calls the actual dmenu
     local xprop_cmd = [[ echo -e "]] .. list_clients_string .. [[" | ]] ..
-                          dmenu_command .. [[ | awk '{ print $1 }' ]]
+    dmenu_command .. [[ | awk '{ print $1 }' ]]
     awful.spawn.easy_async_with_shell(xprop_cmd, function(output)
         for _, c in ipairs(list_clients) do
             if tonumber(c.window) == tonumber(output) then
@@ -137,7 +137,7 @@ tabbed.update = function(tabobj)
             c:connect_signal("unmanage", function(c) tabbed.remove(c) end)
         end
     end
-
+    
     tabbed.update_tabbar(tabobj)
 end
 
@@ -165,38 +165,39 @@ tabbed.update_tabbar = function(tabobj)
     -- itearte over all tabbed clients to create the widget tabbed list
     for idx, c in ipairs(tabobj.clients) do
         local buttons = gears.table.join(
-                            awful.button({}, 1, function()
+            awful.button({}, 1, function()
                 tabbed.switch_to(tabobj, idx)
             end))
-        wid_temp = bar.create(c, (idx == tabobj.focused_idx), buttons)
-        flexlist:add(wid_temp)
-    end
-    -- add tabbar to each tabbed client (clients will be hided anyway)
-    for _, c in ipairs(tabobj.clients) do
-        local titlebar = awful.titlebar(c, {
-            bg = bar.bg_normal,
-            size = bar.size,
-            position = bar.position
-        })
-        titlebar:setup{layout = wibox.layout.flex.horizontal, flexlist}
-    end
-end
-
-tabbed.init = function(c)
-    local tabobj = {}
-    tabobj.clients = {c}
-    tabobj.focused_idx = 1
-    tabbed.update(tabobj)
-end
-
-if beautiful.tabbed_spawn_in_tab then
-    client.connect_signal("manage", function(c)
-        local s = awful.screen.focused()
-        local previous_client = awful.client.focus.history.get(s, 1)
-        if previous_client and previous_client.bling_tabbed then
-            tabbed.add(c, previous_client.bling_tabbed)
+            wid_temp = bar.create(c, (idx == tabobj.focused_idx), buttons)
+            flexlist:add(wid_temp)
         end
-    end)
-end
-
-return tabbed
+        -- add tabbar to each tabbed client (clients will be hided anyway)
+        for _, c in ipairs(tabobj.clients) do
+            local titlebar = awful.titlebar(c, {
+                bg = bar.bg_normal .. 'dd',
+                size = bar.size,
+                position = bar.position
+            })
+            titlebar:setup{layout = wibox.layout.flex.horizontal, flexlist}
+        end
+    end
+    
+    tabbed.init = function(c)
+        local tabobj = {}
+        tabobj.clients = {c}
+        tabobj.focused_idx = 1
+        tabbed.update(tabobj)
+    end
+    
+    if beautiful.tabbed_spawn_in_tab then
+        client.connect_signal("manage", function(c)
+            local s = awful.screen.focused()
+            local previous_client = awful.client.focus.history.get(s, 1)
+            if previous_client and previous_client.bling_tabbed then
+                tabbed.add(c, previous_client.bling_tabbed)
+            end
+        end)
+    end
+    
+    return tabbed
+    

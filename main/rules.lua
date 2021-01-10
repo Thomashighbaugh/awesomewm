@@ -1,6 +1,17 @@
+-- |   __ \.--.--.|  |.-----.-----.
+-- |      <|  |  ||  ||  -__|__ --|
+-- |___|__||_____||__||_____|_____|
+
+-- ===================================================================
+-- Libraries
+-- ===================================================================
+
 local awful = require("awful")
 local beautiful = require("beautiful")
 
+-- ===================================================================
+-- Rules
+-- ===================================================================
 awful.rules.rules = {
     {
         rule = {},
@@ -9,7 +20,7 @@ awful.rules.rules = {
             border_color = beautiful.border_normal,
             focus = awful.client.focus.filter,
             raise = true,
-            size_hints_honor = false,
+            size_hints_honor = true,
             titlebars_enabled = true,
             keys = clientkeys,
             buttons = clientbuttons,
@@ -41,8 +52,7 @@ awful.rules.rules = {
             ontop = false,
             minimized = true,
             sticky = false,
-            width = screen_width * 0.5,
-            height = screen_height * 0.5
+            
         },
         callback = function(c)
             awful.placement.centered(c, {

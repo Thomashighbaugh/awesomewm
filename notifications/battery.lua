@@ -12,14 +12,14 @@ awesome.connect_signal("ears::battery", function(value)
             image = icons.battery
         })
     end
-    
+
     if (value > 99 and display) then
         naughty.notification({
             title = "Charged",
             text = "Battery at " .. value .. "%",
             image = icons.battery
         })
-        display = true
+        display = false
     end
 end)
 
@@ -32,5 +32,5 @@ awesome.connect_signal("ears::charger", function(plugged)
         })
         display = false
     end
-    
+
 end)

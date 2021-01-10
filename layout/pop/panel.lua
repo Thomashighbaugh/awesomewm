@@ -32,7 +32,7 @@ local function create_boxed_widget(widget_to_be_boxed, width, height, bg_color)
     box_container.forced_height = height
     box_container.forced_width = width
     box_container.shape = helpers.rrect(beautiful.client_radius)
-
+    
     local boxed_widget = wibox.widget {
         {
             {
@@ -48,7 +48,7 @@ local function create_boxed_widget(widget_to_be_boxed, width, height, bg_color)
             widget = box_container
         },
         margins = box_gap,
-        color = beautiful.xcolor0,
+        color = beautiful.xcolor0 .. 'bb',
         widget = wibox.container.margin
     }
     return boxed_widget
@@ -61,20 +61,20 @@ local function format_progress_bar(bar, markup)
         markup = markup,
         align = 'center',
         valign = 'center',
-        font = 'FuraCode Nerd Font Mono Bold 12',
+        font = 'FuraCode Nerd Font Mono Bold 18',
         widget = wibox.widget.textbox
     }
     text.forced_height = dpi(36)
     text.forced_width = dpi(36)
     bar.padding = dpi(5)
     text.resize = true
-    bar.forced_width = dpi(115)
+    bar.forced_width = dpi(225)
     bar.shape = gears.shape.rounded_bar
     bar.bar_shape = gears.shape.rounded_bar
-
+    
     local w = wibox.widget {
         nil,
-        {text, bar, spacing = dpi(5), layout = wibox.layout.fixed.horizontal},
+        {text, bar, spacing = dpi(10), layout = wibox.layout.fixed.horizontal},
         expand = "none",
         layout = wibox.layout.fixed.horizontal
     }
@@ -98,7 +98,7 @@ local separator = wibox.widget {
     orientation = 'vertical',
     forced_height = dpi(1),
     forced_width = dpi(20),
-    span_ratio = 0.75,
+    span_ratio = 0.65,
     color = beautiful.xcolor7 .. 'dd',
     widget = wibox.widget.separator
 }
@@ -107,9 +107,11 @@ local separator = wibox.widget {
 -- local ram = require("widgets.ram_arc")
 
 local ram_icon = wibox.widget.imagebox(icons.ram)
+ram_icon.forced_width = 50
+ram_icon.forced_height = 10
 local ram_bar = require("widgets.ram_bar")
 local ram = format_progress_bar(ram_bar, "<span foreground='" ..
-                                    beautiful.xcolor6 .. "'> <b></b> </span>")
+beautiful.xcolor6 .. "'> <b>  </b> </span>")
 
 --- }}}
 
@@ -118,9 +120,11 @@ local ram = format_progress_bar(ram_bar, "<span foreground='" ..
 -- local cpu = require("widgets.cpu_arc")
 
 local cpu_icon = wibox.widget.imagebox(icons.cpu)
+cpu_icon.forced_width = 50
+cpu_icon.forced_height = 10
 local cpu_bar = require("widgets.cpu_bar")
 local cpu = format_progress_bar(cpu_bar, "<span foreground='" ..
-                                    beautiful.xcolor13 .. "'> <b></b> </span>")
+beautiful.xcolor1 .. "'> <b></b> </span>")
 
 --- }}}
 
@@ -128,14 +132,14 @@ local cpu = format_progress_bar(cpu_bar, "<span foreground='" ..
 
 local fancy_time_widget = wibox.widget.textclock("%H%M")
 fancy_time_widget.markup = fancy_time_widget.text:sub(1, 2) ..
-                               "<span foreground='" .. beautiful.xcolor12 ..
-                               "'>" .. fancy_time_widget.text:sub(3, 4) ..
-                               "</span>"
+"<span foreground='" .. beautiful.xcolor12 ..
+"'>" .. fancy_time_widget.text:sub(3, 4) ..
+"</span>"
 fancy_time_widget:connect_signal("widget::redraw_needed", function()
     fancy_time_widget.markup = fancy_time_widget.text:sub(1, 2) ..
-                                   "<span foreground='" .. beautiful.xcolor12 ..
-                                   "'>" .. fancy_time_widget.text:sub(3, 4) ..
-                                   "</span>"
+    "<span foreground='" .. beautiful.xcolor12 ..
+    "'>" .. fancy_time_widget.text:sub(3, 4) ..
+    "</span>"
 end)
 fancy_time_widget.align = "center"
 fancy_time_widget.valign = "center"
@@ -145,20 +149,20 @@ local fancy_time = {fancy_time_widget, layout = wibox.layout.fixed.vertical}
 
 local fancy_date_widget = wibox.widget.textclock("%m/%d/%Y")
 fancy_date_widget.markup = fancy_date_widget.text:sub(1, 3) ..
-                               "<span foreground='" .. beautiful.xcolor12 ..
-                               "'>" .. fancy_date_widget.text:sub(4, 6) ..
-                               "</span>" .. "<span foreground='" ..
-                               beautiful.xcolor6 .. "'>" ..
-                               fancy_date_widget.text:sub(7, 10) .. "</span>"
+"<span foreground='" .. beautiful.xcolor12 ..
+"'>" .. fancy_date_widget.text:sub(4, 6) ..
+"</span>" .. "<span foreground='" ..
+beautiful.xcolor6 .. "'>" ..
+fancy_date_widget.text:sub(7, 10) .. "</span>"
 fancy_date_widget:connect_signal("widget::redraw_needed", function()
     fancy_date_widget.markup = fancy_date_widget.text:sub(1, 3) ..
-                                   "<span foreground='" .. beautiful.xcolor6 ..
-                                   "'>" .. fancy_date_widget.text:sub(4, 6) ..
-                                   "</span>" .. "<span foreground='" ..
-                                   beautiful.xcolor6 .. "'>" ..
-                                   fancy_date_widget.text:sub(7, 10) ..
-                                   "</span>"
-
+    "<span foreground='" .. beautiful.xcolor6 ..
+    "'>" .. fancy_date_widget.text:sub(4, 6) ..
+    "</span>" .. "<span foreground='" ..
+    beautiful.xcolor6 .. "'>" ..
+    fancy_date_widget.text:sub(7, 10) ..
+    "</span>"
+    
 end)
 fancy_date_widget.align = "center"
 fancy_date_widget.valign = "center"
@@ -171,35 +175,36 @@ local fancy_date = {fancy_date_widget, layout = wibox.layout.flex.vertical}
 -- {{{ Info Widget
 
 local info = require("widgets.info")
-local info_box = create_boxed_widget(info, 500, 80, beautiful.xbackground)
+local info_box = create_boxed_widget(info, 500, 80, beautiful.xcolor0)
 
 ---}}}
 
 local cpuset = wibox.widget {
+    cpu_icon,
     cpuwidget,
     separator,
     separator,
     separator,
     cpu,
     layout = wibox.layout.fixed.horizontal,
-
-    top = dpi(10),
-    left = dpi(20),
-    right = dpi(20),
-    bottom = dpi(10)
-}
+    
+    top = dpi(0),
+    left = dpi(0),
+    right = dpi(0),
+bottom = dpi(0)}
 local ramset = wibox.widget {
+    ram_icon,
     memwidget,
     separator,
     separator,
     separator,
     ram,
     layout = wibox.layout.fixed.horizontal,
-    top = dpi(10),
-    left = dpi(20),
-    right = dpi(20),
-    bottom = dpi(10)
-
+    top = dpi(0),
+    left = dpi(0),
+    right = dpi(0),
+    bottom = dpi(0)
+    
 }
 
 local sys = wibox.widget {
@@ -219,7 +224,7 @@ local time = wibox.widget {
     widget = wibox.container.margin
 }
 
-local time_box = create_boxed_widget(time, 500, 159, beautiful.xcolor0)
+local time_box = create_boxed_widget(time, 700, 159, beautiful.xcolor0)
 
 local panelWidget = wibox.widget {
     info_box,
@@ -232,7 +237,7 @@ local width = 500
 local margin = 5
 
 local panelPop = popupLib.create(margin, beautiful.wibar_height + margin, nil,
-                                 width, panelWidget)
+width, panelWidget)
 
 panelPop:set_xproperty("WM_NAME", "panel")
 

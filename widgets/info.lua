@@ -27,8 +27,6 @@ local image_cont = wibox.widget {
 
 box_image:set_image(gears.filesystem.get_configuration_dir() .. "images/4.jpg")
 
-
-
 local text_area = wibox.layout.fixed.vertical()
 text_area:add(wibox.container.constraint(mpd_artist, "exact", nil, dpi(2)))
 text_area:add(wibox.container.constraint(mpd_title, "exact", nil, dpi(2)))

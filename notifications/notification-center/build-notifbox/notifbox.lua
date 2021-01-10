@@ -19,16 +19,16 @@ notifbox.create = function(icon, title, message, width)
                                                 function()
         _G.remove_notifbox(box)
     end)
-    dismiss.forced_height = dpi(48)
-    dismiss.forced_width = dpi(48)
+    dismiss.forced_height = dpi(72)
+    dismiss.forced_width = dpi(72)
 
     -- icon.forced_height = dpi(24)
     -- icon.forced_width = dpi(24)
 
     local img_icon = wibox.widget {
         image = icon,
-        forced_width = dpi(48),
-        forced_height = dpi(48),
+        forced_width = dpi(72),
+        forced_height = dpi(72),
         resize = true,
         clip_shape = function(cr)
             gears.shape.rounded_rect(cr, dpi(15), dpi(15), dpi(15))
@@ -81,10 +81,10 @@ notifbox.create = function(icon, title, message, width)
                     spacing = dpi(5),
                     layout = wibox.layout.fixed.vertical
                 },
-                margins = dpi(10),
+                margins = dpi(5),
                 widget = wibox.container.margin
             },
-            spacing = dpi(20),
+            spacing = dpi(10),
             layout = wibox.layout.align.horizontal
         },
         shape = function(cr, width, height)

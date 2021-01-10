@@ -25,7 +25,7 @@ end
 helpers.prrect = function(radius, tl, tr, br, bl)
     return function(cr, width, height)
         gears.shape.partially_rounded_rect(cr, width, height, tl, tr, br, bl,
-                                           radius)
+        radius)
     end
 end
 -- Markup helper
@@ -52,7 +52,7 @@ end
 
 function helpers.pango_escape(s)
     return (string.gsub(s, "[&<>]",
-                        {["&"] = "&amp;", ["<"] = "&lt;", [">"] = "&gt;"}))
+    {["&"] = "&amp;", ["<"] = "&lt;", [">"] = "&gt;"}))
 end
 
 function helpers.vertical_pad(height)
@@ -247,7 +247,7 @@ function helpers.move_to_edge(c, direction)
         c:geometry({
             nil,
             y = workarea.height + workarea.y - c:geometry().height -
-                beautiful.useless_gap * 2 - beautiful.border_width * 2,
+            beautiful.useless_gap * 2 - beautiful.border_width * 2,
             nil,
             nil
         })
@@ -256,7 +256,7 @@ function helpers.move_to_edge(c, direction)
     elseif direction == "right" then
         c:geometry({
             x = workarea.width + workarea.x - c:geometry().width -
-                beautiful.useless_gap * 2 - beautiful.border_width * 2,
+            beautiful.useless_gap * 2 - beautiful.border_width * 2,
             nil,
             nil,
             nil
@@ -296,7 +296,7 @@ function helpers.float_and_edge_snap(c, direction)
     if direction == "up" then
         local axis = 'horizontally'
         local f = awful.placement.scale + awful.placement.top +
-                      (axis and awful.placement['maximize_' .. axis] or nil)
+        (axis and awful.placement['maximize_' .. axis] or nil)
         local geo = f(client.focus, {
             honor_padding = true,
             honor_workarea = true,
@@ -305,7 +305,7 @@ function helpers.float_and_edge_snap(c, direction)
     elseif direction == "down" then
         local axis = 'horizontally'
         local f = awful.placement.scale + awful.placement.bottom +
-                      (axis and awful.placement['maximize_' .. axis] or nil)
+        (axis and awful.placement['maximize_' .. axis] or nil)
         local geo = f(client.focus, {
             honor_padding = true,
             honor_workarea = true,
@@ -314,7 +314,7 @@ function helpers.float_and_edge_snap(c, direction)
     elseif direction == "left" then
         local axis = 'vertically'
         local f = awful.placement.scale + awful.placement.left +
-                      (axis and awful.placement['maximize_' .. axis] or nil)
+        (axis and awful.placement['maximize_' .. axis] or nil)
         local geo = f(client.focus, {
             honor_padding = true,
             honor_workarea = true,
@@ -323,7 +323,7 @@ function helpers.float_and_edge_snap(c, direction)
     elseif direction == "right" then
         local axis = 'vertically'
         local f = awful.placement.scale + awful.placement.right +
-                      (axis and awful.placement['maximize_' .. axis] or nil)
+        (axis and awful.placement['maximize_' .. axis] or nil)
         local geo = f(client.focus, {
             honor_padding = true,
             honor_workarea = true,
@@ -332,6 +332,13 @@ function helpers.float_and_edge_snap(c, direction)
     end
 end
 
+-- Make client floating and snap to the desired edge
+local axis_translate = {
+    ['up'] = 'horizontally',
+    ['down'] = 'horizontally',
+    ['left'] = 'vertically',
+    ['right'] = 'vertically'
+}
 -- Rounds a number to any number of decimals
 
 function helpers.round(number, decimals)
@@ -346,8 +353,8 @@ function helpers.volume_control(step)
     else
         sign = step > 0 and "+" or ""
         cmd =
-            "pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ " ..
-                sign .. tostring(step) .. "%"
+        "pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ " ..
+        sign .. tostring(step) .. "%"
     end
     awful.spawn.with_shell(cmd)
 end
@@ -424,7 +431,7 @@ end
 function helpers.pad(size)
     local str = ""
     for i = 1, size do str = str .. " " end
-    local pad = wibox.widget.textbox(str)
+local pad = wibox.widget.textbox(str)
     return pad
 end
 

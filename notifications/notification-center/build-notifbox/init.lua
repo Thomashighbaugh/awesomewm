@@ -25,7 +25,7 @@ local remove_notifbox_empty = true
 local notifbox_layout = wibox.layout.fixed.vertical()
 
 -- Notification boxes container layout spacing
-notifbox_layout.spacing = dpi(7)
+notifbox_layout.spacing = dpi(2)
 notifbox_layout.forced_width = width
 
 -- Reset notifbox_layout
