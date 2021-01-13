@@ -92,6 +92,9 @@ cpuwidget = wibox.widget.textbox()
 vicious.cache(vicious.widgets.cpu)
 vicious.register(cpuwidget, vicious.widgets.cpu, " CPU: $1% ", 3)
 -- ===================================================================
+mybattery = wibox.widget.textbox()
+vicious.cache(vicious.widgets.bat)
+vicious.register(mybattery, vicious.widgets.bat, "Batt: $2%", 17, "BAT0")
 
 -- Separator
 local separator = wibox.widget {
@@ -110,8 +113,7 @@ local ram_icon = wibox.widget.imagebox(icons.ram)
 ram_icon.forced_width = 50
 ram_icon.forced_height = 10
 local ram_bar = require("widgets.ram_bar")
-local ram = format_progress_bar(ram_bar, "<span foreground='" ..
-beautiful.xcolor6 .. "'> <b>  </b> </span>")
+local ram = format_progress_bar(ram_bar, "<span foreground='" .. beautiful.xcolor6 .. "'><b></b></span>")
 
 --- }}}
 
@@ -127,6 +129,12 @@ local cpu = format_progress_bar(cpu_bar, "<span foreground='" ..
 beautiful.xcolor1 .. "'> <b></b> </span>")
 
 --- }}}
+
+local bat_icon = wibox.widget.imagebox(icons.battery)
+bat_icon.forced_width = 50
+bat_icon.forced_height = 10
+local battery_bar = require("widgets.battery_bar")
+local bat = format_progress_bar(battery_bar, "<span foreground='" .. beautiful.xcolor4 .. "'><b></b></span>")
 
 --- {{{ Clock
 
@@ -207,13 +215,29 @@ local ramset = wibox.widget {
     
 }
 
+local batset = {
+    top = dpi(0),
+    left = dpi(0),
+    right = dpi(0),
+    bat_icon,
+    mybattery,
+    separator,
+    separator,
+    separator,
+    bat,
+    layout = wibox.layout.fixed.horizontal,
+    margins = 2
+    
+}
+
 local sys = wibox.widget {
     volume,
     cpuset,
     ramset,
+    batset,
     layout = wibox.layout.fixed.vertical
 }
-local sys_box = create_boxed_widget(sys, 500, 159, beautiful.xcolor0)
+local sys_box = create_boxed_widget(sys, 700, 159, beautiful.xcolor0 .. '00')
 
 local time = wibox.widget {
     {fancy_time, fancy_date, layout = wibox.layout.fixed.vertical},
@@ -224,7 +248,7 @@ local time = wibox.widget {
     widget = wibox.container.margin
 }
 
-local time_box = create_boxed_widget(time, 700, 159, beautiful.xcolor0)
+local time_box = create_boxed_widget(time, 700, 159, beautiful.xcolor0 .. '00')
 
 local panelWidget = wibox.widget {
     info_box,
@@ -233,7 +257,7 @@ local panelWidget = wibox.widget {
     layout = wibox.layout.align.vertical
 }
 
-local width = 500
+local width = 700
 local margin = 5
 
 local panelPop = popupLib.create(margin, beautiful.wibar_height + margin, nil,

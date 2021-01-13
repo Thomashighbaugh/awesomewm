@@ -226,7 +226,7 @@ local taglist_buttons = gears.table.join(
                         {
                             {
                                 {
-                                    fancy_time,
+                                    --  fancy_time,
                                     margins = dpi(0),
                                     widget = wibox.container.margin
                                 },

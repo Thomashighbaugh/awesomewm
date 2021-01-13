@@ -1,8 +1,3 @@
---  _______         __     __
--- |_     _|.---.-.|  |--.|  |--.---.-.----.
---   |   |  |  _  ||  _  ||  _  |  _  |   _|
---   |___|  |___._||_____||_____|___._|__|
-
 local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
@@ -11,28 +6,28 @@ local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local helpers = require(tostring(...):match(".*bling") .. ".module.helpers")
 
-local bg_normal = beautiful.tabbar_bg_normal or beautiful.bg_normal
-local fg_normal = beautiful.tabbar_fg_normal or beautiful.fg_normal
-local bg_focus = beautiful.tabbar_bg_focus or beautiful.bg_focus
-local fg_focus = beautiful.tabbar_fg_focus or beautiful.fg_focus
-local font = beautiful.tabbar_font or beautiful.font
+local bg_normal = beautiful.tabbar_bg_normal or beautiful.bg_normal or "#ffffff"
+local fg_normal = beautiful.tabbar_fg_normal or beautiful.fg_normal or "#000000"
+local bg_focus = beautiful.tabbar_bg_focus or beautiful.bg_focus or "#000000"
+local fg_focus = beautiful.tabbar_fg_focus or beautiful.fg_focus or "#ffffff"
+local font = beautiful.tabbar_font or beautiful.font or "Hack 15"
 local size = beautiful.tabbar_size or dpi(40)
 local border_radius =
-beautiful.mstab_border_radius or beautiful.border_radius or 16
+beautiful.mstab_border_radius or beautiful.border_radius or 6
 local position = beautiful.tabbar_orientation or "top"
 local close_color = beautiful.tabbar_color_close or beautiful.xcolor1 or
 "#f9929b"
-local min_color = beautiful.xcolor0
+local min_color = beautiful.tabbar_color_min or beautiful.xcolor3 or "#fbdf90"
 local float_color = beautiful.tabbar_color_float or beautiful.xcolor5 or
 "#ccaced"
 
 -- Helper to create buttons
-local function create_title_button(c, xcolor0, color_unfocus)
+local function create_title_button(c, color_focus, color_unfocus)
     local tb_color = wibox.widget {
         wibox.widget.textbox(),
         forced_width = dpi(8),
         forced_height = dpi(8),
-        bg = beautiful.xcolor0,
+        bg = color_focus,
         shape = gears.shape.circle,
         widget = wibox.container.background
     }
@@ -47,9 +42,9 @@ local function create_title_button(c, xcolor0, color_unfocus)
     
     local function update()
         if client.focus == c then
-            tb_color.bg = beautiful.xbackground
+            tb_color.bg = color_focus
         else
-            tb_color.bg = beautiful.xbackground
+            tb_color.bg = color_unfocus
         end
     end
     update()
@@ -57,9 +52,9 @@ local function create_title_button(c, xcolor0, color_unfocus)
     c:connect_signal("unfocus", update)
     
     tb:connect_signal("mouse::enter",
-    function() tb_color.bg = tbcolor.bg end)
+    function() tb_color.bg = color_focus .. "70" end)
     
-    tb:connect_signal("mouse::leave", function() tb_color.bg = tbcolor.bg end)
+    tb:connect_signal("mouse::leave", function() tb_color.bg = color_focus end)
     
     tb.visible = true
     return tb
@@ -71,7 +66,7 @@ local function create(c, focused_bool, buttons)
     local bg_temp = bg_normal
     local fg_temp = fg_normal
     if focused_bool then
-        bg_temp = bg_focus .. 'dd'
+        bg_temp = bg_focus
         fg_temp = fg_focus
     end
     local text_temp = wibox.widget.textbox()
@@ -89,9 +84,9 @@ local function create(c, focused_bool, buttons)
     local tab_content = wibox.widget {
         {
             awful.widget.clienticon(c),
-            top = dpi(0),
-            left = dpi(5),
-            bottom = dpi(0),
+            top = dpi(10),
+            left = dpi(15),
+            bottom = dpi(10),
             widget = wibox.container.margin
         },
         text_temp,
@@ -100,20 +95,31 @@ local function create(c, focused_bool, buttons)
         layout = wibox.layout.align.horizontal
     }
     
+    local close = create_title_button(c, close_color, bg_normal)
+    close:connect_signal("button::press", function() c:kill() end)
+    
+    local floating = create_title_button(c, float_color, bg_normal)
+    floating:connect_signal("button::press",
+    function() c.floating = not c.floating end)
+    
+    local min = create_title_button(c, min_color, bg_normal)
+    min:connect_signal("button::press", function() c.minimized = true end)
+    
     if focused_bool then
         tab_content = wibox.widget {
             {
                 awful.widget.clienticon(c),
-                top = dpi(0),
-                left = dpi(5),
-                bottom = dpi(0),
+                top = dpi(10),
+                left = dpi(15),
+                bottom = dpi(10),
                 widget = wibox.container.margin
             },
             text_temp,
             {
-                
-                right = dpi(5),
-                bottom = dpi(5),
+                {layout = wibox.layout.fixed.horizontal},
+                top = dpi(10),
+                right = dpi(10),
+                bottom = dpi(10),
                 widget = wibox.container.margin
             },
             expand = "none",
@@ -122,6 +128,7 @@ local function create(c, focused_bool, buttons)
     end
     
     local wid_temp = wibox.widget({
+        buttons = buttons,
         {
             {
                 {

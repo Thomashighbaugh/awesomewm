@@ -10,13 +10,12 @@ local active_color = {
     type = 'linear',
     from = {0, 0},
     to = {200, 50}, -- replace with w,h later
-    stops = {{0, beautiful.xcolor6}, {0.75, beautiful.xcolor4}}
-}
+stops = {{0, beautiful.xcolor6}, {0.75, beautiful.xcolor4}}}
 
 local text = {
     markup = "<b>VOL</b>",
     align = 'center',
-    font = "Jetbrains Mono 15",
+    font = "FuraCode Nerd Font Mono 15",
     widget = wibox.widget.textbox
 }
 
@@ -47,7 +46,7 @@ awesome.connect_signal("ears::volume", function(volume, muted)
     else
         volume_arc.bg = beautiful.xbackground
     end
-
+    
     volume_arc.value = volume
 end)
 

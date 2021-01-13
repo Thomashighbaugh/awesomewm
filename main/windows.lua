@@ -14,15 +14,20 @@ local horizontal = bling.layout.horizontal
 -- Set the layouts
 tag.connect_signal("request::default_layouts", function()
     awful.layout.append_default_layouts({
-        mstab, centered, vertical, horizontal, awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.corner.nw, })
+        mstab,
+        centered,
+        vertical,
+        horizontal,
+        awful.layout.suit.spiral.dwindle,
+        awful.layout.suit.corner.nw,
+    })
 end)
 -- Layout List Widget ---------------------------------------------------------
 local ll = awful.widget.layoutlist({
     source = awful.widget.layoutlist.source.default_layouts,
-    spacing = dpi(96),
+    spacing = dpi(120),
     base_layout = wibox.widget({
-        spacing = dpi(96),
+        spacing = dpi(120),
         forced_num_cols = 3,
         layout = wibox.layout.grid.vertical
     }),
@@ -30,23 +35,23 @@ local ll = awful.widget.layoutlist({
         {
             {
                 id = 'icon_role',
-                forced_height = dpi(96),
-                forced_width = dpi(96),
+                forced_height = dpi(120),
+                forced_width = dpi(120),
                 widget = wibox.widget.imagebox
             },
-            margins = dpi(5),
+            margins = dpi(6),
             widget = wibox.container.margin
         },
         id = 'background_role',
-        forced_width = dpi(96),
-        forced_height = dpi(96),
+        forced_width = dpi(120),
+        forced_height = dpi(120),
         widget = wibox.container.background
     }})
     -- Popup
     local layout_popup = awful.popup({
         widget = wibox.widget({
             ll,
-            margins = dpi(30),
+            margins = dpi(15),
             widget = wibox.container.margin
         }),
         border_color = beautiful.layoutlist_border_color,
@@ -54,7 +59,7 @@ local ll = awful.widget.layoutlist({
         placement = awful.placement.centered,
         ontop = true,
         visible = false,
-        bg = beautiful.xcolor0 .. 'cc'
+        bg = beautiful.xcolor0 .. 'dd'
     })
     -- Key Bindings for Widget ----------------------------------------------------
     

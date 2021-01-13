@@ -52,8 +52,8 @@ end)
 -- {{ Helper to create mult tb buttons
 local function create_title_button(c, color_focus, color_unfocus)
     local tb_color = wibox.widget {
-        forced_width = dpi(5),
-        forced_height = dpi(5),
+        forced_width = dpi(25),
+        forced_height = dpi(25),
         bg = color_focus,
         shape = gears.shape.circle,
         widget = wibox.container.background
@@ -166,7 +166,7 @@ client.connect_signal("request::titlebars", function(c)
                         buttons = buttons,
                         layout = wibox.layout.flex.horizontal
                     },
-                    margins = dpi(5),
+                    margins = 0,
                     widget = wibox.container.margin
                 },
                 
@@ -201,9 +201,11 @@ client.connect_signal("request::titlebars", function(c)
                                     awful.titlebar.widget.stickybutton(c),
                                     awful.titlebar.widget.ontopbutton(c),
                                     awful.titlebar.widget.closebutton(c),
-                                    layout = wibox.layout.flex.horizontal
+                                    layout = wibox.layout.flex.horizontal,
+                                    margins = 0,
+                                    
                                 },
-                                margins = dpi(0),
+                                margins = 0,
                                 widget = wibox.container.margin
                             },
                             bg = beautiful.xbackground,

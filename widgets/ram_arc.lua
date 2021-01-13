@@ -29,7 +29,7 @@ local active_color = {
         rounded_edge = true,
         forced_width = 100,
         bg = beautiful.xbackground,
-        paddings = 1,
+        paddings = 2,
         colors = {active_color},
         widget = wibox.container.arcchart
     }
@@ -40,5 +40,4 @@ local active_color = {
     end)
     
     return ram_arc
-
-   
+    

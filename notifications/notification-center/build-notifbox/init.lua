@@ -9,7 +9,7 @@ local beautiful = require('beautiful')
 
 local dpi = beautiful.xresources.apply_dpi
 local empty_notifbox = require(
-                           'notifications.notification-center.build-notifbox.empty-notifbox')
+'notifications.notification-center.build-notifbox.empty-notifbox')
 
 local config_dir = gears.filesystem.get_configuration_dir()
 local widget_icon_dir = config_dir .. 'notifications/notification-center/icons/'
@@ -37,7 +37,7 @@ end
 
 remove_notifbox = function(box)
     notifbox_layout:remove_widgets(box)
-
+    
     if #notifbox_layout.children == 0 then
         notifbox_layout:insert(1, empty_notifbox)
         remove_notifbox_empty = true
@@ -49,25 +49,25 @@ notifbox_layout:insert(1, empty_notifbox)
 
 -- Connect to naughty
 naughty.connect_signal("added", function(n)
-
+    
     -- If notifbox_layout has a child and remove_notifbox_empty
     if #notifbox_layout.children == 1 and remove_notifbox_empty then
         -- Reset layout
         notifbox_layout:reset(notifbox_layout)
         remove_notifbox_empty = false
     end
-
+    
     -- Set background color based on urgency level
     local notifbox_color = beautiful.groups_bg
     if n.urgency == 'critical' then
-        notifbox_color = beautiful.xbackground .. '22'
+        notifbox_color = beautiful.xcolor0 .. 'dd'
     end
     -- Check if there's an icon
     local appicon = n.icon or n.app_icon
     if not appicon then appicon = beautiful.notification_icon end
-
+    
     local box = require(
-                    "notifications.notification-center.build-notifbox.notifbox")
+    "notifications.notification-center.build-notifbox.notifbox")
     notifbox_layout:insert(1, box.create(appicon, n.title, n.message, width))
 end)
 

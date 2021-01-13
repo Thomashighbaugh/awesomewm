@@ -2,7 +2,7 @@
 
 ## ❓ Why
 
-AwesomeWM is literally that - an awesome window manager. [tlh insert: Wow, that's cheesy and totally untrue, it just sucks a little less than its alternatives]
+AwesomeWM is literally that - an awesome window manager. 
 
 It's unique selling point has always been the widget system allowing for fancy buttons, sliders, bars, dashboards and everything you can imagine. But that feature might also be a curse. Most modules focus on the widget side of things which left the actual window managing part of awesomeWM a little underdeveloped compared to for example xmonad even though it's probably just as powerfull in that regard. 
 

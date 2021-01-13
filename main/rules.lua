@@ -20,12 +20,12 @@ awful.rules.rules = {
             border_color = beautiful.border_normal,
             focus = awful.client.focus.filter,
             raise = true,
-            size_hints_honor = true,
+            size_hints_honor = false,
             titlebars_enabled = true,
             keys = clientkeys,
             buttons = clientbuttons,
             screen = awful.screen.preferred,
-            placement = awful.placement.centered + awful.placement.no_overlap +
+            placement = awful.placement.no_overlap +
             awful.placement.no_offscreen
         }}, {rule = {}, properties = {}, callback = awful.client.setslave}, {
         rule_any = {
@@ -56,11 +56,10 @@ awful.rules.rules = {
         },
         callback = function(c)
             awful.placement.centered(c, {
-                honor_padding = true,
-                honor_workarea = true,
+                honor_padding = false,
+                honor_workarea = false,
                 titlebars_enabled = true
             })
-            gears.timer.delayed_call(function() c.urgent = false end)
         end
     }}
     

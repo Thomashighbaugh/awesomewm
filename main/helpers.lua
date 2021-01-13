@@ -41,7 +41,7 @@ function helpers.client_menu_toggle()
             instance:hide()
             instance = nil
         else
-            instance = awful.menu.clients({theme = {width = dpi(250)}})
+            instance = awful.menu.clients({theme = {width = dpi(550)}})
         end
     end
 end
@@ -75,8 +75,8 @@ function helpers.maximize(c)
     c.maximized = not c.maximized
     if c.maximized then
         awful.placement.maximize(c, {
-            honor_padding = true,
-            honor_workarea = true,
+            honor_padding = false,
+            honor_workarea = false,
             margins = beautiful.useless_gap * 2
         })
     end
@@ -89,39 +89,39 @@ function helpers.move_to_edge(c, direction)
     if direction == "up" then
         local old_x = c:geometry().x
         awful.placement.top(c, {
-            honor_padding = true,
-            honor_workarea = true,
-            honor_padding = true
+            honor_padding = false,
+            honor_workarea = false,
+            honor_padding = false
         })
         c.x = old_x
-        -- c:geometry({ nil, y = workarea.y + beautiful.screen_margin * 2, nil, nil })
+        c:geometry({nil, y = workarea.y + beautiful.screen_margin * 2, nil, nil})
     elseif direction == "down" then
         local old_x = c:geometry().x
         awful.placement.bottom(c, {
-            honor_padding = true,
+            honor_padding = false,
             honor_workarea = true,
-            honor_padding = true
+            honor_padding = false
         })
         c.x = old_x
-        -- c:geometry({ nil, y = workarea.height + workarea.y - client_geometry.height - beautiful.screen_margin * 2 - beautiful.border_width * 2, nil, nil })
+        c:geometry({nil, y = workarea.height + workarea.y - client_geometry.height - beautiful.screen_margin * 2 - beautiful.border_width * 2, nil, nil})
     elseif direction == "left" then
         local old_y = c:geometry().y
         awful.placement.left(c, {
-            honor_padding = true,
+            honor_padding = false,
             honor_workarea = true,
-            honor_padding = true
+            honor_padding = false
         })
         c.y = old_y
-        -- c:geometry({ x = workarea.x + beautiful.screen_margin * 2, nil, nil, nil })
+        c:geometry({x = workarea.x + beautiful.screen_margin * 2, nil, nil, nil})
     elseif direction == "right" then
         local old_y = c:geometry().y
         awful.placement.right(c, {
-            honor_padding = true,
-            honor_workarea = true,
-            honor_padding = true
+            honor_padding = false,
+            honor_workarea = false,
+            honor_padding = false
         })
         c.y = old_y
-        -- c:geometry({ x = workarea.width + workarea.x - client_geometry.width - beautiful.screen_margin * 2 - beautiful.border_width * 2, nil, nil, nil })
+        c:geometry({x = workarea.width + workarea.x - client_geometry.width - beautiful.screen_margin * 2 - beautiful.border_width * 2, nil, nil, nil})
     end
 end
 
@@ -298,8 +298,8 @@ function helpers.float_and_edge_snap(c, direction)
         local f = awful.placement.scale + awful.placement.top +
         (axis and awful.placement['maximize_' .. axis] or nil)
         local geo = f(client.focus, {
-            honor_padding = true,
-            honor_workarea = true,
+            honor_padding = false,
+            honor_workarea = false,
             to_percent = 0.5
         })
     elseif direction == "down" then
@@ -307,8 +307,8 @@ function helpers.float_and_edge_snap(c, direction)
         local f = awful.placement.scale + awful.placement.bottom +
         (axis and awful.placement['maximize_' .. axis] or nil)
         local geo = f(client.focus, {
-            honor_padding = true,
-            honor_workarea = true,
+            honor_padding = false,
+            honor_workarea = false,
             to_percent = 0.5
         })
     elseif direction == "left" then
@@ -316,8 +316,8 @@ function helpers.float_and_edge_snap(c, direction)
         local f = awful.placement.scale + awful.placement.left +
         (axis and awful.placement['maximize_' .. axis] or nil)
         local geo = f(client.focus, {
-            honor_padding = true,
-            honor_workarea = true,
+            honor_padding = false,
+            honor_workarea = false,
             to_percent = 0.5
         })
     elseif direction == "right" then
@@ -325,8 +325,8 @@ function helpers.float_and_edge_snap(c, direction)
         local f = awful.placement.scale + awful.placement.right +
         (axis and awful.placement['maximize_' .. axis] or nil)
         local geo = f(client.focus, {
-            honor_padding = true,
-            honor_workarea = true,
+            honor_padding = false,
+            honor_workarea = false,
             to_percent = 0.5
         })
     end
@@ -422,7 +422,7 @@ end
 function helpers.float_and_resize(c, width, height)
     c.width = width
     c.height = height
-    awful.placement.centered(c, {honor_workarea = true, honor_padding = true})
+    awful.placement.centered(c, {honor_workarea = false, honor_padding = false})
     awful.client.property.set(c, 'floating_geometry', c:geometry())
     c.floating = true
     c:raise()

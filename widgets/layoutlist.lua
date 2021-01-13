@@ -5,7 +5,7 @@ local dpi = require("beautiful.xresources").apply_dpi
 
 local ll = awful.widget.layoutlist {
     source = awful.widget.layoutlist.source.default_layouts, -- DOC_HIDE
-    spacing = dpi(24),
+    spacing = dpi(72),
     base_layout = wibox.widget {
         spacing = dpi(72),
         forced_num_cols = 3,
@@ -15,24 +15,24 @@ local ll = awful.widget.layoutlist {
         {
             {
                 id = 'icon_role',
-                forced_height = dpi(72),
-                forced_width = dpi(72),
+                forced_height = dpi(96),
+                forced_width = dpi(96),
                 widget = wibox.widget.imagebox
             },
-            margins = dpi(24),
+            margins = dpi(5),
             
             widget = wibox.container.margin
         },
         id = 'background_role',
-        forced_width = dpi(72),
-        forced_height = dpi(72),
+        forced_width = dpi(96),
+        forced_height = dpi(96),
         widget = wibox.container.background
     }}
     
     local layout_popup = awful.popup {
         widget = wibox.widget {
             ll,
-            margins = dpi(72),
+            margins = dpi(36),
             widget = wibox.container.margin
         },
         border_color = beautiful.layoutlist_border_color,

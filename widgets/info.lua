@@ -50,7 +50,7 @@ local main_wd = wibox.widget {
     forced_width = dpi(100),
     forced_height = dpi(100),
     shape = helpers.rrect(dpi(6)),
-    bg = beautiful.xcolor0,
+    bg = beautiful.xcolor0 .. '00',
     widget = wibox.container.margin
 }
 

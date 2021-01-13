@@ -15,12 +15,12 @@ local active_color = {
     
     local icon = {
         id = "icon",
-        image = icons.cpu,
+        image = icons.battery,
         resize = true,
         widget = wibox.widget.imagebox
     }
     
-    local cpu_arc = wibox.widget {
+    local battery_arc = wibox.widget {
         icon,
         max_value = 100,
         thickness = 5,
@@ -29,12 +29,41 @@ local active_color = {
         rounded_edge = true,
         forced_width = 100,
         bg = beautiful.xbackground,
-        paddings = 2,
+        paddings = 1,
         colors = {active_color},
         widget = wibox.container.arcchart
     }
     
-    awesome.connect_signal("ears::cpu", function(value) cpu_arc.value = value end)
-    
-    return cpu_arc
+    local q = 0
+    local g = gears.timer {
+        timeout = 0.3,
+        call_now = false,
+        autostart = false,
+        callback = function()
+            
+            if q >= 100 then q = 0 end
+            q = q + 1
+            battery_bar.value = q
+            
+        end
+    }
+    awesome.connect_signal("ears::battery", function(value)
+        if plugged then
+            g:start()
+        else
+            g:stop()
+            battery_arc.value = value
+            
+        end
+    end)
+    awesome.connect_signal("ears::charger", function(value)
+        if plugged then
+            battery_arc.icon.image = icons.battery
+        else
+            g:stop()
+            battery_arc.icon.image = icons.battery_charging
+            
+        end
+    end)
+    return battery_arc
     

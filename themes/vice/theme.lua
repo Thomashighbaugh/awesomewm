@@ -85,7 +85,7 @@ theme.border_width = dpi(2)
 theme.border_normal = theme.xcolor0
 theme.border_focus = theme.xcolor0
 theme.border_radius = dpi(6)
-theme.client_radius = dpi(10)
+--theme.client_radius = dpi(10)
 theme.widget_border_width = dpi(2)
 theme.widget_border_color = theme.xcolor0
 
@@ -100,14 +100,14 @@ taglist_square_size, theme.fg_normal)
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 taglist_square_size, theme.fg_normal)
 theme.taglist_font = theme.font_taglist
-theme.taglist_bg = theme.xcolor0 .. '00'
-theme.taglist_bg_focus = theme.xcolor0 .. '00'
+theme.taglist_bg = transparent
+theme.taglist_bg_focus = transparent
 theme.taglist_fg_focus = theme.xcolor4
-theme.taglist_bg_urgent = theme.xcolor0 .. '00'
+theme.taglist_bg_urgent = transparent
 theme.taglist_fg_urgent = theme.xcolor5
-theme.taglist_bg_occupied = theme.xcolor0 .. '00'
+theme.taglist_bg_occupied = transparent
 theme.taglist_fg_occupied = theme.xcolor1
-theme.taglist_bg_empty = theme.xcolor0 .. '00'
+theme.taglist_bg_empty = transparent
 theme.taglist_fg_empty = theme.xcolor8
 theme.taglist_bg_volatile = transparent
 theme.taglist_fg_volatile = theme.xcolor11
@@ -117,7 +117,6 @@ theme.taglist_disable_icon = true
 -- Tasklist
 -- ========================================================================
 theme.tasklist_font = theme.font
-theme.tasklist_plain_task_name = true
 theme.tasklist_bg_focus = theme.xcolor0 .. 'dd'
 theme.tasklist_fg_focus = theme.xcolor4
 theme.tasklist_bg_minimize = theme.xcolor0 .. '00'
@@ -196,7 +195,7 @@ theme = theme_assets.recolor_layout(theme, theme.xforeground)
 -- ========================================================================
 -- Gaps
 -- ========================================================================
-theme.useless_gap = dpi(2)
+theme.useless_gap = dpi(3)
 
 -- ========================================================================
 -- Exit Screen
@@ -206,64 +205,63 @@ theme.exit_screen_fg = theme.xforeground
 -- ========================================================================
 -- Systray
 -- ========================================================================
-theme.systray_icon_spacing = dpi(2)
-theme.bg_systray = theme.xcolor0 .. '66'
+theme.systray_icon_spacing = dpi(4)
+theme.bg_systray = theme.xcolor0 .. '00'
 theme.systray_icon_size = dpi(30)
 
 -- ========================================================================
 -- Wibar
 -- ========================================================================
 theme.wibar_height = dpi(35)
-theme.wibar_margin = dpi(15)
+theme.wibar_margin = dpi(5)
 theme.wibar_spacing = dpi(5)
 theme.wibar_bg = theme.xcolor0 .. 'dd'
 
 -- ===================================================================
--- Collision ---------------------------------------------------------
+-- Bling ---------------------------------------------------------
 -- ===================================================================
-theme.collision_focus_bg = theme.xcolor8
-theme.collision_focus_fg = theme.xcolor6
-theme.collision_focus_shape = helpers.rrect(theme.border_radius)
-theme.collision_focus_border_width = theme.border_width
-theme.collision_focus_border_color = theme.border_normal
+-- window swallowing
+theme.dont_swallow_classname_list = {"firefox", "Gimp"} -- list of class names that should not be swallowed
+theme.dont_swallow_filter_activated = true -- whether the filter above should be active
 
-theme.collision_focus_bg_center = theme.xcolor8
-theme.collision_shape_width = dpi(100)
-theme.collision_shape_height = dpi(100)
-theme.collision_focus_shape_center = gears.shape.circle
+-- flash focus
+theme.flash_focus_start_opacity = 0.6 -- the starting opacity
+theme.flash_focus_step = 0.01 -- the step of animation
 
-theme.collision_max_bg = theme.xcolor0 .. 'dd'
-theme.collision_max_fg = theme.xcolor8
-theme.collision_max_shape = helpers.rrect(theme.border_radius)
-theme.bg_urgent = theme.xcolor1
+-- tabbed
+theme.tabbed_spawn_in_tab = true -- whether a new client should spawn into the focused tabbing container
 
-theme.collision_resize_width = dpi(20)
-theme.collision_resize_shape = theme.collision_focus_shape
-theme.collision_resize_border_width = theme.collision_focus_border_width
-theme.collision_resize_border_color = theme.collision_focus_border_color
-theme.collision_resize_padding = dpi(5)
-theme.collision_resize_bg = theme.collision_focus_bg
-theme.collision_resize_fg = theme.collision_focus_fg
+-- tabbar general
+theme.tabbar_ontop = false
+theme.tabbar_radius = dpi(6) -- border radius of the tabbar
+theme.tabbar_style = "default" -- style of the tabbar ("default", "boxes" or "modern")
+theme.tabbar_font = "FuraCode Nerd Font Mono Bold 12" -- font of the tabbar
+theme.tabbar_size = 25 -- size of the tabbar
+theme.tabbar_position = "top" -- position of the tabbar
+theme.tabbar_bg_normal = "#1f2032cc" -- background color of the focused client on the tabbar
+theme.tabbar_fg_normal = "#e9efff" -- foreground color of the focused client on the tabbar
+theme.tabbar_bg_focus = "#1f203200" -- background color of unfocused clients on the tabbar
+theme.tabbar_fg_focus = theme.xcolor6 -- foreground color of unfocused clients on the tabbar
 
-theme.collision_screen_shape = theme.collision_focus_shape
-theme.collision_screen_border_width = theme.collision_focus_border_width
-theme.collision_screen_border_color = theme.collision_focus_border_color
-theme.collision_screen_padding = dpi(5)
-theme.collision_screen_bg = theme.xcolor0 .. 'dd'
-theme.collision_screen_fg = theme.xcolor4
-theme.collision_screen_bg_focus = theme.xcolor8
-theme.collision_screen_fg_focus = theme.xcolor4
+-- mstab
+theme.mstab_bar_ontop = false -- whether you want to allow the bar to be ontop of clients
+theme.mstab_dont_resize_flaves = false -- whether the tabbed stack windows should be smaller than the
+-- currently focused stack window (set it to true if you use
+-- transparent terminals. False if you use shadows on solid ones
+theme.mstab_bar_padding = dpi(0) -- how much padding there should be between clients and your tabbar
+-- by default it will adjust based on your useless gaps.
+-- If you want a custom value. Set it to the number of pixels (int)
+theme.mstab_border_radius = dpi(6) -- border radius of the tabbar
+theme.mstab_bar_height = 25 -- height of the tabbar
+theme.mstab_tabbar_position = "top" -- position of the tabbar (mstab currently does not support left,right)
+theme.mstab_tabbar_style = "default" -- style of the tabbar ("default", "boxes" or "modern")
+-- defaults to the tabbar_style so only change if you want a
+-- different style for mstab and tabbed
 
--- Tabs
-
-theme.mstab_bar_height = dpi(20)
-theme.mstab_bar_padding = dpi(0)
-theme.mstab_tabbar_orientation = "top"
-theme.mstab_border_radius = dpi(6)
-theme.tabbar_style = "modern"
-theme.tabbar_bg_focus = theme.xcolor0 .. 'dd'
-theme.tabbar_bg_normal = theme.xcolor0 .. 'dd'
-theme.mstab_bar_ontop = true
+-- the following variables are currently only for the "modern" tabbar style
+theme.tabbar_color_close = "#ff29a800" -- chnges the color of the close button
+theme.tabbar_color_min = "#f0ee6e00" -- chnges the color of the minimize button
+theme.tabbar_color_float = "#6c71c400" -- chnges the color of the float button
 
 -- ========================================================================
 -- Icons for Notif Center
