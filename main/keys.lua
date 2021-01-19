@@ -45,7 +45,7 @@ globalkeys = gears.table.join(
         function() awful.spawn("sudo kitty -e ranger") end,
     {description = "Open File Manager as Root", group = "launcher"}),
     -- ===================================================================
-    awful.key({modkey, "Control"}, "F3",
+    awful.key({modkey, "Shift"}, "F3",
         function() awful.spawn("sudo thunar") end,
     {description = "Open Thunar", group = "launcher"}),
     -- ===================================================================

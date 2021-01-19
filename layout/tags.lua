@@ -12,6 +12,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Set Wallpaper
     
     gears.wallpaper.maximized(gears.filesystem.get_configuration_dir() ..
-    "images/5.png", s, nil)
+        
+    "images/4.png", s, nil)
 end)
 
