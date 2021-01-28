@@ -46,8 +46,8 @@ globalkeys = gears.table.join(
     {description = "Open File Manager as Root", group = "launcher"}),
     -- ===================================================================
     awful.key({modkey, "Shift"}, "F3",
-        function() awful.spawn("sudo thunar") end,
-    {description = "Open Thunar", group = "launcher"}),
+        function() awful.spawn("nemo") end,
+    {description = "Open Nemo", group = "launcher"}),
     -- ===================================================================
     -- Font Awesome Clipboard
     awful.key({modkey}, "F9", function()
