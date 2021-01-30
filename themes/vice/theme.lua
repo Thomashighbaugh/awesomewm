@@ -321,6 +321,6 @@ titlebar_icon_path .. "maximized_normal_active.svg"
 theme.titlebar_maximized_button_focus_active =
 titlebar_icon_path .. "maximized_focus_active.svg"
 
-theme.taglist_font = "awesomewm-font 26"
+theme.taglist_font = "awesomewm-font 22"
 
 return theme

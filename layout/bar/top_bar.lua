@@ -82,7 +82,6 @@ vicious.cache(vicious.widgets.cpu)
 vicious.register(cpuwidget, vicious.widgets.cpu, "CPU: $1%", 13)
 
 local cpu_container = {
-    cpuwidget,
     cpu_widget,
     left = 0,
     right = 0,
@@ -116,7 +115,7 @@ awful.screen.connect_for_each_screen(function(s)
     local separator = wibox.widget {
         orientation = 'vertical',
         forced_height = dpi(1),
-        forced_width = dpi(20),
+        forced_width = dpi(10),
         span_ratio = 0.5,
         color = beautiful.xcolor7 .. 'bb',
         widget = wibox.widget.separator
@@ -148,15 +147,7 @@ awful.screen.connect_for_each_screen(function(s)
         expand = "true",
         {
             layout = wibox.layout.fixed.horizontal,
-            {
-                
-                top = 5,
-                right = 0,
-                left = 0,
-                widget = wibox.container.margin,
-                bat_container,
-                
-            },
+            
             {
                 {
                     battery_bar,
@@ -178,15 +169,6 @@ awful.screen.connect_for_each_screen(function(s)
         {
             
             {
-                
-                top = 5,
-                right = 0,
-                left = 0,
-                widget = wibox.container.margin,
-                cpu_container,
-                
-            },
-            {
                 {
                     cpubar,
                     
@@ -199,13 +181,7 @@ awful.screen.connect_for_each_screen(function(s)
                 separator,
                 
             },
-            {
-                
-                top = 5,
-                widget = wibox.container.margin,
-                mem_container,
-                
-            },
+            
             membar,
             separator,
             
