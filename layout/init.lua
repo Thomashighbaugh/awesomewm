@@ -7,3 +7,4 @@
 require("layout.exitscreen")
 require("layout.bar")
 require("layout.titlebars")
+require("layout.wallpaper")

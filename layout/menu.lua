@@ -26,7 +26,7 @@ local terminal = RC.vars.terminal
 
 -- Variable definitions
 -- This is used later as the default terminal and editor to run.
-local editor = os.getenv("EDITOR") or "subl3"
+local editor = os.getenv("EDITOR") or "vscodium"
 local editor_cmd = terminal .. " -e " .. editor
 
 -- ===================================================================
@@ -56,7 +56,7 @@ M.awesome = {
 }
 
 M.favorite = {
-    {"Thunar", "thunar", "/usr/share/icons/chhinamasta/512x512/apps/thunar.png"},
+    {"Nemo", "nemo", "/usr/share/icons/chhinamasta/512x512/apps/thunar.png"},
     {
         "Firefox", "firefox",
         "/usr/share/icons/chhinamasta/512x512/apps/firefox.png"
@@ -91,6 +91,10 @@ M.dev = {
         "/usr/share/icons/chhinamasta/512x512/apps/sublime.png"
     }, {
         "Webstorm", "webstorm",
+        "/usr/share/icons/chhinamasta/512x512/apps/text-editor.png"
+    },
+    {
+        "VSCodium", "vscodium",
         "/usr/share/icons/chhinamasta/512x512/apps/text-editor.png"
     }
 }
