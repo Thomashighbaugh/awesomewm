@@ -75,7 +75,12 @@
         "plugged",
         "mpd_artist",
         "mpd_title",
-        "fill_color"
+        "fill_color",
+        "wibox",
+        "taglist_square_size",
+        "ge",
+        "e",
+        "ner"
     ],
     "cSpell.words": [
         "ALSA",
@@ -87,6 +92,7 @@
         "Aurélien",
         "Bhei",
         "Bieniek",
+        "COVID",
         "Conor",
         "Crohan",
         "DWIM",
@@ -254,6 +260,7 @@
     ],
     "Lua.diagnostics.disable": [
         "unused-local",
-        "unbalanced-assignments"
+        "unbalanced-assignments",
+        "redefined-local"
     ]
 }

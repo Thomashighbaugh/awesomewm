@@ -1,3 +1,9 @@
+--               __   __   ___ __
+-- .-----.-----.|  |_|__|.'  _|  |--.-----.--.--.
+-- |     |  _  ||   _|  ||   _|  _  |  _  |_   _|
+-- |__|__|_____||____|__||__| |_____|_____|__.__|
+--=======================================================
+
 local awful = require("awful")
 local wibox = require("wibox")
 local gears = require("gears")
@@ -78,9 +84,9 @@ notifbox.create = function(icon, title, message, width)
 					},
 					spacing = dpi(5),
 					layout = wibox.layout.fixed.vertical,
+					widget = wibox.container.margin,
 				},
-				margins = dpi(5),
-				widget = wibox.container.margin,
+
 			},
 			spacing = dpi(10),
 			layout = wibox.layout.align.horizontal,
