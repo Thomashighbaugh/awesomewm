@@ -53,20 +53,20 @@ theme.xcolor15 = xrdb.color15
 -- ===================================================================
 -- Fonts
 -- ===================================================================
-theme.font = "FuraCode Nerd Font Mono Bold 11"
-theme.icon_font = "FuraCode Nerd Font Mono Bold 18"
-theme.font_taglist = "FuraCode Nerd Font Mono Bold 13"
-theme.max_font = "FuraCode Nerd Font Nerd Mono Bold 10"
+theme.font = "Hack Nerd Font Bold 11"
+theme.icon_font = "Hack Nerd Font Bold 18"
+theme.font_taglist = "Hack Nerd Font Bold 13"
+theme.max_font = "Hack Nerd Font Bold 10"
 
 -- ========================================================================
 -- Background Colors
 -- ========================================================================
 
-theme.bg_dark = theme.xcolor0 .. "dd"
+theme.bg_dark = theme.xbackground .. "dd"
 theme.bg_normal = theme.xbackground .. "cc"
-theme.bg_focus = theme.xcolor0 .. "dd"
-theme.bg_urgent = theme.xcolor0 .. "dd"
-theme.bg_minimize = theme.xcolor0 .. "cc"
+theme.bg_focus = theme.xbackground .. "dd"
+theme.bg_urgent = theme.xbackground .. "dd"
+theme.bg_minimize = theme.xbackground .. "cc"
 
 -- ========================================================================
 -- Foreground Colors
@@ -82,12 +82,12 @@ theme.button_close = theme.xcolor1
 -- Borders
 -- ========================================================================
 theme.border_width = dpi(2)
-theme.border_normal = theme.xcolor0
-theme.border_focus = theme.xcolor0
-theme.border_radius = dpi(6)
+theme.border_normal = theme.xbackground
+theme.border_focus = theme.xbackground
+theme.border_radius = dpi(10)
 --theme.client_radius = dpi(10)
 theme.widget_border_width = dpi(2)
-theme.widget_border_color = theme.xcolor0
+theme.widget_border_color = theme.xbackground
 
 -- ========================================================================
 -- Taglist
@@ -113,15 +113,13 @@ theme.taglist_disable_icon = true
 -- Tasklist
 -- ========================================================================
 theme.tasklist_font = theme.font
-theme.tasklist_bg_focus = theme.xcolor0 .. "99"
+theme.tasklist_bg_focus = theme.xbackground .. "99"
 theme.tasklist_fg_focus = theme.xcolor4
-theme.tasklist_bg_minimize = theme.xcolor0 .. "00"
+theme.tasklist_bg_minimize = theme.xbackground .. "00"
 theme.tasklist_fg_minimize = theme.xforeground .. "aa"
-theme.tasklist_bg_normal = theme.xcolor0 .. "00"
+theme.tasklist_bg_normal = theme.xbackground .. "00"
 theme.tasklist_fg_normal = theme.xforeground
-theme.tasklist_disable_task_name = false
-theme.tasklist_disable_icon = false
-theme.tasklist_bg_urgent = theme.xcolor0 .. "00"
+theme.tasklist_bg_urgent = theme.xbackground .. "00"
 theme.tasklist_fg_urgent = theme.xcolor1
 theme.tasklist_spacing = dpi(1)
 theme.tasklist_align = "center"
@@ -130,9 +128,9 @@ theme.tasklist_align = "center"
 -- Titlebars
 -- ========================================================================
 
-theme.titlebar_size = dpi(25)
-theme.titlebar_bg_focus = theme.xcolor0 .. "dd"
-theme.titlebar_bg_normal = theme.xcolor0 .. "cc"
+theme.titlebar_size = dpi(20)
+theme.titlebar_bg_focus = theme.xbackground .. "dd"
+theme.titlebar_bg_normal = theme.xbackground .. "dd"
 theme.titlebar_fg_focus = theme.xcolor15
 theme.titlebar_fg_normal = theme.xcolor7
 
@@ -151,11 +149,11 @@ theme.prompt_fg = theme.xforeground
 -- ========================================================================
 -- Tooltips
 -- ========================================================================
-theme.tooltip_bg = theme.xcolor0 .. "dd"
+theme.tooltip_bg = theme.xbackground .. "bb"
 theme.tooltip_fg = theme.xforeground
 theme.tooltip_font = theme.font
 theme.tooltip_border_width = theme.border_width
-theme.tooltip_border_color = theme.xcolor0
+theme.tooltip_border_color = theme.xbackground
 theme.tooltip_opacity = 0.80
 theme.tooltip_align = "left"
 
@@ -165,7 +163,7 @@ theme.tooltip_align = "left"
 theme.menu_font = theme.font
 theme.menu_bg_focus = theme.xcolor4
 theme.menu_fg_focus = theme.xcolor15
-theme.menu_bg_normal = theme.xcolor0 .. "dd"
+theme.menu_bg_normal = theme.xbackground .. "dd"
 theme.menu_fg_normal = theme.xcolor7
 theme.menu_submenu_icon = gears.filesystem.get_configuration_dir() .. "theme/icons/submenu.png"
 theme.menu_height = dpi(70)
@@ -177,7 +175,7 @@ theme.menu_border_width = theme.border_width
 -- Hotkeys Pop Up
 -- ========================================================================
 theme.hotkeys_font = theme.font
-theme.hotkeys_border_color = theme.xcolor0
+theme.hotkeys_border_color = theme.xbackground
 
 -- ========================================================================
 -- Layout List
@@ -201,7 +199,7 @@ theme.exit_screen_fg = theme.xforeground
 -- Systray
 -- ========================================================================
 theme.systray_icon_spacing = dpi(4)
-theme.bg_systray = theme.xcolor0 .. "00"
+theme.bg_systray = theme.xbackground .. "00"
 theme.systray_icon_size = dpi(30)
 
 -- ========================================================================
@@ -210,7 +208,7 @@ theme.systray_icon_size = dpi(30)
 theme.wibar_height = dpi(35)
 theme.wibar_margin = dpi(5)
 theme.wibar_spacing = dpi(5)
-theme.wibar_bg = theme.xcolor0 .. "dd"
+theme.wibar_bg = theme.xbackground .. "dd"
 
 -- ===================================================================
 -- Bling ---------------------------------------------------------
@@ -228,9 +226,9 @@ theme.tabbed_spawn_in_tab = true -- whether a new client should spawn into the f
 
 -- tabbar general
 theme.tabbar_ontop = false
-theme.tabbar_radius = dpi(6) -- border radius of the tabbar
+theme.tabbar_radius = dpi(3) -- border radius of the tabbar
 theme.tabbar_style = "default" -- style of the tabbar ("default", "boxes" or "modern")
-theme.tabbar_font = "FuraCode Nerd Font Mono Bold 12" -- font of the tabbar
+theme.tabbar_font = "Hack Nerd Font Bold 12" -- font of the tabbar
 theme.tabbar_size = 25 -- size of the tabbar
 theme.tabbar_position = "top" -- position of the tabbar
 theme.tabbar_bg_normal = "#1f2032cc" -- background color of the focused client on the tabbar
