@@ -2,7 +2,7 @@
 -- |    ___|.--.--.|__|  |_  |     __|.----.----.-----.-----.-----.
 -- |    ___||_   _||  |   _| |__     ||  __|   _|  -__|  -__|     |
 -- |_______||__.__||__|____| |_______||____|__| |_____|_____|__|__|
-
+-- ========================================================================
 -- Exit Screen Widget
 local awful = require("awful")
 local gears = require("gears")
@@ -24,10 +24,9 @@ local exitscreen_bg = beautiful.xcolor0 .. "50"
 
 local button_bg = beautiful.xcolor0
 local button_size = dpi(260)
-
+-- ========================================================================
 -- Commands
-local poweroff_command = 
-function()
+local poweroff_command = function()
 	awful.spawn.with_shell("systemctl poweroff")
 
 end
@@ -39,7 +38,7 @@ end
 local exit_command = function()
 	awesome.quit()
 end
-
+-- ========================================================================
 -- Helper function that generates the clickable buttons
 local create_button = function(symbol, hover_color, text, command)
 	local icon = wibox.widget({
@@ -83,24 +82,25 @@ local create_button = function(symbol, hover_color, text, command)
 
 	return button
 end
-
+-- ========================================================================
 -- Create the buttons
 local poweroff = create_button(poweroff_text_icon, beautiful.xcolor1, "Poweroff", poweroff_command)
 local reboot = create_button(reboot_text_icon, beautiful.xcolor2, "Reboot", reboot_command)
 local exit = create_button(exit_text_icon, beautiful.xcolor4, "Exit", exit_command)
-
+-- ========================================================================
 -- Create the exit screen wibox
 local exit_screen = wibox({ visible = false, ontop = true })
 awful.placement.maximize(exit_screen)
 
 exit_screen.bg = beautiful.exit_screen_bg or exitscreen_bg
 exit_screen.fg = beautiful.exit_screen_fg or beautiful.wibar_fg
-
+-- ========================================================================
 local exit_screen_grabber
 local function exit_screen_hide()
 	awful.keygrabber.stop(exit_screen_grabber)
 	exit_screen.visible = false
 end
+-- ========================================================================
 local function exit_screen_show()
 	exit_screen_grabber = awful.keygrabber.run(function(_, key, event)
 		-- Ignore case
@@ -135,6 +135,7 @@ exit_screen:buttons(gears.table.join( -- Left click - Hide exit_screen
 	end)
 ))
 
+-- ========================================================================
 -- Item placement
 exit_screen:setup({
 	nil,
@@ -154,4 +155,5 @@ exit_screen:setup({
 	layout = wibox.layout.align.vertical,
 })
 
--- EOF ------------------------------------------------------------------------
+-- ========================================================================
+-- EOF

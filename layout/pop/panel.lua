@@ -7,6 +7,7 @@
 -- |  _  |  _  |     |  -__||  |
 -- |   __|___._|__|__|_____||__|
 -- |__|
+-- ========================================================================
 local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
@@ -26,6 +27,7 @@ icons.init(icon_theme)
 local box_radius = beautiful.client_radius
 local box_gap = dpi(3)
 
+-- ========================================================================
 local function create_boxed_widget(widget_to_be_boxed, width, height, bg_color)
 	local box_container = wibox.container.background()
 	box_container.bg = bg_color
@@ -48,12 +50,13 @@ local function create_boxed_widget(widget_to_be_boxed, width, height, bg_color)
 			widget = box_container,
 		},
 		margins = box_gap,
-		color = beautiful.xcolor0 .. "bb",
+		color = beautiful.xcolor0 .. "00",
 		widget = wibox.container.margin,
 	})
 	return boxed_widget
 end
 
+-- ========================================================================
 -- Helper function that changes the appearance of progress bars and their icons
 -- Create horizontal rounded bars
 local function format_progress_bar(bar, markup)
@@ -61,8 +64,9 @@ local function format_progress_bar(bar, markup)
 		markup = markup,
 		align = "center",
 		valign = "center",
-		font = "FuraCode Nerd Font Mono Bold 18",
+		font = "Hack Nerd Font Mono Bold 18",
 		widget = wibox.widget.textbox,
+		expand = true,
 	})
 	text.forced_height = dpi(36)
 	text.forced_width = dpi(36)
@@ -80,7 +84,7 @@ local function format_progress_bar(bar, markup)
 	})
 	return w
 end
-
+-- ========================================================================
 -- Memory Widget
 memwidget = wibox.widget.textbox()
 vicious.cache(vicious.widgets.mem)
@@ -95,18 +99,8 @@ vicious.register(cpuwidget, vicious.widgets.cpu, " CPU: $1% ", 3)
 mybattery = wibox.widget.textbox()
 vicious.cache(vicious.widgets.bat)
 vicious.register(mybattery, vicious.widgets.bat, "Batt: $2%", 17, "BAT0")
-
--- Separator
-local separator = wibox.widget({
-	orientation = "vertical",
-	forced_height = dpi(1),
-	forced_width = dpi(20),
-	span_ratio = 0.65,
-	color = beautiful.xcolor7 .. "dd",
-	widget = wibox.widget.separator,
-})
---- {{{ Ram Widget
-
+-- ========================================================================
+--Ram Widget
 -- local ram = require("widgets.ram_arc")
 
 local ram_icon = wibox.widget.imagebox(icons.ram)
@@ -115,9 +109,8 @@ ram_icon.forced_height = 10
 local ram_bar = require("widgets.ram_bar")
 local ram = format_progress_bar(ram_bar, "<span foreground='" .. beautiful.xcolor6 .. "'><b></b></span>")
 
---- }}}
-
---- {{{ Cpu Widget
+-- ========================================================================
+--Cpu Widget
 
 -- local cpu = require("widgets.cpu_arc")
 
@@ -127,7 +120,7 @@ cpu_icon.forced_height = 10
 local cpu_bar = require("widgets.cpu_bar")
 local cpu = format_progress_bar(cpu_bar, "<span foreground='" .. beautiful.xcolor1 .. "'> <b></b> </span>")
 
---- }}}
+-- ========================================================================
 
 local bat_icon = wibox.widget.imagebox(icons.battery)
 bat_icon.forced_width = 50
@@ -135,7 +128,7 @@ bat_icon.forced_height = 10
 local battery_bar = require("widgets.battery_bar")
 local bat = format_progress_bar(battery_bar, "<span foreground='" .. beautiful.xcolor4 .. "'><b></b></span>")
 
---- {{{ Clock
+-- ======================================================================== Clock
 
 local fancy_time_widget = wibox.widget.textclock("%H%M")
 fancy_time_widget.markup = fancy_time_widget.text:sub(1, 2)
@@ -154,21 +147,19 @@ fancy_time_widget:connect_signal("widget::redraw_needed", function()
 end)
 fancy_time_widget.align = "center"
 fancy_time_widget.valign = "center"
-fancy_time_widget.font = "FuraCode Nerd Font Mono Bold 55"
+fancy_time_widget.font = "Hack Nerd Font Mono Bold 55"
 
 local fancy_time = { fancy_time_widget, layout = wibox.layout.fixed.vertical }
 
 local fancy_date_widget = wibox.widget.textclock("%m/%d/%Y")
-fancy_date_widget.markup = fancy_date_widget.text:sub(1, 3)
+fancy_date_widget.markup = fancy_date_widget.text:sub(1, 10)
 	.. "<span foreground='"
 	.. beautiful.xcolor12
 	.. "'>"
-	.. fancy_date_widget.text:sub(4, 6)
 	.. "</span>"
 	.. "<span foreground='"
 	.. beautiful.xcolor6
 	.. "'>"
-	.. fancy_date_widget.text:sub(7, 10)
 	.. "</span>"
 fancy_date_widget:connect_signal("widget::redraw_needed", function()
 	fancy_date_widget.markup = fancy_date_widget.text:sub(1, 3)
@@ -186,63 +177,52 @@ fancy_date_widget:connect_signal("widget::redraw_needed", function()
 end)
 fancy_date_widget.align = "center"
 fancy_date_widget.valign = "center"
-fancy_date_widget.font = "FuraCode Nerd Font Mono Bold 15"
+fancy_date_widget.font = "Hack Nerd Font Mono Bold 15"
 
 local fancy_date = { fancy_date_widget, layout = wibox.layout.flex.vertical }
 
----}}}
-
--- {{{ Info Widget
-
-local info = require("widgets.info")
-local info_box = create_boxed_widget(info, 500, 80, beautiful.xcolor0)
-
----}}}
+-- ========================================================================
 
 local cpuset = wibox.widget({
 	cpu_icon,
 	cpuwidget,
-	separator,
-	separator,
-	separator,
+	expand = true,
 	cpu,
-	layout = wibox.layout.fixed.horizontal,
-
+	layout = wibox.layout.align.horizontal,
 	top = dpi(0),
-	left = dpi(0),
-	right = dpi(0),
+	left = dpi(20),
+	right = dpi(50),
 	bottom = dpi(0),
 })
+-- ========================================================================
 local ramset = wibox.widget({
 	ram_icon,
 	memwidget,
-	separator,
-	separator,
-	separator,
+
+	expand = true,
 	ram,
-	layout = wibox.layout.fixed.horizontal,
+	layout = wibox.layout.align.horizontal,
 	top = dpi(0),
-	left = dpi(0),
-	right = dpi(0),
+	left = dpi(20),
+	right = dpi(50),
 	bottom = dpi(0),
 
 })
-
+-- ========================================================================
 local batset = {
 	top = dpi(0),
-	left = dpi(0),
-	right = dpi(0),
+	left = dpi(20),
+	right = dpi(50),
 	bat_icon,
 	mybattery,
-	separator,
-	separator,
-	separator,
+	expand = true,
+
 	bat,
-	layout = wibox.layout.fixed.horizontal,
+	layout = wibox.layout.align.horizontal,
 	margins = 2,
 
 }
-
+-- ========================================================================
 local sys = wibox.widget({
 	volume,
 	cpuset,
@@ -251,7 +231,7 @@ local sys = wibox.widget({
 	layout = wibox.layout.fixed.vertical,
 })
 local sys_box = create_boxed_widget(sys, 700, 159, beautiful.xcolor0 .. "00")
-
+-- ========================================================================
 local time = wibox.widget({
 	{ fancy_time, fancy_date, layout = wibox.layout.fixed.vertical },
 	top = dpi(10),
@@ -262,9 +242,9 @@ local time = wibox.widget({
 })
 
 local time_box = create_boxed_widget(time, 700, 159, beautiful.xcolor0 .. "00")
-
+-- ========================================================================
 local panelWidget = wibox.widget({
-	info_box,
+
 	time_box,
 	{ sys_box, layout = wibox.layout.align.vertical },
 	layout = wibox.layout.align.vertical,
@@ -279,4 +259,5 @@ panelPop:set_xproperty("WM_NAME", "panel")
 
 return panelPop
 
--- EOF ------------------------------------------------------------------------
+-- ========================================================================
+-- EOF

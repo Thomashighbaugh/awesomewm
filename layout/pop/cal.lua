@@ -2,6 +2,7 @@
 -- |      |.---.-.|  |.-----.-----.--|  |.---.-.----.
 -- |   ---||  _  ||  ||  -__|     |  _  ||  _  |   _|
 -- |______||___._||__||_____|__|__|_____||___._|__|
+-- ========================================================================
 
 -- cal.lua
 -- Calendar Widget
@@ -12,7 +13,7 @@ local beautiful = require("beautiful")
 local helpers = require("main.helpers")
 local dpi = require("beautiful").xresources.apply_dpi
 local popupLib = require("utils.popupLib")
-
+-- ========================================================================
 local calendar_themes = {
 	vice = {
 		bg = beautiful.xbackground,
@@ -28,7 +29,7 @@ local calendar_themes = {
 
 local theme = "vice"
 local placement = "top"
-
+-- ========================================================================
 local styles = {}
 
 styles.month = {
@@ -41,7 +42,7 @@ styles.normal = {
 	markup = function(t)
 		return t
 	end,
-	shape = helpers.rrect(dpi(16)),
+	shape = helpers.rrect(dpi(10)),
 }
 
 styles.focus = {
@@ -50,7 +51,7 @@ styles.focus = {
 	markup = function(t)
 		return "<b>" .. t .. "</b>"
 	end,
-	shape = helpers.rrect(dpi(16)),
+	shape = helpers.rrect(dpi(10)),
 }
 
 styles.header = {
@@ -68,7 +69,7 @@ styles.weekday = {
 		return "<b>" .. t .. "</b>"
 	end,
 }
-
+-- ========================================================================
 local function decorate_cell(widget, flag, date)
 	if flag == "monthheader" and not styles.monthheader then
 		flag = "header"
@@ -109,7 +110,7 @@ local function decorate_cell(widget, flag, date)
 
 	return ret
 end
-
+-- ========================================================================
 local popupWidget = wibox.widget({
 	date = os.date("*t"),
 	font = beautiful.font,
@@ -125,5 +126,5 @@ local width = 450
 local popup = popupLib.create(260 + 5 * 2 + 5, beautiful.wibar_height + 5 + 600, nil, width, popupWidget)
 
 return popup
-
--- EOF ------------------------------------------------------------------------
+-- ========================================================================
+-- EOF

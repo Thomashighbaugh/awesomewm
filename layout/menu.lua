@@ -70,7 +70,7 @@ M.awesome = {
 }
 
 M.favorite = {
-	{ "Nemo", "nemo", "/usr/share/icons/chhinamasta/512x512/apps/thunar.png" },
+	{ "Thunar", "thunar", "/usr/share/icons/chhinamasta/512x512/apps/thunar.png" },
 	{
 		"Firefox",
 		"firefox",

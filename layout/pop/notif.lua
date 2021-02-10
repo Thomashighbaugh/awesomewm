@@ -6,7 +6,7 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 
 local popupLib = require("utils.popupLib")
-
+-- ========================================================================
 local popupWidget = wibox.widget({
 	require("notifications.notification-center"),
 	expand = "none",
@@ -15,7 +15,7 @@ local popupWidget = wibox.widget({
 
 local width = 500
 local margin = 5
-
+-- ========================================================================
 local popup = popupLib.create(
 	awful.screen.focused().geometry.width - width - margin,
 	beautiful.wibar_height + margin,
@@ -28,4 +28,5 @@ popup:set_xproperty("WM_NAME", "panel")
 
 return popup
 
--- EOF ------------------------------------------------------------------------
+-- ========================================================================
+-- EOF

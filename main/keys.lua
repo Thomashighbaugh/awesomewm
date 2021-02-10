@@ -65,8 +65,8 @@ globalkeys = gears.table.join(
 	end, { description = "Copy Font - Awesome Icons to Clipboard", group = "Launcher" }),
 	-- ===================================================================
 	awful.key({ modkey }, "F4", function()
-		awful.spawn.with_shell("subl")
-	end, { description = "open Sublime Text 3", group = "launcher" }),
+		awful.spawn.with_shell("code")
+	end, { description = "open Code OSS", group = "launcher" }),
 	-- ===================================================================
 
 	awful.key({ "Mod1" }, "Tab", function()
