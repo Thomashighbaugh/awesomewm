@@ -96,7 +96,7 @@ mpdarc:connect_signal("button::press", function(_, _, _, button)
 end)
 
 local notification
-function show_MPD_status()
+local function show_MPD_status()
     spawn.easy_async(GET_MPD_CMD, function(stdout, _, _, _)
         notification = naughty.notify {
             text = stdout,

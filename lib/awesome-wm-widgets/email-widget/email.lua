@@ -5,10 +5,10 @@ local watch = require("awful.widget.watch")
 
 local path_to_icons = "/usr/share/icons/Arc/actions/22/"
 
-email_widget = wibox.widget.textbox()
+local email_widget = wibox.widget.textbox()
 email_widget:set_font('Play 9')
 
-email_icon = wibox.widget.imagebox()
+local email_icon = wibox.widget.imagebox()
 email_icon:set_image(path_to_icons .. "/mail-mark-new.png")
 
 watch(
@@ -24,9 +24,9 @@ watch(
         end
     end)
 
-function show_emails()
+local function show_emails()
     awful.spawn.easy_async(
-        [[bash -c 'python /home/<username>/.config/awesome/email-widget/read_unread_emails.py']],
+        [[bash -c 'python /home/tlh/.config/awesome/email-widget/read_unread_emails.py']],
         function(stdout, stderr, reason, exit_code)
             naughty.notify {
                 text = stdout,

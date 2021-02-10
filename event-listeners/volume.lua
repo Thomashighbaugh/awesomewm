@@ -33,12 +33,12 @@ end
 local function emit_microphone_info()
     -- Use tail to grab the last line of the output (which refers to the microphone)
     awful.spawn.easy_async_with_shell(
-        "pacmd list-sources | grep muted | tail -1 | awk '{print $2}'",
         function(stdout)
             -- Remove trailing whitespace
             muted = stdout:gsub('^%s*(.-)%s*$', '%1')
             awesome.emit_signal("ears::microphone", muted == "yes")
-        end)
+        end,
+        "pacmd list-sources | grep muted | tail -1 | awk '{print $2}'")
 end
 
 -- Run once to initialize widgets

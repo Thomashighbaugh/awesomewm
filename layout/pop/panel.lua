@@ -253,7 +253,7 @@ local time_box = create_boxed_widget(time, 700, 159, beautiful.xcolor0 .. '00')
 local panelWidget = wibox.widget {
     info_box,
     time_box,
-    {sys_box, spot_box, layout = wibox.layout.align.vertical},
+    {sys_box, layout = wibox.layout.align.vertical},
     layout = wibox.layout.align.vertical
 }
 

@@ -18,7 +18,7 @@ local dpi = require("beautiful.xresources").apply_dpi
 
 local helpers = require("main.helpers")
 
--- {{{ Enable THICC Title Bars only while Floating
+
 client.connect_signal("property::floating", function(c)
     local b = false;
     if c.first_tag ~= nil then b = c.first_tag.layout.name == "floating" end
@@ -29,28 +29,8 @@ client.connect_signal("property::floating", function(c)
     end
 end)
 
-client.connect_signal("manage", function(c)
-    if c.floating or c.first_tag.layout.name == "floating" then
-        awful.titlebar.show(c)
-    else
-        if not c.bling_tabbed then awful.titlebar.show(c) end
-    end
-end)
 
-tag.connect_signal("property::layout", function(t)
-    local clients = t:clients()
-    for k, c in pairs(clients) do
-        if c.floating or c.first_tag.layout.name == "floating" then
-            awful.titlebar.show(c)
-        else
-            if not c.bling_tabbed then awful.titlebar.show(c) end
-        end
-    end
-end)
--- }}}
-
--- {{ Helper to create mult tb buttons
-local function create_title_button(c, color_focus, color_unfocus)
+function create_title_button(c, color_focus, color_unfocus)
     local tb_color = wibox.widget {
         forced_width = dpi(25),
         forced_height = dpi(25),
@@ -132,13 +112,13 @@ client.connect_signal("request::titlebars", function(c)
             
             local l_reverse_corner = wibox.widget {
                 bg = beautiful.xcolor0,
-                shape = helpers.prrect(6, false, false, true, false),
+                shape = helpers.rrect(6, false, false, true, false),
                 widget = wibox.container.background
             }
             
             local r_reverse_corner = wibox.widget {
                 bg = beautiful.xcolor0,
-                shape = helpers.prrect(6, false, false, false, true),
+                shape = helpers.rrect(6, false, false, false, true),
                 widget = wibox.container.background
             }
             
@@ -166,7 +146,7 @@ client.connect_signal("request::titlebars", function(c)
                         buttons = buttons,
                         layout = wibox.layout.flex.horizontal
                     },
-                    margins = 0,
+                    margins = dpi(2),
                     widget = wibox.container.margin
                 },
                 
@@ -209,7 +189,7 @@ client.connect_signal("request::titlebars", function(c)
                                 widget = wibox.container.margin
                             },
                             bg = beautiful.xbackground,
-                            shape = helpers.prrect(beautiful.border_radius, true, true,
+                            shape = helpers.rrect(beautiful.border_radius, true, true,
                             false, false),
                             widget = wibox.container.background
                         },

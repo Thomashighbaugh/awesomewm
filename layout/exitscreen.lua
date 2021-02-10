@@ -27,12 +27,21 @@ local button_size = dpi(260)
 
 -- Commands
 local poweroff_command =
-function() awful.spawn.with_shell("systemctl poweroff") end
-local reboot_command = function() awful.spawn.with_shell("systemctl reboot") end
-local suspend_command =
-function() awful.spawn.with_shell("systemctl hibernate") end
+
+function() 
+    awful.spawn.with_shell("systemctl poweroff") 
+
+end
+
+
+local reboot_command = 
+function() 
+    awful.spawn.with_shell("systemctl reboot") 
+end
+
 local exit_command = function() awesome.quit() end
-local lock_command = function() awful.spawn.with_shell("~/.bin/lock") end
+
+
 
 -- Helper function that generates the clickable buttons
 local create_button = function(symbol, hover_color, text, command)
@@ -85,18 +94,18 @@ local exit = create_button(exit_text_icon, beautiful.xcolor4, "Exit",
 exit_command)
 
 -- Create the exit screen wibox
-exit_screen = wibox({visible = false, ontop = true})
+local exit_screen = wibox({visible = false, ontop = true})
 awful.placement.maximize(exit_screen)
 
 exit_screen.bg = beautiful.exit_screen_bg or exitscreen_bg
 exit_screen.fg = beautiful.exit_screen_fg or beautiful.wibar_fg
 
 local exit_screen_grabber
-function exit_screen_hide()
+local function exit_screen_hide()
     awful.keygrabber.stop(exit_screen_grabber)
     exit_screen.visible = false
 end
-function exit_screen_show()
+local function exit_screen_show()
     exit_screen_grabber = awful.keygrabber.run(
         function(_, key, event)
             -- Ignore case
@@ -104,15 +113,8 @@ function exit_screen_show()
             
             if event == "release" then return end
             
-            if key == 's' then
-                suspend_command()
-                exit_screen_hide()
-                -- 'e' for exit
-            elseif key == 'e' then
+            if key == 'e' then
                 exit_command()
-            elseif key == 'l' then
-                exit_screen_hide()
-                lock_command()
             elseif key == 'p' then
                 poweroff_command()
             elseif key == 'r' then
@@ -137,9 +139,7 @@ function exit_screen_show()
             {
                 poweroff,
                 reboot,
-                suspend,
                 exit,
-                lock,
                 spacing = dpi(175),
                 layout = wibox.layout.fixed.horizontal
             },

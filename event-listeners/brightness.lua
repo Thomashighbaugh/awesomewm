@@ -4,7 +4,7 @@
 local awful = require("awful")
 
 -- Subscribe to backlight changes
--- Requires inotify-tools
+-- Requires notify-tools
 local brightness_subscribe_script = [[
    bash -c "
    while (inotifywait -e modify /sys/class/backlight/?**/brightness -qq) do echo; done

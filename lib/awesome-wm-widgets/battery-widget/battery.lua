@@ -85,7 +85,7 @@ local function worker(args)
     end
 
     -- Alternative to naughty.notify - tooltip. You can compare both and choose the preferred one
-    battery_popup = awful.tooltip({objects = {battery_widget}})
+    local battery_popup = awful.tooltip({objects = {battery_widget}})
 
     -- To use colors from beautiful theme put
     -- following lines in rc.lua before require("battery"):

@@ -22,7 +22,7 @@ helpers.rrect = function(radius)
     end
 end
 -- Create partially rounded rect
-helpers.prrect = function(radius, tl, tr, br, bl)
+helpers.rrect = function(radius, tl, tr, br, bl)
     return function(cr, width, height)
         gears.shape.partially_rounded_rect(cr, width, height, tl, tr, br, bl,
         radius)

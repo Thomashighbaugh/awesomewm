@@ -186,7 +186,7 @@ awful.screen.connect_for_each_screen(function(s)
             separator,
             
             top = 0,
-            -- without this the bar is whocky and pushes widgets off screen or is always too short.
+            -- without this the bar is wonky and pushes widgets off screen or is always too short.
             layout = wibox.layout.fixed.horizontal,
             widget = wibox.container.margin
         },
@@ -238,69 +238,3 @@ awful.screen.connect_for_each_screen(function(s)
     end)
     
     -- EOF ------------------------------------------------------------------------
-    
-    -- -- Calendar widget
-    -- mytextcalendar = awful.widget.textclock(white .. space .. "%A %d %B<span font='Tamsyn 5'> </span>" .. coldef)
-    -- calendar_icon = wibox.widget.imagebox()
-    -- calendar_icon:set_image(beautiful.calendar)
-    -- calendarwidget = wibox.widget.background()
-    -- calendarwidget:set_widget(mytextcalendar)
-    -- calendarwidget:set_bgimage(beautiful.widget_bg)
-    
-    -- -----------------------------------------------------------------------------------------
-    -- -- Memory status
-    -- memtxt = wibox.widget.textbox()
-    -- vicious.register(memtxt, vicious.widgets.mem, blue .. "  MEM : " .. coldef .. white .. "$2 " ..coldef  .. blue .. "mb   " .. coldef, 5)
-    
-    -- -- Memory graph
-    
-    -- memwidget = awful.widget.progressbar()
-    -- memwidget:set_width(12)
-    -- memwidget:set_height(10)
-    -- memwidget:set_vertical(true)
-    -- memwidget:set_background_color("#393939")
-    -- memwidget:set_border_color(nil)
-    -- memwidget:set_color({ type = "linear", from = { 0, 0 }, to = { 10,0 }, stops = { {0, "#4CB7DB"}, {0.5, "#4CB7DB"},
-    --           {1, "#4CB7DB"}}})
-    -- vicious.register(memwidget, vicious.widgets.mem, "$1", 1)
-    
-    -- -----------------------------------------------------------------------------------------
-    -- -- Volume
-    
-    -- -- vltxt = wibox.widget.textbox()
-    -- -- vicious.register(vltxt,vicious.widgets.mem,blue .. "VOL: " .. coldef,5)
-    
-    -- -- vltxt1 = wibox.widget.textbox()
-    -- -- vicious.register(vltxt1,vicious.widgets.mem,blue .. " %" .. coldef,5)
-    
-    -- voltxt = wibox.widget.textbox()
-    -- vicious.register(voltxt, vicious.widgets.mem, blue .. "  VOL : " .. coldef, 5)
-    
-    -- volume = lain.widgets.alsabar({ ticks = true })
-    -- volmargin = wibox.layout.margin(volume.bar, 5, 8, 80)
-    -- volmargin:set_top(7)
-    -- volmargin:set_bottom(7)
-    -- volumewidget = wibox.widget.background(volmargin)
-    
-    -- -----------------------------------------------------------------------------------------
-    
-    -- -- CPU widget
-    -- cpu_widget = wibox.widget.textbox()
-    -- -- vicious.register(cpu_widget, vicious.widgets.cpu, blue .. space .. " CPU $1%<span font='Tamsyn 5'> </span>" .. coldef, 3)
-    -- vicious.register(cpu_widget, vicious.widgets.cpu, blue .. " CPU : " .. coldef .. white .. "$1" .. coldef .. blue .. " % " .. coldef, 3)
-    -- cpuwidget = wibox.widget.background()
-    -- cpuwidget:set_widget(cpu_widget)
-    -- -- cpuwidget:set_bgimage(beautiful.widget_bg)
-    -- cpu_icon = wibox.widget.imagebox()
-    -- cpu_icon:set_image(beautiful.cpu)
-    
-    -- -- Initialize widget
-    -- cpuwidget_graph = awful.widget.graph()
-    -- --Graph properties
-    -- cpuwidget_graph:set_width(50)
-    -- cpuwidget_graph:set_background_color("#393939")
-    -- cpuwidget_graph:set_color({ type = "linear", from = { 0, 0 }, to = { 10,0 }, stops = { {0, "#4CB7DB"}, {0.5, "#4CB7DB"},
-    --           {1, "#4CB7DB" }}})
-    -- -- Register widget
-    -- vicious.register(cpuwidget_graph, vicious.widgets.cpu, "$1", 1)
-    
