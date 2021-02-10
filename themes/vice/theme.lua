@@ -94,9 +94,7 @@ theme.widget_border_color = theme.xcolor0
 -- ========================================================================
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(0)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size, theme.fg_normal)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
+taglist_square_size = dpi(0)
 theme.taglist_font = theme.font_taglist
 theme.taglist_bg = transparent
 theme.taglist_bg_focus = transparent
@@ -115,7 +113,7 @@ theme.taglist_disable_icon = true
 -- Tasklist
 -- ========================================================================
 theme.tasklist_font = theme.font
-theme.tasklist_bg_focus = theme.xcolor0 .. "dd"
+theme.tasklist_bg_focus = theme.xcolor0 .. "99"
 theme.tasklist_fg_focus = theme.xcolor4
 theme.tasklist_bg_minimize = theme.xcolor0 .. "00"
 theme.tasklist_fg_minimize = theme.xforeground .. "aa"
