@@ -16,7 +16,7 @@ end
 -- Turn on passed client
 helpers.turn_on = function(c)
     local current_tag = awful.tag.selected(c.screen)
-    ctags = {current_tag}
+    local ctags = {current_tag}
     for k, tag in pairs(c:tags()) do
         if tag ~= current_tag then table.insert(ctags, tag) end
     end

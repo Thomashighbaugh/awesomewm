@@ -74,7 +74,7 @@ local function factory(args)
 			"-c",
 			type(pulsebar.cmd) == "string" and pulsebar.cmd or pulsebar.cmd(),
 		}, function(s)
-			volume_now = {
+			local volume_now = {
 				index = string.match(s, "index: (%S+)") or "N/A",
 				device = string.match(s, "device.string = \"(%S+)\"") or "N/A",
 				muted = string.match(s, "muted: (%S+)") or "N/A",
@@ -155,7 +155,7 @@ local function factory(args)
 				end
 			end
 
-			int = math.modf((pulsebar._current_level / 100) * tot)
+			local int = math.modf((pulsebar._current_level / 100) * tot)
 			preset.text = string.format(
 				"%s%s%s%s",
 				tick_pre,

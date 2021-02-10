@@ -22,48 +22,48 @@ local helpers = require("vicious.helpers")
 -- }}}
 
 local GOVERNOR_STATE = {
-    ["ondemand\n"] = "↯",
-    ["powersave\n"] = "⌁",
-    ["userspace\n"] = "¤",
-    ["performance\n"] = "⚡",
-    ["conservative\n"] = "⊚"
+	["ondemand\n"] = "↯",
+	["powersave\n"] = "⌁",
+	["userspace\n"] = "¤",
+	["performance\n"] = "⚡",
+	["conservative\n"] = "⊚",
 }
 
 -- {{{ CPU frequency widget type
 return helpers.setcall(function(format, warg)
-    if not warg then return end
+	if not warg then
+		return
+	end
 
-    local _cpufreq = helpers.pathtotable(
-                         ("/sys/devices/system/cpu/%s/cpufreq"):format(warg))
-    -- Default frequency and voltage values
-    local freqv = {
-        ["mhz"] = "N/A",
-        ["ghz"] = "N/A",
-        ["v"] = "N/A",
-        ["mv"] = "N/A"
-    }
+	local _cpufreq = helpers.pathtotable(("/sys/devices/system/cpu/%s/cpufreq"):format(warg))
+	-- Default frequency and voltage values
+	local freqv = {
+		["mhz"] = "N/A",
+		["ghz"] = "N/A",
+		["v"] = "N/A",
+		["mv"] = "N/A",
+	}
 
-    -- Get the current frequency
-    local freq = tonumber(_cpufreq.scaling_cur_freq)
-    -- Calculate MHz and GHz
-    if freq then
-        freqv.mhz = freq / 1000
-        freqv.ghz = freqv.mhz / 1000
+	-- Get the current frequency
+	local freq = tonumber(_cpufreq.scaling_cur_freq)
+	-- Calculate MHz and GHz
+	if freq then
+		freqv.mhz = freq / 1000
+		freqv.ghz = freqv.mhz / 1000
 
-        -- Get the current voltage
-        if _cpufreq.scaling_voltages then
-            freqv.mv = tonumber(_cpufreq.scaling_voltages:match(
-                                    freq .. "[%s]([%d]+)"))
-            -- Calculate voltage from mV
-            freqv.v = freqv.mv / 1000
-        end
-    end
+		-- Get the current voltage
+		if _cpufreq.scaling_voltages then
+			freqv.mv = tonumber(_cpufreq.scaling_voltages:match(freq .. "[%s]([%d]+)"))
+			-- Calculate voltage from mV
+			freqv.v = freqv.mv / 1000
+		end
+	end
 
-    -- Get the current governor
-    local governor = _cpufreq.scaling_governor
-    -- Represent the governor as a symbol
-    governor = GOVERNOR_STATE[governor] or governor or "N/A"
+	-- Get the current governor
+	local governor = _cpufreq.scaling_governor
+	-- Represent the governor as a symbol
+	governor = GOVERNOR_STATE[governor] or governor or "N/A"
 
-    return {freqv.mhz, freqv.ghz, freqv.mv, freqv.v, governor}
+	return { freqv.mhz, freqv.ghz, freqv.mv, freqv.v, governor }
 end)
 -- }}}

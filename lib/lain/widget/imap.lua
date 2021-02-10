@@ -37,7 +37,7 @@ local function factory(args)
 		return
 	end
 
-	mail_notification_preset = {
+	local mail_notification_preset = {
 		icon = helpers.icons_dir .. "mail.png",
 		position = "top_left",
 	}
@@ -83,13 +83,13 @@ local function factory(args)
 		)
 
 		helpers.async(curl, function(f)
-			imap_now = { ["MESSAGES"] = 0, ["RECENT"] = 0, ["UNSEEN"] = 0 }
+			local imap_now = { ["MESSAGES"] = 0, ["RECENT"] = 0, ["UNSEEN"] = 0 }
 
 			for s, d in f:gmatch("(%w+)%s+(%d+)") do
 				imap_now[s] = tonumber(d)
 			end
-			mailcount = imap_now["UNSEEN"] -- backwards compatibility
-			widget = imap.widget
+			local mailcount = imap_now["UNSEEN"] -- backwards compatibility
+			local widget = imap.widget
 
 			settings()
 

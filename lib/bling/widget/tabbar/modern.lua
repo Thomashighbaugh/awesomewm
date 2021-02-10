@@ -90,7 +90,7 @@ local function create(c, focused_bool, buttons)
             widget = wibox.container.margin
         },
         text_temp,
-        nill,
+        nil,
         expand = "none",
         layout = wibox.layout.align.horizontal
     }

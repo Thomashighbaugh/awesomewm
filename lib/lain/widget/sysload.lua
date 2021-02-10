@@ -24,9 +24,9 @@ local function factory(args)
 		local ret = f:read("*all")
 		f:close()
 
-		load_1, load_5, load_15 = match(ret, "([^%s]+) ([^%s]+) ([^%s]+)")
+		local load_1, load_5, load_15 = match(ret, "([^%s]+) ([^%s]+) ([^%s]+)")
 
-		widget = sysload.widget
+		local widget = sysload.widget
 		settings()
 	end
 

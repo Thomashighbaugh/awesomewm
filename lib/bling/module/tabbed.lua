@@ -4,7 +4,7 @@ This module currently works by adding a new property to each client that is tabb
 That new property is called bling_tabbed. 
 So each client in a tabbed state has the property "bling_tabbed" which is a table.
 Each client that is not tabbed doesn't have that property.
-In the function themselves, the same object is refered to as "tabobj" which is why
+In the function themselves, the same object is referred to as "tabobj" which is why
 you will often see something like: "local tabobj = some_client.bling_tabbed" at the beginning
 of a function.
 
@@ -30,7 +30,7 @@ local function copy_size(c, parent_client)
     c.height = parent_client.height
 end
 
-tabbed = {}
+local tabbed = {}
 
 -- used to change focused tab relative to the currently focused one 
 tabbed.iter = function(idx)
@@ -162,13 +162,13 @@ end
 
 tabbed.update_tabbar = function(tabobj)
     local flexlist = bar.layout()
-    -- itearte over all tabbed clients to create the widget tabbed list
+    -- iterate over all tabbed clients to create the widget tabbed list
     for idx, c in ipairs(tabobj.clients) do
         local buttons = gears.table.join(
                             awful.button({}, 1, function()
                 tabbed.switch_to(tabobj, idx)
             end))
-        wid_temp = bar.create(c, (idx == tabobj.focused_idx), buttons)
+        local wid_temp = bar.create(c, (idx == tabobj.focused_idx), buttons)
         flexlist:add(wid_temp)
     end
     -- add tabbar to each tabbed client (clients will be hided anyway)

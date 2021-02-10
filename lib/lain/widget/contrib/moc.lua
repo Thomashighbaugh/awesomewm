@@ -29,13 +29,13 @@ local function factory(args)
 	local settings = args.settings or function()
 	end
 
-	moc_notification_preset = { title = "Now playing", timeout = 6 }
+	local moc_notification_preset = { title = "Now playing", timeout = 6 }
 
 	helpers.set_map("current moc track", nil)
 
 	function moc.update()
-		helpers.async("mocp -i", function(f)
-			moc_now = {
+		helpers.async(function(f)
+			local moc_now = {
 				state = "N/A",
 				file = "N/A",
 				artist = "N/A",
@@ -72,7 +72,7 @@ local function factory(args)
 				moc_now.total,
 				moc_now.title
 			)
-			widget = moc.widget
+			local widget = moc.widget
 			settings()
 
 			if moc_now.state == "PLAY" then
@@ -100,7 +100,7 @@ local function factory(args)
 			elseif moc_now.state ~= "PAUSE" then
 				helpers.set_map("current moc track", nil)
 			end
-		end)
+		end, "mocp -i")
 	end
 
 	moc.timer = helpers.newtimer("moc", timeout, moc.update, true, true)

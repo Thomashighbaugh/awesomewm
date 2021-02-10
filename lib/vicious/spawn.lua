@@ -17,14 +17,14 @@
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
 local status, awful = pcall(require, "awful")
 if status then
-    local spawn = awful.spawn
-    function spawn.with_line_callback_with_shell(cmd, callbacks)
-        spawn.with_line_callback({awful.util.shell, "-c", cmd}, callbacks)
-    end
-    return spawn
+	local spawn = awful.spawn
+	function spawn.with_line_callback_with_shell(cmd, callbacks)
+		spawn.with_line_callback({ awful.util.shell, "-c", cmd }, callbacks)
+	end
+	return spawn
 end
 
-local io = {popen = io.popen}
+local io = { popen = io.popen }
 
 -- In case the Awesome library is not available,
 -- fall back to this synchronous, handicapped API.
@@ -50,15 +50,21 @@ local spawn = {}
 --   termination.
 -- @treturn boolean|nil true if cmd terminated successfully, or nil otherwise
 function spawn.with_line_callback_with_shell(cmd, callbacks)
-    local stdout_callback, stdout = callbacks.stdout, io.popen(cmd)
-    if stdout_callback then
-        for line in stdout:lines() do stdout_callback(line) end
-    end
-    if callbacks.output_done then callbacks.output_done() end
+	local stdout_callback, stdout = callbacks.stdout, io.popen(cmd)
+	if stdout_callback then
+		for line in stdout:lines() do
+			stdout_callback(line)
+		end
+	end
+	if callbacks.output_done then
+		callbacks.output_done()
+	end
 
-    local success, reason, code = stdout:close() -- this requires Lua 5.2
-    if callbacks.exit then callbacks.exit(reason, code) end
-    return success
+	local success, reason, code = stdout:close() -- this requires Lua 5.2
+	if callbacks.exit then
+		callbacks.exit(reason, code)
+	end
+	return success
 end
 
 --- Spawn a program and capture its output.
@@ -72,11 +78,11 @@ end
 --     depending on "exitreason").
 -- @treturn boolean|nil true if cmd terminated successfully, or nil otherwise
 function spawn.easy_async_with_shell(cmd, callback)
-    local out_stream = io.popen(cmd)
-    local stdout = out_stream:read("*all")
-    local success, reason, code = out_stream:close() -- requiring Lua 5.2
-    callback(stdout, "", reason, code)
-    return success
+	local out_stream = io.popen(cmd)
+	local stdout = out_stream:read("*all")
+	local success, reason, code = out_stream:close() -- requiring Lua 5.2
+	callback(stdout, "", reason, code)
+	return success
 end
 
 -- Since io.popen always use a shell

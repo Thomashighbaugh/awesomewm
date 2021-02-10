@@ -108,9 +108,6 @@ end
 -- {{{ Pipe operations
 
 -- run a command and execute a function on its output (asynchronous pipe)
--- @param cmd the input command
--- @param callback function to execute on cmd output
--- @return cmd PID
 function helpers.async(cmd, callback)
 	return spawn.easy_async(cmd, function(stdout, stderr, reason, exit_code)
 		callback(stdout, exit_code)

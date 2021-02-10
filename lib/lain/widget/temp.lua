@@ -21,7 +21,7 @@ local function factory(args)
 
 	function temp.update()
 		helpers.async({ "find", "/sys/devices", "-type", "f", "-name", "*temp*" }, function(f)
-			temp_now = {}
+			local temp_now = {}
 			local temp_fl, temp_value
 			for t in f:gmatch("[^\n]+") do
 				temp_fl = helpers.first_line(t)
@@ -30,8 +30,8 @@ local function factory(args)
 					temp_now[t] = temp_value and temp_value / 1e3 or temp_fl
 				end
 			end
-			coretemp_now = temp_now[tempfile] or "N/A"
-			widget = temp.widget
+			local coretemp_now = temp_now[tempfile] or "N/A"
+			local widget = temp.widget
 			settings()
 		end)
 	end

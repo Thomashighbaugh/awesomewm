@@ -3,8 +3,8 @@ Awesome-Freedesktop
 Freedesktop.org compliant desktop entries and menu
 Desktop section
 Licensed under GNU General Public License v2
-* (c) 2016,      Luke Bonham
-* (c) 2009-2015, Antonio Terceiro
+--(c) 2016,      Luke Bonham
+--(c) 2009-2015, Antonio Terceiro
 --]] local awful = require("awful")
 local theme = require("beautiful")
 local utils = require("menubar.utils")
@@ -34,7 +34,7 @@ local desktop = {
 local mime_types = {}
 -- Icons positioning
 local desktop_current_pos = {}
--- @return iterator on input pipe
+
 local function pipelines(...)
     local f = assert(io.popen(...))
     return function()
@@ -43,12 +43,7 @@ local function pipelines(...)
         return data
     end
 end
--- Adds an icon to desktop
--- @param args settings from desktop.add_icons
--- @param label icon string label
--- @param icon icon string file path
--- @param onclick function to execute on click
-function desktop.add_single_icon(args, label, icon, onclick)
+function desktop.add_single_icon(onclick, label, icon, args)
     local s = args.screen
     -- define icon dimensions and position
     if not desktop_current_pos[s] then
@@ -84,7 +79,7 @@ function desktop.add_single_icon(args, label, icon, onclick)
             widget = wibox.widget.imagebox
         }
         icon:buttons(awful.button({}, 1, nil, onclick))
-        icon_container = wibox(common)
+        local icon_container = wibox(common)
         icon_container:set_widget(icon)
         desktop_current_pos[s].y = desktop_current_pos[s].y +
                                        args.iconsize.height + 5
@@ -96,7 +91,7 @@ function desktop.add_single_icon(args, label, icon, onclick)
         common.x = desktop_current_pos[s].x - (args.labelsize.width / 2) +
                        args.iconsize.width / 2
         common.y = desktop_current_pos[s].y
-        caption = wibox.widget {
+        local caption = wibox.widget {
             text = label,
             align = "center",
             forced_width = common.width,
@@ -105,14 +100,13 @@ function desktop.add_single_icon(args, label, icon, onclick)
             widget = wibox.widget.textbox
         }
         caption:buttons(awful.button({}, 1, onclick))
-        caption_container = wibox(common)
+        local caption_container = wibox(common)
         caption_container:set_widget(caption)
     end
     desktop_current_pos[s].y =
         desktop_current_pos[s].y + args.labelsize.height + args.margin.y
 end
 -- Adds base icons (This PC, Trash, etc) to desktop
--- @param args settings from desktop.add_icons
 function desktop.add_base_icons(args)
     for _, base in ipairs(args.baseicons) do
         desktop.add_single_icon(args, base.label, utils.lookup_icon(base.icon),
@@ -121,9 +115,7 @@ function desktop.add_base_icons(args)
         end)
     end
 end
--- Looks up a suitable icon for filename
--- @param filename string file name
--- @return icon file path (string)
+
 function desktop.lookup_file_icon(filename)
     -- load system MIME types
     if #mime_types == 0 then
@@ -158,7 +150,6 @@ function desktop.lookup_file_icon(filename)
 end
 -- Parse subdirectories and files list from input directory
 -- @input dir directory to parse (string)
--- @return files table with found entries
 function desktop.parse_dirs_and_files(dir)
     local files = {}
     local paths = pipelines('find ' .. dir .. ' -maxdepth 1 -type d | tail -1')
@@ -186,7 +177,6 @@ function desktop.parse_dirs_and_files(dir)
     return files
 end
 -- Adds subdirectories and files icons from args.dir
--- @param args settings from desktop.add_icons
 function desktop.add_dirs_and_files_icons(args)
     for _, file in ipairs(desktop.parse_dirs_and_files(args.dir)) do
         if file.show then
@@ -199,7 +189,6 @@ function desktop.add_dirs_and_files_icons(args)
     end
 end
 -- Main function, adds base, directory and files icons
--- @param args user defined settings, with fallback on defaults
 function desktop.add_icons(args)
     args = args or {}
     args.screen = args.screen or mouse.screen

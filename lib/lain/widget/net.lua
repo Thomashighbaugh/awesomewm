@@ -41,7 +41,7 @@ local function factory(args)
 
 	function net.update()
 		-- These are the totals over all specified interfaces
-		net_now = {
+		local net_now = {
 			devices = {},
 			-- Bytes since last iteration
 			sent = 0,
@@ -120,7 +120,7 @@ local function factory(args)
 		net_now.sent = string.format("%.1f", net_now.sent)
 		net_now.received = string.format("%.1f", net_now.received)
 
-		widget = net.widget
+		local widget = net.widget
 		settings()
 	end
 

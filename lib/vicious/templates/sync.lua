@@ -15,10 +15,10 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
-local helpers = require "vicious.helpers"
+local helpers = require("vicious.helpers")
 
 return helpers.setcall(function(format, warg)
-    -- Do the processing and return a table here.
+	-- Do the processing and return a table here.
 end)
 
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

@@ -132,7 +132,7 @@ local function worker(args)
     local cpus = {}
     watch(
         [[bash -c "cat /proc/stat | grep '^cpu.' ; ps -eo '%p|%c|%C|' -o "%mem" -o '|%a' --sort=-%cpu | head -11 | tail -n +2"]],
-        1, function(widget, stdout)
+        1, cpugraph_widget, function(widget, stdout)
             local i = 1
             local j = 1
             for line in stdout:gmatch("[^\r\n]+") do
@@ -303,7 +303,7 @@ local function worker(args)
                 margins = 2,
                 widget = wibox.container.margin
             }
-        end, cpugraph_widget)
+        end)
 
     return cpu_widget
 end

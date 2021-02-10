@@ -127,13 +127,13 @@ local function factory(apipath)
 			return
 		end
 
-		tpbat = {
+		local tpbat = {
 			batteries = batteries,
 			widget = args.widget or wibox.widget.textbox(),
 		}
 
 		function tpbat.update()
-			tpbat_now = {
+			local tpbat_now = {
 				n_status = {},
 				n_perc = {},
 				n_time = {},
@@ -150,7 +150,7 @@ local function factory(apipath)
 				end
 			end
 
-			widget = tpbat.widget -- backwards compatibility
+			local widget = tpbat.widget -- backwards compatibility
 			settings()
 		end
 

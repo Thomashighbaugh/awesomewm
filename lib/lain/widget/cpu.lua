@@ -59,9 +59,9 @@ local function factory(args)
 			end
 		end
 
-		cpu_now = cpu.core
+		local cpu_now = cpu.core
 		cpu_now.usage = cpu_now[0].usage
-		widget = cpu.widget
+		local widget = cpu.widget
 
 		settings()
 	end

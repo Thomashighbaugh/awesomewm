@@ -19,35 +19,37 @@
 -- {{{ Grab environment
 local type = type
 local tonumber = tonumber
-local string = {match = string.match}
-local math = {floor = math.floor}
+local string = { match = string.match }
+local math = { floor = math.floor }
 local helpers = require("vicious.helpers")
 -- }}}
 
 -- {{{ Thermal widget type
 return helpers.setcall(function(format, warg)
-    if not warg then return end
+	if not warg then
+		return
+	end
 
-    local zone = { -- Known temperature data sources
-        ["sys"] = {"/sys/class/thermal/", file = "temp", div = 1000},
-        ["core"] = {"/sys/devices/platform/", file = "temp2_input", div = 1000},
-        ["hwmon"] = {"/sys/class/hwmon/", file = "temp1_input", div = 1000},
-        ["proc"] = {"/proc/acpi/thermal_zone/", file = "temperature"}
-    } --  Default to /sys/class/thermal
-    warg = type(warg) == "table" and warg or {warg, "sys"}
+	local zone = { -- Known temperature data sources
+		["sys"] = { "/sys/class/thermal/", file = "temp", div = 1000 },
+		["core"] = { "/sys/devices/platform/", file = "temp2_input", div = 1000 },
+		["hwmon"] = { "/sys/class/hwmon/", file = "temp1_input", div = 1000 },
+		["proc"] = { "/proc/acpi/thermal_zone/", file = "temperature" },
+	} --  Default to /sys/class/thermal
+	warg = type(warg) == "table" and warg or { warg, "sys" }
 
-    -- Get temperature from thermal zone
-    local _thermal = helpers.pathtotable(zone[warg[2]][1] .. warg[1])
+	-- Get temperature from thermal zone
+	local _thermal = helpers.pathtotable(zone[warg[2]][1] .. warg[1])
 
-    local data = warg[3] and _thermal[warg[3]] or _thermal[zone[warg[2]].file]
-    if data then
-        if zone[warg[2]].div then
-            return {math.floor(data / zone[warg[2]].div)}
-        else -- /proc/acpi "temperature: N C"
-            return {tonumber(string.match(data, "[%d]+"))}
-        end
-    end
+	local data = warg[3] and _thermal[warg[3]] or _thermal[zone[warg[2]].file]
+	if data then
+		if zone[warg[2]].div then
+			return { math.floor(data / zone[warg[2]].div) }
+		else -- /proc/acpi "temperature: N C"
+			return { tonumber(string.match(data, "[%d]+")) }
+		end
+	end
 
-    return {0}
+	return { 0 }
 end)
 -- }}}

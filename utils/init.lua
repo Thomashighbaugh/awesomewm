@@ -1,2 +1,3 @@
 return {
-popupLib = require("utils.popupLib")}
+	popupLib = require("utils.popupLib"),
+}

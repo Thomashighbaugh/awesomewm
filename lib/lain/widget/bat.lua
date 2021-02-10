@@ -54,7 +54,7 @@ local function factory(args)
 		bat.get_batteries()
 	end
 
-	bat_notification_critical_preset = {
+	local bat_notification_critical_preset = {
 		title = "Battery exhausted",
 		text = "Shutdown imminent",
 		timeout = 15,
@@ -62,7 +62,7 @@ local function factory(args)
 		bg = "#FFFFFF",
 	}
 
-	bat_notification_low_preset = {
+	local bat_notification_low_preset = {
 		title = "Battery low",
 		text = "Plug the cable!",
 		timeout = 15,
@@ -70,7 +70,7 @@ local function factory(args)
 		bg = "#CDCDCD",
 	}
 
-	bat_notification_charged_preset = {
+	local bat_notification_charged_preset = {
 		title = "Battery full",
 		text = "You can unplug the cable",
 		timeout = 15,
@@ -78,7 +78,7 @@ local function factory(args)
 		bg = "#CDCDCD",
 	}
 
-	bat_now = {
+	local bat_now = {
 		status = "N/A",
 		ac_status = "N/A",
 		perc = "N/A",
@@ -171,7 +171,7 @@ local function factory(args)
 					end
 
 					if 0 < rate_time and rate_time < 0.01 then -- check for magnitude discrepancies (#199)
-						rate_time_magnitude = math.abs(math.floor(math.log10(rate_time)))
+						local rate_time_magnitude = math.abs(math.floor(math.log10(rate_time)))
 						rate_time = rate_time * 10 ^ (rate_time_magnitude - 2)
 					end
 				end
@@ -194,7 +194,7 @@ local function factory(args)
 			end
 		end
 
-		widget = bat.widget
+		local widget = bat.widget
 		settings()
 
 		-- notifications for critical, low, and full levels

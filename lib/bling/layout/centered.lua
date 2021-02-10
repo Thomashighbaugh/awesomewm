@@ -24,13 +24,13 @@ function mylayout.arrange(p)
     local left_iterator = 0
     local right_iterator = 0
 
-    -- Special case: no maters -> rrelapse into awesomes fair layout
+    -- Special case: no maters -> rrelapse into awesome fair layout
     if t.master_count == 0 then
         awful.layout.suit.fair.arrange(p)
         return
     end
 
-    -- Special case: one slave -> relapse into awesomes masterstack tile layout 
+    -- Special case: one slave -> relapse into awesome masterstack tile layout 
     if nslaves == 1 then
         awful.layout.suit.tile.right.arrange(p)
         return
@@ -59,7 +59,7 @@ function mylayout.arrange(p)
     for idx=1,nslaves do -- idx=nmaster+1,#p.clients do
       local c = p.clients[idx+nmaster]
       if idx % 2 == 0 then
-        g = {
+        local g = {
           x = area.x,
           y = area.y + left_iterator * (area.height/number_of_left_sided_slaves),
           width = slave_area_width/2,
@@ -67,7 +67,7 @@ function mylayout.arrange(p)
         }
         left_iterator = left_iterator + 1
       else
-        g = {
+        local g = {
           x = area.x + master_area_width + slave_area_width/2,
           y = area.y + right_iterator * (area.height/number_of_right_sided_slaves),
           width = slave_area_width/2,

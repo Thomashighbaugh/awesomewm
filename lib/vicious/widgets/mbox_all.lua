@@ -19,7 +19,7 @@
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
 -- {{{ Grab environment
 local type = type
-local io = {open = io.open}
+local io = { open = io.open }
 local helpers = require("vicious.helpers")
 -- }}}
 
@@ -28,27 +28,31 @@ local subject = "N/A"
 
 -- {{{ Mailbox widget type
 return helpers.setcall(function(format, warg)
-    if not warg then return end
+	if not warg then
+		return
+	end
 
-    local f = io.open(type(warg) == "table" and warg[1] or warg)
-    f:seek("end", -30720)
-    -- mbox could be huge, get a 30kb chunk from EOF
-    -- * attachment could be much bigger than 30kb
-    local txt = f:read("*all")
-    f:close()
+	local f = io.open(type(warg) == "table" and warg[1] or warg)
+	f:seek("end", -30720)
+	-- mbox could be huge, get a 30kb chunk from EOF
+	-- * attachment could be much bigger than 30kb
+	local txt = f:read("*all")
+	f:close()
 
-    -- Find all Subject lines
-    for i in txt:gmatch "Subject: ([^\n]*)" do subject = i end
+	-- Find all Subject lines
+	for i in txt:gmatch("Subject: ([^\n]*)") do
+		subject = i
+	end
 
-    -- Check if we should scroll, or maybe truncate
-    if type(warg) == "table" then
-        if warg[3] ~= nil then
-            subject = helpers.scroll(subject, warg[2], warg[3])
-        else
-            subject = helpers.truncate(subject, warg[2])
-        end
-    end
+	-- Check if we should scroll, or maybe truncate
+	if type(warg) == "table" then
+		if warg[3] ~= nil then
+			subject = helpers.scroll(subject, warg[2], warg[3])
+		else
+			subject = helpers.truncate(subject, warg[2])
+		end
+	end
 
-    return {subject}
+	return { subject }
 end)
 -- }}}

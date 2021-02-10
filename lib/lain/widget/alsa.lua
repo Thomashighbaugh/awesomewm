@@ -46,8 +46,8 @@ local function factory(args)
 		helpers.async(format_cmd, function(mixer)
 			local l, s = string.match(mixer, "([%d]+)%%.*%[([%l]*)")
 			if alsa.last.level ~= l or alsa.last.status ~= s then
-				volume_now = { level = l, status = s }
-				widget = alsa.widget
+				local volume_now = { level = l, status = s }
+				local widget = alsa.widget
 				settings()
 				alsa.last = volume_now
 			end

@@ -145,7 +145,7 @@ local function worker(args)
     -- }}}
     -- {{{ Mouse event
     --[[ allows control volume level by:
-    - clicking on the widget to mute/unmute
+    - clicking on the widget to mute
     - scrolling when cursor is over the widget
     ]]
     volume.widget:connect_signal("button::press", function(_, _, _, button)

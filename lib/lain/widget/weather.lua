@@ -22,8 +22,8 @@ local tonumber = tonumber
 local function factory(args)
 	local weather = { widget = wibox.widget.textbox() }
 	local args = args or {}
-	local APPID = args.APPID or "3e321f9414eaedbfab34983bda77a66e" -- lain's default
-	local timeout = args.timeout or 60 * 15 -- 15 min
+	local APPID = args.APPID or "3e321f9414eaedbfab34983bda77a66e" -- lain default
+	local timeout = (args.timeout or 60) * 15 -- 15 min
 	local timeout_forecast = args.timeout or 60 * 60 * 24 -- 24 hrs
 	local current_call = args.current_call
 		or "curl -s 'http://api.openweathermap.org/data/2.5/weather?id=%s&units=%s&lang=%s&APPID=%s'"
@@ -100,7 +100,7 @@ local function factory(args)
 		)
 		helpers.async(cmd, function(f)
 			local pos, err
-			weather_now, pos, err = json.decode(f, 1, nil)
+			local weather_now, pos, err = json.decode(f, 1, nil)
 
 			if not err and type(weather_now) == "table" and tonumber(weather_now["cod"]) == 200 then
 				weather.notification_text = ""
@@ -119,7 +119,7 @@ local function factory(args)
 		local cmd = string.format(current_call, city_id, units, lang, APPID)
 		helpers.async(cmd, function(f)
 			local pos, err, icon
-			weather_now, pos, err = json.decode(f, 1, nil)
+			local weather_now, pos, err = json.decode(f, 1, nil)
 
 			if not err and type(weather_now) == "table" and tonumber(weather_now["cod"]) == 200 then
 				local sunrise = tonumber(weather_now["sys"]["sunrise"])
@@ -134,7 +134,7 @@ local function factory(args)
 				end
 
 				weather.icon_path = icons_path .. icon .. ".png"
-				widget = weather.widget
+				local widget = weather.widget
 				settings()
 			else
 				weather.icon_path = icons_path .. "na.png"

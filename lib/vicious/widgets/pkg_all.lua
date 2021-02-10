@@ -30,29 +30,35 @@ local helpers = require("vicious.helpers")
 local pkg_all = {}
 
 local PKGMGR = {
-    ["Arch"] = {cmd = "pacman -Qu", sub = 0},
-    ["Arch C"] = {cmd = "checkupdates", sub = 0},
-    ["Arch S"] = {cmd = "yes | pacman -Sup", sub = 1},
-    ["Debian"] = {cmd = "apt list --upgradable", sub = 1},
-    ["Ubuntu"] = {cmd = "apt list --upgradable", sub = 1},
-    ["Fedora"] = {cmd = "dnf check-update", sub = 2},
-    ["FreeBSD"] = {cmd = "pkg version -I -l '<'", sub = 0},
-    ["Mandriva"] = {cmd = "urpmq --auto-select", sub = 0}
+	["Arch"] = { cmd = "pacman -Qu", sub = 0 },
+	["Arch C"] = { cmd = "checkupdates", sub = 0 },
+	["Arch S"] = { cmd = "yes | pacman -Sup", sub = 1 },
+	["Debian"] = { cmd = "apt list --upgradable", sub = 1 },
+	["Ubuntu"] = { cmd = "apt list --upgradable", sub = 1 },
+	["Fedora"] = { cmd = "dnf check-update", sub = 2 },
+	["FreeBSD"] = { cmd = "pkg version -I -l '<'", sub = 0 },
+	["Mandriva"] = { cmd = "urpmq --auto-select", sub = 0 },
 }
 
 -- {{{ Packages widget type
 function pkg_all.async(format, warg, callback)
-    if not warg then return callback {} end
-    local pkgmgr = PKGMGR[warg]
+	if not warg then
+		return callback({})
+	end
+	local pkgmgr = PKGMGR[warg]
 
-    local size, lines = -pkgmgr.sub, ""
-    spawn.with_line_callback_with_shell(pkgmgr.cmd, {
-        stdout = function(str)
-            size = size + 1
-            if size > 0 then lines = lines .. str .. "\n" end
-        end,
-        output_done = function() callback {size, lines} end
-    })
+	local size, lines = -pkgmgr.sub, ""
+	spawn.with_line_callback_with_shell(pkgmgr.cmd, {
+		stdout = function(str)
+			size = size + 1
+			if size > 0 then
+				lines = lines .. str .. "\n"
+			end
+		end,
+		output_done = function()
+			callback({ size, lines })
+		end,
+	})
 end
 -- }}}
 

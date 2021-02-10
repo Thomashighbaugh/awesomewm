@@ -14,16 +14,16 @@ local pad = helpers.pad
 
 -- Poster (image)
 ------------------------------------------------------------
-local box_image = wibox.widget {
-    shape = helpers.rrect(dpi(18)),
-    widget = wibox.widget.imagebox
-}
+local box_image = wibox.widget({
+	shape = helpers.rrect(dpi(18)),
+	widget = wibox.widget.imagebox,
+})
 
-local image_cont = wibox.widget {
-    box_image,
-    shape = gears.shape.circle,
-    widget = wibox.container.background
-}
+local image_cont = wibox.widget({
+	box_image,
+	shape = gears.shape.circle,
+	widget = wibox.container.background,
+})
 
 box_image:set_image(gears.filesystem.get_configuration_dir() .. "images/4.jpg")
 
@@ -43,15 +43,15 @@ area:add(image_cont)
 area:add(wibox.container.margin(align_vertical, dpi(3), dpi(2), dpi(2), 0))
 area.bg = beautiful.xcolor0
 
-local main_wd = wibox.widget {
-    area,
-    left = dpi(10),
-    right = dpi(3),
-    forced_width = dpi(100),
-    forced_height = dpi(100),
-    shape = helpers.rrect(dpi(6)),
-    bg = beautiful.xcolor0 .. '00',
-    widget = wibox.container.margin
-}
+local main_wd = wibox.widget({
+	area,
+	left = dpi(10),
+	right = dpi(3),
+	forced_width = dpi(100),
+	forced_height = dpi(100),
+	shape = helpers.rrect(dpi(6)),
+	bg = beautiful.xcolor0 .. "00",
+	widget = wibox.container.margin,
+})
 
 return main_wd

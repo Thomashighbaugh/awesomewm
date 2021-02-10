@@ -102,7 +102,7 @@ local function factory(args)
 					alsabar.bar.color = alsabar.colors.unmute
 				end
 
-				volume_now = {
+				local volume_now = {
 					level = alsabar._current_level,
 					status = alsabar._playback,
 				}
@@ -149,7 +149,7 @@ local function factory(args)
 				end
 			end
 
-			int = math.modf((alsabar._current_level / 100) * tot)
+			local int = math.modf((alsabar._current_level / 100) * tot)
 			preset.text = string.format(
 				"%s%s%s%s",
 				tick_pre,

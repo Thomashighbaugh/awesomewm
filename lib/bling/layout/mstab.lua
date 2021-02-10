@@ -34,7 +34,7 @@ for idx, tag in ipairs(root.tags()) do tag.top_idx = 1 end
 tag.connect_signal("property::selected",
                    function(t) if not t.top_idx then t.top_idx = 1 end end)
 
-function update_tabbar(clients, t, top_idx, area, master_area_width,
+function update_tabbar(t, clients, top_idx, area, master_area_width,
                        slave_area_width)
 
     local s = t.screen
@@ -70,22 +70,22 @@ function update_tabbar(clients, t, top_idx, area, master_area_width,
         }
 
         -- Change visibility of the tab bar when layout, selected tag or number of clients (visible, master, slave) changes
-        local function adjust_visiblity(t)
+        local function adjust_visibility(t)
             s.tabbar.visible = (#t:clients() - t.master_count > 1) and
                                    (t.layout.name == mylayout.name)
         end
 
         tag.connect_signal("property::selected",
-                           function(t) adjust_visiblity(t) end)
+                           function(t) adjust_visibility(t) end)
         tag.connect_signal("property::layout",
-                           function(t, layout) adjust_visiblity(t) end)
-        tag.connect_signal("tagged", function(t, c) adjust_visiblity(t) end)
-        tag.connect_signal("untagged", function(t, c) adjust_visiblity(t) end)
+                           function(t, layout) adjust_visibility(t) end)
+        tag.connect_signal("tagged", function(t, c) adjust_visibility(t) end)
+        tag.connect_signal("untagged", function(t, c) adjust_visibility(t) end)
         tag.connect_signal("property::master_count",
-                           function(t) adjust_visiblity(t) end)
+                           function(t) adjust_visibility(t) end)
         client.connect_signal("property::minimized", function(c)
             local t = c.first_tag
-            adjust_visiblity(t)
+            adjust_visibility(t)
         end)
     end
 
@@ -139,7 +139,7 @@ function mylayout.arrange(p)
 
     -- Special case: One or zero slaves -> no tabbar (essentially tile right)
     if nslaves <= 1 then
-        -- since update_tabbar isnt called that way we have to hide it manually
+        -- since update_tabbar isn't called that way we have to hide it manually
         if s.tabbar then s.tabbar.visible = false end
         -- otherwise just do tile right 
         awful.layout.suit.tile.right.arrange(p)

@@ -15,7 +15,7 @@
 local cairo = require("lgi").cairo
 local gears = require("gears")
 
-function create_tiled_wallpaper(str, s, args_table)
+local function create_tiled_wallpaper(str, s, args_table)
 
     -- user input
     args_table = args_table or {}
@@ -30,7 +30,7 @@ function create_tiled_wallpaper(str, s, args_table)
     
     -- create cairo image wallpaper
     local img = cairo.ImageSurface(cairo.Format.RGB24, padding, padding)
-    cr = cairo.Context(img)
+    local cr = cairo.Context(img)
 
     cr:set_source(gears.color(bg))
     cr:paint()

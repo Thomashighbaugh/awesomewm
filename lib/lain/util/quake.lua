@@ -52,7 +52,7 @@ function quake:display()
 
 	if not client then
 		-- The client does not exist, we spawn it
-		cmd = string.format(
+		local cmd = string.format(
 			"%s %s %s",
 			self.app,
 			string.format(self.argname, self.name),

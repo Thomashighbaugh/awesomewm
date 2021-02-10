@@ -78,7 +78,7 @@ local function factory(args)
 
 	function fs.update()
 		local pathlen = 10
-		fs_now = {}
+		local fs_now = {}
 
 		local notifypaths = {}
 		for _, mount in ipairs(Gio.unix_mounts_get()) do
@@ -113,7 +113,7 @@ local function factory(args)
 			end
 		end
 
-		widget = fs.widget
+		local widget = fs.widget
 		settings()
 
 		if partition and fs_now[partition] and fs_now[partition].percentage >= threshold then

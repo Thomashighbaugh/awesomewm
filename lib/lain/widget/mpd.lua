@@ -44,13 +44,13 @@ local function factory(args)
 		mpdh
 	)
 
-	mpd_notification_preset = { title = "Now playing", timeout = 6 }
+	local mpd_notification_preset = { title = "Now playing", timeout = 6 }
 
 	helpers.set_map("current mpd track", nil)
 
 	function mpd.update()
 		helpers.async({ shell, "-c", cmd }, function(f)
-			mpd_now = {
+			local mpd_now = {
 				random_mode = false,
 				single_mode = false,
 				repeat_mode = false,
@@ -117,7 +117,7 @@ local function factory(args)
 				mpd_now.date,
 				mpd_now.title
 			)
-			widget = mpd.widget
+			local widget = mpd.widget
 			settings()
 
 			if mpd_now.state == "play" then

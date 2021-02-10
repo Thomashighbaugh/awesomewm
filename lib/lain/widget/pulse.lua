@@ -32,7 +32,7 @@ local function factory(args)
 			"-c",
 			type(pulse.cmd) == "string" and pulse.cmd or pulse.cmd(),
 		}, function(s)
-			volume_now = {
+			local volume_now = {
 				index = string.match(s, "index: (%S+)") or "N/A",
 				device = string.match(s, "device.string = \"(%S+)\"") or "N/A",
 				muted = string.match(s, "muted: (%S+)") or "N/A",
@@ -50,7 +50,7 @@ local function factory(args)
 			volume_now.left = volume_now.channel[1] or "N/A"
 			volume_now.right = volume_now.channel[2] or "N/A"
 
-			widget = pulse.widget
+			local widget = pulse.widget
 			settings()
 		end)
 	end

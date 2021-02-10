@@ -17,8 +17,6 @@ menu_utils.wm_name = ""
 local menu = {}
 -- Determines if a path points to a directory, by checking if it can be read
 -- (which is `nil` also for empty files) and if its size is not 0.
--- @author blueyed
--- @param path the path to check
 function menu.is_dir(path)
     local f = io.open(path)
     return f and not f:read(0) and f:seek("end") ~= 0 and f:close()
@@ -30,15 +28,12 @@ for k, v in pairs(menu_gen.all_menu_dirs) do
 end
 menu_gen.all_menu_dirs = existent_paths
 -- Determines whether an table includes a certain element
--- @param tab a given table
--- @param val the element to search for
--- @return true if the given string is found within the search table; otherwise, false if not
 function menu.has_value(tab, val)
     for index, value in pairs(tab) do if val:find(value) then return true end end
     return false
 end
 -- Use MenuBar parsing utils to build a menu for Awesome
--- @return awful.menu
+
 function menu.build(args)
     local args = args or {}
     local icon_size = args.icon_size

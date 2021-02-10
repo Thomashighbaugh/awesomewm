@@ -76,8 +76,7 @@ ctrl = RC.vars.crtl
 -- ===================================================================
 -- Set Theme (tests variable assignments) ----------------------------
 -- ===================================================================
-beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/" .. theme ..
-"/theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/" .. theme .. "/theme.lua")
 
 -- ===================================================================
 -- Window Decorations and Layout -------------------------------------
@@ -97,10 +96,10 @@ icons.init("sheet")
 -- Menu -----------------------------------------------------------------
 -- ===================================================================
 mymainmenu = require("layout.menu")
-RC.mainmenu = awful.menu({items = mymainmenu()}) -- in globalkeys
+RC.mainmenu = awful.menu({ items = mymainmenu() }) -- in globalkeys
 RC.launcher = awful.widget.launcher({
-    image = beautiful.awesome_icon,
-    menu = RC.mainmenu
+	image = beautiful.awesome_icon,
+	menu = RC.mainmenu,
 })
 
 -- ===================================================================
