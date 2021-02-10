@@ -51,13 +51,7 @@ bright_adjust:setup({
 		{
 			layout = wibox.layout.align.vertical,
 			{
-				wibox.container.margin(
-					bright_bar,
-					dpi(14),
-					dpi(20),
-					dpi(20),
-					dpi(20)
-				),
+				wibox.container.margin(bright_bar, dpi(14), dpi(20), dpi(20), dpi(20)),
 				forced_height = offsety * 0.75,
 				direction = "east",
 				layout = wibox.container.rotate,

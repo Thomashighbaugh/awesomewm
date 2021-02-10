@@ -58,10 +58,7 @@ local function factory(args)
 		local notifytable = {
 			[1] = string.format(
 				"%s%s\n",
-				string.rep(
-					" ",
-					floor((28 - this_month:len()) / 2)
-				),
+				string.rep(" ", floor((28 - this_month:len()) / 2)),
 				markup.bold(this_month)
 			),
 		}
@@ -87,17 +84,9 @@ local function factory(args)
 				if x < 10 then
 					x = " " .. x
 				end
-				strx = markup.bold(markup.color(
-					cal.notification_preset.bg,
-					cal.notification_preset.fg,
-					x
-				) .. " ")
+				strx = markup.bold(markup.color(cal.notification_preset.bg, cal.notification_preset.fg, x) .. " ")
 			end
-			strx = string.format(
-				"%s%s",
-				string.rep(" ", 3 - tostring(x):len()),
-				strx
-			)
+			strx = string.format("%s%s", string.rep(" ", 3 - tostring(x):len()), strx)
 			notifytable[#notifytable + 1] = string.format(
 				"%-4s%s",
 				strx,
@@ -115,22 +104,12 @@ local function factory(args)
 				month = month and month or current_month,
 				day = 0,
 			})
-			local head_prepend = string.rep(
-				" ",
-				tostring(string.format(cal.week_number_format, 0)):len()
-			)
+			local head_prepend = string.rep(" ", tostring(string.format(cal.week_number_format, 0)):len())
 
 			if cal.week_number == "left" then
 				notifytable[1] = head_prepend .. notifytable[1] -- month-year row
 				notifytable[2] = head_prepend .. notifytable[2] -- weekdays row
-				notifytable[8] = notifytable[8]:gsub(
-					"\n",
-					"\n" .. cal.get_week_number(
-						m,
-						st_day,
-						0
-					)
-				) -- first week of the month
+				notifytable[8] = notifytable[8]:gsub("\n", "\n" .. cal.get_week_number(m, st_day, 0)) -- first week of the month
 
 				for x = 10, #notifytable do
 					if cal.sum_week_days(st_day, x) == 2 then
@@ -141,14 +120,7 @@ local function factory(args)
 				notifytable[8] = notifytable[8]:gsub("\n", head_prepend .. "\n") -- weekdays row
 				for x = 9, #notifytable do
 					if cal.sum_week_days(st_day, x) == 1 then
-						notifytable[x] = notifytable[x]:gsub(
-							"\n",
-							cal.get_week_number(
-								m,
-								st_day,
-								x - 7
-							) .. "\n"
-						)
+						notifytable[x] = notifytable[x]:gsub("\n", cal.get_week_number(m, st_day, x - 7) .. "\n")
 					end
 				end
 				-- last week of the month

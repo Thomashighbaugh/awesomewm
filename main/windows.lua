@@ -110,10 +110,7 @@ awful.keygrabber({
 			{ modkey },
 			" ",
 			function()
-				awful.layout.set(
-					gears.table.iterate_value(ll.layouts, ll.current_layout, 1),
-					nil
-				)
+				awful.layout.set(gears.table.iterate_value(ll.layouts, ll.current_layout, 1), nil)
 			end,
 		},
 	},

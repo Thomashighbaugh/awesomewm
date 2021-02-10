@@ -81,19 +81,13 @@ local function worker(format, disk)
 
 	-- Store I/O scheduler
 	if disk_stats.queue and disk_stats.queue.scheduler then
-		disk_usage[disk]["{sched}"] = string.gmatch(
-			disk_stats.queue.scheduler,
-			"%[([%a]+)%]"
-		)
+		disk_usage[disk]["{sched}"] = string.gmatch(disk_stats.queue.scheduler, "%[([%a]+)%]")
 	end
 
 	return disk_usage[disk]
 end
 -- }}}
 
-return setmetatable(
-	dio_linux,
-	{ __call = function(_, ...)
-		return worker(...)
-	end }
-)
+return setmetatable(dio_linux, { __call = function(_, ...)
+	return worker(...)
+end })

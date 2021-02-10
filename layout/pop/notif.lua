@@ -7,18 +7,22 @@ local beautiful = require("beautiful")
 
 local popupLib = require("utils.popupLib")
 
-local popupWidget = wibox.widget {
-    require("notifications.notification-center"),
-    expand = "none",
-    layout = wibox.layout.fixed.horizontal
-}
+local popupWidget = wibox.widget({
+	require("notifications.notification-center"),
+	expand = "none",
+	layout = wibox.layout.fixed.horizontal,
+})
 
 local width = 500
 local margin = 5
 
-local popup = popupLib.create(awful.screen.focused().geometry.width - width -
-    margin, beautiful.wibar_height + margin, nil,
-width, popupWidget)
+local popup = popupLib.create(
+	awful.screen.focused().geometry.width - width - margin,
+	beautiful.wibar_height + margin,
+	nil,
+	width,
+	popupWidget
+)
 
 popup:set_xproperty("WM_NAME", "panel")
 

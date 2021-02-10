@@ -120,11 +120,7 @@ local function factory(args)
 		alsabar.update(function()
 			local preset = alsabar.notification_preset
 
-			preset.title = string.format(
-				"%s - %s%%",
-				alsabar.channel,
-				alsabar._current_level
-			)
+			preset.title = string.format("%s - %s%%", alsabar.channel, alsabar._current_level)
 
 			if alsabar._playback == "off" then
 				preset.title = preset.title .. " Muted"
@@ -170,11 +166,7 @@ local function factory(args)
 					end,
 				})
 			else
-				naughty.replace_text(
-					alsabar.notification,
-					preset.title,
-					preset.text
-				)
+				naughty.replace_text(alsabar.notification, preset.title, preset.text)
 			end
 		end)
 	end

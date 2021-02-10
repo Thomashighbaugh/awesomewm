@@ -95,10 +95,7 @@ local function worker(format, sink)
 		return { 0, "off" }
 	end
 
-	local vol = tonumber(string.match(
-		data,
-		"set%-sink%-volume " .. escape(sink) .. " (0x[%x]+)"
-	))
+	local vol = tonumber(string.match(data, "set%-sink%-volume " .. escape(sink) .. " (0x[%x]+)"))
 	if vol == nil then
 		vol = 0
 	end
@@ -133,11 +130,7 @@ function pulse_all.add(percent, sink)
 
 	vol = math.ceil(vol)
 
-	local cmd = string.format(
-		"pacmd set-sink-volume %s 0x%x >/dev/null",
-		sink,
-		vol
-	)
+	local cmd = string.format("pacmd set-sink-volume %s 0x%x >/dev/null", sink, vol)
 	return os.execute(cmd)
 end
 
@@ -158,9 +151,6 @@ function pulse_all.toggle(sink)
 end
 -- }}}
 
-return setmetatable(
-	pulse_all,
-	{ __call = function(_, ...)
-		return worker(...)
-	end }
-)
+return setmetatable(pulse_all, { __call = function(_, ...)
+	return worker(...)
+end })

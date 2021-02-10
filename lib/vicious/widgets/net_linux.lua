@@ -42,10 +42,7 @@ return helpers.setcall(function()
 			-- Received bytes, first value after the name
 			local recv = tonumber(string.match(line, ":[%s]*([%d]+)"))
 			-- Transmited bytes, 7 fields from end of the line
-			local send = tonumber(string.match(
-				line,
-				"([%d]+)%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+%s+%d$"
-			))
+			local send = tonumber(string.match(line, "([%d]+)%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+%s+%d$"))
 
 			helpers.uformat(args, name .. " rx", recv, unit)
 			helpers.uformat(args, name .. " tx", send, unit)

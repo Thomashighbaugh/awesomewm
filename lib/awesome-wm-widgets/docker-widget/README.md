@@ -13,10 +13,10 @@ The widget allows to manage docker containers, namely start/stop/pause/unpause:
 
 It is possible to customize widget by providing a table with all or some of the following config parameters:
 
-| Name | Default | Description |
-|---|---|---|
-| `icon` | `./docker-widget/icons/docker.svg` | Path to the icon |
-| `number_of_containers` | `-1` | Number of last created containers to show |
+| Name                   | Default                            | Description                               |
+| ---------------------- | ---------------------------------- | ----------------------------------------- |
+| `icon`                 | `./docker-widget/icons/docker.svg` | Path to the icon                          |
+| `number_of_containers` | `-1`                               | Number of last created containers to show |
 
 ## Installation
 

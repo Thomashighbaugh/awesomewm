@@ -117,10 +117,7 @@ function weather_all.async(format, warg, callback)
 
 	-- Get weather forceast by the station ICAO code, from:
 	-- * US National Oceanic and Atmospheric Administration
-	local url = string.format(
-		"https://tgftp.nws.noaa.gov/data/observations/metar/decoded/%s.TXT",
-		warg
-	)
+	local url = string.format("https://tgftp.nws.noaa.gov/data/observations/metar/decoded/%s.TXT", warg)
 	spawn.easy_async("curl -fs " .. url, function(...)
 		callback(parse(...))
 	end)

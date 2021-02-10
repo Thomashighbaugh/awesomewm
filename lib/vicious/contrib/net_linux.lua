@@ -61,10 +61,7 @@ local function worker(format, tignorelist)
 			-- Received bytes, first value after the name
 			local recv = tonumber(string.match(line, ":[%s]*([%d]+)"))
 			-- Transmitted bytes, 7 fields from end of the line
-			local send = tonumber(string.match(
-				line,
-				"([%d]+)%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+%s+%d$"
-			))
+			local send = tonumber(string.match(line, "([%d]+)%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+%s+%d$"))
 
 			if not tignore[name] then
 				total_rx = total_rx + recv
@@ -146,9 +143,6 @@ local function worker(format, tignorelist)
 end
 -- }}}
 
-return setmetatable(
-	net_linux,
-	{ __call = function(_, ...)
-		return worker(...)
-	end }
-)
+return setmetatable(net_linux, { __call = function(_, ...)
+	return worker(...)
+end })

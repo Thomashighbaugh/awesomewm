@@ -53,12 +53,7 @@ end
 
 -- Set foreground and background
 function markup.color(fg, bg, text)
-	return format(
-		"<span foreground='%s' background='%s'>%s</span>",
-		fg,
-		bg,
-		text
-	)
+	return format("<span foreground='%s' background='%s'>%s</span>", fg, bg, text)
 end
 
 -- Set font and foreground
@@ -83,23 +78,14 @@ function markup.fontcolor(font, fg, bg, text)
 end
 
 -- link markup.{fg,bg}(...) calls to markup.{fg,bg}.color(...)
-setmetatable(
-	markup.fg,
-	{ __call = function(_, ...)
-		return markup.fg.color(...)
-	end }
-)
-setmetatable(
-	markup.bg,
-	{ __call = function(_, ...)
-		return markup.bg.color(...)
-	end }
-)
+setmetatable(markup.fg, { __call = function(_, ...)
+	return markup.fg.color(...)
+end })
+setmetatable(markup.bg, { __call = function(_, ...)
+	return markup.bg.color(...)
+end })
 
 -- link markup(...) calls to markup.fg.color(...)
-return setmetatable(
-	markup,
-	{ __call = function(_, ...)
-		return markup.fg.color(...)
-	end }
-)
+return setmetatable(markup, { __call = function(_, ...)
+	return markup.fg.color(...)
+end })

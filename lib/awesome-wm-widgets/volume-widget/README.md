@@ -8,12 +8,12 @@ Note that widget uses the Arc icon theme, so it should be [installed](https://gi
 
 It is possible to customize widget by providing a table with all or some of the following config parameters:
 
-| Name | Default | Description |
-|---|---|---|
-| `volume_audio_controller`| `pulse`    | audio device |
-| `display_notification`   | `false`    | Display a notification on mouseover and keypress |
-| `notification_position`  | `top_right`| The notification position |
-| `delta`                  | 5          | The volume +/- percentage |
+| Name                      | Default     | Description                                      |
+| ------------------------- | ----------- | ------------------------------------------------ |
+| `volume_audio_controller` | `pulse`     | audio device                                     |
+| `display_notification`    | `false`     | Display a notification on mouseover and keypress |
+| `notification_position`   | `top_right` | The notification position                        |
+| `delta`                   | 5           | The volume +/- percentage                        |
 
 ## Installation
 
@@ -31,6 +31,7 @@ local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
            ...
 
 ```
+
 ### Control volume
 
 To mute/unmute click on the widget. To increase/decrease volume scroll up or down when mouse cursor is over the widget.
@@ -64,13 +65,13 @@ globalkeys = gears.table.join(
 ### Icons
 
 - _Optional step._ In Arc icon theme the muted audio level icon (![Volume-widget](./audio-volume-muted-symbolic.png)) looks like 0 level icon, which could be a bit misleading.
- So I decided to use original muted icon for low audio level, and the same icon, but colored in red for muted audio level. Fortunately icons are in svg format, so you can easily recolor them with `sed`, so it would look like this (![Volume Widget](./audio-volume-muted-symbolic_red.png)):
+  So I decided to use original muted icon for low audio level, and the same icon, but colored in red for muted audio level. Fortunately icons are in svg format, so you can easily recolor them with `sed`, so it would look like this (![Volume Widget](./audio-volume-muted-symbolic_red.png)):
 
- ```bash
- cd /usr/share/icons/Arc/status/symbolic &&
- sudo cp audio-volume-muted-symbolic.svg audio-volume-muted-symbolic_red.svg &&
- sudo sed -i 's/bebebe/ed4737/g' ./audio-volume-muted-symbolic_red.svg
- ```
+```bash
+cd /usr/share/icons/Arc/status/symbolic &&
+sudo cp audio-volume-muted-symbolic.svg audio-volume-muted-symbolic_red.svg &&
+sudo sed -i 's/bebebe/ed4737/g' ./audio-volume-muted-symbolic_red.svg
+```
 
 ### Pulse or ALSA only
 
@@ -99,6 +100,7 @@ ALSA lib pulse.c:243:(pulse_connect) PulseAudio: Unable to connect: Connection r
 
 amixer: Mixer attach pulse error: Connection refused
 ```
+
 then set `volume_audio_controller` to `alsa_only` in widget constructor:
 
 ```lua

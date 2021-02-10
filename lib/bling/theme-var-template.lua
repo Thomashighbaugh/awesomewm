@@ -7,7 +7,7 @@ You might just want to copy that whole part into your theme.lua and start adjust
 --]]
 
 -- window swallowing
-theme.dont_swallow_classname_list = {"firefox", "Gimp"} -- list of class names that should not be swallowed
+theme.dont_swallow_classname_list = { "firefox", "Gimp" } -- list of class names that should not be swallowed
 theme.dont_swallow_filter_activated = true -- whether the filter above should be active
 
 -- flash focus
@@ -48,4 +48,3 @@ theme.mstab_tabbar_style = "modern" -- style of the tabbar ("default", "boxes" o
 theme.tabbar_color_close = "#ff29a800" -- chnges the color of the close button
 theme.tabbar_color_min = "#f0ee6e00" -- chnges the color of the minimize button
 theme.tabbar_color_float = "#6c71c400" -- chnges the color of the float button
-

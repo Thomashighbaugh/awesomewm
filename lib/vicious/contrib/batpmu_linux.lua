@@ -86,9 +86,6 @@ local function worker(format, batid)
 end
 -- }}}
 
-return setmetatable(
-	batpmu_linux,
-	{ __call = function(_, ...)
-		return worker(...)
-	end }
-)
+return setmetatable(batpmu_linux, { __call = function(_, ...)
+	return worker(...)
+end })

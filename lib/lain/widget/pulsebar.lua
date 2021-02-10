@@ -176,21 +176,13 @@ local function factory(args)
 					end,
 				})
 			else
-				naughty.replace_text(
-					pulsebar.notification,
-					preset.title,
-					preset.text
-				)
+				naughty.replace_text(pulsebar.notification, preset.title, preset.text)
 			end
 		end)
 	end
 
 	helpers.newtimer(
-		string.format(
-			"pulsebar-%s-%s",
-			pulsebar.devicetype,
-			pulsebar.device
-		),
+		string.format("pulsebar-%s-%s", pulsebar.devicetype, pulsebar.device),
 		timeout,
 		pulsebar.update
 	)

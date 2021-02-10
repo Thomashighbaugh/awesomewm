@@ -66,9 +66,6 @@ local function worker(format, warg)
 end
 -- }}}
 
-return setmetatable(
-	ossvol_linux,
-	{ __call = function(_, ...)
-		return worker(...)
-	end }
-)
+return setmetatable(ossvol_linux, { __call = function(_, ...)
+	return worker(...)
+end })

@@ -51,14 +51,8 @@ local function factory(args)
 		for _, dev in ipairs(net.iface) do
 			local dev_now = {}
 			local dev_before = net.devices[dev] or { last_t = 0, last_r = 0 }
-			local now_t = tonumber(helpers.first_line(string.format(
-				"/sys/class/net/%s/statistics/tx_bytes",
-				dev
-			)) or 0)
-			local now_r = tonumber(helpers.first_line(string.format(
-				"/sys/class/net/%s/statistics/rx_bytes",
-				dev
-			)) or 0)
+			local now_t = tonumber(helpers.first_line(string.format("/sys/class/net/%s/statistics/tx_bytes", dev)) or 0)
+			local now_r = tonumber(helpers.first_line(string.format("/sys/class/net/%s/statistics/rx_bytes", dev)) or 0)
 
 			dev_now.carrier = helpers.first_line(string.format("/sys/class/net/%s/carrier", dev)) or "0"
 			dev_now.state = helpers.first_line(string.format("/sys/class/net/%s/operstate", dev)) or "down"
@@ -81,10 +75,8 @@ local function factory(args)
 				and string.match(dev_now.carrier, "1")
 			then
 				dev_now.wifi = true
-				dev_now.signal = tonumber(string.match(
-					helpers.lines_from("/proc/net/wireless")[3],
-					"(%-%d+%.)"
-				)) or nil
+				dev_now.signal = tonumber(string.match(helpers.lines_from("/proc/net/wireless")[3], "(%-%d+%.)"))
+					or nil
 			end
 
 			if

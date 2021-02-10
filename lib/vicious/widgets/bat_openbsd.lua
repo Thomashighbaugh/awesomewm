@@ -72,10 +72,7 @@ function bat_openbsd.async(format, warg, callback)
 			remaining_time = ("%d:%0.2d"):format(hours, minutes)
 		end
 
-		local wear = math.floor(
-			battery.last_full_capacity,
-			battery.design_capacity
-		)
+		local wear = math.floor(battery.last_full_capacity, battery.design_capacity)
 
 		-- Pass the following arguments to callback function:
 		--  * battery state symbol (↯, -, !, + or N/A)

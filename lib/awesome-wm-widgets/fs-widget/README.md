@@ -5,7 +5,6 @@ list of mounts to monitor though only the first will show in the wibar. To have
 multiple mounts displayed on the wibar simply define multiple `storage_widgets`
 with different mounts as arguments.
 
-
 ```lua
   local storage_widget = require("awesome-wm-widgets.storage-widget.storage-widget")
   ...

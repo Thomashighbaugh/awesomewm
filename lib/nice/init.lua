@@ -206,13 +206,7 @@ local function get_dominant_color(client)
 	local x_lim = floor(cgeo.width / 2)
 	for x_pos = 0, x_lim, 2 do
 		for y_pos = 0, 8, 1 do
-			pb = pixbuf_get_from_surface(
-				content,
-				x_offset + x_pos,
-				y_offset + y_pos,
-				1,
-				1
-			)
+			pb = pixbuf_get_from_surface(content, x_offset + x_pos, y_offset + y_pos, 1, 1)
 			bytes = pb:get_pixels()
 			color = "#" .. bytes:gsub(".", function(c)
 				return ("%02x"):format(c:byte())
@@ -319,12 +313,7 @@ local function create_titlebar_button(c, name, button_callback, property)
 		-- If the button is for a property that can be toggled
 		if property then
 			is_on = c[property]
-			button_img.image = create_button_image(
-				name,
-				is_focused,
-				event,
-				is_on
-			)
+			button_img.image = create_button_image(name, is_focused, event, is_on)
 		else
 			button_img.image = create_button_image(name, is_focused, event)
 		end
@@ -477,15 +466,10 @@ local function create_titlebar_title(c)
 	})
 
 	local function update()
-		local text_color = is_contrast_acceptable(
-			title_color_light,
-			client_color
-		) and title_color_light or title_color_dark
-		title_widget.markup = ("<span foreground='%s' font='%s'>%s</span>"):format(
-			text_color,
-			_private.titlebar_font,
-			c.name
-		)
+		local text_color = is_contrast_acceptable(title_color_light, client_color)
+			and title_color_light
+			or title_color_dark
+		title_widget.markup = ("<span foreground='%s' font='%s'>%s</span>"):format(text_color, _private.titlebar_font, c.name)
 	end
 	c:connect_signal("property::name", update)
 	c:connect_signal("unfocus", function()
@@ -526,14 +510,9 @@ local function get_titlebar_item(c, name)
 			c.minimized = true
 		end)
 	elseif name == "ontop" then
-		return create_titlebar_button(
-			c,
-			name,
-			function()
-				c.ontop = not c.ontop
-			end,
-			"ontop"
-		)
+		return create_titlebar_button(c, name, function()
+			c.ontop = not c.ontop
+		end, "ontop")
 	elseif name == "floating" then
 		return create_titlebar_button(
 			c,
@@ -679,16 +658,8 @@ function _private.add_window_decorations(c)
 		stroke_width_inner = 1,
 		stroke_offset_outer = 0.5,
 		stroke_width_outer = 1,
-		stroke_source_inner = gradient(
-			stroke_color_inner_top,
-			stroke_color_inner_sides,
-			titlebar_height
-		),
-		stroke_source_outer = gradient(
-			stroke_color_outer_top,
-			stroke_color_outer_sides,
-			titlebar_height
-		),
+		stroke_source_inner = gradient(stroke_color_inner_top, stroke_color_inner_sides, titlebar_height),
+		stroke_source_outer = gradient(stroke_color_outer_top, stroke_color_outer_sides, titlebar_height),
 	})
 	-- The top right corner of the titlebar
 	local corner_top_right_img = shapes.flip(corner_top_left_img, "horizontal")
@@ -807,10 +778,7 @@ function _private.add_window_decorations(c)
 		}),
 		"vertical"
 	)
-	local corner_bottom_right_img = shapes.flip(
-		corner_bottom_left_img,
-		"horizontal"
-	)
+	local corner_bottom_right_img = shapes.flip(corner_bottom_left_img, "horizontal")
 	local bottom_edge = shapes.flip(
 		create_edge_top_middle({
 			color = client_color,
@@ -938,10 +906,7 @@ function nice.initialize(args)
 				set_color_rule(c, c._nice_base_color)
 				_private.add_window_decorations(c)
 				-- table.save(_private, config_dir .. "/nice/private")
-				c:disconnect_signal(
-					"request::activate",
-					c._cb_add_window_decorations
-				)
+				c:disconnect_signal("request::activate", c._cb_add_window_decorations)
 			end)
 		end -- _cb_add_window_decorations
 		-- Check if a color rule already exists...
@@ -967,9 +932,6 @@ function nice.initialize(args)
 	end)
 end
 
-return setmetatable(
-	nice,
-	{ __call = function(_, ...)
-		return nice.initialize(...)
-	end }
-)
+return setmetatable(nice, { __call = function(_, ...)
+	return nice.initialize(...)
+end })

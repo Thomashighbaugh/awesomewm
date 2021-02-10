@@ -34,15 +34,8 @@ local function factory(args)
 	end
 
 	local mpdh = string.format("telnet://%s:%s", host, port)
-	local echo = string.format(
-		"printf \"%sstatus\\ncurrentsong\\nclose\\n\"",
-		password
-	)
-	local cmd = string.format(
-		"%s | curl --connect-timeout 1 -fsm 3 %s",
-		echo,
-		mpdh
-	)
+	local echo = string.format("printf \"%sstatus\\ncurrentsong\\nclose\\n\"", password)
+	local cmd = string.format("%s | curl --connect-timeout 1 -fsm 3 %s", echo, mpdh)
 
 	local mpd_notification_preset = { title = "Now playing", timeout = 6 }
 
@@ -139,10 +132,7 @@ local function factory(args)
 						local path = string.format(
 							"%s/%s",
 							music_dir,
-							string.match(
-								mpd_now.file,
-								".*/"
-							)
+							string.match(mpd_now.file, ".*/")
 						)
 						local cover = string.format(
 							"find '%s' -maxdepth 1 -type f | egrep -i -m1 '%s'",

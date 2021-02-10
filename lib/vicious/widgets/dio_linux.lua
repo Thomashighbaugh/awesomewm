@@ -38,8 +38,7 @@ return helpers.setcall(function()
 	local disk_lines = {}
 
 	for line in io.lines("/proc/diskstats") do
-		local device, read, write, iotime =  -- Linux kernel documentation: Documentation/iostatstxtline:match("([^%s]+) %d+ %d+ (%d+) %d+ %d+ %d+ (%d+) %d+ %d+ (%d+)")
-		disk_lines[device] == { read, write, iotime }
+		local device, read, write, iotime =  -- Linux kernel documentation: Documentation/iostatstxtline:match("([^%s]+) %d+ %d+ (%d+) %d+ %d+ %d+ (%d+) %d+ %d+ (%d+)")disk_lines[device] == { 	read, 	write, 	iotime }
 	end
 
 	local time = os.time()

@@ -45,9 +45,6 @@ local function worker(format, warg)
 end
 -- }}}
 
-return setmetatable(
-	nvinf_all,
-	{ __call = function(_, ...)
-		return worker(...)
-	end }
-)
+return setmetatable(nvinf_all, { __call = function(_, ...)
+	return worker(...)
+end })

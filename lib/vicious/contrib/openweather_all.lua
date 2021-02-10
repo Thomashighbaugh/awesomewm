@@ -94,9 +94,6 @@ local function worker(format, warg)
 end
 -- }}}
 
-return setmetatable(
-	openweather_all,
-	{ __call = function(_, ...)
-		return worker(...)
-	end }
-)
+return setmetatable(openweather_all, { __call = function(_, ...)
+	return worker(...)
+end })

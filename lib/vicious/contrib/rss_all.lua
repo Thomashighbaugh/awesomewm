@@ -59,11 +59,7 @@ local function worker(format, input)
 	f:close()
 
 	while true do
-		i, j, ob = feed.find(
-			feed,
-			"<" .. object .. ">(.-)</" .. object .. ">",
-			i
-		)
+		i, j, ob = feed.find(feed, "<" .. object .. ">(.-)</" .. object .. ">", i)
 		if not ob then
 			break
 		end

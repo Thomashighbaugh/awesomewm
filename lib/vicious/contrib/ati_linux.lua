@@ -55,11 +55,9 @@ local function worker(format, warg)
 	-- Get power info
 	_data["{method}"] = pm.power_method and string.sub(pm.power_method, 1, -2) or "N/A"
 	_data["{dpm_state}"] = pm.power_dpm_state and string.sub(pm.power_dpm_state, 1, -2) or "N/A"
-	_data["{dpm_perf_level}"] = pm.power_dpm_force_performance_level and string.sub(
-		pm.power_dpm_force_performance_level,
-		1,
-		-2
-	) or "N/A"
+	_data["{dpm_perf_level}"] = pm.power_dpm_force_performance_level
+		and string.sub(pm.power_dpm_force_performance_level, 1, -2)
+		or "N/A"
 	_data["{profile}"] = pm.power_profile and string.sub(pm.power_profile, 1, -2) or "N/A"
 
 	local f = io.open("/sys/kernel/debug/dri/64/radeon_pm_info", "r")
@@ -84,9 +82,6 @@ local function worker(format, warg)
 end
 -- }}}
 
-return setmetatable(
-	ati_linux,
-	{ __call = function(_, ...)
-		return worker(...)
-	end }
-)
+return setmetatable(ati_linux, { __call = function(_, ...)
+	return worker(...)
+end })

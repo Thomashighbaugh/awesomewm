@@ -87,16 +87,16 @@ function helpers.move_to_edge(c, direction)
 	if direction == "up" then
 		local old_x = c:geometry().x
 		awful.placement.top({
-			
+
 			honor_workarea = false,
-			
+
 		}, c)
 		c.x = old_x
 		c:geometry({ nil, y = workarea.y + beautiful.screen_margin * 2, nil, nil })
 	elseif direction == "down" then
 		local old_x = c:geometry().x
 		awful.placement.bottom(c, {
-			
+
 			honor_workarea = true,
 			honor_padding = false,
 		})
@@ -110,7 +110,7 @@ function helpers.move_to_edge(c, direction)
 	elseif direction == "left" then
 		local old_y = c:geometry().y
 		awful.placement.left(c, {
-			
+
 			honor_workarea = true,
 			honor_padding = false,
 		})
@@ -119,7 +119,7 @@ function helpers.move_to_edge(c, direction)
 	elseif direction == "right" then
 		local old_y = c:geometry().y
 		awful.placement.right(c, {
-			
+
 			honor_workarea = false,
 			honor_padding = false,
 		})

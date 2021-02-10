@@ -59,14 +59,7 @@ local function worker(format, warg)
 	local lm_sensors = f:read("*all")
 	f:close()
 
-	local sensor_data = string.gsub(
-		string.match(
-			lm_sensors,
-			warg .. ":\n(%s%s.-)\n[^ ]"
-		),
-		" ",
-		""
-	)
+	local sensor_data = string.gsub(string.match(lm_sensors, warg .. ":\n(%s%s.-)\n[^ ]"), " ", "")
 
 	-- One of: crit, max
 	local divisor = "crit"
@@ -80,9 +73,6 @@ local function worker(format, warg)
 end
 -- }}}
 
-return setmetatable(
-	sensors_linux,
-	{ __call = function(_, ...)
-		return worker(...)
-	end }
-)
+return setmetatable(sensors_linux, { __call = function(_, ...)
+	return worker(...)
+end })

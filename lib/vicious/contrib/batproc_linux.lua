@@ -70,10 +70,7 @@ local function worker(format, batid)
 
 	-- Get charge information
 	local rate = string.match(statefile, "present rate:[%s]+([%d]+).*")
-	local remaining = string.match(
-		statefile,
-		"remaining capacity:[%s]+([%d]+).*"
-	)
+	local remaining = string.match(statefile, "remaining capacity:[%s]+([%d]+).*")
 
 	-- Calculate percentage (but work around broken BAT/ACPI implementations)
 	local percent = math.min(math.floor(remaining / capacity * 100), 100)
@@ -94,9 +91,6 @@ local function worker(format, batid)
 end
 -- }}}
 
-return setmetatable(
-	batproc_linux,
-	{ __call = function(_, ...)
-		return worker(...)
-	end }
-)
+return setmetatable(batproc_linux, { __call = function(_, ...)
+	return worker(...)
+end })

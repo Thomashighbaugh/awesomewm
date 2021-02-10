@@ -186,11 +186,7 @@ local function addnewline2(level, buffer, buflen)
 end
 function json.addnewline(state)
 	if state.indent then
-		state.bufferlen = addnewline2(
-			state.level or 0,
-			state.buffer,
-			state.bufferlen or #(state.buffer)
-		)
+		state.bufferlen = addnewline2(state.level or 0, state.buffer, state.bufferlen or #(state.buffer))
 	end
 end
 local encode2 -- forward declaration
@@ -539,10 +535,7 @@ local function scanstring(str, pos)
 						-- we have the high surrogate of UTF-16. Check if there is a
 						-- low surrogate escaped nearby to combine them.
 						if strsub(str, nextpos + 6, nextpos + 7) == "\\u" then
-							value2 = tonumber(
-								strsub(str, nextpos + 8, nextpos + 11),
-								16
-							)
+							value2 = tonumber(strsub(str, nextpos + 8, nextpos + 11), 16)
 							if value2 and 0xDC00 <= value2 and value2 <= 0xDFFF then
 								value = (value - 0xD800) * 0x400 + (value2 - 0xDC00) + 0x10000
 							else
@@ -746,13 +739,7 @@ function json.use_lpeg()
 		local npos
 		local t = {}
 		repeat
-			key, obj, cont, npos = pegmatch(
-				ObjectContent,
-				str,
-				pos,
-				nullval,
-				state
-			)
+			key, obj, cont, npos = pegmatch(ObjectContent, str, pos, nullval, state)
 			if not npos then
 				break
 			end

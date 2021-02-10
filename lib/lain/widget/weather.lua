@@ -90,14 +90,7 @@ local function factory(args)
 	end
 
 	function weather.forecast_update()
-		local cmd = string.format(
-			forecast_call,
-			city_id,
-			units,
-			lang,
-			cnt,
-			APPID
-		)
+		local cmd = string.format(forecast_call, city_id, units, lang, cnt, APPID)
 		helpers.async(cmd, function(f)
 			local pos, err
 			local weather_now, pos, err = json.decode(f, 1, nil)
@@ -149,13 +142,7 @@ local function factory(args)
 		weather.attach(weather.widget)
 	end
 
-	weather.timer = helpers.newtimer(
-		"weather-" .. city_id,
-		timeout,
-		weather.update,
-		false,
-		true
-	)
+	weather.timer = helpers.newtimer("weather-" .. city_id, timeout, weather.update, false, true)
 	weather.timer_forecast = helpers.newtimer(
 		"weather_forecast-" .. city_id,
 		timeout,
