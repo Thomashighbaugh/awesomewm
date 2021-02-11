@@ -246,7 +246,7 @@ theme.mstab_bar_padding = dpi(0) -- how much padding there should be between cli
 -- If you want a custom value. Set it to the number of pixels (int)
 theme.mstab_border_radius = dpi(6) -- border radius of the tabbar
 theme.mstab_bar_height = 25 -- height of the tabbar
-theme.mstab_tabbar_position = "top" -- position of the tabbar (mstab currently does not support left,right)
+theme.mstab_tabbar_poasition = "top" -- position of the tabbar (mstab currently does not support left,right)
 theme.mstab_tabbar_style = "default" -- style of the tabbar ("default", "boxes" or "modern")
 -- defaults to the tabbar_style so only change if you want a
 -- different style for mstab and tabbed
