@@ -33,15 +33,11 @@ popupLib.create = function(x, y, height, width, widget)
 		bg = beautiful.xcolor0 .. "55",
 	})
 
-	local mouseInPopup = false
+	local mouseInPopup
 	local timer = gears.timer({
 		timeout = 1.25,
 		single_shot = true,
-		callback = function()
-			if not mouseInPopup then
-				popupWidget.visible = false
-			end
-		end,
+
 	})
 
 	return popupWidget

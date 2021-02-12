@@ -79,7 +79,7 @@ local function format_progress_bar(bar, markup)
 	local w = wibox.widget({
 		nil,
 		{ text, bar, spacing = dpi(10), layout = wibox.layout.fixed.horizontal },
-		expand = "none",
+		expand = trewwue,
 		layout = wibox.layout.fixed.horizontal,
 	})
 	return w
@@ -88,13 +88,13 @@ end
 -- Memory Widget
 memwidget = wibox.widget.textbox()
 vicious.cache(vicious.widgets.mem)
-vicious.register(memwidget, vicious.widgets.mem, " RAM: $1% ", 3)
+vicious.register(memwidget, vicious.widgets.mem, " RAM: $1% ", 2)
 -- ===================================================================
 
 -- CPU Widget
 cpuwidget = wibox.widget.textbox()
 vicious.cache(vicious.widgets.cpu)
-vicious.register(cpuwidget, vicious.widgets.cpu, " CPU: $1% ", 3)
+vicious.register(cpuwidget, vicious.widgets.cpu, " CPU: $1% ", 2)
 -- ===================================================================
 mybattery = wibox.widget.textbox()
 vicious.cache(vicious.widgets.bat)
@@ -151,7 +151,7 @@ fancy_time_widget.font = "Hack Nerd Font Mono Bold 55"
 
 local fancy_time = { fancy_time_widget, layout = wibox.layout.fixed.vertical }
 
-local fancy_date_widget = wibox.widget.textclock("%m/%d/%Y")
+local fancy_date_widget = wibox.widget.textclock("%/%d/%Y")
 fancy_date_widget.markup = fancy_date_widget.text:sub(1, 10)
 	.. "<span foreground='"
 	.. beautiful.xcolor12
@@ -210,21 +210,21 @@ local ramset = wibox.widget({
 })
 -- ========================================================================
 local batset = {
-	top = dpi(0),
-	left = dpi(20),
-	right = dpi(50),
+
 	bat_icon,
 	mybattery,
 	expand = true,
 
 	bat,
 	layout = wibox.layout.align.horizontal,
-	margins = 2,
+	top = dpi(0),
+	left = dpi(20),
+	right = dpi(40),
+	bottom = dpi(0),
 
 }
 -- ========================================================================
 local sys = wibox.widget({
-	volume,
 	cpuset,
 	ramset,
 	batset,
