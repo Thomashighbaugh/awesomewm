@@ -192,6 +192,8 @@
         "notif",
         "notifbox",
         "nslaves",
+        "offsetx",
+        "offsety",
         "onclick",
         "ontop",
         "ontopbutton",

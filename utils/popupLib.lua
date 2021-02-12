@@ -30,7 +30,7 @@ popupLib.create = function(x, y, height, width, widget)
 		ontop = true,
 		x = x,
 		y = y,
-		bg = beautiful.xcolor0 .. "00",
+		bg = beautiful.xcolor0 .. "55",
 	})
 
 	local mouseInPopup = false
