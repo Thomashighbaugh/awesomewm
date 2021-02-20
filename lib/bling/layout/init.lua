@@ -13,10 +13,10 @@ local centered = require(... .. ".centered")
 beautiful.layout_centered = centered.get_icon()
 
 local layout = {
-	mstab = mstab.layout,
-	centered = centered.layout,
-	vertical = vertical.layout,
-	horizontal = horizontal.layout,
+    mstab = mstab.layout,
+    centered = centered.layout,
+    vertical = vertical.layout,
+    horizontal = horizontal.layout
 }
 
 return layout

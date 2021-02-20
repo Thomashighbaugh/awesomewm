@@ -1,8 +1,12 @@
 # <center> 🌟 Bling - Utilities for the AwesomeWM 🌟 </center>
 
+For documentation, go [here](https://nooo37.github.io/bling). This readme is out of date.
+
 ## ❓ Why
 
 AwesomeWM is literally that - an awesome window manager.
+
+> TLH: NO IT IS NOT! It just sucks less
 
 It's unique selling point has always been the widget system allowing for fancy buttons, sliders, bars, dashboards and everything you can imagine. But that feature might also be a curse. Most modules focus on the widget side of things which left the actual window managing part of awesomeWM a little underdeveloped compared to for example xmonad even though it's probably just as powerfull in that regard.
 
@@ -55,6 +59,136 @@ awful.screen.connect_for_each_screen(function(s)  -- that way the wallpaper is a
 end)
 ```
 
+##### 🎇 Wallpaper easy setup
+
+This is a simple-to-use, extensible, declarative wallpaper manager.
+
+###### Practical examples
+
+```lua
+-- A default Awesome wallpaper
+bling.module.wallpaper.setup()
+
+-- A slideshow with pictures from different sources changing every 30 minutes
+bling.module.wallpaper.setup {
+    wallpaper = {"/images/my_dog.jpg", "/images/my_cat.jpg"},
+    change_timer = 1800
+}
+
+-- A random wallpaper with images from multiple folders
+bling.module.wallpaper.setup {
+    set_function = bling.module.wallpaper.setters.random
+    wallpaper = {"/path/to/a/folder", "/path/to/another/folder"},
+    change_timer = 631,  -- prime numbers are better for timers
+    position = "fit",
+    background = "#424242"
+}
+
+-- wallpapers based on a schedule, like awesome-glorious-widgets dynamic wallpaper
+-- https://github.com/manilarome/awesome-glorious-widgets/tree/master/dynamic-wallpaper
+bling.module.wallpaper.setup {
+    set_function = wallpaper.setters.simple_schedule,
+    wallpaper = {
+        ["06:22:00"] = "morning-wallpaper.jpg",
+        ["12:00:00"] = "noon-wallpaper.jpg",
+        ["17:58:00"] = "night-wallpaper.jpg",
+        ["24:00:00"] = "midnight-wallpaper.jpg",
+    },
+    position = "maximized",
+}
+
+-- random wallpapers, from different folder depending on time of the day
+bling.module.wallpaper.setup {
+    set_function = bling.module.wallpaper.setters.simple_schedule,
+    wallpaper = {
+        ["09:00:00"] = "~/Pictures/safe_for_work",
+        ["18:00:00"] = "~/Pictures/personal",
+    },
+    schedule_set_function = bling.module.wallpaper.setters.random
+    position = "maximized",
+    recursive = false,
+    change_timer = 600
+}
+```
+
+###### Details
+
+The setup function will do 2 things: call the set-function when awesome requests a wallpaper, and manage a timer to call `set_function` periodically.
+
+Its argument is a args table that is passed to ohter functions (setters and wallpaper functions), so you define everything with setup.
+
+The `set_function` is a function called every times a wallpaper is needed.
+
+The module provides some setters:
+
+- `bling.module.wallpaper.setters.awesome_wallpaper`: beautiful.theme_assets.wallpaper with defaults from beautiful.
+- `bling.module.wallpaper.setters.simple`: slideshow from the `wallpaper` argument.
+- `bling.module.wallpaper.setters.random`: same as simple but in a random way.
+- `bling.module.wallpaper.setters.simple_schedule`: takes a table of `["HH:MM:SS"] = wallpaper` arguments, where wallpaper is the `wallpaper` argument used by `schedule_set_function`.
+
+A wallpaper is one of the following elements:
+
+- a color
+- an image
+- a folder containing images
+- a function that sets a wallpaper
+- everything gears.wallpaper functions can manage (cairo surface, cairo pattern string)
+- a list containing any of the elements above
+
+```lua
+-- This is a valid wallpaper definition
+bling.module.wallpaper.setup {
+    wallpaper = {                  -- a list
+        "black", "#112233",        -- colors
+        "wall1.jpg", "wall2.png",  -- files
+        "/path/to/wallpapers",     -- folders
+        -- cairo patterns
+        "radial:600,50,100:105,550,900:0,#2200ff:0.5,#00ff00:1,#101010",
+        -- or functions that set a wallpaper
+        function(args) bling.module.tiled_wallpaper("\\o/", args.screen) end,
+        bling.module.wallpaper.setters.awesome_wallpaper,
+    },
+    change_timer = 10,
+}
+```
+
+The provided setters `simple` and `random` will use 2 internal functions that you can use to write your own setter:
+
+- `bling.module.wallpaper.prepare_list`: return a list of wallpapers directly usable by `apply` (for now, it just explores folders)
+- `bling.module.wallpaper.apply`: a wrapper for gears.wallpaper functions, using the args table of setup
+
+Here are the defaults:
+
+```lua
+-- Default parameters
+bling.module.wallpaper.setup {
+    screen = nil,        -- the screen to apply the wallpaper, as seen in gears.wallpaper functions
+    change_timer = nil,  -- the timer in seconds. If set, call the set_function every change_timer seconds
+    set_function = nil,  -- the setter function
+
+    -- parameters used by bling.module.wallpaper.prepare_list
+    wallpaper = nil,                                -- the wallpaper object, see simple or simple_schedule documentation
+    image_formats = {"jpg", "jpeg", "png", "bmp"},  -- when searching in folder, consider these files only
+    recursive = true,                               -- when searching in folder, search also in subfolders
+
+    -- parameters used by bling.module.wallpaper.apply
+    position = nil,                              -- use a function of gears.wallpaper when applicable ("centered", "fit", "maximized", "tiled")
+    background = beautiful.bg_normal or "black", -- see gears.wallpaper functions
+    ignore_aspect = false,                       -- see gears.wallpaper.maximized
+    offset = {x = 0, y = 0},                     -- see gears.wallpaper functions
+    scale = 1,                                   -- see gears.wallpaper.centered
+
+    -- parameters that only apply to bling.module.wallpaper.setter.awesome (as a setter or as a wallpaper function)
+    colors = {                      -- see beautiful.theme_assets.wallpaper
+        bg = beautiful.bg_color,    -- the actual default is this color but darkened or lightned
+        fg = beautiful.fg_color,
+        alt_fg = beautiful.fg_focus
+    }
+}
+```
+
+Check documentation in [module/wallpaper.lua](module/wallpaper.lua) for more details.
+
 ##### 🔦 Flash Focus
 
 There are two ways you can use this module. You can just enable it by calling the `enable()` function:
@@ -80,10 +214,86 @@ awful.key({modkey}, "Up",
 You should bind these functions to keys in oder to use the tabbed module effectively:
 
 ```lua
-bling.module.tabbed.pick()  -- makes you pick a client with your mouse to add to the tabbing group
-bling.module.tabbed.pop()   -- removes the focused client from the tabbing group
-bling.module.tabbed.iter()  -- iterates through the currently focused tabbing group
+bling.module.tabbed.pick()            -- picks a client with your cursor to add to the tabbing group
+bling.module.tabbed.pop()             -- removes the focused client from the tabbing group
+bling.module.tabbed.iter()            -- iterates through the currently focused tabbing group
+bling.module.tabbed.pick_with_dmenu() -- picks a client with a dmenu application (defaults to rofi, other options can be set with a string parameter like "dmenu")
 ```
+
+##### 🎵 Playerctl
+
+This is a signal module in which you can connect to certain bling signals to grab playerctl info. Currently, this is what it supports:
+
+- Song title and artist
+- Album art (the path this module downloaded the art to)
+- If playing or not
+- Position
+- Song length
+
+This module relies on `playerctl` and `curl`. If you have this module disabled, you won't need those programs.
+
+To enable: `bling.signal.playerctl.enable()`
+
+###### Signals
+
+```lua
+-- bling::playerctl::status     -- first line is the signal
+--      playing  (boolean)      -- indented lines are function parameters
+-- bling::playerctl::title_artist_album
+--      title  (string)
+--      artist  (string)
+--      album_path (string)
+-- bling::playerctl::position
+--      interval_sec  (number)
+--      length_sec  (number)
+```
+
+###### Example Implementation
+
+```lua
+local art = wibox.widget {
+    image = "default_image.png",
+    resize = true,
+    forced_height = dpi(80),
+    forced_width = dpi(80),
+    widget = wibox.widget.imagebox
+}
+
+local title_widget = wibox.widget {
+    markup = 'Nothing Playing',
+    align = 'center',
+    valign = 'center',
+    widget = wibox.widget.textbox
+}
+
+local artist_widget = wibox.widget {
+    markup = 'Nothing Playing',
+    align = 'center',
+    valign = 'center',
+    widget = wibox.widget.textbox
+}
+
+-- Get Song Info
+awesome.connect_signal("bling::playerctl::title_artist_album",
+                       function(title, artist, art_path)
+    -- Set art widget
+    art:set_image(gears.surface.load_uncached(art_path))
+
+    local my_title = "No Title"
+    local my_artist = "No Artist"
+
+    if title then
+        my_title = title
+        my_artist = artist
+    end
+
+    -- Set title and artist widgets
+    title_widget:set_markup_silently(my_title)
+    artist_widget:set_markup_silently(my_artist)
+end)
+```
+
+Thats all! You don't even have to worry about updating the widgets, the signals will handle that for you.
 
 ### 🌈 Theme variables
 
@@ -127,8 +337,15 @@ gif by [javacafe](https://github.com/JavaCafe01)
 
 gif by me :)
 
+### Playerctl Signals Implementation
+
+![](https://user-images.githubusercontent.com/33443763/107377569-fa807900-6a9f-11eb-93c1-174c58eb7bf1.png)
+
+screenshot by [javacafe](https://github.com/JavaCafe01)
+
 ## TODO
 
+- [ ] Add external sources management for the wallpaper module (URLs, RSS feeds, NASA picture of the day, ...)
 - [ ] Scratchpad module
 - [x] Some more documentation on the tabbed module
 - [x] Add a cool alternative tabbar style
