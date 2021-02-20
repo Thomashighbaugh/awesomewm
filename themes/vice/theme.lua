@@ -63,10 +63,10 @@ theme.max_font = "Hack Nerd Font Bold 10"
 -- ========================================================================
 
 theme.bg_dark = theme.xbackground .. "dd"
-theme.bg_normal = theme.xbackground .. "cc"
+theme.bg_normal = theme.xbackground .. "dd"
 theme.bg_focus = theme.xbackground .. "dd"
 theme.bg_urgent = theme.xbackground .. "dd"
-theme.bg_minimize = theme.xbackground .. "cc"
+theme.bg_minimize = theme.xbackground .. "dd"
 
 -- ========================================================================
 -- Foreground Colors
@@ -85,7 +85,7 @@ theme.border_width = dpi(2)
 theme.border_normal = theme.xbackground
 theme.border_focus = theme.xbackground
 theme.border_radius = dpi(10)
---theme.client_radius = dpi(10)
+-- theme.client_radius = dpi(10)
 theme.widget_border_width = dpi(2)
 theme.widget_border_color = theme.xbackground
 
@@ -116,7 +116,7 @@ theme.tasklist_font = theme.font
 theme.tasklist_bg_focus = theme.xbackground .. "99"
 theme.tasklist_fg_focus = theme.xcolor4
 theme.tasklist_bg_minimize = theme.xbackground .. "00"
-theme.tasklist_fg_minimize = theme.xforeground .. "aa"
+theme.tasklist_fg_minimize = theme.xforeground .. "dd"
 theme.tasklist_bg_normal = theme.xbackground .. "00"
 theme.tasklist_fg_normal = theme.xforeground
 theme.tasklist_bg_urgent = theme.xbackground .. "00"
@@ -149,7 +149,7 @@ theme.prompt_fg = theme.xforeground
 -- ========================================================================
 -- Tooltips
 -- ========================================================================
-theme.tooltip_bg = theme.xbackground .. "bb"
+theme.tooltip_bg = theme.xbackground .. "dd"
 theme.tooltip_fg = theme.xforeground
 theme.tooltip_font = theme.font
 theme.tooltip_border_width = theme.border_width
@@ -165,7 +165,8 @@ theme.menu_bg_focus = theme.xcolor4
 theme.menu_fg_focus = theme.xcolor15
 theme.menu_bg_normal = theme.xbackground .. "dd"
 theme.menu_fg_normal = theme.xcolor7
-theme.menu_submenu_icon = gears.filesystem.get_configuration_dir() .. "theme/icons/submenu.png"
+theme.menu_submenu_icon = gears.filesystem.get_configuration_dir() ..
+                              "theme/icons/submenu.png"
 theme.menu_height = dpi(70)
 theme.menu_width = dpi(230)
 theme.menu_border_color = theme.xcolor7
@@ -208,13 +209,13 @@ theme.systray_icon_size = dpi(30)
 theme.wibar_height = dpi(35)
 theme.wibar_margin = dpi(5)
 theme.wibar_spacing = dpi(5)
-theme.wibar_bg = theme.xbackground .. "dd"
+theme.wibar_bg = theme.xbackground .. "00"
 
 -- ===================================================================
 -- Bling ---------------------------------------------------------
 -- ===================================================================
 -- window swallowing
-theme.dont_swallow_classname_list = { "firefox", "Gimp" } -- list of class names that should not be swallowed
+theme.dont_swallow_classname_list = {"firefox", "Gimp"} -- list of class names that should not be swallowed
 theme.dont_swallow_filter_activated = true -- whether the filter above should be active
 
 -- flash focus
@@ -231,9 +232,9 @@ theme.tabbar_style = "default" -- style of the tabbar ("default", "boxes" or "mo
 theme.tabbar_font = "Hack Nerd Font Bold 12" -- font of the tabbar
 theme.tabbar_size = 25 -- size of the tabbar
 theme.tabbar_position = "top" -- position of the tabbar
-theme.tabbar_bg_normal = "#1f2032cc" -- background color of the focused client on the tabbar
+theme.tabbar_bg_normal = theme.xbackground -- background color of the focused client on the tabbar
 theme.tabbar_fg_normal = "#e9efff" -- foreground color of the focused client on the tabbar
-theme.tabbar_bg_focus = "#1f203200" -- background color of unfocused clients on the tabbar
+theme.tabbar_bg_focus = theme.xbackground -- background color of unfocused clients on the tabbar
 theme.tabbar_fg_focus = theme.xcolor6 -- foreground color of unfocused clients on the tabbar
 
 -- mstab
@@ -273,28 +274,46 @@ theme.delete_grey_icon = icon_path .. "notif-center/delete_grey.png"
 theme.titlebar_close_button_normal = titlebar_icon_path .. "close_normal.svg"
 theme.titlebar_close_button_focus = titlebar_icon_path .. "close_focus.svg"
 
-theme.titlebar_minimize_button_normal = titlebar_icon_path .. "minimize_normal.svg"
-theme.titlebar_minimize_button_focus = titlebar_icon_path .. "minimize_focus.svg"
+theme.titlebar_minimize_button_normal = titlebar_icon_path ..
+                                            "minimize_normal.svg"
+theme.titlebar_minimize_button_focus = titlebar_icon_path ..
+                                           "minimize_focus.svg"
 
-theme.titlebar_ontop_button_normal_inactive = titlebar_icon_path .. "ontop_normal_inactive.svg"
-theme.titlebar_ontop_button_focus_inactive = titlebar_icon_path .. "ontop_focus_inactive.svg"
-theme.titlebar_ontop_button_normal_active = titlebar_icon_path .. "ontop_normal_active.svg"
-theme.titlebar_ontop_button_focus_active = titlebar_icon_path .. "ontop_focus_active.svg"
+theme.titlebar_ontop_button_normal_inactive =
+    titlebar_icon_path .. "ontop_normal_inactive.svg"
+theme.titlebar_ontop_button_focus_inactive =
+    titlebar_icon_path .. "ontop_focus_inactive.svg"
+theme.titlebar_ontop_button_normal_active =
+    titlebar_icon_path .. "ontop_normal_active.svg"
+theme.titlebar_ontop_button_focus_active =
+    titlebar_icon_path .. "ontop_focus_active.svg"
 
-theme.titlebar_sticky_button_normal_inactive = titlebar_icon_path .. "sticky_normal_inactive.svg"
-theme.titlebar_sticky_button_focus_inactive = titlebar_icon_path .. "sticky_focus_inactive.svg"
-theme.titlebar_sticky_button_normal_active = titlebar_icon_path .. "sticky_normal_active.svg"
-theme.titlebar_sticky_button_focus_active = titlebar_icon_path .. "sticky_focus_active.svg"
+theme.titlebar_sticky_button_normal_inactive =
+    titlebar_icon_path .. "sticky_normal_inactive.svg"
+theme.titlebar_sticky_button_focus_inactive =
+    titlebar_icon_path .. "sticky_focus_inactive.svg"
+theme.titlebar_sticky_button_normal_active =
+    titlebar_icon_path .. "sticky_normal_active.svg"
+theme.titlebar_sticky_button_focus_active =
+    titlebar_icon_path .. "sticky_focus_active.svg"
 
-theme.titlebar_floating_button_normal_inactive = titlebar_icon_path .. "floating_normal_inactive.svg"
-theme.titlebar_floating_button_focus_inactive = titlebar_icon_path .. "floating_focus_inactive.svg"
-theme.titlebar_floating_button_normal_active = titlebar_icon_path .. "floating_normal_active.svg"
-theme.titlebar_floating_button_focus_active = titlebar_icon_path .. "floating_focus_active.svg"
+theme.titlebar_floating_button_normal_inactive =
+    titlebar_icon_path .. "floating_normal_inactive.svg"
+theme.titlebar_floating_button_focus_inactive =
+    titlebar_icon_path .. "floating_focus_inactive.svg"
+theme.titlebar_floating_button_normal_active =
+    titlebar_icon_path .. "floating_normal_active.svg"
+theme.titlebar_floating_button_focus_active =
+    titlebar_icon_path .. "floating_focus_active.svg"
 
-theme.titlebar_maximized_button_normal_inactive = titlebar_icon_path .. "maximized_normal_inactive.svg"
-theme.titlebar_maximized_button_focus_inactive = titlebar_icon_path .. "maximized_focus_inactive.svg"
-theme.titlebar_maximized_button_normal_active = titlebar_icon_path .. "maximized_normal_active.svg"
-theme.titlebar_maximized_button_focus_active = titlebar_icon_path .. "maximized_focus_active.svg"
+theme.titlebar_maximized_button_normal_inactive =
+    titlebar_icon_path .. "maximized_normal_inactive.svg"
+theme.titlebar_maximized_button_focus_inactive =
+    titlebar_icon_path .. "maximized_focus_inactive.svg"
+theme.titlebar_maximized_button_normal_active =
+    titlebar_icon_path .. "maximized_normal_active.svg"
+theme.titlebar_maximized_button_focus_active =
+    titlebar_icon_path .. "maximized_focus_active.svg"
 
 theme.taglist_font = "awesomewm-font 22"
 
