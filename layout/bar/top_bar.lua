@@ -74,7 +74,7 @@ local mem_container = {
     left = 0,
     right = 0,
     widget = wibox.container.margin,
-    margins = 2
+    margins = dpi(5)
 }
 
 cpuwidget = wibox.widget.textbox()
@@ -86,7 +86,7 @@ local cpu_container = {
     left = 0,
     right = 0,
     widget = wibox.container.margin,
-    margins = 2
+    margins = dpi(5)
 }
 
 cpubar = require("widgets.cpu_arc")
@@ -230,7 +230,7 @@ awful.screen.connect_for_each_screen(function(s)
                 },
                 top = 0,
                 right = 2,
-                left = 25,
+                left = 2,
                 widget = wibox.container.margin
             },
 

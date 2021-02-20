@@ -62,11 +62,11 @@ theme.max_font = "Hack Nerd Font Bold 10"
 -- Background Colors
 -- ========================================================================
 
-theme.bg_dark = theme.xbackground .. "dd"
-theme.bg_normal = theme.xbackground .. "dd"
-theme.bg_focus = theme.xbackground .. "dd"
-theme.bg_urgent = theme.xbackground .. "dd"
-theme.bg_minimize = theme.xbackground .. "dd"
+theme.bg_dark = theme.xbackground
+theme.bg_normal = theme.xbackground
+theme.bg_focus = theme.xbackground
+theme.bg_urgent = theme.xbackground
+theme.bg_minimize = theme.xbackground
 
 -- ========================================================================
 -- Foreground Colors
@@ -116,7 +116,7 @@ theme.tasklist_font = theme.font
 theme.tasklist_bg_focus = theme.xbackground .. "99"
 theme.tasklist_fg_focus = theme.xcolor4
 theme.tasklist_bg_minimize = theme.xbackground .. "00"
-theme.tasklist_fg_minimize = theme.xforeground .. "dd"
+theme.tasklist_fg_minimize = theme.xforeground
 theme.tasklist_bg_normal = theme.xbackground .. "00"
 theme.tasklist_fg_normal = theme.xforeground
 theme.tasklist_bg_urgent = theme.xbackground .. "00"
@@ -129,8 +129,8 @@ theme.tasklist_align = "center"
 -- ========================================================================
 
 theme.titlebar_size = dpi(20)
-theme.titlebar_bg_focus = theme.xbackground .. "dd"
-theme.titlebar_bg_normal = theme.xbackground .. "dd"
+theme.titlebar_bg_focus = theme.xbackground
+theme.titlebar_bg_normal = theme.xbackground
 theme.titlebar_fg_focus = theme.xcolor15
 theme.titlebar_fg_normal = theme.xcolor7
 
@@ -149,7 +149,7 @@ theme.prompt_fg = theme.xforeground
 -- ========================================================================
 -- Tooltips
 -- ========================================================================
-theme.tooltip_bg = theme.xbackground .. "dd"
+theme.tooltip_bg = theme.xbackground
 theme.tooltip_fg = theme.xforeground
 theme.tooltip_font = theme.font
 theme.tooltip_border_width = theme.border_width
@@ -163,7 +163,7 @@ theme.tooltip_align = "left"
 theme.menu_font = theme.font
 theme.menu_bg_focus = theme.xcolor4
 theme.menu_fg_focus = theme.xcolor15
-theme.menu_bg_normal = theme.xbackground .. "dd"
+theme.menu_bg_normal = theme.xbackground
 theme.menu_fg_normal = theme.xcolor7
 theme.menu_submenu_icon = gears.filesystem.get_configuration_dir() ..
                               "theme/icons/submenu.png"
