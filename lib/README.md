@@ -2,7 +2,7 @@
 
 ## External Libraries
 
-The subdirectories available within this directory are entirely the workproducts of other developers, with some minimal modifications to make them function within this configuration.
+The subdirectories available within this directory are entirely the work products of other developers, with some minimal modifications to make them function within this configuration.
 
 They are not included as submodules due to the need for minimal tom foolery as this configuration is included within the Electric Tantra Linux ISO and thus must be placed within the liveuser's `.config` file by archiso (which I could automate with the airootfs modification script but that's just another thing that could go wrong and crap out the whole build).
 
