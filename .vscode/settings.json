@@ -176,6 +176,7 @@
         "mainwid",
         "mfgr",
         "mocp",
+        "modkey",
         "mpdarc",
         "mpdpercent",
         "mpdstatus",
@@ -265,5 +266,6 @@
         "unused-local",
         "unbalanced-assignments",
         "redefined-local"
-    ]
+    ],
+    "lua.targetVersion": "5.3"
 }
