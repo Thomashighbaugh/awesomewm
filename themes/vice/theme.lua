@@ -7,26 +7,26 @@
 -- ========================================================================
 --  External Libraries
 -- ========================================================================
-local awful = require("awful")
-local theme_assets = require("beautiful.theme_assets")
-local xresources = require("beautiful.xresources")
+local awful = require('awful')
+local theme_assets = require('beautiful.theme_assets')
+local xresources = require('beautiful.xresources')
 local dpi = xresources.apply_dpi
 local xrdb = xresources.get_current_theme()
-local gears = require("gears")
-local gfs = require("gears.filesystem")
+local gears = require('gears')
+local gfs = require('gears.filesystem')
 local themes_path = gfs.get_themes_dir()
-local helpers = require("main.helpers")
+local helpers = require('configuration.helpers')
 
 -- ========================================================================
 -- Inherit default theme
 -- ========================================================================
-local theme = dofile(themes_path .. "default/theme.lua")
+local theme = dofile(themes_path .. 'default/theme.lua')
 
 -- ========================================================================
 -- Icon path
 -- ========================================================================
-local icon_path = gears.filesystem.get_configuration_dir() .. "icons/"
-local titlebar_icon_path = icon_path .. "titlebar/"
+local icon_path = gears.filesystem.get_configuration_dir() .. 'icons/'
+local titlebar_icon_path = icon_path .. 'titlebar/'
 
 -- ========================================================================
 --  Xresources Color Import
@@ -53,10 +53,10 @@ theme.xcolor15 = xrdb.color15
 -- ===================================================================
 -- Fonts
 -- ===================================================================
-theme.font = "Hack Nerd Font Bold 11"
-theme.icon_font = "Hack Nerd Font Bold 18"
-theme.font_taglist = "Hack Nerd Font Bold 13"
-theme.max_font = "Hack Nerd Font Bold 10"
+theme.font = 'Hack Nerd Font Bold 11'
+theme.icon_font = 'Hack Nerd Font Bold 18'
+theme.font_taglist = 'Hack Nerd Font Bold 13'
+theme.max_font = 'Hack Nerd Font Bold 10'
 
 -- ========================================================================
 -- Background Colors
@@ -113,16 +113,16 @@ theme.taglist_disable_icon = true
 -- Tasklist
 -- ========================================================================
 theme.tasklist_font = theme.font
-theme.tasklist_bg_focus = theme.xbackground .. "99"
+theme.tasklist_bg_focus = theme.xbackground .. '99'
 theme.tasklist_fg_focus = theme.xcolor4
-theme.tasklist_bg_minimize = theme.xbackground .. "00"
+theme.tasklist_bg_minimize = theme.xbackground .. '00'
 theme.tasklist_fg_minimize = theme.xforeground
-theme.tasklist_bg_normal = theme.xbackground .. "00"
+theme.tasklist_bg_normal = theme.xbackground .. '00'
 theme.tasklist_fg_normal = theme.xforeground
-theme.tasklist_bg_urgent = theme.xbackground .. "00"
+theme.tasklist_bg_urgent = theme.xbackground .. '00'
 theme.tasklist_fg_urgent = theme.xcolor1
 theme.tasklist_spacing = dpi(1)
-theme.tasklist_align = "center"
+theme.tasklist_align = 'center'
 
 -- ========================================================================
 -- Titlebars
@@ -155,7 +155,7 @@ theme.tooltip_font = theme.font
 theme.tooltip_border_width = theme.border_width
 theme.tooltip_border_color = theme.xbackground
 theme.tooltip_opacity = 0.80
-theme.tooltip_align = "left"
+theme.tooltip_align = 'left'
 
 -- ========================================================================
 -- Menu
@@ -165,8 +165,7 @@ theme.menu_bg_focus = theme.xcolor4
 theme.menu_fg_focus = theme.xcolor15
 theme.menu_bg_normal = theme.xbackground
 theme.menu_fg_normal = theme.xcolor7
-theme.menu_submenu_icon = gears.filesystem.get_configuration_dir() ..
-                              "theme/icons/submenu.png"
+theme.menu_submenu_icon = gears.filesystem.get_configuration_dir() .. 'theme/icons/submenu.png'
 theme.menu_height = dpi(70)
 theme.menu_width = dpi(230)
 theme.menu_border_color = theme.xcolor7
@@ -200,7 +199,7 @@ theme.exit_screen_fg = theme.xforeground
 -- Systray
 -- ========================================================================
 theme.systray_icon_spacing = dpi(4)
-theme.bg_systray = theme.xbackground .. "00"
+theme.bg_systray = theme.xbackground .. '00'
 theme.systray_icon_size = dpi(30)
 
 -- ========================================================================
@@ -209,13 +208,13 @@ theme.systray_icon_size = dpi(30)
 theme.wibar_height = dpi(35)
 theme.wibar_margin = dpi(5)
 theme.wibar_spacing = dpi(5)
-theme.wibar_bg = theme.xbackground .. "00"
+theme.wibar_bg = theme.xbackground .. '00'
 
 -- ===================================================================
 -- Bling ---------------------------------------------------------
 -- ===================================================================
 -- window swallowing
-theme.dont_swallow_classname_list = {"firefox", "Gimp"} -- list of class names that should not be swallowed
+theme.dont_swallow_classname_list = {'firefox', 'Gimp'} -- list of class names that should not be swallowed
 theme.dont_swallow_filter_activated = true -- whether the filter above should be active
 
 -- flash focus
@@ -228,12 +227,12 @@ theme.tabbed_spawn_in_tab = true -- whether a new client should spawn into the f
 -- tabbar general
 theme.tabbar_ontop = false
 theme.tabbar_radius = dpi(3) -- border radius of the tabbar
-theme.tabbar_style = "default" -- style of the tabbar ("default", "boxes" or "modern")
-theme.tabbar_font = "Hack Nerd Font Bold 12" -- font of the tabbar
+theme.tabbar_style = 'default' -- style of the tabbar ("default", "boxes" or "modern")
+theme.tabbar_font = 'Hack Nerd Font Bold 12' -- font of the tabbar
 theme.tabbar_size = 25 -- size of the tabbar
-theme.tabbar_position = "top" -- position of the tabbar
+theme.tabbar_position = 'top' -- position of the tabbar
 theme.tabbar_bg_normal = theme.xbackground -- background color of the focused client on the tabbar
-theme.tabbar_fg_normal = "#e9efff" -- foreground color of the focused client on the tabbar
+theme.tabbar_fg_normal = '#e9efff' -- foreground color of the focused client on the tabbar
 theme.tabbar_bg_focus = theme.xbackground -- background color of unfocused clients on the tabbar
 theme.tabbar_fg_focus = theme.xcolor6 -- foreground color of unfocused clients on the tabbar
 
@@ -247,74 +246,56 @@ theme.mstab_bar_padding = dpi(0) -- how much padding there should be between cli
 -- If you want a custom value. Set it to the number of pixels (int)
 theme.mstab_border_radius = dpi(6) -- border radius of the tabbar
 theme.mstab_bar_height = 25 -- height of the tabbar
-theme.mstab_tabbar_poasition = "top" -- position of the tabbar (mstab currently does not support left,right)
-theme.mstab_tabbar_style = "default" -- style of the tabbar ("default", "boxes" or "modern")
+theme.mstab_tabbar_poasition = 'top' -- position of the tabbar (mstab currently does not support left,right)
+theme.mstab_tabbar_style = 'default' -- style of the tabbar ("default", "boxes" or "modern")
 -- defaults to the tabbar_style so only change if you want a
 -- different style for mstab and tabbed
 
 -- the following variables are currently only for the "modern" tabbar style
-theme.tabbar_color_close = "#ff29a800" -- changes the color of the close button
-theme.tabbar_color_min = "#f0ee6e00" -- changes the color of the minimize button
-theme.tabbar_color_float = "#6c71c400" -- changes the color of the float button
+theme.tabbar_color_close = '#ff29a800' -- changes the color of the close button
+theme.tabbar_color_min = '#f0ee6e00' -- changes the color of the minimize button
+theme.tabbar_color_float = '#6c71c400' -- changes the color of the float button
 
 -- ========================================================================
 -- Icons for Notif Center
 -- ========================================================================
 
-theme.clear_icon = icon_path .. "notif-center/clear.png"
-theme.clear_grey_icon = icon_path .. "notif-center/clear_grey.png"
-theme.notification_icon = icon_path .. "notif-center/notification.png"
-theme.delete_icon = icon_path .. "notif-center/delete.png"
-theme.delete_grey_icon = icon_path .. "notif-center/delete_grey.png"
+theme.clear_icon = icon_path .. 'notif-center/clear.png'
+theme.clear_grey_icon = icon_path .. 'notif-center/clear_grey.png'
+theme.notification_icon = icon_path .. 'notif-center/notification.png'
+theme.delete_icon = icon_path .. 'notif-center/delete.png'
+theme.delete_grey_icon = icon_path .. 'notif-center/delete_grey.png'
 
 -- ========================================================================
 -- Icons for Titlebar
 -- ========================================================================
 
-theme.titlebar_close_button_normal = titlebar_icon_path .. "close_normal.svg"
-theme.titlebar_close_button_focus = titlebar_icon_path .. "close_focus.svg"
+theme.titlebar_close_button_normal = titlebar_icon_path .. 'close_normal.svg'
+theme.titlebar_close_button_focus = titlebar_icon_path .. 'close_focus.svg'
 
-theme.titlebar_minimize_button_normal = titlebar_icon_path ..
-                                            "minimize_normal.svg"
-theme.titlebar_minimize_button_focus = titlebar_icon_path ..
-                                           "minimize_focus.svg"
+theme.titlebar_minimize_button_normal = titlebar_icon_path .. 'minimize_normal.svg'
+theme.titlebar_minimize_button_focus = titlebar_icon_path .. 'minimize_focus.svg'
 
-theme.titlebar_ontop_button_normal_inactive =
-    titlebar_icon_path .. "ontop_normal_inactive.svg"
-theme.titlebar_ontop_button_focus_inactive =
-    titlebar_icon_path .. "ontop_focus_inactive.svg"
-theme.titlebar_ontop_button_normal_active =
-    titlebar_icon_path .. "ontop_normal_active.svg"
-theme.titlebar_ontop_button_focus_active =
-    titlebar_icon_path .. "ontop_focus_active.svg"
+theme.titlebar_ontop_button_normal_inactive = titlebar_icon_path .. 'ontop_normal_inactive.svg'
+theme.titlebar_ontop_button_focus_inactive = titlebar_icon_path .. 'ontop_focus_inactive.svg'
+theme.titlebar_ontop_button_normal_active = titlebar_icon_path .. 'ontop_normal_active.svg'
+theme.titlebar_ontop_button_focus_active = titlebar_icon_path .. 'ontop_focus_active.svg'
 
-theme.titlebar_sticky_button_normal_inactive =
-    titlebar_icon_path .. "sticky_normal_inactive.svg"
-theme.titlebar_sticky_button_focus_inactive =
-    titlebar_icon_path .. "sticky_focus_inactive.svg"
-theme.titlebar_sticky_button_normal_active =
-    titlebar_icon_path .. "sticky_normal_active.svg"
-theme.titlebar_sticky_button_focus_active =
-    titlebar_icon_path .. "sticky_focus_active.svg"
+theme.titlebar_sticky_button_normal_inactive = titlebar_icon_path .. 'sticky_normal_inactive.svg'
+theme.titlebar_sticky_button_focus_inactive = titlebar_icon_path .. 'sticky_focus_inactive.svg'
+theme.titlebar_sticky_button_normal_active = titlebar_icon_path .. 'sticky_normal_active.svg'
+theme.titlebar_sticky_button_focus_active = titlebar_icon_path .. 'sticky_focus_active.svg'
 
-theme.titlebar_floating_button_normal_inactive =
-    titlebar_icon_path .. "floating_normal_inactive.svg"
-theme.titlebar_floating_button_focus_inactive =
-    titlebar_icon_path .. "floating_focus_inactive.svg"
-theme.titlebar_floating_button_normal_active =
-    titlebar_icon_path .. "floating_normal_active.svg"
-theme.titlebar_floating_button_focus_active =
-    titlebar_icon_path .. "floating_focus_active.svg"
+theme.titlebar_floating_button_normal_inactive = titlebar_icon_path .. 'floating_normal_inactive.svg'
+theme.titlebar_floating_button_focus_inactive = titlebar_icon_path .. 'floating_focus_inactive.svg'
+theme.titlebar_floating_button_normal_active = titlebar_icon_path .. 'floating_normal_active.svg'
+theme.titlebar_floating_button_focus_active = titlebar_icon_path .. 'floating_focus_active.svg'
 
-theme.titlebar_maximized_button_normal_inactive =
-    titlebar_icon_path .. "maximized_normal_inactive.svg"
-theme.titlebar_maximized_button_focus_inactive =
-    titlebar_icon_path .. "maximized_focus_inactive.svg"
-theme.titlebar_maximized_button_normal_active =
-    titlebar_icon_path .. "maximized_normal_active.svg"
-theme.titlebar_maximized_button_focus_active =
-    titlebar_icon_path .. "maximized_focus_active.svg"
+theme.titlebar_maximized_button_normal_inactive = titlebar_icon_path .. 'maximized_normal_inactive.svg'
+theme.titlebar_maximized_button_focus_inactive = titlebar_icon_path .. 'maximized_focus_inactive.svg'
+theme.titlebar_maximized_button_normal_active = titlebar_icon_path .. 'maximized_normal_active.svg'
+theme.titlebar_maximized_button_focus_active = titlebar_icon_path .. 'maximized_focus_active.svg'
 
-theme.taglist_font = "awesomewm-font 22"
+theme.taglist_font = 'awesomewm-font 22'
 
 return theme

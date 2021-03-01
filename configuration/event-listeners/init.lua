@@ -1,0 +1,5 @@
+require('configuration.event-listeners.battery')
+require('configuration.event-listeners.volume')
+require('configuration.event-listeners.brightness')
+require('configuration.event-listeners.ram')
+require('configuration.event-listeners.cpu')

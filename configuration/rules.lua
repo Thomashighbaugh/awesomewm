@@ -6,8 +6,8 @@
 -- Libraries
 -- ===================================================================
 
-local awful = require("awful")
-local beautiful = require("beautiful")
+local awful = require('awful')
+local beautiful = require('beautiful')
 
 -- ===================================================================
 -- Rules
@@ -25,60 +25,62 @@ awful.rules.rules = {
 			keys = clientkeys,
 			buttons = clientbuttons,
 			screen = awful.screen.preferred,
-			placement = awful.placement.no_overlap + awful.placement.no_offscreen,
-		},
+			placement = awful.placement.no_overlap + awful.placement.no_offscreen
+		}
 	},
-	{ rule = {}, properties = {}, callback = awful.client.setslave },
+	{rule = {}, properties = {}, callback = awful.client.setslave},
 	{
 		rule_any = {
-			instance = { "DTA", "copyq", "pinentry" },
+			instance = {'DTA', 'copyq', 'pinentry'},
 			class = {
-				"Arandr",
-				"Blueman-manager",
-				"Gpick",
-				"Kruler",
-				"MessageWin",
-				"Sxiv",
-				"fzfmenu",
-				"Tor Browser",
-				"Wpa_gui",
-				"veromix",
-				"xtightvncviewer",
-				"Steam",
+				'Arandr',
+				'Blueman-manager',
+				'Gpick',
+				'Kruler',
+				'MessageWin',
+				'Sxiv',
+				'fzfmenu',
+				'Tor Browser',
+				'Wpa_gui',
+				'veromix',
+				'xtightvncviewer',
+				'Steam'
 			},
-			name = { "Event Tester" },
-			role = { "AlarmWindow", "ConfigManager", "pop-up" },
+			name = {'Event Tester'},
+			role = {'AlarmWindow', 'ConfigManager', 'pop-up'}
 		},
-		properties = { floating = true, titlebars_enabled = true },
+		properties = {floating = true, titlebars_enabled = true}
 	},
 	{
-		rule_any = { type = { "normal", "dialog" } },
-		properties = { titlebars_enabled = true },
+		rule_any = {type = {'normal', 'dialog'}},
+		properties = {titlebars_enabled = true}
 	},
 	{
-		rule_any = { class = { "Steam" } },
-		properties = { titlebars_enabled = true, ontop = true },
+		rule_any = {class = {'Steam'}},
+		properties = {titlebars_enabled = true, ontop = true}
 	},
 	{
 		rule_any = {
-			instance = { "scratch" },
-			class = { "scratch" },
-			icon_name = { "scratchpad_urxvt" },
+			instance = {'scratch'},
+			class = {'scratch'},
+			icon_name = {'scratchpad_urxvt'}
 		},
 		properties = {
 			skip_taskbar = false,
 			floating = true,
 			ontop = false,
 			minimized = true,
-			sticky = false,
-
+			sticky = false
 		},
 		callback = function(c)
-			awful.placement.centered(c, {
-				honor_padding = false,
-				honor_workarea = false,
-				titlebars_enabled = true,
-			})
-		end,
-	},
+			awful.placement.centered(
+				c,
+				{
+					honor_padding = false,
+					honor_workarea = false,
+					titlebars_enabled = true
+				}
+			)
+		end
+	}
 }

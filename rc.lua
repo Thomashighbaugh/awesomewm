@@ -12,25 +12,25 @@
 --  External Libraries
 -- ========================================================================
 -- External Package Manager Call ------------------------------------------
-pcall(require, "luarocks.loader")
+pcall(require, 'luarocks.loader')
 
 -- Libraries --------------------------------------------------------------
-local gears = require("gears")
-local awful = require("awful")
-require("awful.autofocus")
-local wibox = require("wibox")
-local naughty = require("naughty")
-local hotkeys_popup = require("awful.hotkeys_popup")
-local menubar = require("menubar")
-local lain = require("lain")
-local vicious = require("vicious")
+local gears = require('gears')
+local awful = require('awful')
+require('awful.autofocus')
+local wibox = require('wibox')
+local naughty = require('naughty')
+local hotkeys_popup = require('awful.hotkeys_popup')
+local menubar = require('menubar')
+local lain = require('lain')
+local vicious = require('vicious')
 --require("lib.collision")()
 
 -- Theme Handling Library
-local beautiful = require("beautiful")
-local dpi = require("beautiful.xresources").apply_dpi
+local beautiful = require('beautiful')
+local dpi = require('beautiful.xresources').apply_dpi
 
-require("awful.hotkeys_popup.keys")
+require('awful.hotkeys_popup.keys')
 
 -- ===================================================================
 -- My Configuration
@@ -39,11 +39,11 @@ require("awful.hotkeys_popup.keys")
 -- or have been borrowed from other configurations (thanks everyone). Thus
 -- can be relatively easily modified by whomever so dares to fiddle with it.
 
-local helpers = require("main.helpers")
+local helpers = require('configuration.helpers')
 
-local autostart = require("main.autostart")
+local autostart = require('configuration.autostart')
 
-require("notifications.errors")
+require('notifications.errors')
 
 -- ===================================================================
 -- Variables ---------------------------------------------------------
@@ -52,7 +52,7 @@ require("notifications.errors")
 -- Global Namespace ----------------------------------------------------
 RC = {}
 
-RC.vars = require("main.user-variables")
+RC.vars = require('configuration.user-variables')
 
 -- Not the most elegant solution, but enables using the
 -- variables name directly, saving typing and keeps the
@@ -76,71 +76,74 @@ ctrl = RC.vars.crtl
 -- ===================================================================
 -- Set Theme (tests variable assignments) ----------------------------
 -- ===================================================================
-beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/" .. theme .. "/theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. 'themes/' .. theme .. '/theme.lua')
 
 -- ===================================================================
 -- Window Decorations and Layout -------------------------------------
 -- ===================================================================
 
-require("main.windows")
+require('configuration.windows')
 
 -- ===================================================================
 -- Icons ----------------------------------------------------------------
 -- ===================================================================
-local icons = require("icons")
+local icons = require('icons')
 
 -- Icon theme -----------------------------------------------------------
-icons.init("sheet")
+icons.init('sheet')
 
 -- ===================================================================
 -- Menu -----------------------------------------------------------------
 -- ===================================================================
-mymainmenu = require("layout.menu")
-RC.mainmenu = awful.menu({ items = mymainmenu() }) -- in globalkeys
-RC.launcher = awful.widget.launcher({
-	image = beautiful.awesome_icon,
-	menu = RC.mainmenu,
-})
+mymainmenu = require('layout.menu')
+RC.mainmenu = awful.menu({items = mymainmenu()}) -- in globalkeys
+RC.launcher =
+	awful.widget.launcher(
+	{
+		image = beautiful.awesome_icon,
+		menu = RC.mainmenu
+	}
+)
 
 -- ===================================================================
 -- Tags + Wallpaper -----------------------------------------------------------
 -- ===================================================================
-require("layout.tags")
+require('layout.tags')
 -- ===================================================================
 -- Key bindings ------------------------------------------------------
 -- ===================================================================
-require("main.keys")
-buttons = require("main.buttons")
+require('configuration.keys')
+buttons = require('configuration.buttons')
 
 root.buttons(buttons())
 -- ===================================================================
 -- Rules -------------------------------------------------------------
 -- ===================================================================
-require("main.rules")
+require('configuration.rules')
 -- ===================================================================
 -- Signals ----------------------------------------------------------
 -- ===================================================================
-require("main.signals")
+require('configuration.signals')
 -- ===================================================================
 -- Daemons ---------------------------------------------------------
 -- ===================================================================
-require("event-listeners")
+require('configuration.event-listeners')
 
 -- ===================================================================
 -- Notifications -----------------------------------------------------
 -- ===================================================================
-require("notifications")
+require('notifications')
 
 -- ===================================================================
 -- Layout ------------------------------------------------------------
 -- ===================================================================
-require("layout")
+require('layout')
 
 -- ===================================================================
 -- Garbage Collection
 -- ===================================================================
-collectgarbage("setpause", 110)
-collectgarbage("setstepmul", 1000)
+collectgarbage('setpause', 110)
+collectgarbage('setstepmul', 1000)
 
 -- ===================================================================
 -- EOF ---------------------------------------------------------------

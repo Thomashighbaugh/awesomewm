@@ -1,5 +1,0 @@
-require("event-listeners.battery")
-require("event-listeners.volume")
-require("event-listeners.brightness")
-require("event-listeners.ram")
-require("event-listeners.cpu")
