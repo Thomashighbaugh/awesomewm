@@ -1,150 +1,96 @@
---  _______                                             ________ _______
--- |   _   |.--.--.--.-----.-----.-----.--------.-----.|  |  |  |   |   |
--- |       ||  |  |  |  -__|__ --|  _  |        |  -__||  |  |  |       |
--- |___|___||________|_____|_____|_____|__|__|__|_____||________|__|_|__|
---
---                                                  Thomas Leon Highbaugh
--- ========================================================================
--- Warning the following configuration contains so much spaghetti code, it
--- may soon transcend into the Flying Spaghetti Monster.
--- ========================================================================
--- ========================================================================
---  External external.libraries
--- ========================================================================
--- External Package Manager Call ------------------------------------------
-pcall(require, 'luarocks.loader')
-
--- external.libraries --------------------------------------------------------------
-local gears = require('gears')
 local awful = require('awful')
-require('awful.autofocus')
-local wibox = require('wibox')
-local naughty = require('naughty')
-local hotkeys_popup = require('awful.hotkeys_popup')
-local menubar = require('menubar')
-local lain = require('lain')
-local vicious = require('vicious')
---require("external.lib.collision")()
-
--- Theme Handling Library
 local beautiful = require('beautiful')
-local dpi = require('beautiful.xresources').apply_dpi
+local root = _G.root
+local client = _G.client
 
-require('awful.hotkeys_popup.keys')
+awful.util.shell = '/bin/zsh'
+--  ========================================
+-- 			       Theme
+--	     	Load the Aesthetics
+--  ========================================
+beautiful.init(require('theme'))
 
--- ===================================================================
--- My Configuration
--- ===================================================================
--- The below are the portions of the configuration that are either mine
--- or have been borrowed from other configurations (thanks everyone). Thus
--- can be relatively easily modified by whomever so dares to fiddle with it.
+--  ========================================
+-- 			  	  Layouts
+--	     	   Load the Panels
+--  ========================================
 
-local helpers = require('configuration.helpers')
+require('layout')
+-- _G.mymainmenu =require('module.menu')
 
-local autostart = require('configuration.autostart')
+--  ========================================
+-- 			      Modules
+--	        Load all the modules
+--  ========================================
 
-require('configuration.errors')
+require('module.notifications')
+require('module.auto-start')
+require('module.decorate-client')
+require('module.exit-screen')
+require('module.lockscreen')
+require('module.dashboard')
+require('module.titlebar')
+-- require('module.menu')
 
--- ===================================================================
--- Variables ---------------------------------------------------------
--- ===================================================================
+-- require('module.battery-notifier')
 
--- Global Namespace ----------------------------------------------------
-RC = {}
+-- since this is layout --> configured there
+-- require('module.volume-osd')
+-- require('module.brightness-osd')
 
-RC.vars = require('configuration.user-variables')
+-- just to get the popups with nothing else:
+-- vol_widget = require('widget.volume')
+-- vol_widget.build_dashboard(args)
+-- bright_widget = require('widget.brightness')
+-- bright_widget.build_dashboard(args)
 
--- Not the most elegant solution, but enables using the
--- variables name directly, saving typing and keeps the
--- variables values elsewhere, thus reducing some of the
--- confusing visual clutter in this file
-theme = RC.vars.theme
-screen_width = RC.vars.screen_width
-screen_height = RC.vars.screen_height
-terminal = RC.vars.terminal
-editor = RC.vars.editor
-editor_cmd = RC.vars.editor_cmd
-browser = RC.vars.browser
-filemanager = RC.vars.filemanager
-discord = RC.vars.discord
-music = RC.vars.music
-modkey = RC.vars.modkey
-altkey = RC.vars.altkey
-shift = RC.vars.shift
-ctrl = RC.vars.crtl
+-- require('module.volume-osd')
+-- require('module.brightness-osd')
 
--- ===================================================================
--- Set Theme (tests variable assignments) ----------------------------
--- ===================================================================
-beautiful.init(gears.filesystem.get_configuration_dir() .. 'themes/' .. theme .. '/theme.lua')
+--  ========================================
+-- 				Configuration
+--	     	Load your prefrences
+--  ========================================
 
--- ===================================================================
--- Window Decorations and Layout -------------------------------------
--- ===================================================================
+require('configuration.client')
+require('configuration.tags')
+root.keys(require('configuration.keys.global'))
 
-require('configuration.windows')
+-- Signal function to execute when a new client appears.
+client.connect_signal(
+	'manage',
+	function(c)
+		-- Set the windows at the slave,
+		-- i.e. put it at the end of others instead of setting it master.
+		if not _G.awesome.startup then
+			awful.client.setslave(c)
+		end
 
--- ===================================================================
--- Icons ----------------------------------------------------------------
--- ===================================================================
-local icons = require('themes.icons')
-
--- Icon theme -----------------------------------------------------------
-icons.init('sheet')
-
--- ===================================================================
--- Menu -----------------------------------------------------------------
--- ===================================================================
-mymainmenu = require('layout.menu')
-RC.mainmenu = awful.menu({items = mymainmenu()}) -- in globalkeys
-RC.launcher =
-	awful.widget.launcher(
-	{
-		image = beautiful.awesome_icon,
-		menu = RC.mainmenu
-	}
+		if _G.awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
+			-- Prevent clients from being unreachable after screen count changes.
+			awful.placement.no_offscreen(c)
+		end
+	end
 )
 
--- ===================================================================
--- Tags + Wallpaper -----------------------------------------------------------
--- ===================================================================
-require('layout.tags')
--- ===================================================================
--- Key bindings ------------------------------------------------------
--- ===================================================================
-require('configuration.keys')
-buttons = require('configuration.buttons')
+-- Enable sloppy focus, so that focus follows mouse.
+-- client.connect_signal(
+--   'mouse::enter', function(c)
+--     c:emit_signal('request::activate', 'mouse_enter', {raise = true})
+--   end)
 
-root.buttons(buttons())
--- ===================================================================
--- Rules -------------------------------------------------------------
--- ===================================================================
-require('configuration.rules')
--- ===================================================================
--- Signals ----------------------------------------------------------
--- ===================================================================
-require('configuration.signals')
--- ===================================================================
--- Daemons ---------------------------------------------------------
--- ===================================================================
-require('configuration.event-listeners')
+client.connect_signal(
+	'focus',
+	function(c)
+		c.border_color = beautiful.border_focus
+	end
+)
 
--- ===================================================================
--- Notifications -----------------------------------------------------
--- ===================================================================
-require('notifications')
+client.connect_signal(
+	'unfocus',
+	function(c)
+		c.border_color = beautiful.border_normal
+	end
+)
 
--- ===================================================================
--- Layout ------------------------------------------------------------
--- ===================================================================
-require('layout')
-
--- ===================================================================
--- Garbage Collection
--- ===================================================================
-collectgarbage('setpause', 110)
-collectgarbage('setstepmul', 1000)
-
--- ===================================================================
--- EOF ---------------------------------------------------------------
--- ===================================================================
+awful.spawn.with_shell('~/.config/awesome/autostart.sh')
