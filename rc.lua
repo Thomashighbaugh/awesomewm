@@ -9,12 +9,12 @@
 -- may soon transcend into the Flying Spaghetti Monster.
 -- ========================================================================
 -- ========================================================================
---  External Libraries
+--  External external.libraries
 -- ========================================================================
 -- External Package Manager Call ------------------------------------------
 pcall(require, 'luarocks.loader')
 
--- Libraries --------------------------------------------------------------
+-- external.libraries --------------------------------------------------------------
 local gears = require('gears')
 local awful = require('awful')
 require('awful.autofocus')
@@ -24,7 +24,7 @@ local hotkeys_popup = require('awful.hotkeys_popup')
 local menubar = require('menubar')
 local lain = require('lain')
 local vicious = require('vicious')
---require("lib.collision")()
+--require("external.lib.collision")()
 
 -- Theme Handling Library
 local beautiful = require('beautiful')
@@ -43,7 +43,7 @@ local helpers = require('configuration.helpers')
 
 local autostart = require('configuration.autostart')
 
-require('notifications.errors')
+require('configuration.errors')
 
 -- ===================================================================
 -- Variables ---------------------------------------------------------

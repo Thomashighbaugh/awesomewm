@@ -88,7 +88,7 @@ local g =
 )
 
 awesome.connect_signal(
-	'ears::battery',
+	'configuration.event-listeners::battery',
 	function(value)
 		if plugged then
 			g:start()

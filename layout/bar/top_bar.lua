@@ -11,8 +11,8 @@ local icon_theme = 'sheet'
 local icons = require('icons')
 
 -- Custom Local Library: Common Functional Decoration
-local cpu_widget = require('lib.awesome-wm-widgets.cpu-widget/cpu-widget')
-local ram_widget = require('lib.awesome-wm-widgets.ram-widget/ram-widget')
+local cpu_widget = require('external.lib.awesome-wm-widgets.cpu-widget/cpu-widget')
+local ram_widget = require('external.lib.awesome-wm-widgets.ram-widget/ram-widget')
 local vicious = require('vicious')
 
 local systray_margin = (beautiful.wibar_height - beautiful.systray_icon_size) / 2

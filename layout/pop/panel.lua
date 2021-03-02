@@ -18,8 +18,8 @@ local helpers = require('configuration.helpers')
 local icon_theme = 'sheet'
 local icons = require('icons')
 local popupLib = require('utils.popupLib')
-local cpu_widget = require('lib.awesome-wm-widgets.cpu-widget/cpu-widget')
-local ram_widget = require('lib.awesome-wm-widgets.ram-widget/ram-widget')
+local cpu_widget = require('external.lib.awesome-wm-widgets.cpu-widget/cpu-widget')
+local ram_widget = require('external.lib.awesome-wm-widgets.ram-widget/ram-widget')
 local vicious = require('vicious')
 
 icons.init(icon_theme)
@@ -52,7 +52,7 @@ local function create_boxed_widget(widget_to_be_boxed, width, height, bg_color)
 				widget = box_container
 			},
 			margins = box_gap,
-			color = beautiful.xcolor0 .. '00',
+			color = beautiful.xcolor0,
 			widget = wibox.container.margin
 		}
 	)
@@ -87,7 +87,7 @@ local function format_progress_bar(bar, markup)
 		{
 			nil,
 			{text, bar, spacing = dpi(10), layout = wibox.layout.fixed.horizontal},
-			expand = trewwue,
+			expand = true,
 			layout = wibox.layout.fixed.horizontal
 		}
 	)

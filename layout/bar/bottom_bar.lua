@@ -50,7 +50,7 @@ local fancy_time = {fancy_time_widget, layout = wibox.layout.flex.vertical}
 local battery_bar = require('widgets.battery_bar')
 local battery = format_progress_bar(battery_bar)
 
-local battery_widget = require('lib.awesome-wm-widgets.batteryarc-widget.batteryarc')
+local battery_widget = require('external.lib.awesome-wm-widgets.batteryarc-widget.batteryarc')
 -- Systray Widget -------------------------------------------------------------
 
 local mysystray = wibox.widget.systray()

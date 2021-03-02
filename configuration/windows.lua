@@ -4,7 +4,7 @@ local wibox = require('wibox')
 local beautiful = require('beautiful')
 local dpi = require('beautiful.xresources').apply_dpi
 local helpers = require('configuration.helpers')
-local bling = require('lib.bling')
+local bling = require('external.lib.bling')
 client.connect_signal(
 	'manage',
 	function(c)

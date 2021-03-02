@@ -1,4 +1,4 @@
-local bling = require('lib.bling')
+local bling = require('external.lib.bling')
 local gears = require('gears')
 local awful = require('awful')
 local beautiful = require('beautiful')

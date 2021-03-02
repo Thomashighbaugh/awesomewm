@@ -14,8 +14,8 @@ local helpers = require('configuration.helpers')
 local notifPop = require('layout.pop.notif')
 local panelPop = require('layout.pop.panel')
 local calPop = require('layout.pop.cal')
-local bling = require('lib.bling')
-local switcher = require('lib.awesome-switcher')
+local bling = require('external.lib.bling')
+local switcher = require('external.lib.awesome-switcher')
 local xresources = require('beautiful.xresources')
 
 local dpi = xresources.apply_dpi
