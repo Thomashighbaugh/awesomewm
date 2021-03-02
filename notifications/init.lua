@@ -24,6 +24,7 @@ naughty.config.defaults.shape = helpers.rrect(18)
 naughty.config.padding = dpi(5)
 naughty.config.spacing = dpi(1)
 naughty.config.icon_dirs = {
+	'~/.config/awesome/themes/icons/',
 	'/usr/share/icons/chhinamasta/24x24/apps/',
 	'/usr/share/pixmaps/'
 }

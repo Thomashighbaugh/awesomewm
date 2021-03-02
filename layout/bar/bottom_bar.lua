@@ -8,8 +8,8 @@ local xresources = require('beautiful.xresources')
 local dpi = xresources.apply_dpi
 local helpers = require('configuration.helpers')
 local icon_theme = 'sheet'
-local icons = require('icons')
-
+local icons = require('themes.icons')
+local modkey = 'Mod4'
 local systray_margin = (beautiful.wibar_height - beautiful.systray_icon_size) / 2
 
 -- Helper function that changes the appearance of progress bars and their icons
@@ -79,8 +79,8 @@ local taglist_buttons =
 		{modkey},
 		1,
 		function(t)
-			if client.focus then
-				client.focus:move_to_tag(t)
+			if awful.client.focus then
+				awful.client.focus:move_to_tag(t)
 			end
 		end
 	),

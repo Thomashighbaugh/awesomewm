@@ -10,7 +10,7 @@ local offsety = dpi(300)
 local screen = awful.screen.focused()
 
 local icon_theme = 'sheet'
-local icons = require('icons')
+local icons = require('themes.icons')
 icons.init(icon_theme)
 
 local volume_icon = icons.volume

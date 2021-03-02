@@ -3,7 +3,7 @@ local wibox = require('wibox')
 local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
 
-local icons = require('icons')
+local icons = require('themes.icons')
 icons.init('sheet')
 
 local active_color = {

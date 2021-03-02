@@ -8,6 +8,6 @@ local beautiful = require('beautiful')
 awful.screen.connect_for_each_screen(
 	function(s)
 		-- Screen padding
-		gears.wallpaper.maximized(gears.filesystem.get_configuration_dir() .. 'images/4.png', s, nil)
+		gears.wallpaper.maximized(gears.filesystem.get_configuration_dir() .. 'images/9.jpg', s, nil)
 	end
 )

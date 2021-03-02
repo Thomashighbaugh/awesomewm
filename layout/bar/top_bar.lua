@@ -8,7 +8,7 @@ local xresources = require('beautiful.xresources')
 local dpi = xresources.apply_dpi
 local helpers = require('configuration.helpers')
 local icon_theme = 'sheet'
-local icons = require('icons')
+local icons = require('themes.icons')
 
 -- Custom Local Library: Common Functional Decoration
 local cpu_widget = require('external.lib.awesome-wm-widgets.cpu-widget/cpu-widget')

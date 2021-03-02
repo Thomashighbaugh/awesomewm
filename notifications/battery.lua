@@ -1,5 +1,5 @@
 local naughty = require('naughty')
-local icons = require('icons')
+local icons = require('themes.icons')
 icons.init('sheet')
 
 local display = true

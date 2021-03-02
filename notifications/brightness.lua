@@ -10,7 +10,7 @@ local offsety = dpi(50)
 local screen = awful.screen.focused()
 
 local icon_theme = 'sheet'
-local icons = require('icons')
+local icons = require('themes.icons')
 icons.init(icon_theme)
 
 local bright_icon = icons.brightness

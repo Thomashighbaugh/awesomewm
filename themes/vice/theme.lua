@@ -25,7 +25,7 @@ local theme = dofile(themes_path .. 'default/theme.lua')
 -- ========================================================================
 -- Icon path
 -- ========================================================================
-local icon_path = gears.filesystem.get_configuration_dir() .. 'icons/'
+local icon_path = gears.filesystem.get_configuration_dir() .. 'themes/icons/'
 local titlebar_icon_path = icon_path .. 'titlebar/'
 
 -- ========================================================================
@@ -94,7 +94,6 @@ theme.widget_border_color = theme.xbackground
 -- ========================================================================
 
 -- Generate taglist squares:
-taglist_square_size = dpi(0)
 theme.taglist_font = theme.font_taglist
 theme.taglist_bg = transparent
 theme.taglist_bg_focus = transparent
@@ -113,13 +112,13 @@ theme.taglist_disable_icon = true
 -- Tasklist
 -- ========================================================================
 theme.tasklist_font = theme.font
-theme.tasklist_bg_focus = theme.xbackground .. '99'
+theme.tasklist_bg_focus = theme.xbackground
 theme.tasklist_fg_focus = theme.xcolor4
-theme.tasklist_bg_minimize = theme.xbackground .. '00'
+theme.tasklist_bg_minimize = theme.xbackground
 theme.tasklist_fg_minimize = theme.xforeground
-theme.tasklist_bg_normal = theme.xbackground .. '00'
+theme.tasklist_bg_normal = theme.xbackground
 theme.tasklist_fg_normal = theme.xforeground
-theme.tasklist_bg_urgent = theme.xbackground .. '00'
+theme.tasklist_bg_urgent = theme.xbackground
 theme.tasklist_fg_urgent = theme.xcolor1
 theme.tasklist_spacing = dpi(1)
 theme.tasklist_align = 'center'
@@ -165,7 +164,7 @@ theme.menu_bg_focus = theme.xcolor4
 theme.menu_fg_focus = theme.xcolor15
 theme.menu_bg_normal = theme.xbackground
 theme.menu_fg_normal = theme.xcolor7
-theme.menu_submenu_icon = gears.filesystem.get_configuration_dir() .. 'theme/icons/submenu.png'
+theme.menu_submenu_icon = '~/.config/awesome/themes/icons/sheet/submenu.png'
 theme.menu_height = dpi(70)
 theme.menu_width = dpi(230)
 theme.menu_border_color = theme.xcolor7
@@ -199,7 +198,7 @@ theme.exit_screen_fg = theme.xforeground
 -- Systray
 -- ========================================================================
 theme.systray_icon_spacing = dpi(4)
-theme.bg_systray = theme.xbackground .. '00'
+theme.bg_systray = theme.xbackground
 theme.systray_icon_size = dpi(30)
 
 -- ========================================================================
@@ -208,7 +207,7 @@ theme.systray_icon_size = dpi(30)
 theme.wibar_height = dpi(35)
 theme.wibar_margin = dpi(5)
 theme.wibar_spacing = dpi(5)
-theme.wibar_bg = theme.xbackground .. '00'
+theme.wibar_bg = theme.xbackground
 
 -- ===================================================================
 -- Bling ---------------------------------------------------------
@@ -247,14 +246,14 @@ theme.mstab_bar_padding = dpi(0) -- how much padding there should be between cli
 theme.mstab_border_radius = dpi(6) -- border radius of the tabbar
 theme.mstab_bar_height = 25 -- height of the tabbar
 theme.mstab_tabbar_poasition = 'top' -- position of the tabbar (mstab currently does not support left,right)
-theme.mstab_tabbar_style = 'default' -- style of the tabbar ("default", "boxes" or "modern")
+theme.mstab_tabbar_style = 'boxes' -- style of the tabbar ("default", "boxes" or "modern")
 -- defaults to the tabbar_style so only change if you want a
 -- different style for mstab and tabbed
 
 -- the following variables are currently only for the "modern" tabbar style
-theme.tabbar_color_close = '#ff29a800' -- changes the color of the close button
-theme.tabbar_color_min = '#f0ee6e00' -- changes the color of the minimize button
-theme.tabbar_color_float = '#6c71c400' -- changes the color of the float button
+theme.tabbar_color_close = theme.xcolor1 -- changes the color of the close button
+theme.tabbar_color_min = theme.xcolor4 -- changes the color of the minimize button
+theme.tabbar_color_float = theme.xcolor6 -- changes the color of the float button
 
 -- ========================================================================
 -- Icons for Notif Center
@@ -295,7 +294,32 @@ theme.titlebar_maximized_button_normal_inactive = titlebar_icon_path .. 'maximiz
 theme.titlebar_maximized_button_focus_inactive = titlebar_icon_path .. 'maximized_focus_inactive.svg'
 theme.titlebar_maximized_button_normal_active = titlebar_icon_path .. 'maximized_normal_active.svg'
 theme.titlebar_maximized_button_focus_active = titlebar_icon_path .. 'maximized_focus_active.svg'
+theme.titlebar_close_button_normal = titlebar_icon_path .. 'close_normal.svg'
+theme.titlebar_close_button_focus = titlebar_icon_path .. 'close_focus.svg'
 
-theme.taglist_font = 'awesomewm-font 22'
+theme.titlebar_minimize_button_normal_hover = titlebar_icon_path .. 'minimize_normal_hover.svg'
+theme.titlebar_minimize_button_focus_hover = titlebar_icon_path .. 'minimize_focus_hover.svg'
+
+theme.titlebar_ontop_button_normal_inactive_hover = titlebar_icon_path .. 'ontop_normal_inactive_hover.svg'
+theme.titlebar_ontop_button_focus_inactive_hover = titlebar_icon_path .. 'ontop_focus_inactive_hover.svg'
+theme.titlebar_ontop_button_normal_active_hover = titlebar_icon_path .. 'ontop_normal_active_hover.svg'
+theme.titlebar_ontop_button_focus_active_hover = titlebar_icon_path .. 'ontop_focus_active_hover.svg'
+
+theme.titlebar_sticky_button_normal_inactive_hover = titlebar_icon_path .. 'sticky_normal_inactive_hover.svg'
+theme.titlebar_sticky_button_focus_inactive_hover = titlebar_icon_path .. 'sticky_focus_inactive_hover.svg'
+theme.titlebar_sticky_button_normal_active_hover = titlebar_icon_path .. 'sticky_normal_active_hover.svg'
+theme.titlebar_sticky_button_focus_active_hover = titlebar_icon_path .. 'sticky_focus_active_hover.svg'
+
+theme.titlebar_floating_button_normal_inactive_hover = titlebar_icon_path .. 'floating_normal_inactive_hover.svg'
+theme.titlebar_floating_button_focus_inactive_hover = titlebar_icon_path .. 'floating_focus_inactive_hover.svg'
+theme.titlebar_floating_button_normal_active_hover = titlebar_icon_path .. 'floating_normal_active_hover.svg'
+theme.titlebar_floating_button_focus_active_hover = titlebar_icon_path .. 'floating_focus_active_hover.svg'
+
+theme.titlebar_maximized_button_normal_inactive_hover = titlebar_icon_path .. 'maximized_normal_inactive_hover.svg'
+theme.titlebar_maximized_button_focus_inactive_hover = titlebar_icon_path .. 'maximized_focus_inactive_hover.svg'
+theme.titlebar_maximized_button_normal_active_hover = titlebar_icon_path .. 'maximized_normal_active_hover.svg'
+theme.titlebar_maximized_button_focus_active_hover = titlebar_icon_path .. 'maximized_focus_active_hover.svg'
+
+theme.taglist_font = 'awesomewm-font 20'
 
 return theme
