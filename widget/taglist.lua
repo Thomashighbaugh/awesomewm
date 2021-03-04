@@ -8,7 +8,8 @@ local modkey = require('configuration.keys.mod').modKey
 --- This is the returned type - a table with a build function to create the widget.
 --- it may contain more widget
 local taglist = {}
-taglist.show_current_client = false
+
+taglist.show_current_client = true
 taglist.filter = awful.widget.taglist.filter.all
 
 taglist.update_function = function(self, _, index, _)
@@ -16,13 +17,7 @@ taglist.update_function = function(self, _, index, _)
 	local marginbox = self:get_children_by_id('zoom_margin')[1]
 	local tag = self.screen.tags[index]
 	local name = self.screen.tags[index].name
-	for _, c in ipairs(self.screen:get_all_clients()) do
-		if c.first_tag == tag and c.icon then
-			self.clientwidget.client = c
-			marginbox.widget = self.clientwidget
-			return
-		end
-	end
+
 	self.textwidget.text = tostring(name)
 	marginbox.widget = self.textwidget
 end
@@ -46,11 +41,18 @@ end
 
 taglist.widget_template_builder = function(args)
 	local margins = 0
+
 	if args.callback ~= callbacks.background then
 		margins = args.margins or beautiful.margin_size
 	end
-	local icon_ratio = 1
+	local icon_ratio = 0.98
 	local tag_icon_container = {
+		{
+			id = 'icon_state_role',
+			image = icons.tag_empty,
+			resize = true,
+			widget = wibox.widget.imagebox
+		},
 		id = 'zoom_margin',
 		margins = margins,
 		widget = wibox.container.margin
@@ -66,6 +68,7 @@ taglist.widget_template_builder = function(args)
 						widget = wibox.widget.imagebox
 					},
 					forced_height = beautiful.panel_height * (1 - icon_ratio),
+					forced_width = 15,
 					halign = 'center',
 					valign = 'center',
 					widget = wibox.container.place
@@ -86,7 +89,7 @@ taglist.widget_template_builder = function(args)
 		},
 		widget = wibox.container.background,
 		-- widget for background when hovering
-		create_callback = args.callback,
+		create_callback = taglist.update_function,
 		screen = args.screen
 	}
 
@@ -96,6 +99,8 @@ taglist.widget_template_builder = function(args)
 		t.update_callback = taglist.update_function
 	else
 		t.update_callback = taglist.update_function_dot_dash
+		t.textwidget = {widget = wibox.widget.textbox, font = beautiful.taglist_font}
+		t.clientwidget = {widget = awful.widget.clienticon}
 	end
 	return t
 end
@@ -127,20 +132,6 @@ taglist.buttons =
 			if _G.client.focus then
 				_G.client.focus:toggle_tag(t)
 			end
-		end
-	),
-	awful.button(
-		{},
-		4,
-		function(t)
-			awful.tag.viewprev(t.screen)
-		end
-	),
-	awful.button(
-		{},
-		5,
-		function(t)
-			awful.tag.viewnext(t.screen)
 		end
 	)
 )
