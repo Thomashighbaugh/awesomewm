@@ -90,7 +90,7 @@ lock_widget.build_animation_arc = function(icon)
 				if characters_entered == 0 then
 					lock_widget.reset()
 				else
-					color = '#ffffff55'
+					color = beautiful.xcolor7 .. '55'
 				end
 			end
 
@@ -103,7 +103,7 @@ lock_widget.build_animation_arc = function(icon)
 		'module::lock_screen:key_animation_reset',
 		function()
 			lock_animation_widget_rotate.direction = 'north'
-			lock_animation_arc.bg = '#00000000'
+			lock_animation_arc.bg = '#00000066'
 		end
 	)
 
@@ -116,7 +116,7 @@ lock_widget.build_button = function(args, icon, function_table, name)
 	local button_text =
 		wibox.widget {
 		text = name,
-		font = beautiful.font .. ' 10',
+		font = beautiful.font .. ' 16',
 		align = 'center',
 		valign = 'center',
 		widget = wibox.widget.textbox
@@ -214,7 +214,7 @@ lock_widget.grab_password = function()
 				end
 			}
 		},
-		-- this at least prohibts reseting for a long amount of time ?!?! -- TODO get to the source why reset sometimes works
+		-- this at least prohibts reseting for a long amount of time ?!?!
 		keybindings = awful.key {
 			modifiers = {'Mod4', 'Control'},
 			key = 'r',
