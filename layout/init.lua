@@ -1,7 +1,5 @@
 local status_panel = require('layout.bottom-panel')
 local additional_panel = require('layout.top-panel')
-require('layout.wallpaper')
-
 local callbacks = require('widget.callbacks')
 
 screen.connect_signal(
@@ -20,3 +18,5 @@ screen.connect_signal(
 		require('widget.notif-center.notif-popup').build_dashboard(args)
 	end
 )
+
+require('layout.wallpaper')

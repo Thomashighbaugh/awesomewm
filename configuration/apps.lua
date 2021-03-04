@@ -26,8 +26,8 @@ return {
 			screen.primary.dpi ..
 				' -show "Global Search" -modi "Global Search":' ..
 					config_dir ..
-						'/configuration/rofi/sidebar/rofi-spotlight.sh' .. ' -theme ' .. config_dir .. '/configuration/appmenu.rasi', -- Rofi Global Search
-		rofiappmenu = 'rofi -show drun -theme ~/.config/awesome/configuration/appmenu.rasi',
+						'/configuration/rofi/sidebar/rofi-spotlight.sh' .. ' -theme ' .. config_dir .. '/external/appmenu.rasi', -- Rofi Global Search
+		rofiappmenu = 'rofi -show drun -theme ~/.config/awesome/external/rofi/appmenu/rofi.rasi',
 		-- for network applety thing
 		wifi_interface = 'wlan0',
 		eth_interface = 'enp0s31f6',
@@ -35,12 +35,5 @@ return {
 		-- You can add more default applications here
 	},
 	-- List of apps to start once on start-up
-	run_on_start_up = {os.getenv('HOME') .. '/.config/awesome/autostart.sh'},
-	awful.screen.connect_for_each_screen(
-		function(s)
-			-- Screen padding
-			screen[s].padding = {left = 1, right = 1, top = 5, bottom = 5}
-			-- Each screen has its own tag table.
-		end
-	)
+	run_on_start_up = {os.getenv('HOME') .. '/.config/awesome/autostart.sh'}
 }

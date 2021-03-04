@@ -149,16 +149,9 @@ end
 
 local function create_titlebars(c)
 	decorate_titlebar(c, beautiful.xbackground .. '66', titlebar_size)
-	c.shape = gears.shape.rounded_rect(nil, nil, nil, 12)
 end
 
-client.connect_signal(
-	'request::titlebars',
-	create_titlebars,
-	function(c)
-		c.shape = gears.shape.rounded_rect(nil, nil, nil, 12)
-	end
-)
+client.connect_signal('request::titlebars', create_titlebars)
 
 client.connect_signal(
 	'manage',
@@ -188,6 +181,5 @@ screen.connect_signal(
 client.connect_signal(
 	'property::maximized',
 	function(c)
-		c.shape = gears.shape.rounded_rect(nil, nil, nil, 12)
 	end
 )

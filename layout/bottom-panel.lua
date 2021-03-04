@@ -1,6 +1,5 @@
 local panel_builder = require('module.panel-builder')
 local beautiful = require('beautiful')
-local layout = require 'widget.layout'
 local dpi = beautiful.xresources.apply_dpi
 local callbacks = require('widget.callbacks')
 local wibox = require('wibox')
@@ -13,8 +12,7 @@ local status_panel = function(s)
 		screen = s,
 		orientation = 'horizontal',
 		position = 'bottom',
-		callback = callbacks.zoom,
-		layout = wibox.layout.align.horizontal
+		callback = callbacks.zoom
 	}
 	local sep = 'separator'
 	local panel =
@@ -23,7 +21,6 @@ local status_panel = function(s)
 		{
 			left_widgets = {nil},
 			middle_widgets = {
-				sep,
 				'taglist',
 				sep,
 				'network-widget',
@@ -32,8 +29,8 @@ local status_panel = function(s)
 				sep,
 				'notification-panel-toggler',
 				'layout',
-				'end-session',
-				sep
+				sep,
+				'end-session'
 			},
 			right_widgets = {nil}
 		}

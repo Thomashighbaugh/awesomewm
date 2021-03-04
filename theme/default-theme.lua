@@ -64,7 +64,7 @@ theme.fg_focus = theme.xcolor7
 theme.fg_urgent = theme.xcolor1
 
 theme.bat_fg_critical = theme.xcolor1
-theme.background = theme.xbackground .. '66'
+theme.background = theme.xbackground .. 'aa'
 
 theme.bg_normal = theme.background
 theme.bg_focus = '#5a5a5a'
@@ -90,7 +90,7 @@ theme.titlebar_enabled = true
 theme.border_width = dpi(0)
 theme.wibar_border_width = dpi(0)
 theme.titlebar_bg_focus = theme.xbackground .. '66'
-theme.titlebar_bg_normal = theme.xbackground .. '33'
+theme.titlebar_bg_normal = theme.xbackground .. '66'
 theme.titlebar_fg_focus = theme.xforeground .. 'ff'
 theme.titlebar_fg_normal = theme.xforeground .. 'ff'
 
@@ -193,7 +193,7 @@ end
 
 -- Separators
 
-theme.separator_color = '#f2f2f2'
+theme.separator_color = theme.color7
 
 -- Layoutbox icons
 
@@ -206,15 +206,23 @@ theme.layout_fairh = theme.icons .. 'layouts/fairh.svg'
 
 -- Taglist
 
-theme.taglist_bg_empty = theme.xbackground .. '00'
-theme.taglist_bg_occupied = theme.xbackground .. '00'
-theme.taglist_bg_urgent = theme.xbackground .. '00'
-theme.taglist_bg_focus = theme.xbackground .. '00'
-theme.taglist_spacing = dpi(0)
+theme.taglist_spacing = dpi(10)
+theme.taglist_bg = transparent
+theme.taglist_bg_focus = transparent
+theme.taglist_fg_focus = theme.xcolor15
+theme.taglist_bg_urgent = transparent
+theme.taglist_fg_urgent = theme.xcolor15
+theme.taglist_bg_occupied = transparent
+theme.taglist_fg_occupied = theme.xcolor7
+theme.taglist_bg_empty = transparent
+theme.taglist_fg_empty = theme.xcolor8
+theme.taglist_bg_volatile = transparent
+theme.taglist_fg_volatile = theme.xcolor11
+theme.taglist_disable_icon = true
 
 -- Tasklist
 
-theme.tasklist_font = 'SF Pro Text Regular 10'
+theme.tasklist_font = 'SF Mono Heavy 10'
 theme.tasklist_bg_minimize = theme.xbackground .. '33'
 theme.tasklist_bg_normal = theme.xcolor8 .. '66'
 theme.tasklist_bg_urgent = theme.xcolor8 .. '66'
