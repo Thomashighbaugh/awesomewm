@@ -1,3 +1,19 @@
+--[[ ADD LAUNCHER BUTTON.lua
+       by Thomas Leon Highbaugh
+    
+     Created:
+       3/4/2021, 3:53:50 PM
+     Last edited:
+       3/5/2021, 4:41:17 PM
+     Auto updated?
+       Yes
+    
+     Description:
+       adds button to lauch program
+--]]
+
+
+
 local awful = require('awful')
 local wibox = require('wibox')
 local gears = require('gears')
@@ -20,18 +36,6 @@ add_button_widget.build = function(args)
           tag = mouse.screen.selected_tag,
           placement = awful.placement.bottom_right
         })
-    end)
-  -- local imagebox = wibox.widget {
-  --   id = 'icon',
-  --   image = icons.widget.plus,
-  --   resize = true,
-  --   widget = wibox.widget.imagebox
-  -- }
-
-  -- local widget_button = wibox.widget {
-  --   {imagebox, margins = dpi(10), widget = wibox.container.margin},
-  --   widget = clickable_container
-  -- }
 
   awful.tooltip {
     objects = {widget_button},
@@ -49,4 +53,4 @@ add_button_widget.build = function(args)
   return widget_button
 end
 
-return add_button_widget
+return add_button

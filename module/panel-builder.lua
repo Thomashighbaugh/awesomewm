@@ -4,16 +4,13 @@
      Created:
        3/4/2021, 2:30:03 PM
      Last edited:
-       3/4/2021, 2:30:07 PM
+       3/5/2021, 4:41:17 PM
      Auto updated?
        Yes
     
      Description:
        Constructor for build the top and bottom wibox
 --]]
-
-
-
 local panel_builder = {}
 local beautiful = require('beautiful')
 local wibox = require('wibox')
