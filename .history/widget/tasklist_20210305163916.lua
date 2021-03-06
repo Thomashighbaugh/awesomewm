@@ -1,18 +1,23 @@
---[[ 
-_______ _______ _______ __  __ _____   _______ _______ _______  __              
-|_     _|   _   |     __|  |/  |     |_|_     _|     __|_     _||  |.--.--.---.-.
-  |   | |       |__     |     <|       |_|   |_|__     | |   |__|  ||  |  |  _  |
-  |___| |___|___|_______|__|\__|_______|_______|_______| |___|__|__||_____|___._|
-by Thomas Leon Highbaugh
+--[[ TASKLIST.lua
+       by Thomas Leon Highbaugh
     
      Created:
        3/4/2021, 4:54:27 PM
      Last edited:
-       3/5/2021, 4:40:59 PM
+       3/5/2021, 4:39:16 PM
      Auto updated?
        Yes
     
-     Description: Provides the information and icons at the top bar indicating the window being shown and others open in that tag--]]
+     Description:
+    This critical piece of the modern OS too often excluded 
+	even by big DEs, like gnome, is critical to my workflow. 
+	Not as icons alone, I need some context about the content
+	 to be most effective even if I alt tab through most things anyway, 
+	I have opted for leaving myself a wide swath of means
+	 and methodology to interact with my windows absent 
+	 in other tiling window managers as it strealines their use in 
+	 moments of frantic importance and prevents the temptation of 
+	 returning to some awful DE --]]
 local awful = require('awful')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
