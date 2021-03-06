@@ -108,7 +108,11 @@ local function build_popup(args)
         visible = false,
         screen = s,
         type = 'dock',
-        input_passthrough = false
+        input_passthrough = false,
+        x = s.geometry.x,
+        y = s.geometry.y,
+        width = s.geometry.width,
+        height = s.geometry.height
     }
     popup_backdrop:buttons(
         gears.table.join(
