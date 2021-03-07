@@ -10,7 +10,7 @@ by Thomas Leon Highbaugh
      Created:
        3/4/2021, 2:57:06 PM
      Last edited:
-       3/6/2021, 2:03:36 PM
+       3/6/2021, 10:00:50 PM
      Auto updated?
        Yes
     
@@ -18,9 +18,15 @@ by Thomas Leon Highbaugh
        global keybindings that have effect across windows or lack there
        of
 --]]
+--#############################################################################
+-- Import Libraries
+--#############################################################################
+
 local awful = require('awful')
 local beautiful = require('beautiful')
 local dpi = require('beautiful').xresources.apply_dpi
+
+local revelation = require('external.lib.awesome-revelation')
 
 require('awful.autofocus')
 local switcher = require('external.lib.awesome-switcher')
@@ -33,7 +39,10 @@ local awesome = _G.awesome
 local client = _G.client
 local drop = require('module.dropdown')
 
--- Key bindings
+--#############################################################################
+-- Global Keybindings
+--#############################################################################
+
 local globalKeys =
     awful.util.table.join(
     -- Awesome
@@ -189,7 +198,7 @@ local globalKeys =
         end,
         {description = 'go back', group = 'client'}
     ),
-    --##################################################
+    --#############################################################################
 
     awful.key(
         {'Mod1'},
@@ -205,7 +214,8 @@ local globalKeys =
             switcher.switch(-1, 'Mod1', 'Alt_L', 'Shift', 'Tab')
         end
     ),
-    --##################################################
+    --#############################################################################
+
     awful.key(
         {'Mod1'},
         'a',
@@ -214,7 +224,8 @@ local globalKeys =
         end,
         {description = 'pick a client to add to tabbing group', group = 'Tabs'}
     ),
-    --##################################################
+    --#############################################################################
+
     awful.key(
         {'Mod1'},
         's',
@@ -223,7 +234,8 @@ local globalKeys =
         end,
         {description = 'iterate through tabbing group', group = 'Tabs'}
     ),
-    --##################################################
+    --#############################################################################
+
     awful.key(
         {'Mod1'},
         'd',
@@ -232,7 +244,9 @@ local globalKeys =
         end,
         {description = 'remove focused client from tabbing group', group = 'Tabs'}
     ),
-    --##################################################
+    --#############################################################################
+
+    awful.key({modkey}, 'e', revelation, {description = 'Show all Windows', group = 'Tabs'}),
     --#############################################################################
     awful.key(
         {modkey},
@@ -240,7 +254,7 @@ local globalKeys =
         function()
             beautiful.titlebar_enabled = not beautiful.titlebar_enabled
             if not beautiful.titlebar_enabled then
-                beautiful.border_focus = '#666666' .. '30'
+                beautiful.border_focus = beautiful.xcolor7 .. 'cc'
                 beautiful.border_width = dpi(0)
             else
                 beautiful.border_focus = beautiful.xbackground
