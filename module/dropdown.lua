@@ -1,31 +1,15 @@
---[[ 
-   _____  ______ _______ ______ _____  _______ ________ _______    __              
-|     \|   __ \       |   __ \     \|       |  |  |  |    |  |  |  |.--.--.---.-.
-|  --  |      <   -   |    __/  --  |   -   |  |  |  |       |__|  ||  |  |  _  |
-|_____/|___|__|_______|___|  |_____/|_______|________|__|____|__|__||_____|___._|
-                                                                                 
-       by Thomas Leon Highbaugh
-    
-     Created:
-       3/4/2021, 2:38:48 PM
-     Last edited:
-       3/4/2021, 2:39:03 PM
-     Auto updated?
-       Yes
-    
-     Description:
-       A implementation of quake like dropdown features useful for
-       terminal windows and thunderbird 
---]]
 
+--  _____  ______ _______ ______ _____  _______ ________ _______
+-- |     \|   __ \       |   __ \     \|       |  |  |  |    |  |
+-- |  --  |      <   -   |    __/  --  |   -   |  |  |  |       |
+-- |_____/|___|__|_______|___|  |_____/|_______|________|__|____|
+-- =======================================
+-- ======== Thomas Leon Highbaugh ========
+-- =======================================
 
-
--------------------------------------------------------------------
--- Drop-down applications manager for the awesome window manager
 -------------------------------------------------------------------
 -- Original Authors: * Lucas de Vries <lucas@glacicle.com>,  * Adrian C. (anrxc) <anrxc@sysphere.org>
 -- Licensed under the WTFPL version 2
---   * http://sam.zoy.org/wtfpl/COPYING
 -------------------------------------------------------------------
 -- Grab environment
 local pairs = pairs
