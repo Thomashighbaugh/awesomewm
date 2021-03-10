@@ -17,26 +17,28 @@ _______ _______ _______ _______    __________ _______ _______ _______  __
        This pain in my you know what, provides the tags and assigns them
        the letter they are displayed as such below
 --]]
-local awful = require('awful')
-local beautiful = require('beautiful')
-local apps = require('configuration.apps')
-local bling = require('external.lib.bling')
-local icons = require('theme.icons')
+local awful = require("awful")
+local beautiful = require("beautiful")
+local apps = require("configuration.apps")
+local bling = require("external.lib.bling")
+local icons = require("theme.icons")
 local mstab = bling.layout.mstab
 local centered = bling.layout.centered
 local vertical = bling.layout.vertical
 local horizontal = bling.layout.horizontal
 
-local tagnum = {'a', 'w', 'e', 's', 'o', 'm', 'e', 'w', 'm'}
+local tagnum = {"a", "w", "e", "s", "o", "m", "e", "w", "m"}
 local tags = {
     {
+        icon = icons.tag1,
         screen = 1
     },
     {
+        icon = icons.tag2,
         screen = 1
     },
     {
-        icon = 'e',
+        icon = icons.tag3,
         screen = 1
     },
     {
@@ -66,7 +68,7 @@ local tags = {
 }
 
 tag.connect_signal(
-    'request::default_layouts',
+    "request::default_layouts",
     function()
         awful.layout.append_default_layouts(
             {
@@ -99,7 +101,7 @@ tag.connect_signal(
 )
 
 screen.connect_signal(
-    'request::desktop_decoration',
+    "request::desktop_decoration",
     function(s)
         local fullscreen = awful.layout.suit.max
         local std_tiled = awful.layout.suit.tile
@@ -117,7 +119,7 @@ screen.connect_signal(
         }
         for i, tag in pairs(tags) do
             awful.tag.add(
-                '(tagnum[i])',
+                "(tagnum[i])",
                 {
                     name = tagnum[i],
                     icon = tag.icon,
@@ -135,9 +137,9 @@ screen.connect_signal(
 )
 
 tag.connect_signal(
-    'property::layout',
+    "property::layout",
     function(t)
-        local currentLayout = awful.tag.getproperty(t, 'layout')
+        local currentLayout = awful.tag.getproperty(t, "layout")
         -- if (currentLayout == awful.layout.suit.max) then
         -- 	t.gap = 0
         -- else

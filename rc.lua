@@ -2,9 +2,9 @@
 -- |   _   |  |  |  |    ___|     __|       |   |   |    ___|  |  |  |   |   |
 -- |       |  |  |  |    ___|__     |   -   |       |    ___|  |  |  |       |
 -- |___|___|________|_______|_______|_______|__|_|__|_______|________|__|_|__|
--- =======================================
--- ======== Thomas Leon Highbaugh ========
--- =======================================
+-- ###########################################
+-- ########## Thomas Leon Highbaugh ##########
+-- ###########################################
 
 local awful = require("awful")
 local beautiful = require("beautiful")
@@ -23,12 +23,9 @@ beautiful.init(require("theme"))
 -- ###########################################
 -- Allows for all windows to be displayed with keypress
 revelation.init()
--- bling
-local bling = require("external.lib.bling")
 -- window flash with focus change
+local bling = require("external.lib.bling")
 bling.module.flash_focus.enable()
--- window swallowing of spawned popups
-bling.module.window_swallowing.start()
 
 -- ###########################################
 -- Layouts
@@ -75,4 +72,3 @@ client.connect_signal(
         c:emit_signal("request::activate", "mouse_enter", {raise = true})
     end
 )
-

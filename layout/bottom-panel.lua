@@ -17,44 +17,45 @@
        the bottom panel, which I am especially happy with the look and
        functionality of.
 --]]
-local panel_builder = require('module.panel-builder')
-local beautiful = require('beautiful')
+local panel_builder = require("module.panel-builder")
+local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
-local callbacks = require('widget.callbacks')
-local wibox = require('wibox')
+local callbacks = require("widget.callbacks")
+local wibox = require("wibox")
 
-local taglist = require('widget.taglist')
+local taglist = require("widget.taglist")
 taglist.show_current_client = true
 
 local status_panel = function(s)
-    local args = {
-        screen = s,
-        orientation = 'horizontal',
-        position = 'bottom',
-        callback = callbacks.zoom
+  local args = {
+    screen = s,
+    orientation = "horizontal",
+    position = "bottom",
+    callback = callbacks.zoom,
+    spacinng = 25
+  }
+  local sep = "separator"
+  local panel =
+    panel_builder.build_single_panel(
+    args,
+    {
+      left_widgets = {nil},
+      middle_widgets = {
+        "taglist",
+        sep,
+        "network-widget",
+        "battery-widget",
+        "clock",
+        sep,
+        "notification-panel-toggler",
+        "layout",
+        sep,
+        "end-session"
+      },
+      right_widgets = {nil}
     }
-    local sep = 'separator'
-    local panel =
-        panel_builder.build_single_panel(
-        args,
-        {
-            left_widgets = {nil},
-            middle_widgets = {
-                'taglist',
-                sep,
-                'network-widget',
-                'battery-widget',
-                'clock',
-                sep,
-                'notification-panel-toggler',
-                'layout',
-                sep,
-                'end-session'
-            },
-            right_widgets = {nil}
-        }
-    )
-    return panel
+  )
+  return panel
 end
 
 return status_panel

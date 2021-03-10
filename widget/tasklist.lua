@@ -1,11 +1,14 @@
-local awful = require 'awful'
-local wibox = require 'wibox'
-local beautiful = require 'beautiful'
-local callbacks = require 'widget.callbacks'
+local awful = require "awful"
+local wibox = require "wibox"
+local beautiful = require "beautiful"
+local callbacks = require "widget.callbacks"
 local tasklist = {}
-tasklist.buttons = awful.util.table.join(
+tasklist.buttons =
+  awful.util.table.join(
   awful.button(
-    {}, 1, function(c)
+    {},
+    1,
+    function(c)
       if c == _G.client.focus then
         c.minimized = true
       else
@@ -20,16 +23,16 @@ tasklist.buttons = awful.util.table.join(
         _G.client.focus = c
         c:raise()
       end
-    end), awful.button(
-    {}, 2, function(c) c:kill() end), awful.button(
-    {}, 4, function()
-      awful.client.focus.byidx(
-        1)
-    end), awful.button(
-    {}, 5, function()
-      awful.client.focus.byidx(
-        -1)
-    end))
+    end
+  ),
+  awful.button(
+    {},
+    2,
+    function(c)
+      c:kill()
+    end
+  )
+)
 tasklist.build = function(args)
   local margins = 0
   if args.callback ~= callbacks.background then
@@ -41,18 +44,19 @@ tasklist.build = function(args)
     widget_template = {
       {
         {
-          {id = 'clienticon', widget = awful.widget.clienticon},
-          id = 'zoom_margin',
+          {id = "clienticon", widget = awful.widget.clienticon},
+          id = "zoom_margin",
           margins = margins,
           widget = wibox.container.margin
         },
-        id = 'background_role',
+        id = "background_role",
         widget = wibox.container.background
       },
-      {id = 'text_role', widget = wibox.widget.textbox},
+      {id = "text_role", widget = wibox.widget.textbox},
       layout = wibox.layout.fixed.horizontal,
       widget = wibox.container.background,
-      create_callback = args.callback
+      create_callback = args.callback,
+      forced_width = 185
     },
     buttons = tasklist.buttons,
     layout = wibox.layout.fixed[args.orientation]()

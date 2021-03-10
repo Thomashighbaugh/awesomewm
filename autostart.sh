@@ -1,29 +1,30 @@
 #!/bin/bash
 
-function run {
-    if ! pgrep "$1" ;
-    then
-        "$@"&
+#  _______ _______ _______ _______ _______ _______ _______ ______ _______
+# |   _   |   |   |_     _|       |     __|_     _|   _   |   __ \_     _|
+# |       |   |   | |   | |   -   |__     | |   | |       |      < |   |
+# |___|___|_______| |___| |_______|_______| |___| |___|___|___|__| |___|
+
+Thomas Leon Highbaugh
+
+function run() {
+    if ! pgrep "$1"; then
+        "$@" &
     fi
 }
-
-
 
 ################################
 # Programms
 ################################
 # transparency
 run picom -b --experimental-backends --config ~/.config/awesome/external/picom.conf
-# run picom  --config ~/.config/picom/picom.conf --experimental-backends
-# automounting usb drives
+run xfce4-settings-daemon
+run xcape -e "Super_L=Super_L|Control_L|Escape"
 run udiskie
 # mouse disappears
 run unclutter
-# for quicker emacs
-# run emacs --bg-daemon
-# for nightmode
+run ~/.dropboxd/dropbox
 
 ################################
 # Applets
 ################################
-
