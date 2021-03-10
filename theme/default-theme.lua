@@ -300,7 +300,7 @@ theme.dont_swallow_filter_activated = true -- whether the filter above should be
 
 -- flash focus
 theme.flash_focus_start_opacity = 0.6 -- the starting opacity
-theme.flash_focus_step = 0.01 -- the step of animation
+theme.flash_focus_step = 0.3 -- the step of animation
 
 -- tabbed
 theme.tabbed_spawn_in_tab = true -- whether a new client should spawn into the focused tabbing container
@@ -308,8 +308,8 @@ theme.tabbed_spawn_in_tab = true -- whether a new client should spawn into the f
 -- tabbar general
 theme.tabbar_ontop = false
 theme.tabbar_radius = dpi(3) -- border radius of the tabbar
-theme.tabbar_style = 'default' -- style of the tabbar ("default", "boxes" or "modern")
-theme.tabbar_font = 'Hack Nerd Font Bold 12' -- font of the tabbar
+theme.tabbar_style = 'modern' -- style of the tabbar ("default", "boxes" or "modern")
+theme.tabbar_font = 'SF Mono Heavy 12' -- font of the tabbar
 theme.tabbar_size = 25 -- size of the tabbar
 theme.tabbar_position = 'top' -- position of the tabbar
 theme.tabbar_bg_normal = theme.xbackground -- background color of the focused client on the tabbar

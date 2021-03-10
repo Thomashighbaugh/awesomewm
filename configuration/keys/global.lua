@@ -40,9 +40,9 @@ local globalKeys =
     awful.key({modkey, 'Shift', 'Control'}, 'q', awesome.quit, {description = 'quit awesome', group = 'awesome'}),
     --#############################################################################
     -- Tag
-    awful.key({modkey}, 'Left', awful.tag.viewprev, {description = 'view previous', group = 'tag'}),
+    awful.key({modkey}, '[', awful.tag.viewprev, {description = 'view previous', group = 'tag'}),
     --#############################################################################
-    awful.key({modkey}, 'Right', awful.tag.viewnext, {description = 'view next', group = 'tag'}),
+    awful.key({modkey}, ']', awful.tag.viewnext, {description = 'view next', group = 'tag'}),
     --#############################################################################
     awful.key({modkey}, 'i', awful.tag.history.restore, {description = 'go back', group = 'tag'}),
     --#############################################################################
