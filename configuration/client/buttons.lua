@@ -1,24 +1,11 @@
---[[ 
-	 ______ _____   _______ _______ _______ _______  _________ _______ _______ _______ _______ _______ _______    __              
-|      |     |_|_     _|    ___|    |  |_     _|/  /   __ \   |   |_     _|_     _|       |    |  |     __|  |  |.--.--.---.-.
-|   ---|       |_|   |_|    ___|       | |   |,' ,'|   __ <   |   | |   |   |   | |   -   |       |__     |__|  ||  |  |  _  |
-|______|_______|_______|_______|__|____| |___/__/  |______/_______| |___|   |___| |_______|__|____|_______|__|__||_____|___._|
-                                                                                                                              
-       by Thomas Leon Highbaugh
-    
-     Created:
-       3/4/2021, 2:49:30 PM
-     Last edited:
-       3/4/2021, 2:49:46 PM
-     Auto updated?
-       Yes
-    
-     Description:
-       client buttons specific to interacting with client windows using
-       the mouse
---]]
-
-
+--  ______ __ __               __        ______         __   __               
+-- |      |  |__|.-----.-----.|  |_     |   __ \.--.--.|  |_|  |_.-----.-----.
+-- |   ---|  |  ||  -__|     ||   _|    |   __ <|  |  ||   _|   _|  _  |     |
+-- |______|__|__||_____|__|__||____|    |______/|_____||____|____|_____|__|__|
+                                                                           
+-- #######################################
+-- ######## Thomas Leon Highbaugh ########
+-- #######################################
 
 local awful = require('awful')
 
@@ -34,19 +21,5 @@ return awful.util.table.join(
 		end
 	),
 	awful.button({modkey}, 1, awful.mouse.client.move),
-	awful.button({modkey}, 3, awful.mouse.client.resize),
-	awful.button(
-		{modkey},
-		4,
-		function()
-      awful.client.focus.byidx(1)
-		end
-	),
-	awful.button(
-		{modkey},
-		5,
-		function()
-      awful.client.focus.byidx(-1)
-		end
-	)
+	awful.button({modkey}, 3, awful.mouse.client.resize)
 )

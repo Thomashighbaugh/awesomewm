@@ -1,24 +1,8 @@
---  _______ _______ _______ __  __ _____   _______ _______ _______ 
--- |_     _|   _   |     __|  |/  |     |_|_     _|     __|_     _|
---   |   | |       |__     |     <|       |_|   |_|__     | |   |  
---   |___| |___|___|_______|__|\__|_______|_______|_______| |___|  
-                                                                
--- =======================================
--- ======== Thomas Leon Highbaugh ========
--- =======================================
-
-local awful = require(
-  'awful')
-local wibox = require(
-  'wibox')
-local beautiful = require(
-  'beautiful')
-
-local callbacks = require(
-  'widget.callbacks')
-
+local awful = require 'awful'
+local wibox = require 'wibox'
+local beautiful = require 'beautiful'
+local callbacks = require 'widget.callbacks'
 local tasklist = {}
-
 tasklist.buttons = awful.util.table.join(
   awful.button(
     {}, 1, function(c)
@@ -46,7 +30,6 @@ tasklist.buttons = awful.util.table.join(
       awful.client.focus.byidx(
         -1)
     end))
-
 tasklist.build = function(args)
   local margins = 0
   if args.callback ~= callbacks.background then
@@ -66,6 +49,8 @@ tasklist.build = function(args)
         id = 'background_role',
         widget = wibox.container.background
       },
+      {id = 'text_role', widget = wibox.widget.textbox},
+      layout = wibox.layout.fixed.horizontal,
       widget = wibox.container.background,
       create_callback = args.callback
     },
@@ -73,5 +58,4 @@ tasklist.build = function(args)
     layout = wibox.layout.fixed[args.orientation]()
   }
 end
-
 return tasklist

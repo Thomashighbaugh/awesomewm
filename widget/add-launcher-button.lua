@@ -1,16 +1,4 @@
---[[ ADD LAUNCHER BUTTON.lua
-       by Thomas Leon Highbaugh
-    
-     Created:
-       3/4/2021, 3:53:50 PM
-     Last edited:
-       3/5/2021, 4:41:17 PM
-     Auto updated?
-       Yes
-    
-     Description:
-       adds button to lauch program
---]]
+
 
 
 
@@ -38,7 +26,7 @@ add_button_widget.build = function(args)
         })
 
   awful.tooltip {
-    objects = {widget_button},
+    objects = {add_button_widget.build.widget_button},
     mode = 'outside',
     delay_show = 1,
     preferred_positions = {'right', 'left', 'top', 'bottom'},
@@ -50,7 +38,7 @@ add_button_widget.build = function(args)
     end
   }
 
-  return widget_button
+  return add_button_widget.build.widget_button
+end)
 end
-
-return add_button
+return add_button_widget

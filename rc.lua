@@ -1,9 +1,11 @@
-local addtional_path_prefix = os.getenv('HOME') .. '/Git/awesome-possum/'
-local additonal_path = ';' .. addtional_path_prefix .. '?/init.lua;' .. addtional_path_prefix .. '?.lua'
-package.path = package.path .. additonal_path
-local logfile = io.open('/tmp/myawesome.log', 'a')
-logfile:write('\n\n\nLoading Awesome\nPath: ', package.path, '\n\n')
-io.stderr = logfile
+--  _______ ________ _______ _______ _______ _______ _______ ________ _______ 
+-- |   _   |  |  |  |    ___|     __|       |   |   |    ___|  |  |  |   |   |
+-- |       |  |  |  |    ___|__     |   -   |       |    ___|  |  |  |       |
+-- |___|___|________|_______|_______|_______|__|_|__|_______|________|__|_|__|
+-- =======================================
+-- ======== Thomas Leon Highbaugh ========
+-- =======================================
+                                                                           
 
 local awful = require('awful')
 local beautiful = require('beautiful')
@@ -11,53 +13,37 @@ local root = _G.root
 local client = _G.client
 local revelation = require('external.lib.awesome-revelation')
 awful.util.shell = '/bin/bash'
---  ========================================
+-- ###########################################
 -- 			       Theme
 --	     	Load the Aesthetics
---  ========================================
+-- ###########################################
 beautiful.init(require('theme'))
 revelation.init()
---  ========================================
+-- ###########################################
 -- 			  	  Layouts
 --	     	   Load the Panels
---  ========================================
+-- ###########################################
 
 require('layout')
 -- _G.mymainmenu =require('module.menu')
 
---  ========================================
+-- ###########################################
 -- 			      Modules
 --	        Load all the modules
---  ========================================
+-- ###########################################
 
 require('module.notifications')
 require('module.auto-start')
 require('module.decorate-client')
 require('module.exit-screen')
 require('module.lockscreen')
--- require('module.dashboard-screen')
 require('module.titlebar')
--- require('module.menu')
 
--- require('module.battery-notifier')
 
--- since this is layout --> configured there
--- require('module.volume-osd')
--- require('module.brightness-osd')
-
--- just to get the popups with nothing else:
--- vol_widget = require('widget.volume')
--- vol_widget.build_dashboard(args)
--- bright_widget = require('widget.brightness')
--- bright_widget.build_dashboard(args)
-
--- require('module.volume-osd')
--- require('module.brightness-osd')
-
---  ========================================
+-- ###########################################
 -- 				Configuration
 --	     	Load your prefrences
---  ========================================
+-- ###########################################
 
 require('configuration.client')
 require('configuration.tags')
@@ -81,10 +67,10 @@ client.connect_signal(
 )
 
 -- Enable sloppy focus, so that focus follows mouse.
--- client.connect_signal(
---   'mouse::enter', function(c)
---     c:emit_signal('request::activate', 'mouse_enter', {raise = true})
---   end)
+client.connect_signal(
+  'mouse::enter', function(c)
+    c:emit_signal('request::activate', 'mouse_enter', {raise = true})
+  end)
 
 client.connect_signal(
     'focus',

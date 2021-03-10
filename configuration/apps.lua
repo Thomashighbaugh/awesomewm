@@ -1,29 +1,12 @@
---[[ 
-_______ ______ ______ _______    __              
-|   _   |   __ \   __ \     __|  |  |.--.--.---.-.
-|       |    __/    __/__     |__|  ||  |  |  _  |
-|___|___|___|  |___|  |_______|__|__||_____|___._|
-                                                  
-       by Thomas Leon Highbaugh
-    
-     Created:
-       3/4/2021, 3:26:49 PM
-     Last edited:
-       3/4/2021, 3:27:13 PM
-     Auto updated?
-       Yes
-    
-     Description:
-       variable definitions that will be used across the configuration
---]]
-
-
+--  _______ ______ ______ _______ 
+-- |   _   |   __ \   __ \     __|
+-- |       |    __/    __/__     |
+-- |___|___|___|  |___|  |_______|
+-- #######################################
+-- ######## Thomas Leon Highbaugh ########
+-- #######################################
 
 local filesystem = require('gears.filesystem')
-local config_dir = filesystem.get_configuration_dir()
-local bin_dir = config_dir .. 'binaries/'
-local screen = _G.screen
-local awful = require('awful')
 
 return {
 	-- The default applications in keybindings and widgets
@@ -41,18 +24,10 @@ return {
 		network_manager = 'nm-connection-editor', -- Network manager
 		bluetooth_manager = 'blueman-manager', -- Bluetooth manager
 		power_manager = 'xfce4-power-manager-settings', -- Power manager
-		package_manager = 'yay', -- Package manager
 		lock = 'screenlock', --'awesome-client "_G.show_lockscreen()"',  -- Lockscreen
-		rofiglobal = 'rofi -dpi ' ..
-			screen.primary.dpi ..
-				' -show "Global Search" -modi "Global Search":' ..
-					config_dir ..
-						'/configuration/rofi/sidebar/rofi-spotlight.sh' .. ' -theme ' .. config_dir .. '/external/appmenu.rasi', -- Rofi Global Search
 		rofiappmenu = 'rofi -show drun -theme ~/.config/awesome/external/rofi/appmenu/rofi.rasi',
 		-- for network applety thing
 		wifi_interface = 'wlan0',
-		eth_interface = 'enp0s31f6',
-		vpn = 'LRZ-VPN'
 		-- You can add more default applications here
 	},
 	-- List of apps to start once on start-up
