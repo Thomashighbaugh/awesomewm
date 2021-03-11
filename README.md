@@ -1,0 +1,2 @@
+# Awesome Window Manager
+Its not awesome at all, its a pain and lua is a nightmare of a language to work with for any length of time. However, it enables me to do a lot more than i3 and I am not ready to dive into dwm patching yet, but every day Awesome gets me that much closer to doing it anyway 
