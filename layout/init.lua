@@ -1,26 +1,22 @@
---[[ 
- __                           __   
-|  |.---.-.--.--.-----.--.--.|  |_ 
-|  ||  _  |  |  |  _  |  |  ||   _|
-|__||___._|___  |_____|_____||____|
-          |_____|                  
-       by Thomas Leon Highbaugh
-    
-     Created:
-       3/4/2021, 2:47:25 PM
-     Last edited:
-       3/4/2021, 2:47:53 PM
-     Auto updated?
-       Yes
-    
-     Description:
-       Calls both of the bars and provides additional configuration by
-       iniating the widgets' constructors
---]]
+--  __                           __
+-- |  |.---.-.--.--.-----.--.--.|  |_
+-- |  ||  _  |  |  |  _  |  |  ||   _|
+-- |__||___._|___  |_____|_____||____|
+--           |_____|
+-- ##################################################
+-- ############ Thomas Leon Highbaugh ###############
+-- ##################################################
+
+-- ##################################################
+-- Load widgets and local utilities
+-- ##################################################
 local status_panel = require("layout.bottom-panel")
 local additional_panel = require("layout.top-panel")
 local callbacks = require("widget.callbacks")
 
+-- ##################################################
+-- Apply top and bottom panels
+-- ##################################################
 _G.screen.connect_signal(
 	"request::desktop_decoration",
 	function(s)
@@ -35,7 +31,7 @@ _G.screen.connect_signal(
 		require("widget.volume").build_dashboard(args)
 		require("widget.calendar-popup").build_dashboard(args)
 		require("widget.notif-center.notif-popup").build_dashboard(args)
+		require("layout.wallpaper")
+		require("layout.signals")
 	end
 )
-
-require("layout.wallpaper")
