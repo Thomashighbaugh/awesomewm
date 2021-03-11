@@ -262,9 +262,9 @@ theme.hotkeys_group_margin = dpi(20)
 
 -- Main panel
 theme.panel_height = 40
-theme.panel_width = 890
-theme.panel_desktop_width = 840
-theme.panel_laptop_width = 840
+theme.panel_width = 600
+theme.panel_desktop_width = 600
+theme.panel_laptop_width = 600
 theme.panel_bg = theme.xbackground .. "dd"
 theme.panel_radius = dpi(12)
 theme.panel_widget_border_width = dpi(0)
@@ -340,6 +340,6 @@ theme.tabbar_color_float = theme.xcolor6 -- changes the color of the float butto
 theme.osd_width = dpi(350)
 theme.osd_height = dpi(200)
 
-theme.taglist_font = "awesomewm-font 22"
+theme.taglist_font = "awesomewm-font 26"
 
 return theme

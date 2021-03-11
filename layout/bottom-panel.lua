@@ -32,27 +32,22 @@ local status_panel = function(s)
     orientation = "horizontal",
     position = "bottom",
     callback = callbacks.zoom,
-    spacinng = 25
+    spacing = 5
   }
   local sep = "separator"
   local panel =
     panel_builder.build_single_panel(
     args,
     {
-      left_widgets = {nil},
+      left_widgets = {"layout"},
       middle_widgets = {
+        sep,
         "taglist",
-        sep,
-        "network-widget",
-        "battery-widget",
-        "clock",
-        sep,
-        "notification-panel-toggler",
-        "layout",
-        sep,
-        "end-session"
+        sep
       },
-      right_widgets = {nil}
+      right_widgets = {
+        "end-session"
+      }
     }
   )
   return panel
