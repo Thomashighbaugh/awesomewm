@@ -201,7 +201,7 @@ theme.layout_tilebottom = theme.icons .. "layouts/tilebottom.svg"
 theme.layout_dwindle = theme.icons .. "layouts/dwindle.svg"
 theme.layout_floating = theme.icons .. "layouts/floating.svg"
 theme.layout_fairh = theme.icons .. "layouts/fairh.svg"
-
+theme.layout_mstab = theme.icons .. "layouts/mstab.png"
 -- Taglist
 
 theme.taglist_spacing = dpi(10)
@@ -295,7 +295,7 @@ theme.small_panel_blur_type = "panel" -- use "dock" for no blur, "panel" for blu
 -- Bling ---------------------------------------------------------
 -- ===================================================================
 -- window swallowing
-theme.dont_swallow_classname_list = {"firefox", "Gimp"} -- list of class names that should not be swallowed
+theme.dont_swallow_classname_list = {"firefox", "firefox-nightly", "Gimp"} -- list of class names that should not be swallowed
 theme.dont_swallow_filter_activated = true -- whether the filter above should be active
 
 -- flash focus
