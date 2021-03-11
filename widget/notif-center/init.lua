@@ -1,30 +1,31 @@
-local wibox = require('wibox')
-local beautiful = require('beautiful')
-local dpi = require('beautiful').xresources.apply_dpi
+local wibox = require("wibox")
+local beautiful = require("beautiful")
+local dpi = require("beautiful").xresources.apply_dpi
 
-local notif_header = wibox.widget {
-  text = 'Notification Center',
-  font = beautiful.font_bold .. ' 14',
-  align = 'left',
-  valign = 'bottom',
+local notif_header =
+  wibox.widget {
+  text = "Notification Center",
+  font = beautiful.font_bold .. " 14",
+  align = "left",
+  valign = "top",
   widget = wibox.widget.textbox
 }
 
 return wibox.widget {
-  expand = 'none',
+  expand = "none",
   layout = wibox.layout.fixed.vertical,
   spacing = dpi(10),
   {
-    expand = 'none',
+    expand = "none",
     layout = wibox.layout.align.horizontal,
     notif_header,
     nil,
     {
       layout = wibox.layout.fixed.horizontal,
       spacing = dpi(5),
-      require('widget.notif-center.dont-disturb').widget,
-      require('widget.notif-center.clear-all')
+      require("widget.notif-center.dont-disturb").widget,
+      require("widget.notif-center.clear-all")
     }
   },
-  require('widget.notif-center.build-notifbox')
+  require("widget.notif-center.build-notifbox")
 }

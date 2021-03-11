@@ -75,7 +75,7 @@ tag.connect_signal(
                 bling.layout.mstab,
                 bling.layout.centered,
                 bling.layout.vertical,
-                bling.layut.horizontal,
+                bling.layout.horizontal,
                 awful.layout.suit.spiral.dwindle,
                 --         awful.layout.suit.corner.nw,
                 awful.layout.suit.tile,
