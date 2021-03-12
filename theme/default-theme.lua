@@ -202,6 +202,7 @@ theme.layout_dwindle = theme.icons .. "layouts/dwindle.svg"
 theme.layout_floating = theme.icons .. "layouts/floating.svg"
 theme.layout_fairh = theme.icons .. "layouts/fairh.svg"
 theme.layout_mstab = theme.icons .. "layouts/mstab.png"
+
 -- Taglist
 
 theme.taglist_spacing = dpi(10)
