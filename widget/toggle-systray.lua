@@ -25,7 +25,7 @@ toggle_systray.build = function(args)
 			margins = dpi(5),
 			widget = wibox.container.margin
 		},
-		bg = '#00000066',
+		bg = '#00000000',
 		shape = function(cr, w, h)
 			gears.shape.rounded_rect(cr, w, h, beautiful.panel_widget_radius)
 		end,

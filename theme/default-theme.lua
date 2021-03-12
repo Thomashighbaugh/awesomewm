@@ -16,7 +16,7 @@ local tip = titlebar_icon_path
 
 local theme = {}
 theme.icons = theme_dir .. "/icons/"
-
+require("theme.icons")
 -- ========================================================================
 --  Xresources Color Import
 -- ========================================================================
@@ -40,9 +40,9 @@ theme.xcolor14 = xrdb.color14
 theme.xcolor15 = xrdb.color15
 
 -- Font
-theme.font = "SF Mono"
-theme.font_bold = theme.font .. " Bold"
-theme.font_heavy = theme.font .. " Heavy"
+theme.font = "mplus Nerd Font"
+theme.font_bold = theme.font .. " bold"
+theme.font_heavy = theme.font .. "black"
 -- Noto Sans Grantha
 -- Menu icon theme
 -- theme.icon_theme = 'breeze'
@@ -55,7 +55,7 @@ theme.accent = theme.xcolor15
 theme.accent = theme.xcolor4
 -- Foreground
 
-theme.title_font = "SF Mono Semibold 14"
+theme.title_font = "3270SemiNarrow Nerd Font Mono Bold 14"
 
 theme.fg_normal = theme.xforeground
 theme.fg_focus = theme.xcolor7
@@ -153,7 +153,7 @@ theme.groups_radius = dpi(10)
 
 -- Borders
 if theme.titlebar_enabled then
-    theme.border_focus = theme.background
+    theme.border_focus = theme.background .. "cc"
 else
     theme.border_focus = theme.xcolor8 .. "30"
 end
@@ -166,7 +166,7 @@ theme.client_radius = dpi(12)
 theme.useless_gap = 5
 
 -- Menu
-theme.menu_font = "SF Pro Text Regular 11"
+theme.menu_font = "3270SemiNarrow Nerd Font Mono Bold 11"
 theme.menu_submenu = "" -- ➤
 
 theme.menu_height = dpi(24)
@@ -201,7 +201,7 @@ theme.layout_tilebottom = theme.icons .. "layouts/tilebottom.svg"
 theme.layout_dwindle = theme.icons .. "layouts/dwindle.svg"
 theme.layout_floating = theme.icons .. "layouts/floating.svg"
 theme.layout_fairh = theme.icons .. "layouts/fairh.svg"
-theme.layout_mstab = theme.icons .. "layouts/mstab.png"
+theme.layout_mstab = theme.icons .. "layouts/mstab.svg"
 
 -- Taglist
 
@@ -221,7 +221,7 @@ theme.taglist_disable_icon = true
 
 -- Tasklist
 
-theme.tasklist_font = "SF Mono Heavy 15"
+theme.tasklist_font = "3270SemiNarrow Nerd Font Mono Bold 15"
 theme.tasklist_fg_minimize = theme.color8
 theme.tasklist_bg_normal = theme.xbackground
 theme.tasklist_bg_urgent = theme.xbackground
@@ -256,16 +256,16 @@ theme.snap_border_width = dpi(15)
 
 -- Hotkey popup
 
-theme.hotkeys_font = "SF Mono Heavy"
-theme.hotkeys_description_font = "SF Mono Semibold"
+theme.hotkeys_font = "3270SemiNarrow Nerd Font Mono Medium"
+theme.hotkeys_description_font = "3270SemiNarrow Nerd Font Mono Bold"
 theme.hotkeys_bg = theme.background
 theme.hotkeys_group_margin = dpi(20)
 
 -- Main panel
 theme.panel_height = 40
-theme.panel_width = 600
-theme.panel_desktop_width = 600
-theme.panel_laptop_width = 600
+theme.panel_width = 560
+theme.panel_desktop_width = 560
+theme.panel_laptop_width = 560
 theme.panel_bg = theme.xbackground .. "dd"
 theme.panel_radius = dpi(12)
 theme.panel_widget_border_width = dpi(0)
@@ -310,7 +310,7 @@ theme.tabbed_spawn_in_tab = true -- whether a new client should spawn into the f
 theme.tabbar_ontop = false
 theme.tabbar_radius = dpi(3) -- border radius of the tabbar
 theme.tabbar_style = "modern" -- style of the tabbar ("default", "boxes" or "modern")
-theme.tabbar_font = "SF Mono Heavy 12" -- font of the tabbar
+theme.tabbar_font = "3270SemiNarrow Nerd Font Mono Bold 12" -- font of the tabbar
 theme.tabbar_size = 25 -- size of the tabbar
 theme.tabbar_position = "top" -- position of the tabbar
 theme.tabbar_bg_normal = theme.xbackground -- background color of the focused client on the tabbar
@@ -320,7 +320,7 @@ theme.tabbar_fg_focus = theme.xcolor6 -- foreground color of unfocused clients o
 
 -- mstab
 theme.mstab_bar_ontop = false -- whether you want to allow the bar to be ontop of clients
-theme.mstab_dont_resize_flaves = false -- whether the tabbed stack windows should be smaller than the
+theme.mstab_dont_resize_slaves = true -- whether the tabbed stack windows should be smaller than the
 -- currently focused stack window (set it to true if you use
 -- transparent terminals. False if you use shadows on solid ones
 theme.mstab_bar_padding = dpi(0) -- how much padding there should be between clients and your tabbar
@@ -328,8 +328,8 @@ theme.mstab_bar_padding = dpi(0) -- how much padding there should be between cli
 -- If you want a custom value. Set it to the number of pixels (int)
 theme.mstab_border_radius = dpi(6) -- border radius of the tabbar
 theme.mstab_bar_height = 25 -- height of the tabbar
-theme.mstab_tabbar_poasition = "top" -- position of the tabbar (mstab currently does not support left,right)
-theme.mstab_tabbar_style = "modern" -- style of the tabbar ("default", "boxes" or "modern")
+theme.mstab_tabbar_position = "top" -- position of the tabbar (mstab currently does not support left,right)
+theme.mstab_tabbar_style = "default" -- style of the tabbar ("default", "boxes" or "modern")
 -- defaults to the tabbar_style so only change if you want a
 -- different style for mstab and tabbed
 

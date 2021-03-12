@@ -1,17 +1,21 @@
-local clickable_image = require('widget.clickable-image')
-local icons = require('theme.icons')
-
+local beautiful = require("beautiful")
+local awesomebuttons = require("external.lib.awesome-buttons.awesome-buttons")
 --- This is the returned type - a table with a build function to create the widget.
 --- it may contain more widget
 
 local endsession_widget = {}
 
 endsession_widget.build = function(args)
-  local widget = clickable_image(
-    args, icons.widget.endsession,
-      function() awesome.emit_signal('module::exit_screen:show') end,
-      'Open Exit Menu')
-
+  local widget =
+    awesomebuttons.with_icon {
+    icon = "/home/tlh/.config/awesome/theme/icons/feathericons/log-out.svg",
+    color = beautiful.xcolor8,
+    shape = "rounded_rect",
+    icon_size = 32,
+    onclick = function()
+      awesome.emit_signal("module::exit_screen:show")
+    end
+  }
   return widget
 end
 

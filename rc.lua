@@ -11,9 +11,7 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 local root = _G.root
 local client = _G.client
-local bling = require("external.lib.bling")
 
-local revelation = require("external.lib.awesome-revelation")
 awful.util.shell = "/bin/zsh"
 
 -- ##################################################
@@ -25,8 +23,10 @@ beautiful.init(require("theme"))
 -- External Library Add Ins
 -- ##################################################
 -- Allows for all windows to be displayed with keypress
+local revelation = require("external.lib.awesome-revelation")
 revelation.init()
 -- window flash with focus change
+local bling = require("external.lib.bling")
 bling.module.flash_focus.enable()
 
 -- ##################################################
