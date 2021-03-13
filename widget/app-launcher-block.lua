@@ -1,12 +1,12 @@
-local awful = require('awful')
-local wibox = require('wibox')
-local gears = require('gears')
+local awful = require("awful")
+local wibox = require("wibox")
+local gears = require("gears")
 
-local dpi = require('beautiful').xresources.apply_dpi
-local clickable_image = require('widget.clickable-image')
+local dpi = require("beautiful").xresources.apply_dpi
+local clickable_image = require("widget.clickable-image")
 
-local apps = require('configuration.apps')
-local icons = require('theme.icons')
+local apps = require("configuration.apps")
+local icons = require("theme.icons")
 
 --- This is the returned type - a table with a build function to create the widget.
 --- it may contain more widget
@@ -20,12 +20,15 @@ app_launcher_block.default_apps = {
 }
 
 local build_single_launcher = function(launcher, args)
-  local widget = clickable_image {
-    orientation = args.orientation,
-    icon = launcher.icon,
-    margins = dpi(4),
-    buttons = function() awful.spawn(launcher.command) end,
-    tooltip = 'execute ' .. launcher.command,
+  local widget =
+    awesomebuttons.with_icon {
+    icon = "/home/tlh/.config/awesome/theme/icons/arch.svg",
+    color = beautiful.xcolor7,
+    shape = "rounded_rect",
+    icon_size = 32,
+    onclick = function()
+      awful.spawn(launcher.command)
+    end
   }
   args.margins = nil
   return widget

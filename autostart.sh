@@ -23,7 +23,7 @@ run xcape -e "Super_L=Super_L|Control_L|Escape"
 run udiskie
 # mouse disappears
 run unclutter
-run ~/.dropboxd/dropbox
+run ~/.dropbox-dist/dropbox
 
 ################################
 # Applets

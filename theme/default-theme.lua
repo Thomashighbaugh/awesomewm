@@ -40,9 +40,9 @@ theme.xcolor14 = xrdb.color14
 theme.xcolor15 = xrdb.color15
 
 -- Font
-theme.font = "mplus Nerd Font"
-theme.font_bold = theme.font .. " bold"
-theme.font_heavy = theme.font .. "black"
+theme.font = "ProFontIIx Nerd Font"
+theme.font_bold = theme.font .. "Bold"
+theme.font_heavy = theme.font .. "Bold"
 -- Noto Sans Grantha
 -- Menu icon theme
 -- theme.icon_theme = 'breeze'
@@ -55,15 +55,14 @@ theme.accent = theme.xcolor15
 theme.accent = theme.xcolor4
 -- Foreground
 
-theme.title_font = "3270SemiNarrow Nerd Font Mono Bold 14"
+theme.title_font = "ProFontIIx Nerd Font Bold 14"
 
 theme.fg_normal = theme.xforeground
 theme.fg_focus = theme.xcolor7
 theme.fg_urgent = theme.xcolor1
 
 theme.bat_fg_critical = theme.xcolor1
-theme.background = theme.xbackground .. "cc"
-
+theme.background = theme.xbackground
 theme.bg_normal = theme.background
 theme.bg_focus = theme.xcolor0
 theme.bg_urgent = theme.xcolor8
@@ -166,7 +165,7 @@ theme.client_radius = dpi(12)
 theme.useless_gap = 5
 
 -- Menu
-theme.menu_font = "3270SemiNarrow Nerd Font Mono Bold 11"
+theme.menu_font = "ProFontIIx Nerd Font Bold 11"
 theme.menu_submenu = "" -- ➤
 
 theme.menu_height = dpi(24)
@@ -221,7 +220,7 @@ theme.taglist_disable_icon = true
 
 -- Tasklist
 
-theme.tasklist_font = "3270SemiNarrow Nerd Font Mono Bold 15"
+theme.tasklist_font = "ProFontIIx Nerd Font  Bold 15"
 theme.tasklist_fg_minimize = theme.color8
 theme.tasklist_bg_normal = theme.xbackground
 theme.tasklist_bg_urgent = theme.xbackground
@@ -256,8 +255,8 @@ theme.snap_border_width = dpi(15)
 
 -- Hotkey popup
 
-theme.hotkeys_font = "3270SemiNarrow Nerd Font Mono Medium"
-theme.hotkeys_description_font = "3270SemiNarrow Nerd Font Mono Bold"
+theme.hotkeys_font = "ProFontIIx Nerd Font  Bold"
+theme.hotkeys_description_font = "ProFontIIx Nerd Font  Bold"
 theme.hotkeys_bg = theme.background
 theme.hotkeys_group_margin = dpi(20)
 
@@ -277,7 +276,7 @@ theme.panel_blur_type = "panel" -- use "dock" for no blur, "panel" for blur
 
 -- Second small panel
 -- small heigt meeans the increase call back is necessary so one can read it
-theme.small_panel_height = 30
+theme.small_panel_height = 40
 theme.small_panel_width = 1920
 theme.small_panel_desktop_width = 1920
 theme.small_panel_laptop_width = 1920
@@ -287,7 +286,7 @@ theme.small_panel_widget_border_width = dpi(0)
 theme.small_panel_widget_border_color = theme.xbackground .. "00"
 theme.small_panel_widget_bg_color = theme.xbackground .. "00"
 theme.small_panel_widget_radius = dpi(3)
-theme.small_panel_padding = dpi(4)
+theme.small_panel_padding = dpi(1)
 theme.small_panel_blur_type = "panel" -- use "dock" for no blur, "panel" for blur
 
 -- Popup
@@ -310,7 +309,7 @@ theme.tabbed_spawn_in_tab = true -- whether a new client should spawn into the f
 theme.tabbar_ontop = false
 theme.tabbar_radius = dpi(3) -- border radius of the tabbar
 theme.tabbar_style = "modern" -- style of the tabbar ("default", "boxes" or "modern")
-theme.tabbar_font = "3270SemiNarrow Nerd Font Mono Bold 12" -- font of the tabbar
+theme.tabbar_font = "ProFontIIx Nerd Font Bold 12" -- font of the tabbar
 theme.tabbar_size = 25 -- size of the tabbar
 theme.tabbar_position = "top" -- position of the tabbar
 theme.tabbar_bg_normal = theme.xbackground -- background color of the focused client on the tabbar

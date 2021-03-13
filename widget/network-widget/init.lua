@@ -13,7 +13,7 @@ local apps = require('configuration.apps')
 local icons = require('theme.icons')
 
 local watch = awful.widget.watch
-local update_interval = configuration.update_interval or 5
+local update_interval = configuration.update_interval or 15
 local awesome = _G.awesome
 local mouse = _G.mouse
 
@@ -59,7 +59,6 @@ network_widget.toggle_vpn = function()
     awful.spawn('nmcli con down ' .. apps.default.vpn)
   else
     awful.spawn('nmcli con up ' .. apps.default.vpn)
-    -- TODO: do not use default vpn but give a list with joices
   end
   network_widget.update_function()
   awesome.emit_signal('widget:wifi:updateicon')
@@ -108,7 +107,7 @@ network_widget.notify_connection = function(notif)
 end
 
 network_widget.update_function = function()
-  -- TODO: implement some status change check so notifications come not all the time + check how to best get the ssid directly so it appears in the notification
+
   awful.spawn.easy_async_with_shell(
     [[nmcli]], function(stdout)
       local nmcli_output = stdout

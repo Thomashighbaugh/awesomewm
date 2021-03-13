@@ -12,10 +12,10 @@
        Constructor for build the top and bottom wibox
 --]]
 local panel_builder = {}
-local beautiful = require('beautiful')
-local wibox = require('wibox')
-local gears = require('gears')
-local callbacks = require('widget.callbacks')
+local beautiful = require("beautiful")
+local wibox = require("wibox")
+local gears = require("gears")
+local callbacks = require("widget.callbacks")
 
 local dpi = beautiful.xresources.apply_dpi
 
@@ -23,7 +23,7 @@ local widget_padd_top = beautiful.panel_padding
 local widget_padd_bot = beautiful.panel_padding
 
 local swap_orientation = function(orientation)
-    return orientation == 'horizontal' and 'vertical' or 'horizontal'
+    return orientation == "horizontal" and "vertical" or "horizontal"
 end
 
 local simple_widgets = {}
@@ -37,7 +37,7 @@ do -- definition of simple widgets without an extra file
                     {
                         base_size = dpi(30),
                         horizontal = true,
-                        screen = 'primary',
+                        screen = "primary",
                         widget = wibox.widget.systray
                     },
                     visible = false,
@@ -64,24 +64,24 @@ end
 
 local function load_widget(name)
     local loadwidget
-    io.stderr:write('try loading widget: ' .. name .. '\n')
+    io.stderr:write("try loading widget: " .. name .. "\n")
     if
         not pcall(
             function()
-                loadwidget = require('widget.' .. name)
+                loadwidget = require("widget." .. name)
             end
         )
      then
-        io.stderr:write('Loading simple widget: ' .. name .. '\n')
+        io.stderr:write("Loading simple widget: " .. name .. "\n")
         loadwidget = simple_widgets[name]
     end
     -- error handling
     if not loadwidget then
-        io.stderr:write('Panel-builder: widget not found: ' .. name .. '\n')
+        io.stderr:write("Panel-builder: widget not found: " .. name .. "\n")
         return
     end
     if not loadwidget.build then
-        io.stderr:write('Panel-builder: widget appears to be missing the build function: ' .. name .. '\n')
+        io.stderr:write("Panel-builder: widget appears to be missing the build function: " .. name .. "\n")
         return
     end
     return loadwidget
@@ -90,10 +90,10 @@ end
 local function replaceNamesWithWidgets(args, widgets)
     for key = 1, #widgets do
         local name = widgets[key]
-        if type(name) == 'string' then
+        if type(name) == "string" then
             local widget = load_widget(name)
             widgets[key] = widget and panel_builder.wrap_widget(widget.build(args)) or nil
-        elseif type(name) == 'table' then
+        elseif type(name) == "table" then
             replaceNamesWithWidgets(args, name)
         else
             widgets[key] = nil
@@ -110,7 +110,7 @@ local function writeTableValuesRecursive(wtable, values)
     -- recursion
     for key = 1, #wtable do
         local value = wtable[key]
-        if type(value) == 'table' then
+        if type(value) == "table" then
             writeTableValuesRecursive(value, values)
         end
     end
@@ -119,7 +119,7 @@ end
 function panel_builder.panel_container(args, widget_names)
     local positional_widget_names = false
     for k, v in pairs(widget_names) do
-        if string.match(k, '.+_widgets$') then
+        if string.match(k, ".+_widgets$") then
             v.layout = wibox.layout.fixed[args.orientation]
             v.spacing = dpi(5)
 
@@ -134,7 +134,7 @@ function panel_builder.panel_container(args, widget_names)
     return {
         {
             layout = wibox.layout.align[args.orientation],
-            expand = 'none',
+            expand = "none",
             widget_names.left_widgets,
             widget_names.middle_widgets,
             widget_names.right_widgets
@@ -186,7 +186,7 @@ panel_builder.build_single_panel = function(args, widget_names)
     local panel_x = s.geometry.x + 0.5 * (s.geometry.width - panel_width)
     local panel_y = s.geometry.y
 
-    if pos == 'bottom' then
+    if pos == "bottom" then
         panel_y = panel_y + s.geometry.height - panel_height
     end
 
@@ -202,7 +202,7 @@ panel_builder.build_single_panel = function(args, widget_names)
         bg = panel_bg,
         fg = fg_normal,
         shape = function(cr, w, h)
-            if pos == 'bottom' then
+            if pos == "bottom" then
                 gears.shape.partially_rounded_rect(cr, w, h, true, true, false, false, panel_radius)
             else
                 gears.shape.partially_rounded_rect(cr, w, h, false, false, true, true, panel_radius)
@@ -210,17 +210,17 @@ panel_builder.build_single_panel = function(args, widget_names)
         end
     }
 
-    if pos == 'bottom' then
+    if pos == "bottom" then
         panel:struts {bottom = panel_height}
     else
         panel:struts {top = panel_height}
     end
     panel:connect_signal(
-        'mouse::enter',
+        "mouse::enter",
         function()
             local w = mouse.current_wibox
             if w then
-                w.cursor = 'left_ptr'
+                w.cursor = "left_ptr"
             end
         end
     )

@@ -49,7 +49,7 @@ layout_widget.build = function(args)
     delay_show = 1,
     preferred_positions = {"right", "left", "top", "bottom"},
     preferred_alignments = {"middle"},
-    margins = dpi(8),
+    margins = dpi(2),
     timer_function = function()
       return "Change Layout"
     end

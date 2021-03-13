@@ -1,20 +1,12 @@
---[[
-     _______ _______ ______      ______ _______ _______ _______ _____      __              
-    |_     _|       |   __ \    |   __ \   _   |    |  |    ___|     |_   |  |.--.--.---.-.
-      |   | |   -   |    __/    |    __/       |       |    ___|       |__|  ||  |  |  _  |
-      |___| |_______|___|       |___|  |___|___|__|____|_______|_______|__|__||_____|___._|
-       by Thomas Leon Highbaugh
-    
-     Created:
-       3/4/2021, 2:45:50 PM
-     Last edited:
-       3/4/2021, 2:46:30 PM
-     Auto updated?
-       Yes
-    
-     Description:
-       the bar at the top of the screen 
---]]
+--  _______                   ______
+-- |_     _|.-----.-----.    |   __ \.---.-.----.
+--   |   |  |  _  |  _  |    |   __ <|  _  |   _|
+--   |___|  |_____|   __|    |______/|___._|__|
+--                |__|
+--##################################################
+-- ############ Thomas Leon Highbaugh ###############
+--##################################################
+
 local panel_builder = require("module.panel-builder")
 local beautiful = require("beautiful")
 local callbacks = require("widget.callbacks")
@@ -37,7 +29,10 @@ local status_panel = function(s)
 		panel_builder.build_single_panel(
 		args,
 		{
-			left_widgets = {"app-search-toggler"},
+			left_widgets = {
+				"app-search-toggler",
+				"settings-panel-toggler"
+			},
 			middle_widgets = {"tasklist"},
 			right_widgets = {
 				"network-widget",

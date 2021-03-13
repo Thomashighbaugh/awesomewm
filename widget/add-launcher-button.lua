@@ -9,6 +9,7 @@ local beautiful = require('beautiful')
 
 local dpi = require('beautiful').xresources.apply_dpi
 local clickable_image = require('widget.clickable-image')
+--- This is the returned type - a table with a build function to create the widget.
 
 local apps = require('configuration.apps')
 local icons = require('theme.icons')
@@ -17,14 +18,19 @@ local icons = require('theme.icons')
 local add_button_widget = {}
 
 add_button_widget.build = function(args)
-  local widget_button = clickable_image(
-    args, icons.widget.plus, function()
+  local widget_button = awesomebuttons.with_icon {
+    icon = "/home/tlh/.config/awesome/theme/icons/feathericons/plus.svg",
+    color = beautiful.xcolor8,
+    shape = "rounded_rect",
+    icon_size = 32,
+    onclick =  function()
       awful.spawn(
         awful.screen.focused().selected_tag.default_app, {
           tag = mouse.screen.selected_tag,
           placement = awful.placement.bottom_right
         })
-
+      end
+  }
   awful.tooltip {
     objects = {add_button_widget.build.widget_button},
     mode = 'outside',
