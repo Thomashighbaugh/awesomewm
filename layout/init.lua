@@ -31,6 +31,7 @@ _G.screen.connect_signal(
 		require("widget.volume").build_dashboard(args)
 		require("widget.calendar-popup").build_dashboard(args)
 		require("widget.notif-center.notif-popup").build_dashboard(args)
+
 		require("layout.wallpaper")
 		require("layout.signals")
 	end

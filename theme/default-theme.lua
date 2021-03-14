@@ -194,13 +194,13 @@ theme.separator_color = theme.color7
 
 -- Layoutbox icons
 
-theme.layout_max = theme.icons .. "layouts/max.svg"
+theme.layout_max = theme.icons .. "layouts/max.png"
 theme.layout_tile = theme.icons .. "layouts/tile.svg"
 theme.layout_tilebottom = theme.icons .. "layouts/tilebottom.svg"
-theme.layout_dwindle = theme.icons .. "layouts/dwindle.svg"
-theme.layout_floating = theme.icons .. "layouts/floating.svg"
-theme.layout_fairh = theme.icons .. "layouts/fairh.svg"
-theme.layout_mstab = theme.icons .. "layouts/mstab.svg"
+theme.layout_dwindle = theme.icons .. "layouts/dwindle.png"
+theme.layout_floating = theme.icons .. "layouts/floating.png"
+theme.layout_fairh = theme.icons .. "layouts/fairh.png"
+theme.layout_mstab = theme.icons .. "layouts/mstab.png"
 
 -- Taglist
 
@@ -220,7 +220,7 @@ theme.taglist_disable_icon = true
 
 -- Tasklist
 
-theme.tasklist_font = "ProFontIIx Nerd Font  Bold 15"
+theme.tasklist_font = "ProFontIIx Nerd Font Bold 15"
 theme.tasklist_fg_minimize = theme.color8
 theme.tasklist_bg_normal = theme.xbackground
 theme.tasklist_bg_urgent = theme.xbackground
@@ -256,7 +256,7 @@ theme.snap_border_width = dpi(15)
 -- Hotkey popup
 
 theme.hotkeys_font = "ProFontIIx Nerd Font  Bold"
-theme.hotkeys_description_font = "ProFontIIx Nerd Font  Bold"
+theme.hotkeys_description_font = "ProFontIIx Nerd Font Bold"
 theme.hotkeys_bg = theme.background
 theme.hotkeys_group_margin = dpi(20)
 

@@ -1,22 +1,12 @@
---[[ 
-_______ _______ _______ _______    __________ _______ _______ _______  __              
-|_     _|   _   |     __|     __|  /  /_     _|    |  |_     _|_     _||  |.--.--.---.-.
-  |   | |       |    |  |__     |,' ,' _|   |_|       |_|   |_  |   |__|  ||  |  |  _  |
-  |___| |___|___|_______|_______/__/  |_______|__|____|_______| |___|__|__||_____|___._|
-                                                                                        
-       by Thomas Leon Highbaugh
-    
-     Created:
-       3/4/2021, 3:23:21 PM
-     Last edited:
-       3/6/2021, 3:28:48 PM
-     Auto updated?
-       Yes
-    
-     Description:
-       This pain in my you know what, provides the tags and assigns them
-       the letter they are displayed as such below
---]]
+--  _______                    
+-- |_     _|.---.-.-----.-----.
+--   |   |  |  _  |  _  |__ --|
+--   |___|  |___._|___  |_____|
+--                |_____|      
+--##################################################
+--############ Thomas Leon Highbaugh ###############
+--##################################################
+
 local awful = require("awful")
 local beautiful = require("beautiful")
 local apps = require("configuration.apps")
@@ -26,7 +16,7 @@ local mstab = bling.layout.mstab
 local centered = bling.layout.centered
 local vertical = bling.layout.vertical
 local horizontal = bling.layout.horizontal
-
+local lain = require("external.lib.lain")
 local tagnum = {"a", "w", "e", "s", "o", "m", "e", "w", "m"}
 local tags = {
     {
@@ -67,7 +57,7 @@ local tags = {
     }
 }
 
-tag.connect_signal(
+_G.tag.connect_signal(
     "request::default_layouts",
     function()
         awful.layout.append_default_layouts(
@@ -75,26 +65,27 @@ tag.connect_signal(
                 bling.layout.mstab,
                 bling.layout.centered,
                 bling.layout.vertical,
-                bling.layout.horizontal,
+                bling.layout.equalarea,
                 awful.layout.suit.spiral.dwindle,
-                --         awful.layout.suit.corner.nw,
                 awful.layout.suit.tile,
+                awful.layout.suit.max,
+                lain.layout.cascade,
+                lain.layout.centerwork,
+                lain.layout.termfair,
+                -- bling.layout.horizontal,
                 -- awful.layout.suit.tile.left,
                 -- awful.layout.suit.tile.bottom,
                 -- awful.layout.suit.tile.top,
                 -- awful.layout.suit.fair,
-                awful.layout.suit.fair.horizontal,
-                awful.layout.suit.spiral.dwindle,
-                awful.layout.suit.max
+                -- awful.layout.suit.fair.horizontal,
+                -- awful.layout.suit.corner.nw,
                 -- awful.layout.suit.max.fullscreen,
-                --awful.layout.suit.magnifier,
-                ----awful.layout.suit.corner.nw,
+                -- awful.layout.suit.magnifier,
+                -- awful.layout.suit.corner.nw,
                 -- awful.layout.suit.corner.ne,
                 -- awful.layout.suit.corner.sw,
                 -- awful.layout.suit.corner.se,
                 -- awful.layout.suit.spiral.dwindle,
-                -- awful.layout.suit.tile,
-                -- awful.layout.suit.max
             }
         )
     end

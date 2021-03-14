@@ -1,22 +1,3 @@
---[[ 
-   _____  _______ _______ _______ ______ _______ _______ ______ _____    __              
-|     \|   _   |     __|   |   |   __ \       |   _   |   __ \     \  |  |.--.--.---.-.
-|  --  |       |__     |       |   __ <   -   |       |      <  --  |_|  ||  |  |  _  |
-|_____/|___|___|_______|___|___|______/_______|___|___|___|__|_____/__|__||_____|___._|
-                                                                                       
-       by Thomas Leon Highbaugh
-    
-     Created:
-       3/4/2021, 2:41:00 PM
-     Last edited:
-       3/4/2021, 2:41:24 PM
-     Auto updated?
-       Yes
-    
-     Description:
-       An as of yet unused template for a dashboard to appear at key bind
-       or button press 
---]]
 
 
 

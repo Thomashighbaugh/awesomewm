@@ -8,8 +8,8 @@ buttons.with_icon = function(args)
     local color = args.color or "#D8DEE9"
     local icon = args.icon or "help-circle"
     local shape = args.shape or "circle"
-    local icon_size = args.icon_size or 20
-    local icon_margin = args.icon_margin or 4
+    local icon_size = 40
+    local icon_margin = 0
     local onclick = args.onclick or function()
         end
 
@@ -105,10 +105,10 @@ buttons.with_text = function(args)
                         '000" foreground="' .. ((type == "flat") and "#00000000" or color) .. '">' .. text .. "</span>",
                 widget = wibox.widget.textbox
             },
-            top = 4,
-            bottom = 4,
-            left = 8,
-            right = 8,
+            top = 1,
+            bottom = 1,
+            left = 2,
+            right = 2,
             widget = wibox.container.margin
         },
         bg = "#00000000",
@@ -180,10 +180,10 @@ buttons.with_icon_and_text = function(args)
                 {
                     image = icon,
                     resize = true,
-                    forced_height = 20,
+                    forced_height = 32,
                     widget = wibox.widget.imagebox
                 },
-                margins = 4,
+                margins = 0,
                 widget = wibox.container.margin
             },
             {
@@ -194,9 +194,9 @@ buttons.with_icon_and_text = function(args)
                                 ((type == "flat") and "#00000000" or color) .. '">' .. text .. "</span>",
                     widget = wibox.widget.textbox
                 },
-                top = 4,
-                bottom = 4,
-                right = 8,
+                top = 1,
+                bottom = 1,
+                right = 2,
                 widget = wibox.container.margin
             },
             layout = wibox.layout.fixed.horizontal

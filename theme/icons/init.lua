@@ -1,3 +1,4 @@
+
 -- Icons directory
 local _, package_path = ...
 if not package_path then
@@ -24,16 +25,7 @@ return {
 	graphics = dir .. "tag-list/" .. "graphics.svg",
 	menu = dir .. "tag-list/" .. "menu.svg",
 	close_small = dir .. "tag-list/" .. "close-small.svg",
-	-- tag1 = dir .. 'tag-list/' .. 'thunderbird.svg',
-	-- tag2 = dir .. 'tag-list/' .. 'web-browser.svg',
-	-- tag3 = dir .. 'tag-list/' .. 'code.svg',
-	-- tag4 = dir .. 'tag-list/' .. 'file-manager.svg',
-	-- tag5 = dir .. 'tag-list/' .. 'terminal.svg',
-	-- tag6 = dir .. 'tag-list/' .. 'vim.svg',
-	-- tag7 = dir .. 'tag-list/' .. 'text-editor.svg',
-	-- tag8 = dir .. 'tag-list/' .. 'development.svg',
-	-- tag9 = dir .. 'tag-list/' .. 'spotify.svg',
-
+	
 	tag1 = dir .. "tag-list-numbers/1.svg",
 	tag2 = dir .. "tag-list-numbers/2.svg",
 	tag3 = dir .. "tag-list-numbers/3.svg",
@@ -163,6 +155,17 @@ return {
 			ram_slider = dir .. "widgets/hw_monitor/" .. "memory.svg",
 			temp_slider = dir .. "widgets/hw_monitor/" .. "thermometer.svg",
 			disk_slider = dir .. "widgets/hw_monitor/" .. "harddisk.svg"
+		},
+		layout = {
+			mstab = dir .. "theme/icons/layout/mstab.png",
+			centered = dir .. "theme/icons/layout/centered.png",
+			vertical = dir .. "theme/icons/layout/vertical.png",
+			dwindle = dir .. "theme/icons/layout/dwindle.png",
+			tile = dir .. "theme/icons/layout/tile.png",
+			max = dir .. "theme/icons/layout/max.png",
+			horizontal = dir .. "theme/icons/layout/horizontal.png",
+
+
 		}
 	}
 }
