@@ -276,8 +276,6 @@ network_widget.build = function(args)
   if not network_widget.watch_active then
     network_widget.start_watch()
   end
-  -- TODO warum geht das hier nicht?!?!
-  -- network_widget.created_widgets.insert(widget_button)
 
   return widget_button
 end
@@ -312,7 +310,6 @@ network_widget.build_dashboard = function(args)
     local dashboard_toggle_button, dashboard_toggle_icon =
       clickable_image(args, icons.toggled_off, toggle_icon_action)
 
-    -- TODO : build it also as a vertical widget
     local dashboard_widget = wibox.widget {
       {
         {

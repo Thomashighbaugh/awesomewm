@@ -41,7 +41,6 @@ volume_widget.start_watch = function()
   awesome.connect_signal(
     'widget::volume:set', function(value)
       if not value then
-        io.stderr('value volume not set##############\n')
         return
       end
       if value > 100 then
@@ -97,7 +96,6 @@ end
 
 volume_widget.build_dashboard = function(args)
 
-  -- TODO set those colors from theme.lua
   local slider = wibox.widget {
     nil,
     {

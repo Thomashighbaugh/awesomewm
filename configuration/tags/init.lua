@@ -94,9 +94,6 @@ _G.tag.connect_signal(
 screen.connect_signal(
     "request::desktop_decoration",
     function(s)
-        local fullscreen = awful.layout.suit.max
-        local std_tiled = awful.layout.suit.tile
-        local floating = awful.layout.suit.floating
         local layouts = {
             mstab,
             mstab,
@@ -127,14 +124,3 @@ screen.connect_signal(
     end
 )
 
-tag.connect_signal(
-    "property::layout",
-    function(t)
-        local currentLayout = awful.tag.getproperty(t, "layout")
-        -- if (currentLayout == awful.layout.suit.max) then
-        -- 	t.gap = 0
-        -- else
-        t.gap = beautiful.useless_gap
-        -- end
-    end
-)

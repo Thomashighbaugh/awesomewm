@@ -24,7 +24,7 @@ local empty_notifbox =
       nil
     },
     {
-      text = "No Notificatons At Present!.",
+      text = "No Notificatons Pending.",
       font = beautiful.font_bold .. " 14",
       align = "center",
       valign = "center",
@@ -38,14 +38,14 @@ local empty_notifbox =
       widget = wibox.widget.textbox
     }
   },
-  margins = dpi(8),
+  margins = dpi(4),
   widget = wibox.container.margin
 }
 
 local separator_for_empty_msg =
   wibox.widget {
-  orientation = "vertical",
-  opacity = 0.0,
+  orientation = "horizontal",
+  opacity = 0.40,
   widget = wibox.widget.separator
 }
 

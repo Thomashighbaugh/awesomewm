@@ -59,7 +59,7 @@ local decorate_cell = function(widget, flag, date)
   -- Change bg color for weekends
   local d = {year = date.year, month = (date.month or 1), day = (date.day or 1)}
   local weekday = tonumber(os.date('%w', os.time(d)))
-  local default_bg = (weekday == 0 or weekday == 6) and '#232323' or '#383838'
+  local default_bg = (weekday == 0 or weekday == 6) and beautiful.xcolor0 or beautiful.xcolor8
   local ret = wibox.widget {
     {
       widget,

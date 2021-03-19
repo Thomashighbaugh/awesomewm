@@ -1,12 +1,9 @@
 local awful = require("awful")
-local gears = require("gears")
 
 local dpi = require("beautiful").xresources.apply_dpi
-local clickable_image = require("widget.clickable-image")
 local awesomebuttons = require("external.lib.awesome-buttons.awesome-buttons")
 local beautiful = require("beautiful")
 local apps = require("configuration.apps")
-local icons = require("theme.icons")
 
 --- This is the returned type - a table with a build function to create the widget.
 --- it may contain more widget
@@ -16,11 +13,12 @@ local search_widget = {}
 search_widget.build = function(args)
   local widget =
     awesomebuttons.with_icon {
-    icon = "/home/tlh/.config/awesome/theme/icons/logo.svg",
-    color = beautiful.xcolor15,
+    icon = "/home/tlh/.config/awesome/theme/icons/feathericons/home.svg",
+    color = beautiful.xcolor13,
     shape = "rounded_rect",
-    icon_size = 27,
-    margins = 0,
+    icon_size = 28,
+    background = beautiful.xcolor4,
+    margins = 8,
     onclick = function()
       awful.spawn(apps.default.rofiappmenu)
     end

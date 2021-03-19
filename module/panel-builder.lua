@@ -1,16 +1,8 @@
---[[ PANEL BUILDER.lua
-       by Thomas Leon Highbaugh
-    
-     Created:
-       3/4/2021, 2:30:03 PM
-     Last edited:
-       3/5/2021, 4:41:18 PM
-     Auto updated?
-       Yes
-    
-     Description:
-       Constructor for build the top and bottom wibox
---]]
+--                           __      __           __ __     __             
+-- .-----.---.-.-----.-----.|  |    |  |--.--.--.|__|  |.--|  |.-----.----.
+-- |  _  |  _  |     |  -__||  |    |  _  |  |  ||  |  ||  _  ||  -__|   _|
+-- |   __|___._|__|__|_____||__|    |_____|_____||__|__||_____||_____|__|  
+-- |__|                                                                    
 local panel_builder = {}
 local beautiful = require("beautiful")
 local wibox = require("wibox")

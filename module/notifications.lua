@@ -193,7 +193,7 @@ naughty.connect_signal(
                                                             valign = 'center',
                                                             widget = wibox.widget.textbox
                                                         },
-                                                        margins = dpi(5),
+                                                        margins = dpi(0),
                                                         widget = wibox.container.margin
                                                     },
                                                     bg = beautiful.notification_bg2,
@@ -205,7 +205,7 @@ naughty.connect_signal(
                                                             resize_strategy = 'center',
                                                             widget = naughty.widget.icon
                                                         },
-                                                        margins = dpi(5),
+                                                        margins = dpi(0),
                                                         widget = wibox.container.margin
                                                     },
                                                     {
@@ -223,18 +223,18 @@ naughty.connect_signal(
                                                             },
                                                             nil
                                                         },
-                                                        margins = dpi(5),
+                                                        margins = dpi(0),
                                                         widget = wibox.container.margin
                                                     },
                                                     layout = wibox.layout.fixed.horizontal
                                                 },
                                                 fill_space = true,
-                                                spacing = dpi(5),
+                                                spacing = dpi(0),
                                                 layout = wibox.layout.fixed.vertical
                                             },
                                             -- Margin between the fake background
                                             -- Set to 0 to preserve the 'titlebar' effect
-                                            margins = dpi(0),
+                                            margins = dpi(6),
                                             widget = wibox.container.margin
                                         },
                                         bg = beautiful.transparent,
@@ -243,7 +243,7 @@ naughty.connect_signal(
                                     -- Notification action list
                                     -- naughty.list.actions,
                                     actions_template,
-                                    spacing = dpi(4),
+                                    spacing = dpi(8),
                                     layout = wibox.layout.fixed.vertical
                                 },
                                 bg = beautiful.transparent,
@@ -274,9 +274,8 @@ naughty.connect_signal(
         }
 
         -- Destroy popups if dont_disturb mode is on
-        -- Or if the right_panel is visible
         local focused = awful.screen.focused()
-        if require('widget.notif-center.dont-disturb').dont_disturb then -- or (focused.right_panel and focused.right_panel.visible) then
+        if require('widget.notif-center.dont-disturb').dont_disturb then 
             naughty.destroy_all_notifications()
         end
     end

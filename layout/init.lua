@@ -33,6 +33,5 @@ _G.screen.connect_signal(
 		require("widget.notif-center.notif-popup").build_dashboard(args)
 
 		require("layout.wallpaper")
-		require("layout.signals")
 	end
 )

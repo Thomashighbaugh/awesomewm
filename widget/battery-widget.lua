@@ -88,7 +88,7 @@ battery_widget.start_watch = function()
           battery_widget.content.charging = false
         elseif status:match("charging") then
           battery_widget.content.charging = true
-          if battery_widget.content.percentage < 10 then
+          if battery_widget.content.percentage < 5 then
             battery_widget.notify_alert("normal")
           end
         end

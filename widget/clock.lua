@@ -1,6 +1,7 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
+local awesomebuttons = require("external.lib.awesome-buttons.awesome-buttons")
 
 local dpi = require("beautiful").xresources.apply_dpi
 local callbacks = require("widget.callbacks")
@@ -18,16 +19,13 @@ clock_widget.build = function(args)
 		margins = args.margins or beautiful.margin_size
 	end
 
-	local imagebox =
-		wibox.widget {
-		{
-			id = "icon",
-			image = icons.widget.clock,
-			widget = wibox.widget.imagebox,
-			resize = true
-		},
-		layout = widget_layout()
-	}
+	local imagebox =    awesomebuttons.with_icon {
+    icon = "/home/tlh/.config/awesome/theme/icons/feathericons/clock.svg",
+    color = beautiful.xcolor1,
+    shape = "rounded_rect",
+    icon_size = 18,
+
+  }
 	local textbox = wibox.widget.textclock('<span font="' .. beautiful.font .. ' 18">%H:%M</span>', 1)
 
 	local widget =
@@ -76,7 +74,7 @@ clock_widget.build = function(args)
 			end
 
 			local date_str =
-				"Hello! \n Today is the " .. "<b>" .. day .. ordinal .. " of " .. month .. "</b>.\n" .. "And it's " .. os.date("%A")
+				"Good day to you! \n Today is ".. os.date("%A") .." the " .. "<b>" .. day .. ordinal .. " of " .. month .. "</b>.\n"
 			return date_str
 		end
 	}

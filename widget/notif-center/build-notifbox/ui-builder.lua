@@ -52,7 +52,7 @@ end
 local notifbox_appname = function(app)
   return wibox.widget {
     markup = app,
-    font = beautiful.font_bold .. ' 12',
+    font = beautiful.font_bold .. ' 18',
     align = 'left',
     valign = 'center',
     widget = wibox.widget.textbox

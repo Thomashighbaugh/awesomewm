@@ -41,9 +41,8 @@ local notifbox_box = function(notif, icon, title, message, app, bgcolor)
   local notifbox_timepop = wibox.widget {
     id = 'time_pop',
     text = nil,
-    font = beautiful.font .. ' 10',
+    font = beautiful.font .. ' 16',
     align = 'left',
-    valign = 'center',
     visible = true,
     widget = wibox.widget.textbox
   }
@@ -53,7 +52,7 @@ local notifbox_box = function(notif, icon, title, message, app, bgcolor)
 
   -- Timer for notification time pop
   gears.timer {
-    timeout = 60,
+    timeout = 15,
     call_now = true,
     autostart = true,
     callback = function()
@@ -118,7 +117,7 @@ local notifbox_box = function(notif, icon, title, message, app, bgcolor)
         },
         {
           layout = wibox.layout.fixed.vertical,
-          spacing = dpi(5),
+          spacing = dpi(3),
           {
             builder.notifbox_title(title),
             builder.notifbox_message(message),
@@ -128,7 +127,7 @@ local notifbox_box = function(notif, icon, title, message, app, bgcolor)
         }
 
       },
-      margins = dpi(10),
+      margins = dpi(5),
       widget = wibox.container.margin
     },
     bg = bgcolor,

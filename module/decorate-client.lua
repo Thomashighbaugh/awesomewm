@@ -20,7 +20,7 @@ client.connect_signal(
     if c.fullscreen then
       gears.timer.delayed_call(
         function()
-          gears.surface.apply_shape_bounding(c, gears.shape.rounded_rect, 0)
+          gears.surface.apply_shape_bounding(c, gears.shape.rounded_rect, 10)
         end)
     else
       gears.timer.delayed_call(

@@ -16,15 +16,15 @@ calendar_popup.build_dashboard = function(args)
 	end
 
 	styles.month = {
-		padding = 5,
+		padding = 2,
 		bg_color = beautiful.transparent,
 		border_width = 0,
 		shape = rounded_shape(beautiful.groups_radius)
 	}
 	styles.normal = {shape = rounded_shape(beautiful.groups_radius)}
 	styles.focus = {
-		fg_color = beautiful.xcolor0,
-		bg_color = beautiful.xcolor10,
+		fg_color = beautiful.xcolor15,
+		bg_color = beautiful.xcolor4,
 		markup = function(t)
 			return '<b>' .. t .. '</b>'
 		end,
@@ -71,7 +71,7 @@ calendar_popup.build_dashboard = function(args)
 				widget = wibox.container.margin
 			},
 			shape = props.shape,
-			shape_border_color = props.border_color or '#b9214f',
+			shape_border_color = props.border_color or beautiful.xcolor1,
 			shape_border_width = props.border_width or 0,
 			fg = props.fg_color or beautiful.fg_focus,
 			bg = props.bg_color or default_bg,
@@ -84,7 +84,7 @@ calendar_popup.build_dashboard = function(args)
 		wibox.widget {
 		date = os.date('*t'),
 		fn_embed = decorate_cell,
-		font = beautiful.font .. ' 18',
+		font = beautiful.font .. ' 11',
 		widget = wibox.widget.calendar.month
 	}
 
@@ -134,8 +134,8 @@ calendar_popup.build_dashboard = function(args)
 	local fixed_size_container =
 		wibox.widget {
 		cal,
-		left = dpi(2),
-		right = dpi(2),
+		left = dpi(8),
+		right = dpi(8),
 		forced_height = n_height,
 		forced_width = n_width,
 		widget = wibox.container.margin

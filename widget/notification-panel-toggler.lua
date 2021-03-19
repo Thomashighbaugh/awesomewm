@@ -8,7 +8,7 @@ notification_toggler_widget.build = function(args)
     icon = "/home/tlh/.config/awesome/theme/icons/feathericons/inbox.svg",
     color = beautiful.xcolor8,
     shape = "rounded_rect",
-    icon_size = 22,
+    icon_size = 18,
     onclick = function()
       args.screen:emit_signal("sidebar::show_mode", "notif")
       awesome.emit_signal("widget::notif_osd:show", true)

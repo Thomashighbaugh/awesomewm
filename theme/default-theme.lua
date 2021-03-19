@@ -67,7 +67,7 @@ theme.bg_normal = theme.background
 theme.bg_focus = theme.xcolor0
 theme.bg_urgent = theme.xcolor8
 
-theme.margin_size = dpi(1)
+theme.margin_size = dpi(0)
 theme.margin_hover_diff = dpi(2)
 theme.transparent = theme.xbackground .. "00"
 
@@ -78,7 +78,7 @@ theme.systray_icon_spacing = dpi(9)
 
 -- Titlebar
 
-theme.titlebar_size = dpi(22)
+theme.titlebar_size = dpi(32)
 theme.titlebar_button_margin = dpi(0)
 theme.titlebar_button_spacing = dpi(4)
 theme.titlebar_pos = "top"
@@ -276,7 +276,7 @@ theme.panel_blur_type = "panel" -- use "dock" for no blur, "panel" for blur
 
 -- Second small panel
 -- small heigt meeans the increase call back is necessary so one can read it
-theme.small_panel_height = 40
+theme.small_panel_height = 32
 theme.small_panel_width = 1920
 theme.small_panel_desktop_width = 1920
 theme.small_panel_laptop_width = 1920

@@ -4,7 +4,7 @@ local gears = require("gears")
 
 local dpi = require("beautiful").xresources.apply_dpi
 local clickable_image = require("widget.clickable-image")
-
+local beautiful = require("beautiful")
 local apps = require("configuration.apps")
 local icons = require("theme.icons")
 
@@ -22,10 +22,10 @@ app_launcher_block.default_apps = {
 local build_single_launcher = function(launcher, args)
   local widget =
     awesomebuttons.with_icon {
-    icon = "/home/tlh/.config/awesome/theme/icons/arch.svg",
-    color = beautiful.xcolor7,
+    icon = "/home/tlh/.config/awesome/theme/icons/logo.png",
+    color = beautiful.xcolor6,
     shape = "rounded_rect",
-    icon_size = 32,
+    icon_size = 48,
     onclick = function()
       awful.spawn(launcher.command)
     end

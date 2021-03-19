@@ -173,8 +173,8 @@ ruled.client.connect_signal(
 				draw_backdrop = false,
 				switchtotag = true,
 				floating = true,
-				hide_titlebars = true,
-				placement = awful.placement.centered
+				hide_titlebars = false,
+reboot
 			}
 		}
 		-- Sandboxes
@@ -250,13 +250,7 @@ ruled.client.connect_signal(
 	end
 )
 
--- Normally we'd do this with a rule, but other apps like spotify and supertuxkart doesn't set its class or name
--- until after it starts up, so we need to catch that signal.
 
--- If the application is fullscreen in its settings, make sure to set `c.fullscreen = false` first
--- before moving to the desired tag or else the tag where the program spawn will cause panels to hide.
--- After moving the program to specified tag you can set `c.fullscreen = true` now
--- See what I did in `SuperTuxKart`
 
 _G.client.connect_signal(
 	'property::class',

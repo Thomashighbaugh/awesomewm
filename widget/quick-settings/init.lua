@@ -10,7 +10,7 @@ local barColor = beautiful.groups_bg
 local quick_header =
 	wibox.widget {
 	text = 'Quick Settings',
-	font = 'SF Mono Regular 12',
+	font =  beautiful.font .. '12',
 	align = 'left',
 	valign = 'center',
 	widget = wibox.widget.textbox
@@ -57,24 +57,7 @@ return wibox.widget {
 			forced_height = dpi(48),
 			widget = wibox.container.background
 		},
-		-- {
-		-- 	require('widget.wifi.wifi-toggle'),
-		-- 	bg = barColor,
-		-- 	shape = function(cr, width, height)
-		-- 		gears.shape.partially_rounded_rect(cr, width, height, false, false, false, false, beautiful.groups_radius) end,
-		-- 	forced_height = dpi(48),
-		-- 	widget = wibox.container.background
-		-- },
 
-		{
-			require('widget.blue-light').build_toggler(args),
-			bg = barColor,
-			shape = function(cr, width, height)
-				gears.shape.partially_rounded_rect(cr, width, height, false, false, false, false, beautiful.groups_radius)
-			end,
-			forced_height = dpi(48),
-			widget = wibox.container.background
-		},
 		{
 			require('widget.blur').build_toggler(args),
 			bg = barColor,

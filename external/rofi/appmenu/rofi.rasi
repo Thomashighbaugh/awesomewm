@@ -1,5 +1,5 @@
 configuration {
-    font:                           "Noto Sans 10";
+    font:                           "ProFontIIx Nerd Font Mono Book 11";
     show-icons:                     true;
     icon-theme:                     "chhinamasta";
     display-drun:                   "";
@@ -8,19 +8,19 @@ configuration {
     scroll-method:                  0;
     disable-history:                false;
     fullscreen:                     false;
-    hide-scrollbar:                 true;
-    sidebar-mode:                   false;
+    hide-scrollbar:                 false;
+    sidebar-mode:                   true;
 }
 
 /* -- Light -- */
 * {
-    background:                     #23262Caa;
-    background-alt:                 #555e70CC;
-    background-ib:                  #313040aa;
-    foreground:                     #e9e9ffcc;
-    border:                         #e9e9ffcc;
-    border-sel:                     #FF29a8ff;
-    selected:                       #00CAFFFF;
+    background:                     #17191e77;
+    background-alt:                 #22262daa;
+    background-ib:                  #2f303daa;
+    foreground:                     #8b9cbecc;
+    border:                         #8b9cbecc;
+    border-sel:                     #0badffcc;
+    selected:                       #0b0c0fcc;
     urgent:                         #FF29a8ff;
 }
 
@@ -30,22 +30,22 @@ window {
     background-color:               @background;
     text-color:                     @foreground;
     border:                         1px;
-    border-radius:                  30px;
+    border-radius:                  5px;
     border-color:                   @border;
-    height:                         50%;
-    width:                          35%;
+    height:                         80%;
+    width:                          15%;
 location: west;
-    x-offset:                       30;
-    y-offset:                       0;
+    x-offset:                       5;
+    y-offset:                       45;
 
 }
 
 prompt {
     enabled:                        true;
-    padding:                        5px 12px 0px 4px;
+    padding:                        5px 11px 0px 4px;
     background-color:               @background-ib;
     text-color:                     @foreground;
-    font:                           "agave Nerd Font Bold 12";
+    font:                           "ProFontIIx Nerd Font Mono Bold 11";
 }
 
 
@@ -57,7 +57,7 @@ inputbar {
     border-radius:                  30px;
     border-color:                   @border;
     margin:                         5px;
-    padding:                        10px;
+    padding:                        11px;
     position:                       center;
 }
 
@@ -68,9 +68,9 @@ entry {
     expand:                         false;
     horizontal-align:               0.5;
     vertical-align:                 0.8;
-    placeholder:                    "Search System";
+    placeholder:                    "Application Search...";
     blink:                          true;
-        font:                           "agave Nerd Font Bold 12";
+        font:                       "ProFontIIx Nerd Font Mono  Bold 11";
 
 }
 
@@ -83,9 +83,9 @@ case-indicator {
 
 listview {
     background-color:               @background;
-    columns:                        4;
-    spacing:                        4px;
-    cycle:                          false;
+    columns:                        1;
+    spacing:                        1px;
+    cycle:                          true;
     dynamic:                        true;
     layout:                         vertical;
 }
@@ -94,21 +94,21 @@ mainbox {
     background-color:               @background;
     children:                       [ inputbar, listview ];
     spacing:                        5px;
-    padding:                        8px 15px 8px 15px;
+    padding:                        13px 16px 13px 16px;
 
 }
 
 element {
     background-color:               @background;
     text-color:                     @foreground;
-    orientation:                    vertical;
+    orientation:                    horizontal;
     border-radius:                  0px;
-    margin:                         0px 5px 0px 5px;
-    padding:                        10px 0px 10px 0px;
+    margin:                         0px 1px 0px 1px;
+    padding:                        2px 0px 2px 0px;
 }
 
 element-icon {
-    size:                           88px;
+    size:                           48px;
     border:                         0px;
 }
 
@@ -116,8 +116,8 @@ element-text {
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
-    margin:                         5px 5px 0px 5px;
-   font:                           "agave Nerd Font Bold 12";
+    margin:                         1px 1px 0px 1px;
+   font:                           "ProFontIIx Nerd Font Mono  Bold 13";
 
 }
 
@@ -138,7 +138,7 @@ element selected {
     background-color:               @selected;
     text-color:                     @foreground;
     border:                         0px 0px 5px 0px;
-    border-radius:                  4px;
+    border-radius:                  9px;
     border-color:                   @border-sel;
 }
 

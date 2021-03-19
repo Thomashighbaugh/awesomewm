@@ -3,6 +3,7 @@ local naughty = require('naughty')
 local wibox = require('wibox')
 local gears = require('gears')
 local beautiful = require('beautiful')
+local awesomebuttons = require("external.lib.awesome-buttons.awesome-buttons")
 
 local dpi = beautiful.xresources.apply_dpi
 local clickable_container = require('widget.clickable-container')
@@ -10,7 +11,7 @@ local notification_icons = require('theme.icons').widget.notification
 
 local M = {}
 -- Do not disturb status
-M.dont_disturb = false
+M.dont_disturb = true
 local dont_disturb_file = os.getenv("HOME") .. "/.cache/awesome-disturb-status.txt"
 
 -- Delete button imagebox
@@ -81,9 +82,11 @@ local toggle_disturb = function()
   update_icon()
 end
 
-local dont_disturb_button = wibox.widget {
-  {dont_disturb_imagebox, margins = dpi(7), widget = wibox.container.margin},
-  widget = clickable_container
+local dont_disturb_button =  awesomebuttons.with_icon {
+  icon = "/home/tlh/.config/awesome/theme/icons/feathericons/lock.svg",
+  color = beautiful.xcolor14,
+  shape = "rounded_rect",
+  icon_size = 32
 }
 
 dont_disturb_button:buttons(
@@ -95,7 +98,7 @@ M.widget = wibox.widget {
   {
     dont_disturb_button,
     bg = beautiful.groups_bg,
-    shape = gears.shape.circle,
+    shape = gears.shape.rounded_rect,
     widget = wibox.container.background
   },
   nil,
@@ -106,9 +109,9 @@ M.widget = wibox.widget {
 -- Create a notification sound
 naughty.connect_signal(
   'request::display', function(n)
-    -- if not dont_disturb then
-    --   awful.spawn.easy_async('canberra-gtk-play -i message', function() end)
-    -- end
+    if not dont_disturb then
+      awful.spawn.easy_async('canberra-gtk-play -i message', function() end)
+    end
   end)
 
 return M
