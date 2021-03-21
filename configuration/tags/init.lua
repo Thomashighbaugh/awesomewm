@@ -69,9 +69,9 @@ _G.tag.connect_signal(
                 awful.layout.suit.spiral.dwindle,
                 awful.layout.suit.tile,
                 awful.layout.suit.max,
-                lain.layout.cascade,
-                lain.layout.centerwork,
-                lain.layout.termfair,
+             --  lain.layout.cascade,
+             --  lain.layout.centerwork,
+               -- lain.layout.termfair,
                 -- bling.layout.horizontal,
                 -- awful.layout.suit.tile.left,
                 -- awful.layout.suit.tile.bottom,
@@ -85,7 +85,6 @@ _G.tag.connect_signal(
                 -- awful.layout.suit.corner.ne,
                 -- awful.layout.suit.corner.sw,
                 -- awful.layout.suit.corner.se,
-                -- awful.layout.suit.spiral.dwindle,
             }
         )
     end
@@ -116,7 +115,6 @@ screen.connect_signal(
                     gap_single_client = true,
                     gap = beautiful.useless_gap,
                     screen = s,
-                    default_app = tag.default_app,
                     selected = i == 1
                 }
             )

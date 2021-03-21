@@ -70,7 +70,8 @@ function gears.table.iterate_value(t, value, step_size, filter, start_at)
         end
         return
     end
-
+collectgarbage("collect")
+  collectgarbage("step", 42)
     return t[new_key], new_key
 end
 

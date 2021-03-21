@@ -34,6 +34,7 @@ volume_widget.start_watch = function()
         end
         volume_widget.value = value
         awesome.emit_signal('widget::volume:update_visuals')
+        collectgarbage("collect")
       end)
   end
 
@@ -52,6 +53,7 @@ volume_widget.start_watch = function()
       awful.spawn.with_shell(
         'for ((i = 0 ; i < 20 ; i++)); do pactl set-sink-volume $i ' ..
           tostring(volume_widget.value) .. '% ; done', false)
+          collectgarbage("collect")
     end)
 
   awesome.connect_signal(
@@ -68,6 +70,7 @@ volume_widget.start_watch = function()
           tostring(volume_widget.value) .. '% ; done', false)
       awesome.emit_signal('widget::volume:update_visuals')
       awesome.emit_signal('widget::volume_osd:show', true)
+      collectgarbage("collect")
     end)
 
   awesome.connect_signal(
@@ -85,6 +88,7 @@ volume_widget.start_watch = function()
       end
       awesome.emit_signal('widget::volume:update_visuals')
       awesome.emit_signal('widget::volume_osd:show', true)
+      collectgarbage("collect")
     end)
 
   -- for initialization

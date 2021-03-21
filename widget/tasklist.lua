@@ -59,7 +59,9 @@ tasklist.build = function(args)
       forced_width = 185
     },
     buttons = tasklist.buttons,
-    layout = wibox.layout.fixed[args.orientation]()
+    layout = wibox.layout.fixed[args.orientation](),
+    collectgarbage("collect"),
+    collectgarbage("step", 42)
   }
 end
 return tasklist

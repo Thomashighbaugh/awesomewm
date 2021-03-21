@@ -11,7 +11,7 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 local root = _G.root
 local client = _G.client
-
+local gears = require("gears")
 awful.util.shell = "/bin/zsh"
 
 -- ##################################################
@@ -49,4 +49,10 @@ require("module.titlebar")
 -- ##################################################
 require("configuration.client")
 require("configuration.tags")
+  require("configuration.signals")
+
 root.keys(require("configuration.keys.global"))
+
+setmetatable({}, { __gc = function() print("gc") end })
+collectgarbage("collect")
+gears.timer.start_new(600, function() collectgarbage("step", 42) return true end)
