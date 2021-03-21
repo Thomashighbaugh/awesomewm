@@ -276,7 +276,7 @@ theme.panel_blur_type = "panel" -- use "dock" for no blur, "panel" for blur
 
 -- Second small panel
 -- small heigt meeans the increase call back is necessary so one can read it
-theme.small_panel_height = 32
+theme.small_panel_height = 24
 theme.small_panel_width = 1920
 theme.small_panel_desktop_width = 1920
 theme.small_panel_laptop_width = 1920
