@@ -1,6 +1,5 @@
 local wibox = require("wibox")
 local gears = require("gears")
-
 local buttons = {}
 
 buttons.with_icon = function(args)
@@ -8,7 +7,7 @@ buttons.with_icon = function(args)
     local color = args.color or "#D8DEE9"
     local icon = args.icon or "help-circle"
     local shape = args.shape or "circle"
-    local icon_size = 40
+    local icon_size = args.size or 48
     local icon_margin = 0
     local onclick = args.onclick or function()
         end
@@ -46,11 +45,11 @@ buttons.with_icon = function(args)
     elseif shape == "rounded_rect" then
         result:set_shape(
             function(cr, width, height)
-                gears.shape.rounded_rect(cr, width, height, 4)
+                gears.shape.rounded_rect(cr, width, height, 12)
             end
         )
     else
-        result:set_shape(gears.shape.rectangle)
+        result:set_shape(gears.shape.rounded_rect(cr, width, height, 12))
     end
 
     local old_cursor, old_wibox
@@ -94,7 +93,7 @@ buttons.with_text = function(args)
     local onclick = args.onclick or function()
         end
     local color = args.color or "#D8DEE9"
-    local text_size = args.text_size or 10
+    local text_size = args.text_size or 18
 
     local result =
         wibox.widget {

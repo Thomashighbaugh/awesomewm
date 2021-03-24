@@ -78,7 +78,7 @@ theme.systray_icon_spacing = dpi(9)
 
 -- Titlebar
 
-theme.titlebar_size = dpi(32)
+theme.titlebar_size = dpi(24)
 theme.titlebar_button_margin = dpi(0)
 theme.titlebar_button_spacing = dpi(4)
 theme.titlebar_pos = "top"
@@ -261,7 +261,7 @@ theme.hotkeys_bg = theme.background
 theme.hotkeys_group_margin = dpi(20)
 
 -- Main panel
-theme.panel_height = 40
+theme.panel_height = 46
 theme.panel_width = 560
 theme.panel_desktop_width = 560
 theme.panel_laptop_width = 560
@@ -271,7 +271,7 @@ theme.panel_widget_border_width = dpi(0)
 theme.panel_widget_border_color = theme.xbackground .. "dd"
 theme.panel_widget_bg_color = theme.xbackground .. "00"
 theme.panel_widget_radius = dpi(0)
-theme.panel_padding = 2
+theme.panel_padding = 1
 theme.panel_blur_type = "panel" -- use "dock" for no blur, "panel" for blur
 
 -- Second small panel
@@ -282,11 +282,11 @@ theme.small_panel_desktop_width = 1920
 theme.small_panel_laptop_width = 1920
 theme.small_panel_bg = theme.xbackground .. "dd"
 theme.small_panel_radius = 0
-theme.small_panel_widget_border_width = dpi(0)
+theme.small_panel_widget_border_width = 0
 theme.small_panel_widget_border_color = theme.xbackground .. "00"
 theme.small_panel_widget_bg_color = theme.xbackground .. "00"
-theme.small_panel_widget_radius = dpi(3)
-theme.small_panel_padding = dpi(1)
+theme.small_panel_widget_radius = 0
+theme.small_panel_padding = 0
 theme.small_panel_blur_type = "panel" -- use "dock" for no blur, "panel" for blur
 
 -- Popup

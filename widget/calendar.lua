@@ -6,8 +6,6 @@ local beautiful = require('beautiful')
 local apps = require('configuration.apps')
 local dpi = beautiful.xresources.apply_dpi
 local gears = require('gears')
-local clickable_container = require('widget.clickable-container')
-local icons = require('theme.icons')
 
 local panel_visible = false
 

@@ -25,7 +25,7 @@ local build_single_launcher = function(launcher, args)
     icon = "/home/tlh/.config/awesome/theme/icons/logo.png",
     color = beautiful.xcolor6,
     shape = "rounded_rect",
-    icon_size = 48,
+    icon_size = 18,
     onclick = function()
       awful.spawn(launcher.command)
     end

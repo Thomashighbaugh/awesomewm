@@ -9,7 +9,7 @@ endsession_widget.build = function(args)
     icon = "/home/tlh/.config/awesome/theme/icons/feathericons/power.svg",
     color = beautiful.xcolor9,
     shape = "rounded_rect",
-    icon_size = 32,
+    size = 42,
     onclick = function()
       awesome.emit_signal("module::exit_screen:show")
       collectgarbage("collect")
