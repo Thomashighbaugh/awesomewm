@@ -148,7 +148,7 @@ battery_widget.build = function(args)
   local textbox =
     wibox.widget {
     text = "-",
-    font = beautiful.font .. " 14",
+    font = beautiful.font .. " 12",
     align = "left",
     widget = wibox.widget.textbox
   }
@@ -156,7 +156,7 @@ battery_widget.build = function(args)
   local widget =
     wibox.widget {
     {
-      wibox.widget {layout = widget_layout, spacing = dpi(5), imagebox, textbox},
+      wibox.widget {layout = widget_layout, spacing = dpi(2), imagebox, textbox},
       id = "zoom_margin",
       margins = margins,
       widget = wibox.container.margin

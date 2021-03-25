@@ -8,8 +8,6 @@ local callbacks = require("widget.callbacks")
 
 local icons = require("theme.icons")
 
---- This is the returned type - a table with a build function to create the widget.
---- it may contain more widget
 local clock_widget = {}
 clock_widget.build = function(args)
 	local widget_layout = wibox.layout.fixed[args.orientation]
@@ -19,19 +17,19 @@ clock_widget.build = function(args)
 		margins = args.margins or beautiful.margin_size
 	end
 
-	local imagebox =    awesomebuttons.with_icon {
-    icon = "/home/tlh/.config/awesome/theme/icons/feathericons/clock.svg",
-    color = beautiful.xcolor1,
-    shape = "rounded_rect",
-    icon_size = 18,
-
-  }
+	local imagebox =
+		awesomebuttons.with_icon {
+		icon = "/home/tlh/.config/awesome/theme/icons/feathericons/clock.svg",
+		color = beautiful.xcolor5,
+		shape = "rounded_rect",
+		size = 24
+	}
 	local textbox = wibox.widget.textclock('<span font="' .. beautiful.font .. ' 18">%H:%M</span>', 1)
 
 	local widget =
 		wibox.widget {
 		{
-			wibox.widget {layout = widget_layout, spacing = dpi(5), imagebox, textbox},
+			wibox.widget {layout = widget_layout, spacing = dpi(6), imagebox, textbox},
 			id = "zoom_margin",
 			margins = margins,
 			widget = wibox.container.margin
@@ -74,7 +72,8 @@ clock_widget.build = function(args)
 			end
 
 			local date_str =
-				"Good day to you! \n Today is ".. os.date("%A") .." the " .. "<b>" .. day .. ordinal .. " of " .. month .. "</b>.\n"
+				"Good day to you! \n Today is " ..
+				os.date("%A") .. " the " .. "<b>" .. day .. ordinal .. " of " .. month .. "</b>.\n"
 			return date_str
 		end
 	}

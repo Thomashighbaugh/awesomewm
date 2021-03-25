@@ -27,7 +27,7 @@ do -- definition of simple widgets without an extra file
                 args.screen.systray =
                     wibox.widget {
                     {
-                        base_size = dpi(30),
+                        base_size = dpi(50),
                         horizontal = true,
                         screen = "primary",
                         widget = wibox.widget.systray
@@ -131,8 +131,8 @@ function panel_builder.panel_container(args, widget_names)
             widget_names.middle_widgets,
             widget_names.right_widgets
         },
-        left = dpi(5),
-        right = dpi(5),
+        left = dpi(0),
+        right = dpi(0),
         top = dpi(0),
         bottom = dpi(0),
         widget = wibox.container.margin
@@ -187,7 +187,7 @@ panel_builder.build_single_panel = function(args, widget_names)
         -- ontop = true,
         screen = s,
         type = blur_type,
-        height = panel_height + 1,
+        height = panel_height + 0,
         width = panel_width,
         x = panel_x,
         y = panel_y,
@@ -244,7 +244,7 @@ panel_builder.build_widget_box = function(args, widget_names)
         widgets,
         widget = wibox.container.margin,
         type = beautiful.panel_blur_type,
-        height = panel_height + 1,
+        height = panel_height + 0,
         bg = beautiful.panel_bg,
         fg = beautiful.fg_normal,
         shape = function(cr, w, h)

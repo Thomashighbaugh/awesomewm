@@ -49,10 +49,23 @@ require("module.titlebar")
 -- ##################################################
 require("configuration.client")
 require("configuration.tags")
-  require("configuration.signals")
+require("configuration.signals")
 
 root.keys(require("configuration.keys.global"))
 
-setmetatable({}, { __gc = function() print("gc") end })
+setmetatable(
+  {},
+  {
+    __gc = function()
+      print("gc")
+    end
+  }
+)
 collectgarbage("collect")
-gears.timer.start_new(600, function() collectgarbage("step", 42) return true end)
+gears.timer.start_new(
+  60,
+  function()
+    collectgarbage("step", 42)
+    return true
+  end
+)

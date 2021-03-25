@@ -37,8 +37,8 @@ add_button_widget.build = function(args)
     delay_show = 1,
     preferred_positions = {"right", "left", "top", "bottom"},
     preferred_alignments = {"middle"},
-    margin_leftright = dpi(8),
-    margin_topbottom = dpi(8),
+    margin_leftright = dpi(0),
+    margin_topbottom = dpi(0),
     timer_function = function()
       return "Launch " .. awful.screen.focused().selected_tag.default_app, collectgarbage("collect"), collectgarbage(
         "step",

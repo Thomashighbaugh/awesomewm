@@ -5,7 +5,7 @@
 -- #######################################
 -- ######## Thomas Leon Highbaugh ########
 -- #######################################
-local filesystem = require"gears.filesystem"
+local filesystem = require "gears.filesystem"
 return {
 	-- The default applications in keybindings and widgets
 	default = {
@@ -27,7 +27,7 @@ return {
 		-- Password manager
 		gui_ide = "code",
 		default_player = "spotify",
-		network_manager = "nm-connection-editor",
+		network_manager = "networkmanager_dmenu",
 		-- Network manager
 		bluetooth_manager = "blueman-manager",
 		-- Bluetooth manager
@@ -41,5 +41,5 @@ return {
 		-- You can add more default applications here
 	},
 	-- List of apps to start once on start-up
-	run_on_start_up = { os.getenv"HOME" .. "/.config/awesome/autostart.sh" }
+	run_on_start_up = {os.getenv "HOME" .. "/.config/awesome/autostart.sh"}
 }

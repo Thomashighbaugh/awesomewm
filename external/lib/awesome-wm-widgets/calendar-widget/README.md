@@ -4,29 +4,31 @@ Calendar widget for Awesome WM - slightly improved version of the `wibox.widget.
 
 ## Features
 
-- mouse support: scroll up - shows next month, scroll down - previous
-- themes:
+ - mouse support: scroll up - shows next month, scroll down - previous
+ - themes:
+  
+    | Name | Screenshot |
+    |---|---|
+    | nord (default) | ![nord_theme](./nord.png) |
+    | outrun | ![outrun_theme](./outrun.png) |
+    | light | ![outrun_theme](./light.png) |
+    | dark | ![outrun_theme](./dark.png) |
+    | naughty (default) | from local theme |
+  
+ - setup widget placement
+  
+  top center - in case you clock is centered:
 
-  | Name           | Screenshot                    |
-  | -------------- | ----------------------------- |
-  | nord (default) | ![nord_theme](./nord.png)     |
-  | outrun         | ![outrun_theme](./outrun.png) |
-  | light          | ![outrun_theme](./light.png)  |
-  | dark           | ![outrun_theme](./dark.png)   |
+   ![calendar_top](./calendar_top.png)
 
-- setup widget placement
+  top right - for default awesome config:
 
-top center - in case you clock is centered:
+  ![calendar_top_right](./calendar_top_right.png)
 
-![calendar_top](./calendar_top.png)
+  bottom right - in case your wibar at the bottom:
 
-top right - for default awesome config:
+  ![calendar_bottom_right](./calendar_bottom_right.png)
 
-![calendar_top_right](./calendar_top_right.png)
-
-bottom right - in case your wibar at the bottom:
-
-![calendar_bottom_right](./calendar_bottom_right.png)
 
 ## How to use
 
@@ -44,8 +46,9 @@ local cw = calendar_widget()
 local cw = calendar_widget({
     theme = 'outrun',
     placement = 'bottom_right'
+    radius = 8
 })
-mytextclock:connect_signal("button::press",
+mytextclock:connect_signal("button::press", 
     function(_, _, _, button)
         if button == 1 then cw.toggle() end
     end)

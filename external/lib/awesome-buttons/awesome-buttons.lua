@@ -45,7 +45,7 @@ buttons.with_icon = function(args)
     elseif shape == "rounded_rect" then
         result:set_shape(
             function(cr, width, height)
-                gears.shape.rounded_rect(cr, width, height, 12)
+                gears.shape.rounded_rect(cr, width, height, 4)
             end
         )
     else
@@ -92,7 +92,7 @@ buttons.with_text = function(args)
     local text = args.text
     local onclick = args.onclick or function()
         end
-    local color = args.color or "#D8DEE9"
+    local color = args.color or "#8b9cbe"
     local text_size = args.text_size or 18
 
     local result =
