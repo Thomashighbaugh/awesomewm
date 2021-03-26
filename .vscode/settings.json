@@ -22,5 +22,6 @@
         "myawesome",
         "rofiappmenu"
     ],
-    "cSpell.enabled": false
+    "cSpell.enabled": false,
+    "restructuredtext.confPath": ""
 }

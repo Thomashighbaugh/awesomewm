@@ -10,7 +10,8 @@
 local panel_builder = require("module.panel-builder")
 local beautiful = require("beautiful")
 local callbacks = require("widget.callbacks")
-
+local cpu_widget = require("widget.cpu-widget.cpu-widget")
+local ram_widget = require("widget.ram-widget.ram-widget")
 local status_panel = function(s)
 	local args = {
 		screen = s,
@@ -35,6 +36,8 @@ local status_panel = function(s)
 			},
 			middle_widgets = {"tasklist"},
 			right_widgets = {
+				cpu_widget(),
+				ram_widget(),
 				"network-widget",
 				"battery-widget",
 				"notification-panel-toggler",

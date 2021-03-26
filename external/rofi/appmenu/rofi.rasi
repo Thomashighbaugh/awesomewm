@@ -30,13 +30,13 @@ window {
     background-color:               @background;
     text-color:                     @foreground;
     border:                         1px;
-    border-radius:                  5px;
+    border-radius:                  0px;
     border-color:                   @border;
-    height:                         80%;
+    height:                         95%;
     width:                          15%;
 location: west;
     x-offset:                       5;
-    y-offset:                       45;
+    y-offset:                       5;
 
 }
 
