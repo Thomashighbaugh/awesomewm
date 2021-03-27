@@ -270,23 +270,24 @@ theme.panel_radius = dpi(12)
 theme.panel_widget_border_width = dpi(0)
 theme.panel_widget_border_color = theme.xbackground .. "dd"
 theme.panel_widget_bg_color = theme.xbackground .. "00"
-theme.panel_widget_radius = dpi(0)
-theme.panel_padding = 1
+theme.panel_widget_radius = dpi(12)
+theme.panel_padding = dpi(0)
 theme.panel_blur_type = "panel" -- use "dock" for no blur, "panel" for blur
 
 -- Second small panel
 -- small heigt meeans the increase call back is necessary so one can read it
 theme.small_panel_height = 24
 theme.small_panel_width = 1920
+theme.small_panel_radius = dpi(0)
 theme.small_panel_desktop_width = 1920
 theme.small_panel_laptop_width = 1920
 theme.small_panel_bg = theme.xbackground .. "dd"
-theme.small_panel_radius = 0
+theme.small_panel_radius = dpi(0)
 theme.small_panel_widget_border_width = 0
 theme.small_panel_widget_border_color = theme.xbackground .. "00"
 theme.small_panel_widget_bg_color = theme.xbackground .. "00"
-theme.small_panel_widget_radius = 0
-theme.small_panel_padding = 0
+theme.small_panel_widget_radius = dpi(0)
+theme.small_panel_padding = dpi(2)
 theme.small_panel_blur_type = "panel" -- use "dock" for no blur, "panel" for blur
 
 -- Popup

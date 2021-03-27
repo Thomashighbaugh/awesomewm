@@ -12,8 +12,8 @@ search_widget.build = function(args)
     awesomebuttons.with_icon {
     icon = "/home/tlh/.config/awesome/theme/icons/feathericons/home.svg",
     color = beautiful.xcolor13,
-    shape = "circle",
-    size = 30,
+    shape = "rounded_rect",
+    size = 20,
     background = beautiful.xcolor4,
     margins = 0,
     onclick = function()

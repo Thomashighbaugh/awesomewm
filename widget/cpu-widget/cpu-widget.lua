@@ -15,12 +15,11 @@ local beautiful = require("beautiful")
 local gears = require("gears")
 local vicious = require("external.lib.vicious")
 
-
 -- cpu widget
 local cpu = wibox.widget.textbox()
 vicious.cache(vicious.widgets.cpu)
 vicious.register(cpu, vicious.widgets.cpu, " <span color='" .. beautiful.xcolor4 .. "'> CPU: </span> $1%  ", 4)
-cpu.font = beautiful.font .. "16"
+cpu.font = beautiful.font .. " 16"
 
 local CMD =
     [[sh -c "grep '^cpu.' /proc/stat; ps -eo '%p|%c|%C|' -o "%mem" -o '|%a' --sort=-%cpu ]] ..
@@ -31,7 +30,7 @@ local WIDGET_DIR = HOME_DIR .. "/.config/awesome/awesome-wm-widgets/cpu-widget"
 
 local cpu_widget = {}
 local cpu_rows = {
-    spacing = 2,
+    spacing = 0,
     layout = wibox.layout.fixed.vertical
 }
 local is_update = true
@@ -107,7 +106,7 @@ local function worker(user_args)
     local step_width = args.step_width or 2
     local step_spacing = args.step_spacing or 1
     local color = args.color or beautiful.fg_normal
-    local enable_kill_button = args.enable_kill_button or false
+    local enable_kill_button = args.enable_kill_button or true
     local process_info_max_length = args.process_info_max_length or -1
     local timeout = args.timeout or 1
 
@@ -156,7 +155,7 @@ local function worker(user_args)
     cpu_widget =
         wibox.widget {
         cpu,
-        bottom = 2,
+        bottom = 0,
         widget = wibox.container.margin
     }
 

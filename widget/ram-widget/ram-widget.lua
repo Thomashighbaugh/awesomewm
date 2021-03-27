@@ -10,7 +10,7 @@ local ramgraph_widget = {}
 local mem = wibox.widget.textbox()
 vicious.cache(vicious.widgets.mem)
 vicious.register(mem, vicious.widgets.mem, " <span  color='" .. beautiful.xcolor1 .. "'> Mem: </span>  $1%  ", 1)
-mem.font = beautiful.font .. " 11"
+mem.font = beautiful.font .. " 16"
 
 local function worker(user_args)
     local args = user_args or {}

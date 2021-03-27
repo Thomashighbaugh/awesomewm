@@ -53,7 +53,7 @@ tasklist.build = function(args)
         widget = wibox.container.background
       },
       {id = "text_role", widget = wibox.widget.textbox},
-      layout = wibox.layout.fixed.horizontal,
+      layout = wibox.layout.align.horizontal,
       widget = wibox.container.background,
       create_callback = args.callback,
       forced_width = 185

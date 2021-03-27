@@ -22,7 +22,7 @@ local status_panel = function(s)
 		panel_width = beautiful.small_panel_width,
 		panel_bg = beautiful.small_panel_bg,
 		fg_normal = beautiful.small_fg_normal,
-		panel_radius = beautiful.panel_radius,
+		panel_radius = beautiful.small_panel_radius,
 		callback = callbacks.background,
 		panel_padding = beautiful.small_panel_padding
 	}
@@ -31,6 +31,7 @@ local status_panel = function(s)
 		args,
 		{
 			left_widgets = {
+				"separator",
 				"app-search-toggler",
 				"settings-panel-toggler"
 			},

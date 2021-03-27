@@ -1,114 +1,114 @@
+/**
+ ______         ___ __   
+|   __ \.-----.'  _|__|  
+|      <|  _  |   _|  |  
+|___|__||_____|__| |__|  
+                         
+Thomas Leon Highbaugh
+
+Note: requires development branch of rofi (or the rofi-git package from AUR)
+
+**/
 configuration {
-    font:                           "ProFontIIx Nerd Font Mono Book 11";
+	font:							"Encode Sans SemiExpanded Black 11";
     show-icons:                     true;
-    icon-theme:                     "chhinamasta";
-    display-drun:                   "";
+	icon-theme: 					"chhinamasta";
+    display-drun: 					"";
     drun-display-format:            "{name}";
-    threads:                        0;
-    scroll-method:                  0;
     disable-history:                false;
     fullscreen:                     false;
-    hide-scrollbar:                 false;
-    sidebar-mode:                   true;
+	hide-scrollbar: 				true;
+	sidebar-mode: 					false;
+
 }
 
-/* -- Light -- */
 * {
-    background:                     #17191e77;
-    background-alt:                 #22262daa;
-    background-ib:                  #2f303daa;
-    foreground:                     #8b9cbecc;
-    border:                         #8b9cbecc;
-    border-sel:                     #0badffcc;
-    selected:                       #0b0c0fcc;
-    urgent:                         #FF29a8ff;
+    background:                     #17191ebb;
+    background-alt:              	#17191e77;
+    background-bar:                 #17191e77;
+    foreground:                     #8b9cbe;
+    accent:			            	#0badff;
+    border:		               		#8b9cbe;
+    selected:               		#f4f4f7;
 }
 
 
 
 window {
+    transparency:                   "real";
     background-color:               @background;
     text-color:                     @foreground;
-    border:                         1px;
-    border-radius:                  0px;
-    border-color:                   @border;
-    height:                         95%;
-    width:                          15%;
-location: west;
-    x-offset:                       5;
-    y-offset:                       5;
-
+	border:							0px;
+	border-color:					@border;
+    border-radius:                  20px;
+    border:                         0 10px 0 0;
+	width:							12%;
+    height:                         98%;
+    location:                       west;
+    x-offset:                       0;
+    y-offset:                       0;
 }
 
 prompt {
-    enabled:                        true;
-    padding:                        5px 11px 0px 4px;
-    background-color:               @background-ib;
-    text-color:                     @foreground;
-    font:                           "ProFontIIx Nerd Font Mono Bold 11";
-}
-
-
-inputbar {
-    background-color:               @background-ib;
-    text-color:                     @foreground;
-    expand:                         false;
-    border:                         0px 0px 6px 0px;
-    border-radius:                  30px;
-    border-color:                   @border;
-    margin:                         5px;
-    padding:                        11px;
-    position:                       center;
+    enabled: 						true;
+	padding: 						-0.25% -0.75% 0% -0.25%;
+	background-color: 				@background-alt;
+	text-color: 					@foreground;
+	font:							"Encode Sans SemiExpanded Black 10";
 }
 
 entry {
-    background-color:               @background-ib;
+    background-color:               @background;
     text-color:                     @foreground;
     placeholder-color:              @foreground;
-    expand:                         false;
-    horizontal-align:               0.5;
-    vertical-align:                 0.8;
-    placeholder:                    "Application Search...";
+    border-radius:                  25px;
+	padding: 						-0.25% -0.75% 0% -0.25%;
+
+    horizontal-align:               0.25;
+    placeholder:                    "Search Applications";
+    padding:                        -0.10% 0% 0% 0%;
     blink:                          true;
-        font:                       "ProFontIIx Nerd Font Mono  Bold 11";
-
 }
 
-case-indicator {
-    background-color:               @background-ib;
+inputbar {
+	children: 						[ entry ];
+    background-color:               @background-bar;
     text-color:                     @foreground;
-    spacing:                        0;
-}
+    expand:                         false;
+    border-radius:                  25px;
 
+
+}
 
 listview {
-    background-color:               @background;
+    background-color:               @background-alt;
     columns:                        1;
-    spacing:                        1px;
+    lines:	                        8;
+    spacing:                        0%;
     cycle:                          true;
     dynamic:                        true;
     layout:                         vertical;
 }
 
 mainbox {
-    background-color:               @background;
+    background-color:               @background-alt;
+	border:							0% 0% 0% 0%;
+    border-radius:                  0% 0% 0% 0%;
+	border-color:					@accent;
     children:                       [ inputbar, listview ];
-    spacing:                        5px;
-    padding:                        13px 16px 13px 16px;
-
+    padding:                        2% ;
 }
 
 element {
-    background-color:               @background;
+    background-color:               @background-alt;
     text-color:                     @foreground;
-    orientation:                    horizontal;
-    border-radius:                  0px;
-    margin:                         0px 1px 0px 1px;
-    padding:                        2px 0px 2px 0px;
+    orientation:                    vertical;
+    border-radius:                  0%;
+    padding:                        1%;
 }
 
 element-icon {
-    size:                           48px;
+    size:                           64px;
     border:                         0px;
 }
 
@@ -116,38 +116,13 @@ element-text {
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
-    margin:                         1px 1px 0px 1px;
-   font:                           "ProFontIIx Nerd Font Mono  Bold 13";
-
-}
-
-element normal.urgent,
-element alternate.urgent {
-    background-color:               @urgent;
-    text-color:                     @foreground;
-    border-radius:                  9px;
-}
-
-element normal.active,
-element alternate.active {
-    background-color:               @background-alt;
-    text-color:                     @foreground;
+    margin:                         0.5% 0.5% -0.5% 0.5%;
 }
 
 element selected {
     background-color:               @selected;
     text-color:                     @foreground;
-    border:                         0px 0px 5px 0px;
-    border-radius:                  9px;
-    border-color:                   @border-sel;
-}
-
-element selected.urgent {
-    background-color:               @urgent;
-    text-color:                     @foreground;
-}
-
-element selected.active {
-    background-color:               @background-alt;
-    color:                          @foreground;
+	border:							0% 0% 0.8% 0%;
+    border-radius:                  25px;
+    border-color:                  	@border;
 }
