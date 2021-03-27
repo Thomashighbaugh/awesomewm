@@ -33,12 +33,12 @@ local status_panel = function(s)
 			left_widgets = {
 				"separator",
 				"app-search-toggler",
+				cpu_widget(),
+				ram_widget(),
 				"settings-panel-toggler"
 			},
 			middle_widgets = {"tasklist"},
 			right_widgets = {
-				cpu_widget(),
-				ram_widget(),
 				"network-widget",
 				"battery-widget",
 				"notification-panel-toggler",
