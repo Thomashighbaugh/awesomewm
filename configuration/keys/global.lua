@@ -44,8 +44,6 @@ local globalKeys =
     --#############################################################################
     awful.key({modkey}, "]", awful.tag.viewnext, {description = "view next", group = "tag"}),
     --#############################################################################
-    awful.key({modkey}, "i", awful.tag.history.restore, {description = "go back", group = "tag"}),
-    --#############################################################################
     awful.key(
         {modkey},
         "p",
@@ -283,8 +281,8 @@ local globalKeys =
     ),
     --#############################################################################
     awful.key(
-        {modkey},
-        "y",
+        {modkey, "Control"},
+        "Return",
         function()
             drop(apps.default.terminal, {width = 0.5, minwidth = 720, height = 0.5, vert = "center"})
         end,
@@ -524,38 +522,7 @@ local globalKeys =
         }
     ),
     --#############################################################################
-    awful.key(
-        {modkey},
-        ".",
-        function()
-            -- tag_view_nonempty(-1)
-            local focused = awful.screen.focused()
-            for i = 1, #focused.tags do
-                awful.tag.viewidx(-1, focused)
-                if #focused.clients > 0 then
-                    return
-                end
-            end
-        end,
-        {description = "view previous non-empty tag", group = "tag"}
-    ),
-    --#############################################################################
-    awful.key(
-        {modkey, "Shift"},
-        ".",
-        function()
-            -- tag_view_nonempty(1)
-            local focused = awful.screen.focused()
-            for i = 1, #focused.tags do
-                awful.tag.viewidx(1, focused)
-                if #focused.clients > 0 then
-                    return
-                end
-            end
-        end,
-        {description = "view next non-empty tag", group = "tag"}
-    ),
-    --#############################################################################
+
     awful.key(
         {},
         "Print",
@@ -590,25 +557,8 @@ local globalKeys =
             awesome.emit_signal("module::exit_screen:show")
         end,
         {description = "show exit screen", group = "function"}
-    ),
-    --#############################################################################
-    awful.key(
-        {modkey},
-        "F10",
-        function()
-            awesome.emit_signal("module::sidebar::toggle")
-        end,
-        {description = "open sidebar and global search", group = "launcher"}
-    ),
-    --#############################################################################
-    awful.key(
-        {modkey, altkey},
-        "F10",
-        function()
-            awesome.emit_signal("module::dashboard_screen:show")
-        end,
-        {description = "open today pane", group = "launcher"}
     )
+    --#############################################################################
 )
 
 -- Bind all key numbers to tags.

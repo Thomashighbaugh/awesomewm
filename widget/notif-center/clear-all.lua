@@ -47,7 +47,7 @@ local delete_button_wrapped =
   nil,
   {
     delete_button,
-    bg = beautiful.groups_bg,
+    bg = beautiful.xbackground .. "aa",
     shape = gears.shape.rounded_rect,
     widget = wibox.container.background
   },

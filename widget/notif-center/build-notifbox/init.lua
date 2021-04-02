@@ -1,11 +1,10 @@
-local naughty = require('naughty')
-local wibox = require('wibox')
-local beautiful = require('beautiful')
+local naughty = require("naughty")
+local wibox = require("wibox")
+local beautiful = require("beautiful")
 
 local dpi = beautiful.xresources.apply_dpi
-local notification_icons = require('theme.icons').widget.notification
-local empty_notifbox = require(
-  'widget.notif-center.build-notifbox.empty-notifbox')
+local notification_icons = require("theme.icons").widget.notification
+local empty_notifbox = require("widget.notif-center.build-notifbox.empty-notifbox")
 
 -- Boolean variable to remove empty message
 local remove_notifbox_empty = true
@@ -30,8 +29,8 @@ notifbox_layout:insert(1, empty_notifbox)
 
 -- Connect to naughty
 naughty.connect_signal(
-  'request::display', function(n)
-
+  "request::display",
+  function(n)
     -- If notifbox_layout has a child and remove_notifbox_empty
     if #notifbox_layout.children == 1 and remove_notifbox_empty then
       -- Reset layout
@@ -40,9 +39,9 @@ naughty.connect_signal(
     end
 
     -- Set background color based on urgency level
-    local notifbox_color = beautiful.groups_bg
-    if n.urgency == 'critical' then
-      notifbox_color = n.bg .. '66'
+    local notifbox_color = beautiful.transparent
+    if n.urgency == "critical" then
+      notifbox_color = n.bg
     end
 
     -- Check if there's an icon
@@ -53,11 +52,9 @@ naughty.connect_signal(
 
     -- Throw data from naughty to notifbox_layout
     -- Generates notifbox
-    local notifbox_box = require(
-      'widget.notif-center.build-notifbox.notifbox-builder')
-    notifbox_layout:insert(
-      1,
-        notifbox_box(n, appicon, n.title, n.message, n.app_name, notifbox_color))
-  end)
+    local notifbox_box = require("widget.notif-center.build-notifbox.notifbox-builder")
+    notifbox_layout:insert(1, notifbox_box(n, appicon, n.title, n.message, n.app_name, notifbox_color))
+  end
+)
 
 return notifbox_layout

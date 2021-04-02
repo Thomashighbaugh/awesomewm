@@ -6,31 +6,22 @@ ___ _______ ______ _______ ______   __
                                                         
 			 by Thomas Leon Highbaugh
 		
-		 Created:
-			 3/4/2021, 2:31:44 PM
-		 Last edited:
-			 3/4/2021, 2:31:44 PM
-		 Auto updated?
-			 Yes
-		
-		 Description:
-			 Popup window constructor that is employed by panel widgets,
-			 application popups and more
+	
 --]]
-local awful = require('awful')
-local wibox = require('wibox')
-local gears = require('gears')
-local beautiful = require('beautiful')
-local configuration = require('configuration')
+local awful = require("awful")
+local wibox = require("wibox")
+local gears = require("gears")
+local beautiful = require("beautiful")
+local configuration = require("configuration")
 
-local dpi = require('beautiful').xresources.apply_dpi
+local dpi = require("beautiful").xresources.apply_dpi
 
 local overlay_signal_list = {}
 
 local function build_popup(args)
     -- check if a popup with the same name already existsfor signal in pairs(overlay_signal_list) do
     for signal in pairs(overlay_signal_list) do
-        if string.match(overlay_signal_list[signal], 'widget::' .. args.name .. ':show') then
+        if string.match(overlay_signal_list[signal], "widget::" .. args.name .. ":show") then
             return -1
         end
     end
@@ -54,8 +45,8 @@ local function build_popup(args)
         title_box =
             wibox.widget {
             text = args.title,
-            font = beautiful.font .. ' 14',
-            align = 'center',
+            font = beautiful.font .. " 14",
+            align = "center",
             widget = wibox.widget.textbox
         }
     end
@@ -65,7 +56,7 @@ local function build_popup(args)
         widget = {},
         ontop = true,
         visible = false,
-        type = 'notification',
+        type = "notification",
         screen = s,
         width = popup_box_width,
         height = popup_box_height,
@@ -76,8 +67,8 @@ local function build_popup(args)
             gears.shape.rounded_rect(cr, width, height, beautiful.groups_radius)
         end,
         bg = beautiful.popup_bg,
-        preferred_anchors = 'middle',
-        preferred_positions = {'left', 'right', 'top', 'bottom'}
+        preferred_anchors = "middle",
+        preferred_positions = {"left", "right", "top", "bottom"}
     }
     popup_box:setup {
         {
@@ -85,7 +76,7 @@ local function build_popup(args)
                 title_box,
                 args.content,
                 layout = wibox.layout.fixed.vertical,
-                expand = 'none',
+                expand = "none",
                 spacing = dpi(8)
             },
             top = dpi(15),
@@ -107,7 +98,7 @@ local function build_popup(args)
         ontop = true,
         visible = false,
         screen = s,
-        type = 'dock',
+        type = "dock",
         input_passthrough = false
     }
     popup_backdrop:buttons(
@@ -118,7 +109,7 @@ local function build_popup(args)
                 nil,
                 function()
                     if popup_backdrop.visible then
-                        awesome.emit_signal('widget::' .. args.name .. ':show', false)
+                        awesome.emit_signal("widget::" .. args.name .. ":show", false)
                     end
                 end
             ),
@@ -128,7 +119,7 @@ local function build_popup(args)
                 nil,
                 function()
                     if popup_backdrop.visible then
-                        awesome.emit_signal('widget::' .. args.name .. ':show', false)
+                        awesome.emit_signal("widget::" .. args.name .. ":show", false)
                     end
                 end
             ),
@@ -138,7 +129,7 @@ local function build_popup(args)
                 nil,
                 function()
                     if popup_backdrop.visible then
-                        awesome.emit_signal('widget::' .. args.name .. ':show', false)
+                        awesome.emit_signal("widget::" .. args.name .. ":show", false)
                     end
                 end
             )
@@ -148,7 +139,7 @@ local function build_popup(args)
     -- disappear timer
     local hide_timer =
         gears.timer {
-        timeout = configuration.timeout or 5,
+        timeout = configuration.timeout or 2,
         autostart = true,
         callback = function()
             popup_box.visible = false
@@ -164,13 +155,13 @@ local function build_popup(args)
     end
     -- so hovering keeps the box from disappearing:
     popup_box:connect_signal(
-        'mouse::enter',
+        "mouse::enter",
         function()
             hide_timer:stop()
         end
     )
     popup_box:connect_signal(
-        'mouse::leave',
+        "mouse::leave",
         function()
             timer_rerun()
         end
@@ -189,7 +180,7 @@ local function build_popup(args)
 
     -- show function
     awesome.connect_signal(
-        'widget::' .. args.name .. ':show',
+        "widget::" .. args.name .. ":show",
         function(bool)
             if not popup_box.visible and bool then
                 osd_margin = 2 * beautiful.notification_margin + beautiful.panel_height
@@ -205,7 +196,7 @@ local function build_popup(args)
                 timer_rerun()
                 -- do not show all other popup boxes
                 for signal in pairs(overlay_signal_list) do
-                    if not string.match(overlay_signal_list[signal], 'widget::' .. args.name .. ':show') then
+                    if not string.match(overlay_signal_list[signal], "widget::" .. args.name .. ":show") then
                         awesome.emit_signal(overlay_signal_list[signal], false)
                     end
                 end
@@ -214,7 +205,7 @@ local function build_popup(args)
     )
     -- toggle function
     awesome.connect_signal(
-        'widget::' .. args.name .. ':toggle',
+        "widget::" .. args.name .. ":toggle",
         function()
             local bool = not popup_box.visible
             if not popup_box.visible then
@@ -231,7 +222,7 @@ local function build_popup(args)
                 timer_rerun()
                 -- do not show all other popup boxes
                 for signal in pairs(overlay_signal_list) do
-                    if not string.match(overlay_signal_list[signal], 'widget::' .. args.name .. ':show') then
+                    if not string.match(overlay_signal_list[signal], "widget::" .. args.name .. ":show") then
                         awesome.emit_signal(overlay_signal_list[signal], false)
                     end
                 end
@@ -240,8 +231,7 @@ local function build_popup(args)
     )
 
     local max_index = #overlay_signal_list
-    overlay_signal_list[max_index + 1] = 'widget::' .. args.name .. ':show'
-    io.stderr:write('Popup added: ' .. 'widget::' .. args.name .. ':show\n')
+    overlay_signal_list[max_index + 1] = "widget::" .. args.name .. ":show"
 end
 
 return build_popup

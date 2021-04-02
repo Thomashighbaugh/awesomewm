@@ -6,8 +6,6 @@ local awesomebuttons = require("external.lib.awesome-buttons.awesome-buttons")
 local dpi = require("beautiful").xresources.apply_dpi
 local callbacks = require("widget.callbacks")
 
-local icons = require("theme.icons")
-
 local clock_widget = {}
 clock_widget.build = function(args)
 	local widget_layout = wibox.layout.fixed[args.orientation]
@@ -20,7 +18,7 @@ clock_widget.build = function(args)
 	local imagebox =
 		awesomebuttons.with_icon {
 		icon = "/home/tlh/.config/awesome/theme/icons/feathericons/clock.svg",
-		color = beautiful.xcolor5,
+		color = beautiful.xcolor6,
 		shape = "rounded_rect",
 		size = 24
 	}

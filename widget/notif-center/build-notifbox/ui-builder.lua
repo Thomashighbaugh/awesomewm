@@ -1,20 +1,21 @@
 -- Formats and builds UI widgets like font, imagebox and actions
-local wibox = require('wibox')
-local beautiful = require('beautiful')
-local naughty = require('naughty')
-local gears = require('gears')
+local wibox = require("wibox")
+local beautiful = require("beautiful")
+local naughty = require("naughty")
+local gears = require("gears")
 
-local dpi = require('beautiful').xresources.apply_dpi
-local clickable_container = require('widget.clickable-container')
-local notification_icons = require('theme.icons').widget.notification
+local dpi = require("beautiful").xresources.apply_dpi
+local clickable_container = require("widget.clickable-container")
+local notification_icons = require("theme.icons").widget.notification
 
 local ui_noti_builder = {}
 
 -- Notification icon container
 local notifbox_icon = function(ico_image)
-  local noti_icon = wibox.widget {
+  local noti_icon =
+    wibox.widget {
     {
-      id = 'icon',
+      id = "icon",
       resize = true,
       forced_height = dpi(25),
       forced_width = dpi(25),
@@ -30,9 +31,9 @@ end
 local notifbox_title = function(title)
   return wibox.widget {
     markup = title,
-    font = beautiful.font_bold .. ' 12',
-    align = 'left',
-    valign = 'center',
+    font = beautiful.font .. " 12",
+    align = "left",
+    valign = "center",
     widget = wibox.widget.textbox
   }
 end
@@ -41,9 +42,9 @@ end
 local notifbox_message = function(msg)
   return wibox.widget {
     markup = msg,
-    font = beautiful.font .. ' 11',
-    align = 'left',
-    valign = 'center',
+    font = beautiful.font .. " 11",
+    align = "left",
+    valign = "center",
     widget = wibox.widget.textbox
   }
 end
@@ -52,16 +53,17 @@ end
 local notifbox_appname = function(app)
   return wibox.widget {
     markup = app,
-    font = beautiful.font_bold .. ' 18',
-    align = 'left',
-    valign = 'center',
+    font = beautiful.font .. " 18",
+    align = "left",
+    valign = "center",
     widget = wibox.widget.textbox
   }
 end
 
 -- Notification actions container
 local notifbox_actions = function(n)
-  local actions_template = wibox.widget {
+  local actions_template =
+    wibox.widget {
     notification = n,
     base_layout = wibox.widget {
       spacing = dpi(0),
@@ -72,15 +74,15 @@ local notifbox_actions = function(n)
         {
           {
             {
-              id = 'text_role',
-              font = beautiful.font .. ' 10',
+              id = "text_role",
+              font = beautiful.font .. " 10",
               widget = wibox.widget.textbox
             },
             widget = wibox.container.place
           },
           widget = clickable_container
         },
-        bg = beautiful.groups_bg,
+        bg = beautiful.transparent,
         shape = gears.shape.rounded_rect,
         forced_height = 30,
         widget = wibox.container.background
@@ -97,10 +99,10 @@ end
 
 -- Notification dismiss button
 local notifbox_dismiss = function()
-
-  local dismiss_imagebox = wibox.widget {
+  local dismiss_imagebox =
+    wibox.widget {
     {
-      id = 'dismiss_icon',
+      id = "dismiss_icon",
       image = notification_icons.delete,
       resize = true,
       forced_height = dpi(5),
@@ -109,15 +111,17 @@ local notifbox_dismiss = function()
     layout = wibox.layout.fixed.horizontal
   }
 
-  local dismiss_button = wibox.widget {
+  local dismiss_button =
+    wibox.widget {
     {dismiss_imagebox, margins = dpi(5), widget = wibox.container.margin},
     widget = clickable_container
   }
 
-  local notifbox_dismiss = wibox.widget {
+  local notifbox_dismiss =
+    wibox.widget {
     dismiss_button,
     visible = false,
-    bg = beautiful.groups_title_bg,
+    bg = beautiful.transparent,
     shape = gears.shape.circle,
     widget = wibox.container.background
   }

@@ -34,8 +34,7 @@ local status_panel = function(s)
 				"separator",
 				"app-search-toggler",
 				cpu_widget(),
-				ram_widget(),
-				"settings-panel-toggler"
+				ram_widget()
 			},
 			middle_widgets = {"tasklist"},
 			right_widgets = {

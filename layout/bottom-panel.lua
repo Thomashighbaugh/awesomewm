@@ -1,4 +1,4 @@
---  ______         __   __                       ______                     __ 
+--  ______         __   __                       ______                     __
 -- |   __ \.-----.|  |_|  |_.-----.--------.    |   __ \.---.-.-----.-----.|  |
 -- |   __ <|  _  ||   _|   _|  _  |        |    |    __/|  _  |     |  -__||  |
 -- |______/|_____||____|____|_____|__|__|__|    |___|   |___._|__|__|_____||__|
@@ -11,7 +11,6 @@ local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 local callbacks = require("widget.callbacks")
 local wibox = require("wibox")
-
 local taglist = require("widget.taglist")
 taglist.show_current_client = true
 

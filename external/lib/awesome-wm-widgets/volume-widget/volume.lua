@@ -13,7 +13,7 @@ local spawn = require("awful.spawn")
 local gears = require("gears")
 local beautiful = require("beautiful")
 local watch = require("awful.widget.watch")
-local utils = require("awesome-wm-widgets.volume-widget.utils")
+local utils = require("external.lib.awesome-wm-widgets.volume-widget.utils")
 
 
 local LIST_DEVICES_CMD = [[sh -c "pacmd list-sinks; pacmd list-sources"]]

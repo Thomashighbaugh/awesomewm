@@ -9,7 +9,7 @@ local ramgraph_widget = {}
 -- memory widget
 local mem = wibox.widget.textbox()
 vicious.cache(vicious.widgets.mem)
-vicious.register(mem, vicious.widgets.mem, " <span  color='" .. beautiful.xcolor1 .. "'> Mem: </span>  $1%  ", 1)
+vicious.register(mem, vicious.widgets.mem, " <span  color='" .. beautiful.xcolor1 .. "'>   RAM: </span>  $1%  ", 1)
 mem.font = beautiful.font .. " 10"
 
 local function worker(user_args)

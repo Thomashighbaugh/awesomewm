@@ -40,9 +40,9 @@ theme.xcolor14 = xrdb.color14
 theme.xcolor15 = xrdb.color15
 
 -- Font
-theme.font = "ProFontIIx Nerd Font"
-theme.font_bold = theme.font .. "Bold"
-theme.font_heavy = theme.font .. "Bold"
+theme.font = "Encode Sans SemiExpanded ExtraBold"
+theme.font_bold = theme.font
+theme.font_heavy = theme.font .. " 18"
 -- Noto Sans Grantha
 -- Menu icon theme
 -- theme.icon_theme = 'breeze'
@@ -55,7 +55,7 @@ theme.accent = theme.xcolor15
 theme.accent = theme.xcolor4
 -- Foreground
 
-theme.title_font = "ProFontIIx Nerd Font Bold 14"
+theme.title_font = theme.font .. " 14"
 
 theme.fg_normal = theme.xforeground
 theme.fg_focus = theme.xcolor7
@@ -80,93 +80,43 @@ theme.systray_icon_spacing = dpi(9)
 
 theme.titlebar_size = dpi(24)
 theme.titlebar_button_margin = dpi(0)
-theme.titlebar_button_spacing = dpi(4)
+theme.titlebar_button_spacing = dpi(6)
 theme.titlebar_pos = "top"
 theme.titlebar_button_pos = "right"
 theme.titlebar_enabled = true
 theme.border_width = dpi(0)
 theme.wibar_border_width = dpi(0)
+theme.titlebar_radius = dpi(0)
 theme.titlebar_bg_focus = theme.xbackground .. "cc"
 theme.titlebar_bg_normal = theme.xbackground .. "aa"
 theme.titlebar_fg_focus = theme.xforeground .. "ff"
 theme.titlebar_fg_normal = theme.xforeground .. "ff"
 
-theme.titlebar_close_button_normal = tip .. "close_normal.svg"
-theme.titlebar_close_button_focus = tip .. "close_focus.svg"
-
-theme.titlebar_minimize_button_normal = tip .. "minimize_normal.svg"
-theme.titlebar_minimize_button_focus = tip .. "minimize_focus.svg"
-
-theme.titlebar_ontop_button_normal_inactive = tip .. "ontop_normal_inactive.svg"
-theme.titlebar_ontop_button_focus_inactive = tip .. "ontop_focus_inactive.svg"
-theme.titlebar_ontop_button_normal_active = tip .. "ontop_normal_active.svg"
-theme.titlebar_ontop_button_focus_active = tip .. "ontop_focus_active.svg"
-
-theme.titlebar_sticky_button_normal_inactive = tip .. "sticky_normal_inactive.svg"
-theme.titlebar_sticky_button_focus_inactive = tip .. "sticky_focus_inactive.svg"
-theme.titlebar_sticky_button_normal_active = tip .. "sticky_normal_active.svg"
-theme.titlebar_sticky_button_focus_active = tip .. "sticky_focus_active.svg"
-
-theme.titlebar_floating_button_normal_inactive = tip .. "floating_normal_inactive.svg"
-theme.titlebar_floating_button_focus_inactive = tip .. "floating_focus_inactive.svg"
-theme.titlebar_floating_button_normal_active = tip .. "floating_normal_active.svg"
-theme.titlebar_floating_button_focus_active = tip .. "floating_focus_active.svg"
-
-theme.titlebar_maximized_button_normal_inactive = tip .. "maximized_normal_inactive.svg"
-theme.titlebar_maximized_button_focus_inactive = tip .. "maximized_focus_inactive.svg"
-theme.titlebar_maximized_button_normal_active = tip .. "maximized_normal_active.svg"
-theme.titlebar_maximized_button_focus_active = tip .. "maximized_focus_active.svg"
-theme.titlebar_close_button_normal = tip .. "close_normal.svg"
-theme.titlebar_close_button_focus = tip .. "close_focus.svg"
-
-theme.titlebar_minimize_button_normal_hover = tip .. "minimize_normal_hover.svg"
-theme.titlebar_minimize_button_focus_hover = tip .. "minimize_focus_hover.svg"
-
-theme.titlebar_ontop_button_normal_inactive_hover = tip .. "ontop_normal_inactive_hover.svg"
-theme.titlebar_ontop_button_focus_inactive_hover = tip .. "ontop_focus_inactive_hover.svg"
-theme.titlebar_ontop_button_normal_active_hover = tip .. "ontop_normal_active_hover.svg"
-theme.titlebar_ontop_button_focus_active_hover = tip .. "ontop_focus_active_hover.svg"
-
-theme.titlebar_sticky_button_normal_inactive_hover = tip .. "sticky_normal_inactive_hover.svg"
-theme.titlebar_sticky_button_focus_inactive_hover = tip .. "sticky_focus_inactive_hover.svg"
-theme.titlebar_sticky_button_normal_active_hover = tip .. "sticky_normal_active_hover.svg"
-theme.titlebar_sticky_button_focus_active_hover = tip .. "sticky_focus_active_hover.svg"
-
-theme.titlebar_floating_button_normal_inactive_hover = tip .. "floating_normal_inactive_hover.svg"
-theme.titlebar_floating_button_focus_inactive_hover = tip .. "floating_focus_inactive_hover.svg"
-theme.titlebar_floating_button_normal_active_hover = tip .. "floating_normal_active_hover.svg"
-theme.titlebar_floating_button_focus_active_hover = tip .. "floating_focus_active_hover.svg"
-
-theme.titlebar_maximized_button_normal_inactive_hover = tip .. "maximized_normal_inactive_hover.svg"
-theme.titlebar_maximized_button_focus_inactive_hover = tip .. "maximized_focus_inactive_hover.svg"
-theme.titlebar_maximized_button_normal_active_hover = tip .. "maximized_normal_active_hover.svg"
-theme.titlebar_maximized_button_focus_active_hover = tip .. "maximized_focus_active_hover.svg"
-
 -- UI Groups
 
 theme.groups_title_bg = theme.xbackground
-theme.groups_bg = theme.xbackground
-theme.groups_radius = dpi(10)
+theme.groups_bg = theme.xcolor6
+theme.groups_radius = dpi(2)
 
 -- Client Decorations
 
 -- Borders
 if theme.titlebar_enabled then
-    theme.border_focus = theme.background .. "cc"
+    theme.border_focus = theme.xcolor6 .. "cc"
 else
     theme.border_focus = theme.xcolor8 .. "30"
 end
 theme.border_normal = theme.background
 theme.border_marked = theme.xcolor1
-theme.border_radius = dpi(10)
+theme.border_radius = dpi(13)
 
 -- Decorations
 theme.client_radius = dpi(12)
-theme.useless_gap = 5
+theme.useless_gap = dpi(2)
 
 -- Menu
-theme.menu_font = "ProFontIIx Nerd Font Bold 11"
-theme.menu_submenu = "" -- ➤
+theme.menu_font = theme.font .. " 11"
+theme.menu_submenu = "➤"
 
 theme.menu_height = dpi(24)
 theme.menu_width = dpi(200)
@@ -220,7 +170,7 @@ theme.taglist_disable_icon = true
 
 -- Tasklist
 
-theme.tasklist_font = "ProFontIIx Nerd Font Bold 15"
+theme.tasklist_font = theme.font .. " 10"
 theme.tasklist_fg_minimize = theme.color8
 theme.tasklist_bg_normal = theme.xbackground
 theme.tasklist_bg_urgent = theme.xbackground
@@ -255,8 +205,8 @@ theme.snap_border_width = dpi(15)
 
 -- Hotkey popup
 
-theme.hotkeys_font = "ProFontIIx Nerd Font  Bold"
-theme.hotkeys_description_font = "ProFontIIx Nerd Font Bold"
+theme.hotkeys_font = theme.font .. " 14"
+theme.hotkeys_description_font = theme.font .. " 16"
 theme.hotkeys_bg = theme.background
 theme.hotkeys_group_margin = dpi(20)
 
@@ -269,7 +219,7 @@ theme.panel_bg = theme.xbackground .. "dd"
 theme.panel_radius = dpi(12)
 theme.panel_widget_border_width = dpi(0)
 theme.panel_widget_border_color = theme.xbackground .. "dd"
-theme.panel_widget_bg_color = theme.xbackground .. "00"
+theme.panel_widget_bg_color = theme.transparent
 theme.panel_widget_radius = dpi(12)
 theme.panel_padding = dpi(0)
 theme.panel_blur_type = "panel" -- use "dock" for no blur, "panel" for blur
@@ -281,27 +231,27 @@ theme.small_panel_width = 1920
 theme.small_panel_radius = dpi(0)
 theme.small_panel_desktop_width = 1920
 theme.small_panel_laptop_width = 1920
-theme.small_panel_bg = theme.xbackground .. "dd"
+theme.small_panel_bg = theme.xbackground .. "cc"
 theme.small_panel_radius = dpi(0)
 theme.small_panel_widget_border_width = 0
-theme.small_panel_widget_border_color = theme.xbackground .. "00"
-theme.small_panel_widget_bg_color = theme.xbackground .. "00"
+theme.small_panel_widget_border_color = theme.transparent
+theme.small_panel_widget_bg_color = theme.transparent
 theme.small_panel_widget_radius = dpi(0)
 theme.small_panel_padding = dpi(2)
-theme.small_panel_blur_type = "panel" -- use "dock" for no blur, "panel" for blur
+theme.small_panel_blur_type = "dock" -- use "dock" for no blur, "panel" for blur
 
 -- Popup
 
 -- ===================================================================
--- Bling ---------------------------------------------------------
+-- Bling Specific ---------------------------------------------------
 -- ===================================================================
 -- window swallowing
 theme.dont_swallow_classname_list = {"firefox", "firefox-nightly", "Gimp"} -- list of class names that should not be swallowed
 theme.dont_swallow_filter_activated = true -- whether the filter above should be active
 
 -- flash focus
-theme.flash_focus_start_opacity = 0.6 -- the starting opacity
-theme.flash_focus_step = 0.3 -- the step of animation
+theme.flash_focus_start_opacity = 0.36 -- the starting opacity
+theme.flash_focus_step = 0.13 -- the step of animation
 
 -- tabbed
 theme.tabbed_spawn_in_tab = true -- whether a new client should spawn into the focused tabbing container
@@ -310,12 +260,12 @@ theme.tabbed_spawn_in_tab = true -- whether a new client should spawn into the f
 theme.tabbar_ontop = false
 theme.tabbar_radius = dpi(3) -- border radius of the tabbar
 theme.tabbar_style = "modern" -- style of the tabbar ("default", "boxes" or "modern")
-theme.tabbar_font = "ProFontIIx Nerd Font Bold 12" -- font of the tabbar
+theme.tabbar_font = theme.font .. " 12" -- font of the tabbar
 theme.tabbar_size = 25 -- size of the tabbar
 theme.tabbar_position = "top" -- position of the tabbar
-theme.tabbar_bg_normal = theme.xbackground -- background color of the focused client on the tabbar
-theme.tabbar_fg_normal = "#e9efff" -- foreground color of the focused client on the tabbar
-theme.tabbar_bg_focus = theme.xbackground -- background color of unfocused clients on the tabbar
+theme.tabbar_bg_normal = theme.xbackground .. "aa" -- background color of the focused client on the tabbar
+theme.tabbar_fg_normal = theme.xforeground -- foreground color of the focused client on the tabbar
+theme.tabbar_bg_focus = theme.xbackground .. "00" -- background color of unfocused clients on the tabbar
 theme.tabbar_fg_focus = theme.xcolor6 -- foreground color of unfocused clients on the tabbar
 
 -- mstab
@@ -329,7 +279,7 @@ theme.mstab_bar_padding = dpi(0) -- how much padding there should be between cli
 theme.mstab_border_radius = dpi(6) -- border radius of the tabbar
 theme.mstab_bar_height = 25 -- height of the tabbar
 theme.mstab_tabbar_position = "top" -- position of the tabbar (mstab currently does not support left,right)
-theme.mstab_tabbar_style = "default" -- style of the tabbar ("default", "boxes" or "modern")
+theme.mstab_tabbar_style = "modern" -- style of the tabbar ("default", "boxes" or "modern")
 -- defaults to the tabbar_style so only change if you want a
 -- different style for mstab and tabbed
 
@@ -341,6 +291,64 @@ theme.tabbar_color_float = theme.xcolor6 -- changes the color of the float butto
 theme.osd_width = dpi(350)
 theme.osd_height = dpi(200)
 
-theme.taglist_font = "awesomewm-font 26"
+-- ==============================================================================
+-- Titlebar Icons
+-- ==============================================================================
+
+theme.titlebar_close_button_normal = tip .. "close_normal.svg"
+theme.titlebar_close_button_focus = tip .. "close_focus.svg"
+
+theme.titlebar_minimize_button_normal = tip .. "minimize_normal.svg"
+theme.titlebar_minimize_button_focus = tip .. "minimize_focus.svg"
+
+theme.titlebar_ontop_button_normal_inactive = tip .. "ontop_normal_inactive.svg"
+theme.titlebar_ontop_button_focus_inactive = tip .. "ontop_focus_inactive.svg"
+theme.titlebar_ontop_button_normal_active = tip .. "ontop_normal_active.svg"
+theme.titlebar_ontop_button_focus_active = tip .. "ontop_focus_active.svg"
+
+theme.titlebar_sticky_button_normal_inactive = tip .. "sticky_normal_inactive.svg"
+theme.titlebar_sticky_button_focus_inactive = tip .. "sticky_focus_inactive.svg"
+theme.titlebar_sticky_button_normal_active = tip .. "sticky_normal_active.svg"
+theme.titlebar_sticky_button_focus_active = tip .. "sticky_focus_active.svg"
+
+theme.titlebar_floating_button_normal_inactive = tip .. "floating_normal_inactive.svg"
+theme.titlebar_floating_button_focus_inactive = tip .. "floating_focus_inactive.svg"
+theme.titlebar_floating_button_normal_active = tip .. "floating_normal_active.svg"
+theme.titlebar_floating_button_focus_active = tip .. "floating_focus_active.svg"
+
+theme.titlebar_maximized_button_normal_inactive = tip .. "maximized_normal_inactive.svg"
+theme.titlebar_maximized_button_focus_inactive = tip .. "maximized_focus_inactive.svg"
+theme.titlebar_maximized_button_normal_active = tip .. "maximized_normal_active.svg"
+theme.titlebar_maximized_button_focus_active = tip .. "maximized_focus_active.svg"
+theme.titlebar_close_button_normal = tip .. "close_normal.svg"
+theme.titlebar_close_button_focus = tip .. "close_focus.svg"
+
+theme.titlebar_minimize_button_normal_hover = tip .. "minimize_normal_hover.svg"
+theme.titlebar_minimize_button_focus_hover = tip .. "minimize_focus_hover.svg"
+
+theme.titlebar_ontop_button_normal_inactive_hover = tip .. "ontop_normal_inactive_hover.svg"
+theme.titlebar_ontop_button_focus_inactive_hover = tip .. "ontop_focus_inactive_hover.svg"
+theme.titlebar_ontop_button_normal_active_hover = tip .. "ontop_normal_active_hover.svg"
+theme.titlebar_ontop_button_focus_active_hover = tip .. "ontop_focus_active_hover.svg"
+
+theme.titlebar_sticky_button_normal_inactive_hover = tip .. "sticky_normal_inactive_hover.svg"
+theme.titlebar_sticky_button_focus_inactive_hover = tip .. "sticky_focus_inactive_hover.svg"
+theme.titlebar_sticky_button_normal_active_hover = tip .. "sticky_normal_active_hover.svg"
+theme.titlebar_sticky_button_focus_active_hover = tip .. "sticky_focus_active_hover.svg"
+
+theme.titlebar_floating_button_normal_inactive_hover = tip .. "floating_normal_inactive_hover.svg"
+theme.titlebar_floating_button_focus_inactive_hover = tip .. "floating_focus_inactive_hover.svg"
+theme.titlebar_floating_button_normal_active_hover = tip .. "floating_normal_active_hover.svg"
+theme.titlebar_floating_button_focus_active_hover = tip .. "floating_focus_active_hover.svg"
+
+theme.titlebar_maximized_button_normal_inactive_hover = tip .. "maximized_normal_inactive_hover.svg"
+theme.titlebar_maximized_button_focus_inactive_hover = tip .. "maximized_focus_inactive_hover.svg"
+theme.titlebar_maximized_button_normal_active_hover = tip .. "maximized_normal_active_hover.svg"
+theme.titlebar_maximized_button_focus_active_hover = tip .. "maximized_focus_active_hover.svg"
+
+-- ====================================================================================
+-- Tagbar font (putting anywhere logical broke the config)
+-- ====================================================================================
+theme.taglist_font = "awesomewm-font 30"
 
 return theme

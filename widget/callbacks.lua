@@ -1,4 +1,4 @@
-local beautiful = require('beautiful')
+local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
 local callbacks = {}
@@ -7,7 +7,7 @@ function callbacks.zoom(widget)
   local margin_widget = widget:get_children()[1]
   local old_cursor, old_wibox
   if not margin_widget.top then
-    margin_widget = widget:get_children_by_id('zoom_margin')[1]
+    margin_widget = widget:get_children_by_id("zoom_margin")[1]
   end
 
   -- assumes the margins are all the same
@@ -16,33 +16,35 @@ function callbacks.zoom(widget)
   local old_cursor, old_wibox
 
   widget:connect_signal(
-    'mouse::enter', function()
+    "mouse::enter",
+    function()
       margin_widget.margins = margin_big
       -- Hm, no idea how to get the wibox from this signal's arguments...
       local w = mouse.current_wibox
       if w then
         old_cursor, old_wibox = w.cursor, w
-        w.cursor = 'hand1'
+        w.cursor = "hand1"
       end
-    end)
+    end
+  )
 
   widget:connect_signal(
-    'mouse::leave', function()
+    "mouse::leave",
+    function()
       margin_widget.margins = margin_small
 
       if old_wibox then
         old_wibox.cursor = old_cursor
         old_wibox = nil
       end
-    end)
-
-
+    end
+  )
 end
 
 function callbacks.zoom_bg(widget)
   local margin_widget = widget:get_children()[1]
   if not margin_widget.top then
-    margin_widget = widget:get_children_by_id('zoom_margin')[1]
+    margin_widget = widget:get_children_by_id("zoom_margin")[1]
   end
 
   -- assumes the margins are all the same
@@ -51,19 +53,22 @@ function callbacks.zoom_bg(widget)
   local old_cursor, old_wibox
 
   widget:connect_signal(
-    'mouse::enter', function()
+    "mouse::enter",
+    function()
       widget.bg = beautiful.groups_bg
       margin_widget.margins = margin_big
       -- Hm, no idea how to get the wibox from this signal's arguments...
       local w = mouse.current_wibox
       if w then
         old_cursor, old_wibox = w.cursor, w
-        w.cursor = 'hand1'
+        w.cursor = "hand1"
       end
-    end)
+    end
+  )
 
   widget:connect_signal(
-    'mouse::leave', function()
+    "mouse::leave",
+    function()
       widget.bg = beautiful.transparent
       margin_widget.margins = margin_small
 
@@ -71,44 +76,65 @@ function callbacks.zoom_bg(widget)
         old_wibox.cursor = old_cursor
         old_wibox = nil
       end
-    end)
+    end
+  )
 
   widget:connect_signal(
-    'button::press', function() widget.bg = beautiful.groups_title_bg end)
+    "button::press",
+    function()
+      widget.bg = beautiful.groups_title_bg
+    end
+  )
 
   widget:connect_signal(
-    'button::release', function() widget.bg = beautiful.groups_bg end)
+    "button::release",
+    function()
+      widget.bg = beautiful.groups_bg
+    end
+  )
 end
 
 function callbacks.background(widget)
   local old_cursor, old_wibox
 
   widget:connect_signal(
-    'mouse::enter', function()
+    "mouse::enter",
+    function()
       widget.bg = beautiful.groups_bg
       -- Hm, no idea how to get the wibox from this signal's arguments...
       local w = mouse.current_wibox
       if w then
         old_cursor, old_wibox = w.cursor, w
-        w.cursor = 'hand1'
+        w.cursor = "hand1"
       end
-    end)
+    end
+  )
 
   widget:connect_signal(
-    'mouse::leave', function()
+    "mouse::leave",
+    function()
       widget.bg = beautiful.transparent
 
       if old_wibox then
         old_wibox.cursor = old_cursor
         old_wibox = nil
       end
-    end)
+    end
+  )
 
   widget:connect_signal(
-    'button::press', function() widget.bg = beautiful.groups_title_bg end)
+    "button::press",
+    function()
+      widget.bg = beautiful.groups_title_bg
+    end
+  )
 
   widget:connect_signal(
-    'button::release', function() widget.bg = beautiful.groups_bg end)
+    "button::release",
+    function()
+      widget.bg = beautiful.groups_bg
+    end
+  )
 end
 
 callbacks.default = callbacks.zoom_bg

@@ -12,8 +12,6 @@ notification_toggler_widget.build = function(args)
     onclick = function()
       args.screen:emit_signal("sidebar::show_mode", "notif")
       awesome.emit_signal("widget::notif_osd:show", true)
-      collectgarbage("collect")
-      collectgarbage("step", 42)
     end
   }
 
