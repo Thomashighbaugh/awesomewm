@@ -205,13 +205,13 @@ theme.snap_border_width = dpi(15)
 
 -- Hotkey popup
 
-theme.hotkeys_font = theme.font .. " 14"
-theme.hotkeys_description_font = theme.font .. " 16"
+theme.hotkeys_font = theme.font .. " 12"
+theme.hotkeys_description_font = theme.font .. " 14"
 theme.hotkeys_bg = theme.background
 theme.hotkeys_group_margin = dpi(20)
 
 -- Main panel
-theme.panel_height = 46
+theme.panel_height = 44
 theme.panel_width = 560
 theme.panel_desktop_width = 560
 theme.panel_laptop_width = 560
@@ -220,8 +220,8 @@ theme.panel_radius = dpi(12)
 theme.panel_widget_border_width = dpi(0)
 theme.panel_widget_border_color = theme.xbackground .. "dd"
 theme.panel_widget_bg_color = theme.transparent
-theme.panel_widget_radius = dpi(12)
-theme.panel_padding = dpi(0)
+theme.panel_widget_radius = dpi(0)
+theme.panel_padding = dpi(2)
 theme.panel_blur_type = "panel" -- use "dock" for no blur, "panel" for blur
 
 -- Second small panel
@@ -349,6 +349,6 @@ theme.titlebar_maximized_button_focus_active_hover = tip .. "maximized_focus_act
 -- ====================================================================================
 -- Tagbar font (putting anywhere logical broke the config)
 -- ====================================================================================
-theme.taglist_font = "awesomewm-font 30"
+theme.taglist_font = "awesomewm-font 28"
 
 return theme

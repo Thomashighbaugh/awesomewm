@@ -131,9 +131,9 @@ function panel_builder.panel_container(args, widget_names)
             widget_names.middle_widgets,
             widget_names.right_widgets
         },
-        left = dpi(0),
-        right = dpi(0),
-        top = dpi(0),
+        left = dpi(8),
+        right = dpi(8),
+        top = dpi(2),
         bottom = dpi(0),
         widget = wibox.container.margin
     }
@@ -161,7 +161,6 @@ end
 panel_builder.build_single_panel = function(args, widget_names)
     local s = args.screen
     local pos = args.position
-    local layout = swap_orientation(args.orientation)
     if args.callback == nil then
         args.callback = callbacks.default
     end
@@ -244,7 +243,7 @@ panel_builder.build_widget_box = function(args, widget_names)
         widgets,
         widget = wibox.container.margin,
         type = beautiful.panel_blur_type,
-        height = panel_height + 0,
+        height = panel_height + 1,
         bg = beautiful.panel_bg,
         fg = beautiful.fg_normal,
         shape = function(cr, w, h)
