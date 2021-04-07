@@ -3,7 +3,6 @@
 |  |  |  |   _   |     |_|     |_|   __ \   _   |   __ \    ___|   __ \  |  |.--.--.---.-.
 |  |  |  |       |       |       |    __/       |    __/    ___|      <__|  ||  |  |  _  |
 |________|___|___|_______|_______|___|  |___|___|___|  |_______|___|__|__|__||_____|___._|
-                                                                                          
        by Thomas Leon Highbaugh
     
      Created:
@@ -27,6 +26,6 @@ local beautiful = require("beautiful")
 awful.screen.connect_for_each_screen(
   function(s)
     -- Screen padding
-    gears.wallpaper.maximized(gears.filesystem.get_configuration_dir() .. "images/34.png", s, nil)
+    gears.wallpaper.maximized(gears.filesystem.get_configuration_dir() .. "images/9.jpg", s, nil)
   end
 )
