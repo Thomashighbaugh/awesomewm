@@ -21,7 +21,7 @@ function run() {
 # transparency
 run picom -b --experimental-backends --config ~/.config/awesome/external/picom.conf
 ## Turn on settings manager (allows gtk styling to work consistently, power manager for my laptop, etc)
-run xfsettings
+run xfsettingsd
 ## Allows for windows key to bring up rofi menu in single key stroke (vital to workflow for me)
 run xcape -e "Super_L=Super_L|Control_L|Escape"
 
@@ -29,5 +29,5 @@ run xcape -e "Super_L=Super_L|Control_L|Escape"
 run unclutter
 
 # turned on by xprofile as well. Doesn't hurt to have it twice, its just twice as nice
-run "/home/tlh/.dropbox-dist/dropbox"
+run "/home/tlh/.dropbox-dist/dropboxd"
 

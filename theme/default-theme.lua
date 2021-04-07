@@ -40,7 +40,7 @@ theme.xcolor14 = xrdb.color14
 theme.xcolor15 = xrdb.color15
 
 -- Font
-theme.font = "Encode Sans SemiExpanded ExtraBold"
+theme.font = "Anka/Coder Bold"
 theme.font_bold = theme.font
 theme.font_heavy = theme.font .. " 18"
 -- Noto Sans Grantha

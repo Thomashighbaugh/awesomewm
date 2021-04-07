@@ -1,21 +1,10 @@
---[[ 
-	 _______ _______ _______ _______ _______ _______ ______ _______ _______ _______ _______ _______ _______    __              
-|    |  |       |_     _|_     _|    ___|_     _|      |   _   |_     _|_     _|       |    |  |     __|  |  |.--.--.---.-.
-|       |   -   | |   |  _|   |_|    ___|_|   |_|   ---|       | |   |  _|   |_|   -   |       |__     |__|  ||  |  |  _  |
-|__|____|_______| |___| |_______|___|   |_______|______|___|___| |___| |_______|_______|__|____|_______|__|__||_____|___._|
-                                                                                                                           
-			 by Thomas Leon Highbaugh
-		
-		 Created:
-			 3/4/2021, 2:33:27 PM
-		 Last edited:
-			 3/4/2021, 2:33:27 PM
-		 Auto updated?
-			 Yes
-		
-		 Description:
-			 <Todo>
---]]
+--   _______ _______ _______ _______ _______ _______ ______ _______ _______ _______ _______ _______ _______    __
+--|    |  |       |_     _|_     _|    ___|_     _|      |   _   |_     _|_     _|       |    |  |     __|  |  |.--.--.---.-.
+--|       |   -   | |   |  _|   |_|    ___|_|   |_|   ---|       | |   |  _|   |_|   -   |       |__     |__|  ||  |  |  _  |
+--|__|____|_______| |___| |_______|___|   |_______|______|___|___| |___| |_______|_______|__|____|_______|__|__||_____|___._|
+
+--           by Thomas Leon Highbaugh
+
 local gears = require('gears')
 local wibox = require('wibox')
 local awful = require('awful')
@@ -68,7 +57,7 @@ ruled.notification.connect_signal(
                 bg = '#ff0000',
                 fg = '#ffffff',
                 margin = dpi(16),
-                -- position 			= 'top_right',
+                -- position             = 'top_right',
                 implicit_timeout = 0
             }
         }
@@ -81,7 +70,7 @@ ruled.notification.connect_signal(
                 bg = beautiful.transparent,
                 fg = beautiful.fg_normal,
                 margin = dpi(16),
-                -- position 			= 'top_right',
+                -- position             = 'top_right',
                 timeout = 5,
                 implicit_timeout = 5
             }
@@ -95,12 +84,12 @@ ruled.notification.connect_signal(
                 bg = beautiful.transparent,
                 fg = beautiful.fg_normal,
                 margin = dpi(16),
-                -- position 			= 'top_right',
+                -- position             = 'top_right',
                 implicit_timeout = 5
             }
         }
     end
-)
+    )
 
 -- Error handling
 naughty.connect_signal(
@@ -114,7 +103,7 @@ naughty.connect_signal(
             icon = beautiful.icons.awesome
         }
     end
-)
+    )
 
 -- XDG icon lookup
 naughty.connect_signal(
@@ -130,7 +119,7 @@ naughty.connect_signal(
             n.icon = path
         end
     end
-)
+    )
 
 -- Naughty template
 naughty.connect_signal(
@@ -138,7 +127,7 @@ naughty.connect_signal(
     function(n)
         -- naughty.actions template
         local actions_template =
-            wibox.widget {
+        wibox.widget {
             notification = n,
             base_layout = wibox.widget {
                 spacing = dpi(0),
@@ -173,7 +162,7 @@ naughty.connect_signal(
         naughty.layout.box {
             notification = n,
             type = beautiful.notification_type,
-            screen = awful.screen.preferred(),
+            screen = awful.screen.current,
             shape = gears.shape.rectangle,
             widget_template = {
                 {
@@ -275,8 +264,8 @@ naughty.connect_signal(
 
         -- Destroy popups if dont_disturb mode is on
         local focused = awful.screen.focused()
-        if require('widget.notif-center.dont-disturb').dont_disturb then 
+        if require('widget.notif-center.dont-disturb').dont_disturb then
             naughty.destroy_all_notifications()
         end
     end
-)
+    )
