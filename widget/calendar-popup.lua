@@ -1,9 +1,9 @@
-local beautiful = require('beautiful')
-local awful = require('awful')
-local wibox = require('wibox')
-local gears = require('gears')
-local popup = require('module.popup')
-local dpi = require('beautiful').xresources.apply_dpi
+local beautiful = require("beautiful")
+local awful = require("awful")
+local wibox = require("wibox")
+local gears = require("gears")
+local popup = require("module.popup")
+local dpi = require("beautiful").xresources.apply_dpi
 
 local calendar_popup = {}
 calendar_popup.build_dashboard = function(args)
@@ -26,7 +26,7 @@ calendar_popup.build_dashboard = function(args)
 		fg_color = beautiful.xcolor15,
 		bg_color = beautiful.xcolor4,
 		markup = function(t)
-			return '<b>' .. t .. '</b>'
+			return "<b>" .. t .. "</b>"
 		end,
 		shape = rounded_shape(beautiful.groups_radius)
 	}
@@ -34,7 +34,7 @@ calendar_popup.build_dashboard = function(args)
 		fg_color = beautiful.fg_focus,
 		bg_color = beautiful.transparent,
 		markup = function(t)
-			return '<b>' .. t .. '</b>'
+			return "<b>" .. t .. "</b>"
 		end,
 		shape = rounded_shape(beautiful.groups_radius)
 	}
@@ -42,14 +42,14 @@ calendar_popup.build_dashboard = function(args)
 		fg_color = beautiful.fg_focus,
 		bg_color = beautiful.transparent,
 		markup = function(t)
-			return '<b>' .. t .. '</b>'
+			return "<b>" .. t .. "</b>"
 		end,
 		shape = rounded_shape(beautiful.groups_radius)
 	}
 
 	local function decorate_cell(widget, flag, date)
-		if flag == 'monthheader' and not styles.monthheader then
-			flag = 'header'
+		if flag == "monthheader" and not styles.monthheader then
+			flag = "header"
 		end
 		local props = styles[flag] or {}
 		if props.markup and widget.get_text and widget.set_markup then
@@ -61,8 +61,8 @@ calendar_popup.build_dashboard = function(args)
 			month = (date.month or 1),
 			day = (date.day or 1)
 		}
-		local weekday = tonumber(os.date('%w', os.time()))
-		local default_bg = (weekday == 0 or weekday == 6) and beautiful.background or beautiful.transparent
+		local weekday = tonumber(os.date("%w", os.time()))
+		local default_bg = (weekday == 0 or weekday == 6) and beautiful.background .. "77" or beautiful.transparent
 		local ret =
 			wibox.widget {
 			{
@@ -74,7 +74,7 @@ calendar_popup.build_dashboard = function(args)
 			shape_border_color = props.border_color or beautiful.xcolor1,
 			shape_border_width = props.border_width or 0,
 			fg = props.fg_color or beautiful.fg_focus,
-			bg = props.bg_color or default_bg,
+			bg = props.bg_color or default_bg or beautiful.xbackground .. "88",
 			widget = wibox.container.background
 		}
 		return ret
@@ -82,20 +82,20 @@ calendar_popup.build_dashboard = function(args)
 
 	local cal =
 		wibox.widget {
-		date = os.date('*t'),
+		date = os.date("*t"),
 		fn_embed = decorate_cell,
-		font = beautiful.font .. ' 11',
+		font = beautiful.font .. " 11",
 		widget = wibox.widget.calendar.month
 	}
 
 	local inc_month = function(step)
-		local da = os.date('*t')
+		local da = os.date("*t")
 		da.month = cal.date.month + step
 		cal:set_date(da)
 	end
 
 	local res_month = function(step)
-		local da = os.date('*t')
+		local da = os.date("*t")
 		cal:set_date(da)
 	end
 
@@ -142,7 +142,7 @@ calendar_popup.build_dashboard = function(args)
 	}
 
 	local popupargs = {
-		name = 'calendar_osd',
+		name = "calendar_osd",
 		height = n_height,
 		width = n_width,
 		content = fixed_size_container

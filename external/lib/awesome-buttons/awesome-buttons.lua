@@ -1,4 +1,5 @@
 local wibox = require("wibox")
+local beautiful = require("beautiful")
 local gears = require("gears")
 local buttons = {}
 
@@ -34,7 +35,7 @@ buttons.with_icon = function(args)
     }
 
     if type == "outline" then
-        result:set_shape_border_color(color)
+        result:set_shape_border_color(beautiful.xcolor8)
         result:set_shape_border_width(1)
     elseif type == "flat" then
         result:set_bg(color)
@@ -61,7 +62,7 @@ buttons.with_icon = function(args)
             end
             local wb = mouse.current_wibox
             old_cursor, old_wibox = wb.cursor, wb
-            wb.cursor = "hand1"
+            cursor_name = "hand"
         end
     )
     result:connect_signal(
@@ -133,7 +134,7 @@ buttons.with_text = function(args)
             end
             local wb = mouse.current_wibox
             old_cursor, old_wibox = wb.cursor, wb
-            wb.cursor = "hand1"
+            cursor_name = "hand"
         end
     )
     result:connect_signal(
@@ -225,7 +226,7 @@ buttons.with_icon_and_text = function(args)
             end
             local wb = mouse.current_wibox
             old_cursor, old_wibox = wb.cursor, wb
-            wb.cursor = "hand1"
+            cursor_name = "hand"
         end
     )
     result:connect_signal(

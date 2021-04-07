@@ -50,7 +50,6 @@ theme.font_heavy = theme.font .. " 18"
 theme.dir = theme_dir
 
 theme.icons = theme.dir .. "/icons/"
-theme.accent = theme.xcolor15
 
 theme.accent = theme.xcolor4
 -- Foreground
@@ -62,8 +61,8 @@ theme.fg_focus = theme.xcolor7
 theme.fg_urgent = theme.xcolor1
 
 theme.bat_fg_critical = theme.xcolor1
-theme.background = theme.xbackground
-theme.bg_normal = theme.background
+theme.background = theme.xbackground .. "aa"
+theme.bg_normal = theme.background .. "aa"
 theme.bg_focus = theme.xcolor0
 theme.bg_urgent = theme.xcolor8
 

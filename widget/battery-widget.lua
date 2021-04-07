@@ -253,7 +253,7 @@ battery_widget.build = function(args)
   )
 
   if not battery_widget.watch_active then
-    battery_widget.start_watch()
+    battery_widget.start_watch(12)
   end
 
   return widget
