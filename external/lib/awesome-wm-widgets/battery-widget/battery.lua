@@ -20,11 +20,10 @@ local dpi = require('beautiful').xresources.apply_dpi
 -- Battery 0: Charging, 53%, 00:57:43 until charged
 
 local HOME = os.getenv("HOME")
-local WIDGET_DIR = HOME .. '/.config/awesome/awesome-wm-widgets/battery-widget'
 
 local battery_widget = {}
-local function worker(user_args)
-    local args = user_args or {}
+local function worker(args)
+    local args = args or {}
 
     local font = args.font or 'Play 8'
     local path_to_icons = args.path_to_icons or "/usr/share/icons/Arc/status/symbolic/"
@@ -33,14 +32,12 @@ local function worker(user_args)
     local margin_right = args.margin_right or 0
 
     local display_notification = args.display_notification or false
-    local display_notification_onClick = args.display_notification_onClick or true
     local position = args.notification_position or "top_right"
-    local timeout = args.timeout or 10
 
     local warning_msg_title = args.warning_msg_title or 'Huston, we have a problem'
     local warning_msg_text = args.warning_msg_text or 'Battery is dying'
     local warning_msg_position = args.warning_msg_position or 'bottom_right'
-    local warning_msg_icon = args.warning_msg_icon or WIDGET_DIR .. '/spaceman.jpg'
+    local warning_msg_icon = args.warning_msg_icon or HOME .. '/.config/awesome/awesome-wm-widgets/batteryarc-widget/spaceman.jpg'
     local enable_battery_warning = args.enable_battery_warning
     if enable_battery_warning == nil then
         enable_battery_warning = true
@@ -60,8 +57,7 @@ local function worker(user_args)
             widget = wibox.widget.imagebox,
             resize = false
         },
-        valigh = 'center',
-        layout = wibox.container.place,
+        layout = wibox.container.margin(_, 0, 0, 3)
     }
     local level_widget = wibox.widget {
         font = font,
@@ -120,12 +116,12 @@ local function worker(user_args)
     local last_battery_check = os.time()
     local batteryType = "battery-good-symbolic"
 
-    watch("acpi -i", timeout,
-    function(widget, stdout)
+    watch("acpi -i", 10,
+    function(widget, stdout, stderr, exitreason, exitcode)
         local battery_info = {}
         local capacities = {}
         for s in stdout:gmatch("[^\r\n]+") do
-            local status, charge_str, _ = string.match(s, '.+: (%a+), (%d?%d?%d)%%,?(.*)')
+            local status, charge_str, time = string.match(s, '.+: (%a+), (%d?%d?%d)%%,?(.*)')
             if status ~= nil then
                 table.insert(battery_info, {status = status, charge = tonumber(charge_str)})
             else
@@ -135,7 +131,7 @@ local function worker(user_args)
         end
 
         local capacity = 0
-        for _, cap in ipairs(capacities) do
+        for i, cap in ipairs(capacities) do
             capacity = capacity + cap
         end
 
@@ -185,13 +181,7 @@ local function worker(user_args)
     if display_notification then
         battery_widget:connect_signal("mouse::enter", function() show_battery_status(batteryType) end)
         battery_widget:connect_signal("mouse::leave", function() naughty.destroy(notification) end)
-    elseif display_notification_onClick then
-        battery_widget:connect_signal("button::press", function(_,_,_,button)
-            if (button == 3) then show_battery_status(batteryType) end
-        end)
-        battery_widget:connect_signal("mouse::leave", function() naughty.destroy(notification) end)
     end
-
     return wibox.container.margin(battery_widget, margin_left, margin_right)
 end
 

@@ -5,34 +5,34 @@
       * (c) 2010-2012, Peter Hofmann
 
 --]]
-local helpers = require("lain.helpers")
-local wibox = require("wibox")
+
+local helpers     = require("lain.helpers")
+local wibox       = require("wibox")
 local open, match = io.open, string.match
 
 -- System load
 -- lain.widget.sysload
 
 local function factory(args)
-	local sysload = { widget = wibox.widget.textbox() }
-	local args = args or {}
-	local timeout = args.timeout or 2
-	local settings = args.settings or function()
-	end
+    local sysload  = { widget = wibox.widget.textbox() }
+    local args     = args or {}
+    local timeout  = args.timeout or 2
+    local settings = args.settings or function() end
 
-	function sysload.update()
-		local f = open("/proc/loadavg")
-		local ret = f:read("*all")
-		f:close()
+    function sysload.update()
+        local f = open("/proc/loadavg")
+        local ret = f:read("*all")
+        f:close()
 
-		local load_1, load_5, load_15 = match(ret, "([^%s]+) ([^%s]+) ([^%s]+)")
+        load_1, load_5, load_15 = match(ret, "([^%s]+) ([^%s]+) ([^%s]+)")
 
-		local widget = sysload.widget
-		settings()
-	end
+        widget = sysload.widget
+        settings()
+    end
 
-	helpers.newtimer("sysload", timeout, sysload.update)
+    helpers.newtimer("sysload", timeout, sysload.update)
 
-	return sysload
+    return sysload
 end
 
 return factory

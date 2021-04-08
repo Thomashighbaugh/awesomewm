@@ -3,18 +3,18 @@ std = "min"
 
 -- Global objects defined by the C code
 read_globals = {
-	"timer", -- deprecated, but used in older versions.
+    "timer",    -- deprecated, but used in older versions.
 }
 
 include_files = {
-	"*.lua", -- libraries
-	"widgets/*.lua", -- officially supported widget types
-	"templates/*.lua", -- officially supported widget types
+    "*.lua",            -- libraries
+    "widgets/*.lua",    -- officially supported widget types
+    "templates/*.lua",    -- officially supported widget types
 }
 
 -- Warnings to be ignored
 ignore = {
-	"212", -- Unused argument.
+    "212",  -- Unused argument.
 }
 
 -- Not enforced, but preferable

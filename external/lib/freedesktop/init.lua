@@ -6,6 +6,6 @@ Licensed under GNU General Public License v2
 * (c) 2009-2015, Antonio Terceiro
 --]]
 return {
-	desktop = require("freedesktop.desktop"),
-	menu = require("freedesktop.menu"),
+desktop  = require("freedesktop.desktop"),
+menu     = require("freedesktop.menu")
 }

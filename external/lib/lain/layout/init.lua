@@ -10,9 +10,10 @@
       * (c) 2010-2012, Peter Hofmann
 
 --]]
-local wrequire = require("lain.helpers").wrequire
+
+local wrequire     = require("lain.helpers").wrequire
 local setmetatable = setmetatable
 
-local layout = { _NAME = "lain.layout" }
+local layout       = { _NAME = "lain.layout" }
 
 return setmetatable(layout, { __index = wrequire })

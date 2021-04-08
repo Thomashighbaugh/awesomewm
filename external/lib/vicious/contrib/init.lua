@@ -17,6 +17,7 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
+
 -- {{{ Setup environment
 local setmetatable = setmetatable
 local wrequire = require("vicious.helpers").wrequire

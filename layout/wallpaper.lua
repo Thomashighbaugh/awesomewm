@@ -1,21 +1,26 @@
---[[ 
- ________ _______ _____   _____   ______ _______ ______ _______ ______    __              
-|  |  |  |   _   |     |_|     |_|   __ \   _   |   __ \    ___|   __ \  |  |.--.--.---.-.
-|  |  |  |       |       |       |    __/       |    __/    ___|      <__|  ||  |  |  _  |
-|________|___|___|_______|_______|___|  |___|___|___|  |_______|___|__|__|__||_____|___._|
-       by Thomas Leon Highbaugh
-    
---]]
-local bling = require("external.lib.bling")
+--                  _  _
+-- __      __ __ _ | || | _ __    __ _  _ __    ___  _ __
+-- \ \ /\ / // _` || || || '_ \  / _` || '_ \  / _ \| '__|
+--  \ V  V /| (_| || || || |_) || (_| || |_) ||  __/| |
+--   \_/\_/  \__,_||_||_|| .__/  \__,_|| .__/  \___||_|
+--                       |_|           |_|
+-- ===================================================================
+--  Import Libraries and Utilities
+-- ===================================================================
+-- Standard awesome library
 local gears = require("gears")
-local awful = require("awful")
 local beautiful = require("beautiful")
-
--- Set Wallpaper
-
-awful.screen.connect_for_each_screen(
-  function(s)
-    -- Screen padding
-    gears.wallpaper.maximized(gears.filesystem.get_configuration_dir() .. "images/34.png", s, nil)
-  end
-)
+-- ===================================================================
+-- Wallpaper setting function (picture set in themes)
+-- ===================================================================
+function set_wallpaper(s)
+    -- Wallpaper
+    if beautiful.wallpaper then
+        local wallpaper = beautiful.wallpaper
+        -- If wallpaper is a function, call it with the screen
+        if type(wallpaper) == "function" then wallpaper = wallpaper(s) end
+        gears.wallpaper.maximized(wallpaper, s, true)
+    end
+end
+-- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
+screen.connect_signal("property::geometry", set_wallpaper)

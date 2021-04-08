@@ -32,7 +32,7 @@ s.mytasklist, -- Middle widget
         -- default
         docker_widget(),
         -- customized
-        docker_widget{
+        github_activity_widget{
             number_of_containers = 5
         },
 ```

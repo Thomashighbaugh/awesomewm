@@ -18,11 +18,12 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
+
 -- {{{ Grab environment
 local os = { date = os.date, time = os.time }
-local helpers = require("vicious.helpers")
+local helpers = require"vicious.helpers"
 -- }}}
 
-return helpers.setcall(function(format, warg)
-	return os.date(format or nil, warg and os.time() + warg or nil)
+return helpers.setcall(function (format, warg)
+    return os.date(format or nil, warg and os.time()+warg or nil)
 end)

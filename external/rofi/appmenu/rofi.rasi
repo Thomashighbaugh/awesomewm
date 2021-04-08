@@ -10,7 +10,6 @@ Note: requires development branch of rofi (or the rofi-git package from AUR)
 
 **/
 configuration {
-	font:							"Encode Sans SemiExpanded Black 11";
     show-icons:                     true;
 	icon-theme: 					"chhinamasta";
     display-drun: 					"";

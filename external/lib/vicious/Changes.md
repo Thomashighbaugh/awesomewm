@@ -36,11 +36,11 @@ Added:
 Fixed:
 
 - Deprecate the use of `io.popen` in following widgets:
-  - wifi_linux, wifiiw_linux, hwmontemp_linux, hddtemp_linux
-  - bat_freebsd, mem_freebsd, net_freebsd, thermal_freebsd, uptime_freebsd,
-    cpu_freebsd, cpufreq_freebsd, fanspeed_freebsd
-  - bat_openbsd
-  - volume, gmail, mdir, mpd, fs
+    * wifi_linux, wifiiw_linux, hwmontemp_linux, hddtemp_linux
+    * bat_freebsd, mem_freebsd, net_freebsd, thermal_freebsd, uptime_freebsd,
+      cpu_freebsd, cpufreq_freebsd, fanspeed_freebsd
+    * bat_openbsd
+    * volume, gmail, mdir, mpd, fs
 - [mpd] Lua 5.3 compatibility (for real this time); also correct a typo
 - [mbox] Update the deprecated `string.gfind` to `string.gmatch`
 - [pkg,weather,contrib/btc] Allow function call without Awesome
@@ -93,7 +93,6 @@ Fixes:
 # Changes in 2.3.0
 
 Features:
-
 - add btc widget
 - add cmus widget
 - alsa mixer also accept multiple arguments

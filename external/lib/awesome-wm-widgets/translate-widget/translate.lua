@@ -7,18 +7,16 @@
 -------------------------------------------------
 
 local awful = require("awful")
-local spawn = require("awful.spawn")
 local capi = {keygrabber = keygrabber }
-local beautiful = require("beautiful")
+local https = require("ssl.https")
 local json = require("json")
 local naughty = require("naughty")
 local wibox = require("wibox")
 local gears = require("gears")
 local gfs = require("gears.filesystem")
 
-local TRANSLATE_CMD = [[bash -c 'curl -s -u "apikey:%s" -H "Content-Type: application/json"]]
-    ..[[ -d '\''{"text": ["%s"], "model_id":"%s"}'\'' "%s/v3/translate?version=2018-05-01"']]
-local ICON = os.getenv("HOME") .. '/.config/awesome/awesome-wm-widgets/translate-widget/gnome-translate.svg'
+local BASE_URL = 'https://translate.yandex.net/api/v1.5/tr.json/translate'
+local ICON = '/usr/share/icons/Papirus-Dark/48x48/apps/gnome-translate.svg'
 
 --- Returns two values - string to translate and direction:
 -- 'dog enfr' -> 'dog', 'en-fr'
@@ -33,91 +31,92 @@ local function extract(input_string)
     return word, lang
 end
 
-local function show_warning(message)
-    naughty.notify{
-        preset = naughty.config.presets.critical,
-        title = 'Translate Shell',
-        text = message}
+--- Simple url encoder - replaces spaces with '+' sign
+-- @param url to encode
+local function urlencode(url)
+    if (url) then
+        url = string.gsub(url, " ", "+")
+    end
+    return url
 end
 
-local w = awful.popup {
-    widget = {},
-    visible = false,
+local w = wibox {
+    width = 300,
     border_width = 1,
-    maximum_width = 400,
-    width = 400,
     border_color = '#66ccff',
     ontop = true,
-    bg = beautiful.bg_normal,
+    expand = true,
+    bg = '#1e252c',
+    max_widget_size = 500,
     shape = function(cr, width, height)
         gears.shape.rounded_rect(cr, width, height, 3)
-    end,
-}
-awful.placement.top(w, { margins = {top = 40}})
+    end
 
+}
+
+w:setup {
+    {
+        {
+            image  = ICON,
+            widget = wibox.widget.imagebox,
+            resize = false
+        },
+        id = 'img',
+        layout = wibox.container.margin(_, 0, 0, 10)
+    },
+    {
+        {
+            id = 'header',
+            widget = wibox.widget.textbox
+        },
+        {
+            id = 'src',
+            widget = wibox.widget.textbox
+        },
+        {
+            id = 'res',
+            widget = wibox.widget.textbox
+        },
+        id = 'text',
+        layout = wibox.layout.fixed.vertical,
+    },
+    id = 'left',
+    layout  = wibox.layout.fixed.horizontal
+}
 
 --- Main function - takes the user input and shows the widget with translation
 -- @param request_string - user input (dog enfr)
-local function translate(to_translate, lang, api_key, url)
+local function translate(to_translate, lang, api_key)
+    local urll = BASE_URL .. '?lang=' .. lang .. '&text=' .. urlencode(to_translate) .. '&key=' .. api_key
 
-    local cmd = string.format(TRANSLATE_CMD, api_key, to_translate, lang, url)
-    spawn.easy_async(cmd, function (stdout, stderr)
-        if stderr ~= '' then
-            show_warning(stderr)
-        end
+    local resp_json, code = https.request(urll)
+    if (code == 200 and resp_json ~= nil) then
+        local resp = json.decode(resp_json).text[1]
 
-        local resp = json.decode(stdout)
+        w.left.text.header:set_markup('<big>' .. lang .. '</big>')
+        w.left.text.src:set_markup('<b>' .. lang:sub(1,2) .. '</b>: <span color="#FFFFFF"> ' .. to_translate .. '</span>')
+        w.left.text.res:set_markup('<b>' .. lang:sub(4) .. '</b>: <span color="#FFFFFF"> ' .. resp .. '</span>')
 
-        w:setup {
-            {
-                {
-                    {
-                        {
-                            image  = ICON,
-                            widget = wibox.widget.imagebox,
-                            resize = false
-                        },
-                        valigh = 'center',
-                        layout = wibox.container.place,
-                    },
-                    {
-                        {
-                            id = 'src',
-                            markup = '<b>' .. lang:sub(1,2) .. '</b>: <span color="#FFFFFF"> '
-                                .. to_translate .. '</span>',
-                            widget = wibox.widget.textbox
-                        },
-                        {
-                            id = 'res',
-                            markup = '<b>' .. lang:sub(4) .. '</b>: <span color="#FFFFFF"> '
-                                .. resp.translations[1].translation .. '</span>',
-                            widget = wibox.widget.textbox
-                        },
-                        id = 'text',
-                        layout = wibox.layout.fixed.vertical,
-                    },
-                    id = 'left',
-                    spacing = 8,
-                    layout  = wibox.layout.fixed.horizontal
-                },
-                bg = beautiful.bg_normal,
-                forced_width = 400,
-                widget = wibox.container.background
-            },
-            color = beautiful.bg_normal,
-            margins = 8,
-            widget = wibox.container.margin
-        }
+        awful.placement.top(w, { margins = {top = 40}})
+
+        local h1 = w.left.text.header:get_height_for_width(w.width, w.screen)
+        local h2 = w.left.text.src:get_height_for_width(w.width, w.screen)
+        local h3 = w.left.text.res:get_height_for_width(w.width, w.screen)
+
+        -- calculate height of the widget
+        w.height = h1 + h2 + h3 + 20
+        -- try to vertically align the icon
+        w.left.img:set_top((h1 + h2 + h3 + 20 - 48)/2)
 
         w.visible = true
         w:buttons(
             awful.util.table.join(
                 awful.button({}, 1, function()
-                    spawn.with_shell("echo '" .. resp.translations[1].translation .. "' | xclip -selection clipboard")
+                    awful.spawn.with_shell("echo '" .. resp .. "' | xclip -selection clipboard")
                     w.visible = false
                 end),
                 awful.button({}, 3, function()
-                    spawn.with_shell("echo '" .. to_translate .."' | xclip -selection clipboard")
+                    awful.spawn.with_shell("echo '" .. to_translate .."' | xclip -selection clipboard")
                     w.visible = false
                 end)
             )
@@ -130,46 +129,40 @@ local function translate(to_translate, lang, api_key, url)
                 w.visible = false
             end
         end)
-    end)
+    else
+        naughty.notify({
+            preset = naughty.config.presets.critical,
+            title = 'Translate Widget Error',
+            text = resp_json,
+        })
+    end
 end
 
-local prompt = awful.widget.prompt()
 local input_widget = wibox {
-    visible = false,
     width = 300,
-    height = 100,
-    maxmimum_width = 300,
-    maxmimum_height = 900,
     ontop = true,
     screen = mouse.screen,
     expand = true,
-    bg = beautiful.bg_normal,
+    bg = '#1e252c',
     max_widget_size = 500,
     border_width = 1,
     border_color = '#66ccff',
     shape = function(cr, width, height)
         gears.shape.rounded_rect(cr, width, height, 3)
-    end,
+    end
 }
 
-input_widget:setup{
-    {
-        prompt,
-        bg = beautiful.bg_normal,
-        widget = wibox.container.background
-    },
-    margins = 8,
-    widget = wibox.container.margin
+local prompt = awful.widget.prompt()
+
+input_widget:setup {
+    layout = wibox.container.margin,
+    prompt,
+    left = 10
 }
 
-local function launch(user_args)
-
-    local args = user_args or {}
-
-    local api_key = args.api_key
-    local url = args.url
-
+local function show_translate_prompt(api_key)
     awful.placement.top(input_widget, { margins = {top = 40}, parent = awful.screen.focused()})
+    input_widget.height = 40
     input_widget.visible = true
 
     awful.prompt.run {
@@ -188,7 +181,7 @@ local function launch(user_args)
                 })
                 return
             end
-            translate(to_translate, lang, api_key, url)
+            translate(to_translate, lang, api_key)
         end,
         done_callback = function()
             input_widget.visible = false
@@ -197,5 +190,5 @@ local function launch(user_args)
 end
 
 return {
-    launch = launch
+    show_translate_prompt = show_translate_prompt
 }

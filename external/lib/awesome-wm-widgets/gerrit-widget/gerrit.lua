@@ -27,18 +27,17 @@ local DOWNLOAD_AVATAR_CMD = [[bash -c "curl --create-dirs -o %s %s"]]
 
 local gerrit_widget = {}
 
-local function worker(user_args)
+local function worker(args)
 
-    local args = user_args or {}
+    local args = args or {}
 
     local icon = args.icons or HOME_DIR .. '/.config/awesome/awesome-wm-widgets/gerrit-widget/gerrit_icon.svg'
     local host = args.host or naughty.notify{
-        preset = naughty.config.presets.critical,
+        preset = naughty.config.presets.critical, 
         title = 'Gerrit Widget',
         text = 'Gerrit host is unknown'
     }
     local query = args.query or 'is:reviewer AND status:open AND NOT is:wip'
-    local timeout = args.timeout or 10
 
     local current_number_of_reviews
     local previous_number_of_reviews = 0
@@ -93,12 +92,11 @@ local function worker(user_args)
 
         if name_dict[user_id].username == nil then
             name_dict[user_id].username = ''
-            spawn.easy_async(string.format(GET_USER_CMD, host, user_id), function(stdout)
+            spawn.easy_async(string.format(GET_USER_CMD, host, user_id), function(stdout, stderr, reason, exit_code)
                 local user = json.decode(stdout)
                 name_dict[tonumber(user_id)].username = user.name
                 if not gfs.file_readable(PATH_TO_AVATARS .. user_id) then
-                    spawn.easy_async(
-                        string.format(DOWNLOAD_AVATAR_CMD, PATH_TO_AVATARS .. user_id, user.avatars[1].url))
+                    spawn.easy_async(string.format(DOWNLOAD_AVATAR_CMD, PATH_TO_AVATARS .. user_id, user.avatars[1].url))
                 end
             end)
             return name_dict[user_id].username
@@ -125,8 +123,7 @@ local function worker(user_args)
             naughty.notify{
                 icon = HOME_DIR ..'/.config/awesome/awesome-wm-widgets/gerrit-widget/gerrit_icon.svg',
                 title = 'New Incoming Review',
-                text = reviews[1].project .. '\n' .. get_name_by_user_id(reviews[1].owner._account_id) ..
-                    reviews[1].subject .. '\n',
+                text = reviews[1].project .. '\n' .. get_name_by_user_id(reviews[1].owner._account_id) .. reviews[1].subject .. '\n',
                 run = function() spawn.with_shell("xdg-open https://" .. host .. '/' .. reviews[1]._number) end
             }
         end
@@ -176,7 +173,7 @@ local function worker(user_args)
                 widget = wibox.container.background
             }
 
-            row:connect_signal("button::release", function()
+            row:connect_signal("button::release", function(_, _, _, button)
                 spawn.with_shell("xdg-open " .. host .. '/' .. review._number)
             end)
 
@@ -223,7 +220,7 @@ local function worker(user_args)
         )
     )
 
-    watch(string.format(GET_CHANGES_CMD, host, query:gsub(" ", "+")), timeout, update_widget, gerrit_widget)
+    watch(string.format(GET_CHANGES_CMD, host, query:gsub(" ", "+")), 10, update_widget, gerrit_widget)
     return gerrit_widget
 end
 
