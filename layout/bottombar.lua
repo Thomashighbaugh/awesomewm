@@ -81,7 +81,7 @@ awful.screen.connect_for_each_screen(
             layout = {
                 spacing = 6,
                 spacing_widget = {
-                    color = beautiful.xcolor0 .. "cc",
+                    color = beautiful.xcolor0 .. "00",
                     shape = gears.shape.rounded_rect,
                     widget = wibox.widget.separator
                 },
@@ -118,11 +118,13 @@ awful.screen.connect_for_each_screen(
         s.bottomwibox =
             awful.wibar(
             {
+                shape = gears.shape.rounded_rect,
                 position = "bottom",
                 screen = s,
                 bg = "#0e121abb",
                 height = 64,
-                width = 640
+                width = 640,
+                border_radius = 12
             }
         )
 

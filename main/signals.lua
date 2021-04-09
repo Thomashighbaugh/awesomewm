@@ -48,3 +48,10 @@ client.connect_signal("focus",
 client.connect_signal("unfocus",
                       function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+-- ===================================================================
+-- Screen Change Functions (ie multi monitor)
+-- ===================================================================
+
+-- Reload config when screen geometry changes
+screen.connect_signal("property::geometry", awesome.restart)
+

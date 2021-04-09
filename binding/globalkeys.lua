@@ -105,7 +105,7 @@ function _M.get()
             {modkey, "Control"},
             "Escape",
             function()
-                awful.spawn("rofi  -show drun -theme ~/.config/awesome/external/rofi/appmenu/rofi.rasi")
+                awful.spawn("rofi -modi drun -show drun -theme ~/.config/awesome/external/rofi/appmenu/rofi.rasi")
             end,
             {description = "Application Launcher", group = "Launcher"}
         ),

@@ -18,8 +18,8 @@ local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 
 -- Custom Local Library: Common Functional Decoration
-local cpu_widget = require("external.lib.awesome-wm-widgets.cpu-widget/cpu-widget")
-local ram_widget = require("external.lib.awesome-wm-widgets.ram-widget/ram-widget")
+local cpu_widget = require("widgets.cpu-widget")
+local ram_widget = require("widgets.ram-widget")
 
 local layout = {
     wallpaper = require("layout.wallpaper"),
@@ -54,27 +54,6 @@ awful.screen.connect_for_each_screen(
             widget = wibox.widget.separator
         }
         -- ===================================================================
-
-
-        -- ===================================================================
-
-        -- Memory Widget
-        memwidget = wibox.widget.textbox()
-        vicious.cache(vicious.widgets.mem)
-        vicious.register(memwidget, vicious.widgets.mem, " RAM: $1%", 1)
-        -- ===================================================================
-
-        -- CPU Widget
-        cpuwidget = wibox.widget.textbox()
-        vicious.cache(vicious.widgets.cpu)
-        vicious.register(cpuwidget, vicious.widgets.cpu, " CPU: $1% ", 1)
-        -- ===================================================================
-
-        -- Create a promptbox for each screen
-        s.mypromptbox = awful.widget.prompt()
-
-        -- ===================================================================
-
         -- Create a tasklist widget
         s.mytasklist =
             awful.widget.tasklist {
@@ -103,9 +82,7 @@ awful.screen.connect_for_each_screen(
                 -- Left widgets
                 layout = wibox.layout.fixed.horizontal,
                 wibox.widget.systray(),
-                cpuwidget,
                 cpu_widget,
-                memwidget,
                 ram_widget,
                 align = "left"
             },

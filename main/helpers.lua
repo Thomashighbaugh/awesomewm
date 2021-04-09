@@ -12,7 +12,7 @@ local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local wibox = require("wibox")
-local icons = require("themes.vice.icons")
+local icons = require("themes.icons")
 local notifications = require("notifications")
 local naughty = require("naughty")
 -- ===================================================================

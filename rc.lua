@@ -33,11 +33,12 @@ local vicious = require("vicious")
 -- ===================================================================
 -- My Configuration
 -- ===================================================================
-
+beautiful.init(require("themes"))
 -- ===================================================================
 -- Global Namespace,
 
 RC = {}
+wallpaper = require("main.wallpaper")
 
 -- ===================================================================
 -- User Variables
@@ -59,11 +60,12 @@ screenshot = RC.vars.screenshot
 -- ===================================================================
 -- Error handling
 require("main.error-handling")
+-- window flash with focus change
+local bling = require("external.lib.bling")
+bling.module.flash_focus.enable()
 
 -- ===================================================================
 -- Load the user themes
-require("main.theme")
-local lockscreen = require("layout.lock_screen")
 
 -- ===================================================================
 -- Custom Local Libraries
@@ -72,7 +74,8 @@ local main = {
     tags = require("main.tags"),
     menu = require("main.menu"),
     rules = require("main.rules"),
-    helpers = require("main.helpers")
+    helpers = require("main.helpers"),
+    wallpaper = require("main.wallpaper")
 }
 
 -- ===================================================================
@@ -133,8 +136,10 @@ awful.rules.rules = main.rules(binding.clientkeys(), binding.clientbuttons())
 -- ===================================================================
 -- Signals
 
-require("main.signals")
-require("notifications")
+RC.signals = require("main.signals")
+RC.notifications = require("notifications")
+
+awful.spawn.with_shell("$HOME/.config/awesome/autostart.sh")
 
 -- ===================================================================
 -- Uncomment the below if you like the lib nice window icons better,
