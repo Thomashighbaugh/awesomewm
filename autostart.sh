@@ -31,4 +31,3 @@ run unclutter
 # turned on by xprofile as well. Doesn't hurt to have it twice, its just twice as nice
 run "/home/tlh/.dropbox-dist/dropboxd"
 
-run tp-battery-icon

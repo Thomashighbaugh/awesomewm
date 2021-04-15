@@ -1,16 +1,16 @@
-local awful = require("awful")
-local beautiful = require("beautiful")
-local gears = require("gears")
-local watch = require("awful.widget.watch")
-local wibox = require("wibox")
-local vicious = require("external.lib.vicious")
+local awful = require('awful')
+local beautiful = require('beautiful')
+local gears = require('gears')
+local watch = require('awful.widget.watch')
+local wibox = require('wibox')
+local vicious = require('external.lib.vicious')
 
 local ramgraph_widget = {}
 -- memory widget
 local mem = wibox.widget.textbox()
 vicious.cache(vicious.widgets.mem)
 vicious.register(mem, vicious.widgets.mem, " <span  color='" .. beautiful.xcolor1 .. "'>   RAM: </span>  $1%  ", 1)
-mem.font = beautiful.font .. " 10"
+mem.font = beautiful.font .. ' 10'
 
 local function worker(user_args)
     local args = user_args or {}
@@ -37,6 +37,7 @@ local function worker(user_args)
                 beautiful.xcolor5
             }
         },
+        bg = beautiful.xbackground .. 'cc',
         shape = gears.shape.rounded_rect,
         border_color = beautiful.border_color_active,
         border_width = 1,
@@ -47,7 +48,7 @@ local function worker(user_args)
     local total, used, free, shared, buff_cache, available, total_swap, used_swap, free_swap
 
     local function getPercentage(value)
-        return math.floor(value / (total + total_swap) * 100 + 0.5) .. "%"
+        return math.floor(value / (total + total_swap) * 100 + 0.5) .. '%'
     end
 
     watch(
@@ -55,15 +56,15 @@ local function worker(user_args)
         timeout,
         function(widget, stdout)
             total, used, free, shared, buff_cache, available, total_swap, used_swap, free_swap =
-                stdout:match("(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*Swap:%s*(%d+)%s*(%d+)%s*(%d+)")
+                stdout:match('(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*Swap:%s*(%d+)%s*(%d+)%s*(%d+)')
 
             widget.data = {used, total - used}
 
             if popup.visible then
                 popup:get_widget().data_list = {
-                    {"used " .. getPercentage(used + used_swap), used + used_swap},
-                    {"free " .. getPercentage(free + free_swap), free + free_swap},
-                    {"buff_cache " .. getPercentage(buff_cache), buff_cache}
+                    {'used ' .. getPercentage(used + used_swap), used + used_swap},
+                    {'free ' .. getPercentage(free + free_swap), free + free_swap},
+                    {'buff_cache ' .. getPercentage(buff_cache), buff_cache}
                 }
             end
         end,
@@ -77,9 +78,9 @@ local function worker(user_args)
                 1,
                 function()
                     popup:get_widget().data_list = {
-                        {"used " .. getPercentage(used + used_swap), used + used_swap},
-                        {"free " .. getPercentage(free + free_swap), free + free_swap},
-                        {"buff_cache " .. getPercentage(buff_cache), buff_cache}
+                        {'used ' .. getPercentage(used + used_swap), used + used_swap},
+                        {'free ' .. getPercentage(free + free_swap), free + free_swap},
+                        {'buff_cache ' .. getPercentage(buff_cache), buff_cache}
                     }
 
                     if popup.visible then

@@ -94,7 +94,7 @@ theme.titlebar_fg_normal = theme.xforeground .. "ff"
 
 theme.groups_title_bg = theme.xbackground
 theme.groups_bg = theme.xcolor6
-theme.groups_radius = dpi(2)
+theme.groups_radius = dpi(4)
 
 -- Client Decorations
 
@@ -109,11 +109,11 @@ theme.border_marked = theme.xcolor1
 theme.border_radius = dpi(13)
 
 -- Decorations
-theme.client_radius = dpi(8)
+theme.client_radius = dpi(4)
 theme.useless_gap = dpi(4)
 
 -- Menu
-theme.menu_font = theme.font .. " 8"
+theme.menu_font = theme.font .. " 14"
 theme.menu_submenu = "➤"
 
 theme.menu_height = dpi(48)
@@ -123,7 +123,7 @@ theme.menu_border_width = dpi(0)
 theme.menu_bg_normal = theme.xbackground .. "bb"
 theme.menu_fg_normal = theme.xforeground
 theme.menu_fg_focus = theme.xforeground
-theme.menu_bg_focus = theme.accent
+theme.menu_bg_focus = theme.xcolor8 .. 'aa'
 theme.menu_border_color = theme.xcolor8 .. "66"
 
 -- Tooltips
@@ -159,9 +159,9 @@ theme.taglist_fg_focus = theme.xcolor15
 theme.taglist_bg_urgent = theme.transparent
 theme.taglist_fg_urgent = theme.xcolor1
 theme.taglist_bg_occupied = theme.transparent
-theme.taglist_fg_occupied = theme.xcolor16
+theme.taglist_fg_occupied = theme.xforeground
 theme.taglist_bg_empty = theme.transparent
-theme.taglist_fg_empty = theme.xforeground
+theme.taglist_fg_empty = theme.xcolor16
 theme.taglist_bg_volatile = theme.transparent
 theme.taglist_fg_volatile = theme.xcolor11
 
@@ -191,7 +191,6 @@ theme.notification_border_width = dpi(0)
 theme.notification_border_color = theme.xbackground .. "bb"
 theme.notification_spacing = dpi(0)
 theme.notification_icon_resize_strategy = "center"
-theme.notification_icon_size = dpi(70)
 _G.dont_disturb = true
 
 -- Client Snap Theme
@@ -219,7 +218,6 @@ theme.panel_widget_border_color = theme.xbackground .. "dd"
 theme.panel_widget_bg_color = theme.transparent
 theme.panel_widget_radius = dpi(0)
 theme.panel_padding = dpi(2)
-theme.panel_blur_type = "panel" -- use "dock" for no blur, "panel" for blur
 
 theme.awesome_icon = theme.icons .. "logo.svg"
 -- Popup
@@ -248,11 +246,11 @@ theme.tabbar_position = "top" -- position of the tabbar
 theme.tabbar_bg_normal = theme.xbackground .. "aa" -- background color of the focused client on the tabbar
 theme.tabbar_fg_normal = theme.xforeground -- foreground color of the focused client on the tabbar
 theme.tabbar_bg_focus = theme.xbackground .. "00" -- background color of unfocused clients on the tabbar
-theme.tabbar_fg_focus = theme.xcolor6 -- foreground color of unfocused clients on the tabbar
+theme.tabbar_fg_focus = theme.xcolor15 -- foreground color of unfocused clients on the tabbar
 
 -- mstab
-theme.mstab_bar_ontop = false -- whether you want to allow the bar to be ontop of clients
-theme.mstab_dont_resize_slaves = true -- whether the tabbed stack windows should be smaller than the
+theme.mstab_bar_ontop = true -- whether you want to allow the bar to be ontop of clients
+theme.mstab_dont_resize_slaves = false -- whether the tabbed stack windows should be smaller than the
 -- currently focused stack window (set it to true if you use
 -- transparent terminals. False if you use shadows on solid ones
 theme.mstab_bar_padding = dpi(0) -- how much padding there should be between clients and your tabbar
@@ -331,6 +329,6 @@ theme.titlebar_maximized_button_focus_active_hover = tip .. "maximized_focus_act
 -- ====================================================================================
 -- Tagbar font (putting anywhere logical broke the config)
 -- ====================================================================================
-theme.taglist_font = "awesomewm-font 30"
+theme.taglist_font = "awesomewm-font 36"
 
 return theme

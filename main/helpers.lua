@@ -3,6 +3,10 @@
 -- |       ||  -__||  ||  _  |  -__|   _|__ --|
 -- |___|___||_____||__||   __|_____|__| |_____|
 --                     |__|
+-- NOTE: Like everyone else, I mostly copied this file from Saint elenapan,
+--  patron saint of customizing AwesomeWM. However, notice how I have 
+--  used comments to split the functions up to make it more reasonable 
+--  to work with? Try it, works well.
 -- ===================================================================
 -- Initialization
 -- ===================================================================
@@ -43,8 +47,8 @@ helpers.psquircle = function(rate, delta, tl, tr, br, bl)
 end
 -- ===================================================================
 -- Colorize Text
-helpers.colorize_text = function(text, color)
-    return "<span foreground='" .. color .. "'>" .. text .. "</span>"
+helpers.colorize_text = function(text)
+    return "<span foreground='" .. "'>" .. text .. "</span>"
 end
 -- ===================================================================
 -- Toggle Client Menus
@@ -212,6 +216,7 @@ function helpers.resize_dwim(c, direction)
         end
     end
 end
+-- ===================================================================
 -- Move client DWIM (Do What I Mean)
 -- Move to edge if the client / layout is floating
 -- Swap by index if maximized
@@ -229,6 +234,7 @@ function helpers.move_client_dwim(c, direction)
         awful.client.swap.bydirection(direction, c, nil)
     end
 end
+-- ===================================================================
 -- Make client floating and snap to the desired edge
 local axis_translate = {
     ["up"] = "horizontally",
@@ -254,6 +260,7 @@ function helpers.float_and_edge_snap(c, direction)
         }
     )
 end
+-- ===================================================================
 -- Rounds a number to any number of decimals
 function helpers.round(number, decimals)
     local power = 10 ^ decimals
@@ -281,7 +288,7 @@ function helpers.fake_escape()
     root.fake_input("key_press", "Escape")
     root.fake_input("key_release", "Escape")
 end
-local prompt_font = beautiful.prompt_font or "agave Nerd Font Bold 11"
+local prompt_font = beautiful.prompt_font 
 function helpers.prompt(action, textbox, prompt, callback)
     if action == "run" then
         awful.prompt.run {
@@ -317,6 +324,7 @@ function helpers.prompt(action, textbox, prompt, callback)
         }
     end
 end
+-- ===================================================================
 -- Given a `match` condition, returns an array with clients that match it, or
 -- just the first found client if `first_only` is true
 function helpers.find_clients(match, first_only)
@@ -336,6 +344,7 @@ function helpers.find_clients(match, first_only)
     end
     return nil
 end
+-- ===================================================================
 -- Given a `match` condition, calls the specified function `f_do` on all the
 -- clients that match it
 function helpers.find_clients_and_do(match, f_do)
@@ -368,6 +377,7 @@ function helpers.run_or_raise(match, move, spawn_cmd, spawn_args)
         awful.spawn(spawn_cmd, spawn_args)
     end
 end
+-- ===================================================================
 -- Run raise or minimize a client (scratchpad style)
 -- Depends on helpers.run_or_raise
 -- If it not running, spawn it
@@ -390,6 +400,7 @@ function helpers.float_and_resize(c, width, height)
     c.floating = true
     c:raise()
 end
+-- ===================================================================
 -- Adds a maximized mask to a screen
 function helpers.screen_mask(s, bg)
     local mask =
@@ -405,6 +416,7 @@ function helpers.screen_mask(s, bg)
     mask.bg = bg
     return mask
 end
+-- ===================================================================
 -- Useful for periodically checking the output of a command that
 -- requires internet access.
 -- Ensures that `command` will be run EXACTLY once during the desired
@@ -465,10 +477,43 @@ function helpers.remote_watch(command, interval, output_file, callback)
         end
     }
 end
+
+-- ===================================================================
 -- The directory of the currently executed lua script
 -- Requires the `debug` library to be available in the build of Lua that is running
 function helpers.this_dir()
     local str = debug.getinfo(2, "S").source:sub(2)
     return str:match("(.*/)")
 end
+
+-- ===================================================================
+-- Change brightnes on the fly - hopefully that doesnt break anything
+helpers.change_brightness_relative = function(amt)
+    handle = io.popen("xrandr --verbose | grep -i brightness | cut -f2 -d ' ' | head -n1")
+    local current_brightness = handle:read("*a")
+    handle:close()
+    local new_brightness = current_brightness + amt
+    if new_brightness <= 1 and new_brightness >= 0.2 then
+      awful.spawn.with_shell("xrandr --output " .. display .. " --brightness " .. tostring(new_brightness))
+    end
+  end
+
+  -- ===================================================================
+  helpers.change_brightness_absolute = function(percentage)
+    if tonumber(percentage) > 20 then
+      awful.spawn.with_shell("xrandr --output " .. display .. " --brightness " .. tostring(tonumber(percentage)/100))
+    end
+  end
+
+  -- ===================================================================
+  -- Change gaps on the fly javacafe01
+helpers.resize_gaps = function(amt)
+    local t = awful.screen.focused().selected_tag
+    t.gap = t.gap + tonumber(amt)
+    awful.layout.arrange(awful.screen.focused())
+  end
+  
+  
+
+
 return helpers

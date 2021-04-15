@@ -20,71 +20,71 @@ local _M = {} -- module
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
--- This is used later as the default terminal and editor to run.
--- local terminal = "xfce4-terminal"
+
+
 local terminal = RC.vars.terminal
 
 -- Variable definitions
 -- This is used later as the default terminal and editor to run.
-local editor = os.getenv("EDITOR") or "subl3"
+local editor = os.getenv("EDITOR") or "nvim"
 local editor_cmd = terminal .. " -e " .. editor
 
 -- ===================================================================
 -- SubMenu Item Declaration
 -- ===================================================================
+
+-- If one desires, adding a third element with the path to an icon will cause one to render in the menu. I have refrained as it is fickle in its rendering of said icon and not entirely necessary for my purposes when rofi has icons and this is intended as a quick menu backup for when it decides to not work
+
 M.awesome = {
     {
         "Hotkeys",
         function()
             hotkeys_popup.show_help(nil, awful.screen.focused())
         end,
-        "/usr/share/icons/chhinamasta/apps/scalable/keyboard.svg"
+
     },
     {
         "Edit Config",
         editor_cmd .. " " .. awesome.conffile,
-        "/usr/share/icons/chhinamasta/apps/scalable/menu-libre.svg"
+
     },
     {
         "Terminal",
         terminal,
-        "/usr/share/icons/chhinamasta/apps/scalable/utilities-terminal.svg"
+
     },
     {
         "Shutdown/Logout",
         "oblogout",
-        "/usr/share/icons/chhinamasta/actions/system-shutdown.svg"
+
     },
     {
         "Restart",
         awesome.restart,
-        "/usr/share/icons/chhinamasta/actions/system-reboot.svg"
+
     },
     {
         "Quit",
         function()
             awesome.quit()
         end,
-        "/usr/share/icons/chhinamasta/actions/system-log-out.svg"
     }
 }
 
 M.favorite = {
-    {"Thunar", "thunar", "/usr/share/icons/chhinamasta/apps/thunar.svg"},
+    {"File Manager", "caja", },
     {
         "Firefox",
         "firefox",
-        "/usr/share/icons/chhinamasta/apps/scalable/firefox.svg"
+
     },
     {
         "Chromium",
         "chromium",
-        "/usr/share/icons/chhinamasta/apps/scalable/chrome.svg"
     },
     {
         "Thunderbird",
         "thunderbird",
-        "/usr/share/icons/chhinamasta/apps/scalable/scalable/thunderbird.svg"
     }
 }
 
@@ -92,33 +92,30 @@ M.network_main = {
     {
         "Connection Editor",
         "nm-connection-editor",
-        "/usr/share/icons/chhinamasta/apps/scalable/48/network-manager.svg"
     },
     {
         "Network Manager",
         "nmtui",
-        "/usr/share/icons/chhinamasta/apps/scalable/network-manager.svg"
     }
 }
 
 M.graphics = {
-    {"GIMP", "gimp", "/usr/share/icons/chhinamasta/48x48/apps/scalable/gimp.svg"},
+    {"GIMP",
+    "gimp"},
     {
         "inkscape",
         "inkscape",
-        "/usr/share/icons/chhinamasta/apps/scalable/inkscape.svg"
     }
 }
 M.dev = {
     {
-        "Sublime",
-        "subl3",
-        "/usr/share/icons/chhinamasta/apps/scalable/sublime.svg"
+        "VSCode",
+        "code",
+
     },
     {
-        "Webstorm",
-        "webstorm",
-        "/usr/share/icons/chhinamasta/apps/scalable/text-editor.svg"
+        "Vim",
+        "kitty -e nvim",
     }
 }
 -- ===================================================================
@@ -127,34 +124,34 @@ M.dev = {
 function _M.get()
     -- Main Menu
     local menu_items = {
-        {"Awesome", M.awesome, beautiful.awesome_subicon},
+        {"Awesome", M.awesome,},
         {
             "Open Terminal",
             terminal,
-            "/usr/share/icons/chhinamasta/apps/scalable/terminal.svg"
+
         },
         {
             "Network",
             M.network_main,
-            "/usr/share/icons/chhinamasta/devices/nm-device-wireless.svg"
+
         },
         {
             "Favorite",
             M.favorite,
             beautiful.awesome_subicon,
-            "/usr/share/icons/chhinamasta/apps/scalable/text-editor.svg"
+
         },
         {
             "Graphics",
             M.graphics,
             beautiful.awesome_subicon,
-            "/usr/share/icons/chhinamasta/apps/scalable/gimp.svg"
+
         },
         {
             "Development",
             M.dev,
             beautiful.awesome_subicon,
-            "/usr/share/icons/chhinamasta/apps/scalable/vim.svg"
+
         }
     }
 
@@ -170,4 +167,4 @@ return setmetatable(
             return _M.get(...)
         end
     }
-)
+    )

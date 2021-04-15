@@ -11,7 +11,6 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 -- Global namespace call
 local _M = {}
-
 -- ===================================================================
 --  Rule Declaration
 -- ===================================================================
@@ -30,29 +29,34 @@ function _M.get(clientkeys, clientbuttons)
                 buttons = clientbuttons,
                 screen = awful.screen.preferred,
                 placement = awful.placement.under_mouse +
-                    awful.placement.no_overlap + awful.placement.no_offscreen +
-                    awful.placement.centered,
-                callback = awful.client.setslave
+                awful.placement.no_overlap + awful.placement.no_offscreen +
+                awful.placement.centered,
+                callback = awful.client.setslave,
+
+                titlebars_enabled = true
             }
         }, -- Floating clients.
         {
             rule_any = {
                 instance = {
-                    "DTA", -- Firefox addon DownThemAll.
                     "copyq", -- Includes session name in class.
-                    "pinentry"
+                    "pinentry",
+
+                    "gimp-2.10", "Gimp-2.10",
                 },
+
                 class = {
-                    "Arandr", "Blueman-manager", "Gpick", "Kruler",
+                    "Arandr", "Blueman-manager", "Gpick", "Kruler","feh",
                     "MessageWin", -- kalarm.
-                    "Sxiv", "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
+                    "Sxiv", "Tor Browser",
                     "Wpa_gui", "veromix", "xtightvncviewer"
                 },
 
                 -- Note that the name property shown in xprop might be set slightly after creation of the client
                 -- and the name shown there might not match defined rules here.
                 name = {
-                    "Event Tester" -- xev.
+                    "Event Tester", -- xev
+                    "GIMP Message"
                 },
                 role = {
                     "AlarmWindow", -- Thunderbird's calendar.
@@ -60,12 +64,8 @@ function _M.get(clientkeys, clientbuttons)
                     "pop-up" -- e.g. Google Chrome's (detached) Developer Tools.
                 }
             },
-            properties = {floating = true}
+            properties = {floating = true,   raise = true,ontop = true }
         }, -- Add titlebars to normal clients and dialogs
-        {
-            rule_any = {type = {"normal", "dialog"}},
-            properties = {titlebars_enabled = true}
-        }
 
     }
 
