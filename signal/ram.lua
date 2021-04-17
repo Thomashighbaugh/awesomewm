@@ -1,7 +1,3 @@
--- WARNING You do have to change the grep command that is used to use that daemon
--- TODO output of free is affected by system language. The following command
--- works for any language:
--- free -m | sed -n '2p' | awk '{printf "%d available out of %d\n", $7, $2}'
 
 -- Provides:
 -- signal::ram
