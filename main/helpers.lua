@@ -16,7 +16,6 @@ local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local wibox = require("wibox")
-local icons = require("themes.icons")
 local notifications = require("notifications")
 local naughty = require("naughty")
 -- ===================================================================
@@ -317,7 +316,7 @@ function helpers.prompt(action, textbox, prompt, callback)
                 naughty.notify {
                     title = "Searching the web for",
                     text = input,
-                    icon = icons.image.firefox,
+                    icon = "~/.config/awesome/themes/icons/feathericons/box.svg",
                     urgency = "low"
                 }
             end

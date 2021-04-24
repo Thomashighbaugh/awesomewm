@@ -18,7 +18,8 @@ local modkey = RC.vars.modkey
 -- ===================================================================
 function _M.get()
     local clientkeys =
-        gears.table.join( -- ===================================================================
+        gears.table.join(
+            -- ===================================================================
             -- Toggle Fullscreen
             awful.key(
                 {modkey},

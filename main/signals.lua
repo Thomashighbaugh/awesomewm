@@ -1,88 +1,73 @@
---  _______ __                     __
--- |     __|__|.-----.-----.---.-.|  |.-----.
--- |__     |  ||  _  |     |  _  ||  ||__ --|
--- |_______|__||___  |__|__|___._||__||_____|
---             |_____|
+-----------------------------------------------------------------
+---------------------     Signals      --------------------------
+-----------------------------------------------------------------
 -- Standard awesome library
-local gears = require('gears')
-local awful = require('awful')
+local gears = require("gears")
+local awful = require("awful")
 
 -- Widget and layout library
-local wibox = require('wibox')
+local wibox = require("wibox")
 
 -- Theme handling library
-local beautiful = require('beautiful')
+local beautiful = require("beautiful")
 
 -- Custom Local Library: Common Functional Decoration
 require('layout.titlebar')
+
+local screen = _G.screen
+local client = _G.client
+local tag = _G.tag
 
 -- reading
 -- https://awesomewm.org/wiki/Signals
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
--- {{{ Signals
+-----------------------------------------------------
+------------------     Signals     ------------------
+-----------------------------------------------------
 -- Signal function to execute when a new client appears.
-client.connect_signal(
-    'manage',
-    function(c)
-        -- Set window shape
-        c.shape = function(cr, w, h)
-            gears.shape.rounded_rect(cr, w, h, 12)
-        end
-        if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
-            -- Prevent clients from being unreachable after screen count changes.
-            awful.placement.no_offscreen(c)
-        else
-            -- set window at slave
-            awful.client.setslave(c)
-            -- Insure window is on the same screen
-            awful.screen.focused(c)
-        end
+client.connect_signal("manage", function (c)
+    -- Set the windows at the slave,
+    -- i.e. put it at the end of others instead of setting it master.
+    if not awesome.startup then awful.client.setslave(c) end
+
+    if awesome.startup
+      and not c.size_hints.user_position
+      and not c.size_hints.program_position then
+        -- Prevent clients from being unreachable after screen count changes.
+        awful.placement.no_offscreen(c)
     end
-)
+end)
 
 -- Enable sloppy focus, so that focus follows mouse.
-client.connect_signal(
-    'mouse::enter',
-    function(c)
-        c:emit_signal('request::activate', 'mouse_enter', {raise = false})
-    end
-)
--- border indicators of the focused window
-client.connect_signal(
-    'focus',
-    function(c)
-        c.border_color = beautiful.border_focus
-    end
-)
-client.connect_signal(
-    'unfocus',
-    function(c)
-        c.border_color = beautiful.border_normal
-    end
-)
--- }}}
--- ===================================================================
--- Screen Change Functions (ie multi monitor)
--- ===================================================================
+client.connect_signal("mouse::enter", function(c)
+    c:emit_signal("request::activate", "mouse_enter", {raise = false})
+end)
 
--- Reload config when screen geometry changes
-screen.connect_signal('property::geometry', awesome.restart)
 
--- Hide all windows when a splash is shown
-awesome.connect_signal(
-    'widgets::splash::visibility',
-    function(vis)
-        local t = screen.primary.selected_tag
-        if vis then
-            for idx, c in ipairs(t:clients()) do
-                c.hidden = true
-            end
-        else
-            for idx, c in ipairs(t:clients()) do
-                c.hidden = false
+-- Make rofi able to unminimize minimized clients
+client.connect_signal("request::activate", function(c, context, hints)
+    if not awesome.startup then
+        if c.minimized then
+            c.minimized = false
+        end
+        awful.ewmh.activate(c, context, hints)
+    end
+end)
+
+
+
+-- Rounded corners
+if beautiful.border_radius or beautiful.border_radius ~= 0 then
+    client.connect_signal("manage", function (c, startup)
+        if not c.fullscreen then
+            c.shape = function(cr, width, height)
+                gears.shape.rounded_rect(cr, width, height, beautiful.border_radius)
             end
         end
-    end
-)
+    end)
+
+
+end
+
+

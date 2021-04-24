@@ -11,6 +11,7 @@ local gears = require('gears')
 local awful = require('awful')
 -- local hotkeys_popup = require("awful.hotkeys_popup").widget
 local hotkeys_popup = require('awful.hotkeys_popup')
+pcall(require, "luarocks.loader")
 -- Menubar library
 local menubar = require('menubar')
 
@@ -194,7 +195,7 @@ function _M.get()
             {modkey},
             'F3',
             function()
-                awful.spawn('thunar')
+                awful.spawn('caja')
             end,
             {
                 description = 'Launch File Manager',

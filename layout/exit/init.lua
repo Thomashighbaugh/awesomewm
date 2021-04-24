@@ -25,8 +25,8 @@ local reboot_text_icon = ""
 local suspend_text_icon = ""
 local exit_text_icon = ""
 local lock_text_icon = ""
-local exitscreen_bg = beautiful.background .. "cc"
-local button_bg = beautiful.background .. 'aa'
+local exitscreen_bg = beautiful.xbackground .. "cc"
+local button_bg = beautiful.xbackground .. 'aa'
 local button_size = dpi(120)
 -- ===================================================================
 --  Set up exit screen

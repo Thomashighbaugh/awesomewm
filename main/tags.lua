@@ -8,7 +8,9 @@
 -- ===================================================================
 -- Standard awesome library
 local awful = require('awful')
+local bling = require("external.lib.bling")
 local _M = {}
+-- Tag preview
 
 -- ===================================================================
 --  Name tags

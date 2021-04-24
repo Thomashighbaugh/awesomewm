@@ -121,7 +121,7 @@ awful.screen.connect_for_each_screen(
                 shape = gears.shape.rounded_rect,
                 position = 'bottom',
                 screen = s,
-                bg = '#0e121abb',
+                bg = '#17191ecc',
                 height = 64,
                 width = 720,
                 border_radius = 12

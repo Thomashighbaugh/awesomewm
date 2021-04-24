@@ -11,11 +11,11 @@ local awful = require('awful')
 local beautiful = require('beautiful')
 local lain = require('lain')
 local bling = require('external.lib.bling')
-local icons = require('themes.icons')
 local mstab = bling.layout.mstab
 -- Layout Machi
 local machi = require('external.lib.layout-machi')
 beautiful.layout_machi = machi.get_icon()
+local tag = _G.tag
 
 local _M = {}
 
@@ -30,15 +30,15 @@ function _M.get()
             awful.layout.append_default_layouts(
                 {
                     bling.layout.mstab,
+                    awful.layout.suit.floating,  
+
                     awful.layout.suit.max,
                     bling.layout.centered,
                     bling.layout.equalarea,
                     machi.default_layout
                     -- awful.layout.suit.tile,
-                    -- lain.layout.centerwork,
-
+                    -- lain.layout.centerwork
                     -- bling.layout.vertical,
-
                     --awful.layout.suit.spiral.dwindle
                     --  awful.layout.suit.tile,
                     --  lain.layout.cascade,

@@ -20,10 +20,7 @@ pcall(require, "luarocks.loader")
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
--- These libraries exist in a stable form within the directory .config/awesome/external/lib
-local lain = require("external.lib.lain")
-local vicious = require("external.lib.vicious")
-local freedesktop = require("external.lib.freedesktop")
+local wibox = require("wibox")
 
 -- ===================================================================
 -- Notification library
@@ -39,6 +36,7 @@ local beautiful = require("beautiful")
 local menubar = require("menubar")
 local lain = require("external.lib.lain")
 local vicious = require("external.lib.vicious")
+local freedesktop = require("external.lib.awesome-freedesktop")
 
 
 -- ===================================================================
@@ -47,7 +45,7 @@ local vicious = require("external.lib.vicious")
 
 -- ===================================================================
 -- Initialize Theme
-beautiful.init(require("themes"))
+beautiful.init(require("themes.theme"))
 
 -- ===================================================================
 -- Global Namespace,
@@ -119,7 +117,7 @@ RC.autostart()
 
         -- ===================================================================
         -- Menu
-
+        local themes_path = require("gears.filesystem").get_themes_dir()
         RC.mainmenu = awful.menu({items = main.menu()}) -- in globalkeys
         RC.launcher =
         awful.widget.launcher(
