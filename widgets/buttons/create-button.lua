@@ -11,8 +11,8 @@ function create_button.small(icon_path)
 		id = "icon",
 		image = icon_path,
 		resize = true,
-		forced_width = dpi(16),
-		forced_height = dpi(16),
+		forced_width = dpi(36),
+		forced_height = dpi(36),
 		widget = wibox.widget.imagebox
 	}
 
@@ -58,15 +58,15 @@ function create_button.circle_big(icon_path, initial_action, onclick_action)
 	local button_image = wibox.widget {
 		image = icon_path,
 		resize = true,
-		forced_width = dpi(22),
-		forced_height = dpi(22),
+		forced_width = dpi(32),
+		forced_height = dpi(32),
 		widget = wibox.widget.imagebox
 	}
 
 	local button = wibox.widget {
 		{
 			button_image,
-			margins = dpi(15),
+			margins = dpi(8),
 			widget = wibox.container.margin
 		},
 		bg = beautiful.bg_button,

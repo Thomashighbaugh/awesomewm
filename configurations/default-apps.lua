@@ -10,7 +10,7 @@ default_apps.bluetooth_manager = "kitty -e bluetoothctl"
 default_apps.network_manager = "kitty -e nmtui"
 default_apps.app_menu = "rofi -dpi " .. screen.primary.dpi ..
 						" -show drun -theme " .. config_dir ..
-						"configurations/rofi.rasi -icon-theme " ..
+						"external/rofi/rofi.rasi -icon-theme " ..
 						beautiful.icon_theme
 
 return default_apps

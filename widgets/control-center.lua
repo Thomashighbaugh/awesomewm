@@ -51,10 +51,12 @@ local brightness_slider = wibox.widget {
 	widget = wibox.container.margin
 }
 --- Control buttons
+-- power button
+local power_button = create_button.circle_big(beautiful.icon_system_power_off)
 
 local button_row_1= wibox.widget{
-	require("widgets.buttons.dnd"),
-	require("widgets.buttons.airplane"),
+
+	power_button,
 	require("widgets.buttons.lock"),
 	spacing = beautiful.widget_margin * 1.5,
 	layout = wibox.layout.fixed.horizontal
@@ -63,7 +65,6 @@ local button_row_2 = wibox.widget{
 	require("widgets.buttons.global-floating-mode"),
 	require("widgets.buttons.screen-shot"),
 	require("widgets.buttons.microphone"),
-	require("widgets.buttons.software-update"),
 	spacing = beautiful.widget_margin * 1.5,
 	layout = wibox.layout.fixed.horizontal
 }
@@ -103,8 +104,6 @@ local control_buttons = wibox.widget{
 	widget = wibox.container.background
 }
 
--- power button
-local power_button = create_button.small(beautiful.icon_system_power_off)
 
 power_button:connect_signal("button::press", function (_, _, _, button)
 	if button == 1 then 
@@ -118,13 +117,13 @@ end)
 local session_widget = function ()
 
 	local widget_username = wibox.widget{
-		text = 'Devops',
-		font = "Ubuntu Bold 12",
+		text = 'tlh',
+		font = beautiful.font_bold .. " 10",
 		widget = wibox.widget.textbox
 	}
 	local widget_hostname = wibox.widget{
 		text = '@localhost',
-		font = "Ubuntu 10",
+		font = beautiful.font_bold .. " 10",
 		widget = wibox.widget.textbox
 	}
 	-- Set hostname
@@ -160,8 +159,8 @@ local session_widget = function ()
 								expand = "none",
 								layout = wibox.layout.flex.vertical
 							},
-							power_button,
-							spacing = dpi(100),
+						
+							spacing = dpi(80),
 							layout = wibox.layout.fixed.horizontal
 						},
 						widget =wibox.container.place
@@ -176,7 +175,7 @@ local session_widget = function ()
 			bottom = beautiful.widget_margin,
 			widget = wibox.container.margin
 		},
-		forced_height = dpi(60),
+		forced_height = dpi(120),
 		widget = wibox.container.background
 	}
 
@@ -200,8 +199,8 @@ end
 local battery_widget = function ()
 	local battery_percent = wibox.widget{
 		text = "62%",
-		font = "Ubuntu 10",
-		forced_width = dpi(35),
+		font = beautiful.font .. " 9",
+		forced_width = dpi(80),
 		widget = wibox.widget.textbox
 	}
 
@@ -209,8 +208,8 @@ local battery_widget = function ()
 		{
 			image = beautiful.battery_icon,
 			resize = true,
-			forced_width = dpi(18),
-			forced_height = dpi(18),
+			forced_width = dpi(14),
+			forced_height = dpi(14),
 			widget = wibox.widget.imagebox
 		},
 		top = dpi(2),
@@ -219,9 +218,9 @@ local battery_widget = function ()
 
 	local battery_state = wibox.widget {
 		text = "Discharging",
-		font = "Ubuntu 10",
+		font = beautiful.font .. " 8",
 		valign = "left",
-		forced_width = dpi(185),
+		forced_width = dpi(145),
 		widget = wibox.widget.textbox
 	}
 	local battery = wibox.widget {
@@ -267,9 +266,9 @@ local battery_widget_wrapped = wibox.widget{
 
 -- line separator
 local horizontal_separator = wibox.widget {
-	thikness = dpi(2),
+	thikness = dpi(6),
 	color = beautiful.bg_button,
-	forced_width = dpi(200),
+	forced_width = dpi(400),
 	forced_height  = dpi(1),
 	widget = wibox.widget.separator
 }
@@ -295,6 +294,7 @@ local space = wibox.widget{
 local rows = { 
 	layout = wibox.layout.fixed.vertical,
 }
+table.insert(rows, session_widget())
 table.insert(rows, control_buttons)
 table.insert(rows, space)
 table.insert(rows, slider_contols)
@@ -318,7 +318,7 @@ if stdout:match("Battery detected") then
 	table.insert(rows, battery_widget_wrapped)
 end
 
-table.insert(rows, session_widget())
+
 
 local control_popup = awful.popup{
 	widget = {},

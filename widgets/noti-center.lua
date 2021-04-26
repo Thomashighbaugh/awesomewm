@@ -266,7 +266,7 @@ local create_notifbox =  function (n)
 		},
 		spacing = beautiful.notification_margin,
 		forced_width = dpi(177),
-		layout = wibox.layout.fixed.vertical
+		layout = wibox.layout.align.vertical
 	}
 
 
@@ -276,7 +276,7 @@ local create_notifbox =  function (n)
 				icon,
 				title_area_and_message,
 				spacing = beautiful.notification_margin,
-				layout = wibox.layout.fixed.horizontal
+				layout = wibox.layout.align.horizontal
 			},
 			spacing = beautiful.notification_margin,
 			layout = wibox.layout.fixed.vertical
@@ -325,7 +325,7 @@ end
 local notifbox_layout = wibox.layout.fixed.vertical()
 scroller(notifbox_layout)
 notifbox_layout.spacing = beautiful.notification_margin
-notifbox_layout.forced_width = dpi(300)
+notifbox_layout.forced_width = dpi(425)
 
 reset_notifbox_layout = function()
     notifbox_layout:reset(notifbox_layout)
@@ -382,8 +382,8 @@ local notification =  wibox.widget {
     layout = wibox.layout.fixed.vertical
 }
 
-local width = dpi(265)
-local height = dpi(350)
+local width = dpi(450)
+local height = dpi(550)
 
 local notif_center = wibox.widget {
 	{

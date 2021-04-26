@@ -9,7 +9,7 @@ local widget_icon_dir = beautiful.theme_path .. 'icons/system/'
 local config_dir = gears.filesystem.get_configuration_dir()
 local profile_name = wibox.widget {
 	markup = 'user@hostname',
-	font = 'Ubuntu Bold 12',
+	font = beautiful.font ..  ' 12',
 	align = 'center',
 	valign = 'center',
 	widget = wibox.widget.textbox
@@ -76,8 +76,8 @@ local build_power_button = function(name, icon, callback)
 					{
 						image = icon,
 						resize = true,
-						forced_height = dpi(24),
-						forced_width = dpi(24),
+						forced_height = dpi(32),
+						forced_width = dpi(32),
 						widget = wibox.widget.imagebox
 					},
 					margins = dpi(8),

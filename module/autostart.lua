@@ -10,7 +10,7 @@ local startup_apps = {
 	-- Keyring
 	"eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)",
 "xsetroot -cursor_name left_ptr",
-"run xcape -e 'Super_L=Super_L|Control_L|Escape'"
+'xcape -e "Super_L=Super_L|Control_L|Escape"'
 }
 
 

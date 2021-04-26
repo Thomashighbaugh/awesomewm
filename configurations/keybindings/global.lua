@@ -18,13 +18,7 @@ local globalkeys = gears.table.join(
         {description = "go back", group = "tag"}
 	),
 
-	-- TODO: Will be used for toggling tabbed layout
-    awful.key(
-		{ modkey,},
-		"w",
-		function () mymainmenu:show() end,
-        {description = "show main menu", group = "awesome"}
-	),
+
 
     -- Layout manipulation
 	-- Swap client
@@ -129,8 +123,8 @@ local globalkeys = gears.table.join(
         {description = "reload awesome", group = "awesome"}
 	),
     awful.key(
-		{ modkey, "Shift"},
-		"e",
+		{ modkey, },
+		"Escape",
 		function ()
 			awesome.emit_signal('module::exit_screen:show')
 		end,

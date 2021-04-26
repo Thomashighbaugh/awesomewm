@@ -57,8 +57,8 @@ client.connect_signal("request::titlebars", function(c)
 			{
 				{
 					awful.titlebar.widget.minimizebutton(c),
-					forced_height = dpi(16),
-					forced_width = dpi(16),
+					forced_height = dpi(32),
+					forced_width = dpi(32),
 					widget = wibox.container.place
 				},
 				right = dpi(6),
@@ -67,8 +67,8 @@ client.connect_signal("request::titlebars", function(c)
 			{
 				{
 					awful.titlebar.widget.maximizedbutton(c),
-					forced_height = dpi(16),
-					forced_width = dpi(16),
+					forced_height = dpi(32),
+					forced_width = dpi(32),
 					widget = wibox.container.place
 				},
 				right = dpi(6),
@@ -78,8 +78,8 @@ client.connect_signal("request::titlebars", function(c)
 			{
 				{
 					awful.titlebar.widget.closebutton (c),
-					forced_height = dpi(16),
-					forced_width = dpi(16),
+					forced_height = dpi(32),
+					forced_width = dpi(32),
 					widget = wibox.container.place
 				},
 				right = dpi(6),
@@ -92,9 +92,9 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
---client.connect_signal("mouse::enter", function(c)
-    --c:emit_signal("request::activate", "mouse_enter", {raise = false})
---end)
+client.connect_signal("mouse::enter", function(c)
+    c:emit_signal("request::activate", "mouse_enter", {raise = false})
+end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)

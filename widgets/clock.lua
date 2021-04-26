@@ -2,13 +2,14 @@ local wibox = require('wibox')
 local awful = require('awful')
 local gears = require('gears')
 local beautiful = require('beautiful')
+local theme = require "themes.vice.theme"
 local dpi = beautiful.xresources.apply_dpi
 local clickable_container = require('widgets.clickable-container')
 
 local create_clock = function()
 
 	local clock_format = nil
-	clock_format = '<span font="Ubuntu 12">%I:%M:%S %p</span>'
+	clock_format = '<span font="' .. theme.font ..  '">%I:%M:%S %p</span>'
 
 	local clock_widget = wibox.widget.textclock(
 		clock_format,

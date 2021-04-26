@@ -41,11 +41,11 @@ local take_screen_shot = function ()
 	}
 
 	open_file:connect_signal('invoked', function()
-		awful.spawn.with_shell('xdg-open ' .. screen_shot_dir .. file_name, false)
+		awful.spawn.with_shell('caja ' .. screen_shot_dir .. file_name, false)
 	end)
 
 	open_dir:connect_signal('invoked', function()
-		awful.spawn.with_shell('xdg-open ' .. screen_shot_dir, false)
+		awful.spawn.with_shell('caja ' .. screen_shot_dir, false)
 	end)
 
 	delete_file:connect_signal('invoked', function()
@@ -55,7 +55,7 @@ local take_screen_shot = function ()
 	naughty.notification({
 		app_name = 'Screenshot Tool',
 		icon = beautiful.icon_noti_screenhost,
-		timeout = 10,
+		timeout = 15,
 		title = '<b>Screenshot taken</b>',
 		message = 'Screenshot saved to ' .. screen_shot_dir .. file_name,
 		actions = { open_file, open_dir, delete_file }

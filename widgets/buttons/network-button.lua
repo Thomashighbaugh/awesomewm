@@ -18,12 +18,12 @@ local widget_icon = wibox.widget{
 
 local status_text = wibox.widget{
 	text = "Off",
-	font = "Ubuntu 8",
+	font = beautiful.font .. " 8",
 	widget = wibox.widget.textbox
 }
 local widget_name = wibox.widget{
 	text = "Wifi",
-	font = "Ubuntu Bold 10",
+	font =  beautiful.font .." 10",
 	widget = wibox.widget.textbox
 }
 local text = wibox.widget{
