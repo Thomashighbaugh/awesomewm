@@ -16,8 +16,8 @@ local widget_menu = wibox.widget{
 			},
 			left = dpi(2),
 			right = dpi(2),
-			top = dpi(2),
-			bottom = dpi(2),
+			top = dpi(0),
+			bottom = dpi(0),
 			widget = wibox.container.margin
 		},
 		bg = beautiful.bg_button,
@@ -26,7 +26,7 @@ local widget_menu = wibox.widget{
 		border_color = beautiful.border_button,
 		widget = wibox.container.background
 	},
-	margins = dpi(2),
+	margins = dpi(0),
 	widget = wibox.container.margin
 }
 

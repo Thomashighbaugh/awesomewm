@@ -4,7 +4,7 @@
 # Written by manilarome
 
 awesome_dir="${HOME}/.config/awesome/"
-user_profile_dir="${awesome_dir}themes/codedark/icons/system/"
+user_profile_dir="${awesome_dir}themes/vice/icons/system/"
 
 accountsservice_user_icons="/var/lib/AccountsService/icons/${USER}"
 

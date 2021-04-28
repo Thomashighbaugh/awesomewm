@@ -1,6 +1,11 @@
 {
     "Lua.diagnostics.globals": [
         "screen",
-        "awesome"
+        "awesome",
+        "root",
+        "globalkeys",
+        "clientkeys",
+        "client",
+        "tag"
     ]
 }

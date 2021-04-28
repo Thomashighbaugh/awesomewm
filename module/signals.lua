@@ -37,9 +37,9 @@ client.connect_signal("request::titlebars", function(c)
         { -- Left
 			{
 				awful.titlebar.widget.iconwidget(c),
-				left = dpi(6),
-				top = dpi(1),
-				bottom = dpi(1),
+				left = dpi(12),
+				top = dpi(3),
+				bottom = dpi(3),
 				widget = wibox.container.margin
 			},
             buttons = buttons,
@@ -83,6 +83,8 @@ client.connect_signal("request::titlebars", function(c)
 					widget = wibox.container.place
 				},
 				right = dpi(6),
+                top = dpi(3),
+                bottom = dpi(3),
 				widget = wibox.container.margin
 			},
             layout = wibox.layout.fixed.horizontal()
@@ -103,21 +105,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 screen.connect_signal("arrange", function (s)
     local layout = s.selected_tag.layout.name
     local is_single_client = #s.clients == 1
-    --for _, c in pairs(s.clients) do
-        --if (layout == 'floating' or layout == 'max') or is_single_client or c.floating or c.maximized then
-            --c.border_width = 0
-        --else
-            --c.border_width = beautiful.border_width
-        --end
-    --end
 
-    --for _, c in pairs(s.clients) do
-        --if layout == 'floating' or c.floating and not c.maximized then
-               --awful.spawn("xprop -id " .. c.window .. " -f _COMPTON_SHADOW 32c -set _COMPTON_SHADOW 1")
-        --else
-            --awful.spawn("xprop -id " .. c.window .. " -f _COMPTON_SHADOW 32c -set _COMPTON_SHADOW 0")
-        --end
-    --end
     for _, c in pairs(s.clients) do
 		if is_single_client or c.maximized then
             c.border_width = 0
@@ -154,19 +142,5 @@ end)
 -- Hook called when a client spawns
 client.connect_signal("manage", function(c) 
     setTitlebar(c, c.first_tag.layout == awful.layout.suit.floating)
-end)
-
--- Show titlebars on tags with the floating layout
-tag.connect_signal("property::layout", function(t)
-    -- New to Lua ? 
-    -- pairs iterates on the table and return a key value pair
-    -- I don't need the key here, so I put _ to ignore it
-    for _, c in pairs(t:clients()) do
-        if t.layout == awful.layout.suit.floating then
-            setTitlebar(c, true)
-        else
-            setTitlebar(c, false)
-        end
-    end
 end)
 

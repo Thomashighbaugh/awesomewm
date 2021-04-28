@@ -93,7 +93,7 @@ end
 -- Icons
 theme.icon_times = themes_path .. "icons/remove.svg"
 -- awesome icon 
-theme.awesome_menu_icon = themes_path .. "icons/awesome.svg"
+theme.awesome_menu_icon = themes_path .. "icons/logo.svg"
 --- Update toggle icons
 theme.icon_update_none = themes_path .. "icons/update-none.svg"
 theme.icon_update_available = themes_path .."icons/update-low.svg"
@@ -147,7 +147,7 @@ theme.icon_noti_info = themes_path .. "icons/48x48/dialog-information.svg"
 theme.icon_bat_caution = themes_path .. "icons/48x48/battery-caution.svg"
 -- Taglist
 --- Generate taglist squares:
-local taglist_square_size = dpi(5)
+local taglist_square_size = dpi(8)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
     taglist_square_size, theme.fg_normal
 )
@@ -160,9 +160,9 @@ theme.taglist_fg_focus = theme.xcolor15
 
 theme.taglist_fg_urgent = theme.xcolor1
 
-theme.taglist_fg_occupied = theme.xcolor17
+theme.taglist_fg_occupied = theme.xforeground
 
-theme.taglist_fg_empty = theme.xforeground
+theme.taglist_fg_empty = theme.xcolor8
 
 theme.taglist_fg_volatile = theme.xcolor11
 
@@ -259,7 +259,7 @@ theme.taglist_font = "awesomewm-font 15"
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 
-theme.icon_theme = ""
+theme.icon_theme = "Chhinamasta"
 
 return theme
 
