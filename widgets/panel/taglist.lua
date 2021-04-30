@@ -2,6 +2,7 @@ local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
+local bling = require("external.lib.bling")
 local dpi = beautiful.xresources.apply_dpi
 
 local taglist = function (s)
@@ -31,7 +32,7 @@ local taglist = function (s)
 
 		awful.tag.add(name, {
 			screen = s,
-			layout = awful.layout.suit.tile,
+			layout = bling.layout.mstab,
 			selected = selected,
 		})
 	end

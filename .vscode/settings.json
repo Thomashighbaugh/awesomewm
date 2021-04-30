@@ -6,6 +6,8 @@
         "globalkeys",
         "clientkeys",
         "client",
-        "tag"
+        "tag",
+        "editor_cmd",
+        "editor"
     ]
 }

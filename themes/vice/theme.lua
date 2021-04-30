@@ -234,7 +234,7 @@ theme.titlebar_maximized_button_focus_active  = themes_path.."/titlebar/go-up.sv
 theme.titlebar_bg_focus = theme.bg_normal
 
 
-theme.wallpaper = themes_path.."/background.png"
+theme.wallpaper = themes_path.."/images/5.png"
 
 -- LayoutBox
 --- You can use your own layout icons like this:
