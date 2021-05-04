@@ -1,8 +1,10 @@
 configuration {
-	font: "TerminessTTF Nerd Font 10";
+	font: "Inter Regular 10";
 	show-icons: true;
 	drun-display-format: "{name}";
+	fullscreen: false;
 	threads: 0;
+	matching: "fuzzy";
 	scroll-method: 0;
 	disable-history: false;
 	fullscreen: true;
@@ -11,13 +13,13 @@ configuration {
 
 * {
 	transparent: #00000000;
-	foreground: #FFFFFF;
-	background-selected: #FFFFFF11;
-	background-active: #FFFFFF22;
-	background-white: #FFFFFF11;
-	background-black: #1e1e1e99;
-	urgent: #F4474766;
-	urgent-selected: #F4474777;
+	foreground: #F2F2F2EE;
+	background-selected: #F2F2F245;
+	background-active: #F2F2F230;
+	background-white: #F2F2F211;
+	background-black: #00000066;
+	urgent: #E91E6366;
+	urgent-selected: #E91E6377;
 }
 
 window {
@@ -35,7 +37,7 @@ prompt {
 button {
 	action: "ok";
 	str: " ";
-	font: "TerminessTTF Nerd Font 11";
+	font: "FantasqueSansMono Nerd Font 11";
 	expand: false;
 	text-color: @foreground;
 	background-color: @transparent;
@@ -44,7 +46,7 @@ button {
 }
 
 entry {
-	font: "TerminessTTF Nerd Font 11";
+	font: "Inter Regular 11";
 	background-color: @transparent;
 	text-color: @foreground;
 	expand: true;
@@ -74,8 +76,8 @@ inputbar {
 	background-color: @background-white;
 	text-color: @foreground;
 	expand: false;
-	border-radius: 8px;
-	margin: 0px calc((100% - 640px) / 2) 0px calc((100% - 640px) / 2);
+	border-radius: 6px;
+	margin: 0px 25% 0px 20%;
 	padding: 10px 10px 10px 10px;
 	position: north;
 	children: [ entry-wrapper ];
@@ -107,7 +109,7 @@ element {
 }
 
 element-icon {
-	size: 64px;
+	size: 72px;
 	border: 0;
 }
 

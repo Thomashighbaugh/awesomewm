@@ -5,8 +5,8 @@ local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 local default_apps = require("configurations.default-apps")
 
-
-local widget_menu = wibox.widget{
+local widget_menu =
+	wibox.widget {
 	{
 		{
 			{
@@ -37,7 +37,7 @@ widget_menu:buttons(
 			1,
 			nil,
 			function()
-				awful.spawn(default_apps.app_menu, false)	
+				awful.spawn(default_apps.app_menu, false)
 			end
 		)
 	)

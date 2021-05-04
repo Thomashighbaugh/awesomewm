@@ -58,16 +58,31 @@ Heavily inspired by [awesome-shell](https://github.com/Mofiqul/awesome-shell) by
 
 The following tools were used in this project:
 
-- [Expo](https://expo.io/)
-- [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+- [Awesomewm](https://awesomewm.org/)
+- [Lua](https://luarocks.org/)
+- [Patience](https://en.wikipedia.org/wiki/Shiva)
+- [UnixPorn](https://www.reddit.com/r/unixporn/)
 
 ## 0.4. :white_check_mark: Requirements ##
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
+This project requires you to have the variant of AwesomeWM built from the development branch, which if you have an Arch-based system and yay installed is acquired with the following command, which includes other necessary programs for running the setup:
 
+```bash
+yay -S awesome-git 
+``` 
+All of which is included in my [dotfiles installation script](https://github.com/Thomashighbaugh/dotfiles)
+ctivatable.h:25,
+                 from /usr/include/libpeas-1.0/libpeas/peas.h:23,
+                 from is-libsensors-plugin.h:21,
+                 from is-libsensors-plugin.c:22:ctivatable.h:25,
+                 from /usr/include/libpeas-1.0/libpeas/peas.h:23,
+                 from is-libsensors-plugin.h:21,
+                 from is-libsensors-plugin.c:22:
+
+Users of other distros will have to build from the source (sorry), follow the instructions on Awesome's README page for detailed instructions 
+
+
+**Coming Soon** You can preview this whole set up without needing to mess around with installing 
 ## 0.5. :checkered_flag: Starting ##
 
 ```bash

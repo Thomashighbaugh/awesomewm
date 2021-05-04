@@ -459,7 +459,7 @@ local widget_button =
 				resize = true,
 				widget = wibox.widget.imagebox
 			},
-			margins = dpi(4),
+			margins = dpi(2),
 			widget = wibox.container.margin
 		},
 		bg = beautiful.bg_button,
@@ -502,7 +502,6 @@ awesome.connect_signal(
 	function()
 		popupWidget.visible = true
 	end
-
 )
 
 return widget_button

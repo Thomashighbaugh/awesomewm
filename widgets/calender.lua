@@ -153,8 +153,8 @@ local calendar_widget = wibox.widget {
 		{
 			layout = wibox.layout.align.horizontal,
 			expand = "inside",
-			nil, 
-			nil, 
+			nil,
+			nil,
 			{
 				layout = wibox.layout.fixed.horizontal,
 				spacing = beautiful.widget_margin,
@@ -166,28 +166,5 @@ local calendar_widget = wibox.widget {
 		widget = wibox.container.margin
 	}
 }
--- Old style calender, keeping because if I want to use that sometimes
---local calendar_widget = wibox.widget {
-	--{
-		--nil,
-		--button_previous,
-		--nil,
-        --expand = "none", 
-		--layout = wibox.layout.align.vertical
-	--},
-	--{
-		--calendar,
-		--margins = dpi(6),
-		--widget = wibox.container.margin
-	--},
-	--{
-		--nil,
-		--button_next,
-		--nil,
-        --expand = "none", 
-		--layout = wibox.layout.align.vertical
-	--},
-	--layout = wibox.layout.align.horizontal
---}
 
 return calendar_widget

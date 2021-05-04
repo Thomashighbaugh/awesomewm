@@ -1,4 +1,3 @@
-
 local naughty = require("naughty")
 local watch = require("awful.widget.watch")
 local wibox = require("wibox")
@@ -19,103 +18,130 @@ local function worker(user_args)
 
     local timeout = args.timeout or 10
 
-
     if not gfs.dir_readable(path_to_icons) then
-        naughty.notify{
+        naughty.notify {
             title = "Battery Widget",
             text = "Folder with icons doesn't exist: " .. path_to_icons,
             preset = naughty.config.presets.critical
         }
     end
 
-    local icon_widget = wibox.widget {
+    local icon_widget =
+        wibox.widget {
         widget = wibox.widget.imagebox,
-        resize = true,
+        resize = true
     }
 
-    local level_widget = wibox.widget {
+    local level_widget =
+        wibox.widget {
         font = font,
         widget = wibox.widget.textbox
     }
 
-    battery_widget = wibox.widget {
-		{
-			icon_widget,
-        	--level_widget,
-			spacing = dpi(2),
-        	layout = wibox.layout.fixed.horizontal,
-    	},
-		layout = wibox.container.place
-	}
+    battery_widget =
+        wibox.widget {
+        {
+            icon_widget,
+            level_widget,
+            spacing = dpi(2),
+            layout = wibox.layout.fixed.horizontal
+        },
+        layout = wibox.container.place
+    }
 
     local function show_battery_notification(msg, title, icon, timeout)
-        naughty.notification ({
-			app_name = "Power Manager",
-            icon = icon,
-            text = msg,
-            title = title,
-            timeout = timeout or 20, -- show the warning for a longer time
-        })
+        naughty.notification(
+            {
+                app_name = "Power Manager",
+                icon = icon,
+                text = msg,
+                title = title,
+                timeout = timeout or 20 -- show the warning for a longer time
+            }
+        )
     end
 
     local last_battery_check = os.time()
-    local batteryType = "battery-good"
+    local batteryType = "battery-charging"
 
-    watch("acpi -i", timeout,
-    function(widget, stdout)
-        local battery_info = {}
-        local capacities = {}
-        for s in stdout:gmatch("[^\r\n]+") do
-            local status, charge_str, _ = string.match(s, '.+: (%a+), (%d?%d?%d)%%,?(.*)')
-            if status ~= nil then
-                table.insert(battery_info, {status = status, charge = tonumber(charge_str)})
-            else
-                local cap_str = string.match(s, '.+:.+last full capacity (%d+)')
-                table.insert(capacities, tonumber(cap_str))
+    watch(
+        "acpi -i",
+        timeout,
+        function(widget, stdout)
+            local battery_info = {}
+            local capacities = {}
+            for s in stdout:gmatch("[^\r\n]+") do
+                local status, charge_str, _ = string.match(s, ".+: (%a+), (%d?%d?%d)%%,?(.*)")
+                if status ~= nil then
+                    table.insert(battery_info, {status = status, charge = tonumber(charge_str)})
+                else
+                    local cap_str = string.match(s, ".+:.+last full capacity (%d+)")
+                    table.insert(capacities, tonumber(cap_str))
+                end
             end
-        end
 
-        local capacity = 0
-        for _, cap in ipairs(capacities) do
-            capacity = capacity + cap
-        end
+            local capacity = 0
+            for _, cap in ipairs(capacities) do
+                capacity = capacity + cap
+            end
 
-        local charge = 0
-        local status
-        for i, batt in ipairs(battery_info) do
-            if batt.charge >= charge then
-                status = batt.status -- use most charged battery status
+            local charge = 0
+            local status
+            for i, batt in ipairs(battery_info) do
+                if batt.charge >= charge then
+                    status = batt.status -- use most charged battery status
                 -- this is arbitrary, and maybe another metric should be used
+                end
+
+                charge = charge + batt.charge * capacities[i]
             end
+            charge = charge / capacity
 
-            charge = charge + batt.charge * capacities[i]
-        end
-        charge = charge / capacity
-
-        level_widget.text = string.format('%d%%', charge)
-
-        if (charge >= 0 and charge < 15) then
-            if status ~= 'Charging' and os.difftime(os.time(), last_battery_check) > 300 then
-                -- if 5 minutes have elapsed since the last warning
-                last_battery_check = os.time()
-				local msg = "Battery is criticaly low, save your work or plug adapter"
-				local title = "<b>Battery criticaly low</b>"
+            level_widget.text = string.format("%d%%", charge)
+            if (charge >= 25 and charge < 50) then
+                local msg = "Battery is criticaly low, save your work or plug adapter"
+                batteryType = "battery-half"
+                local title = "<b>Battery criticaly low</b>"
                 show_battery_notification(msg, title, beautiful.icon_bat_caution, 20)
             end
-        end
+            if (charge >= 15 and charge < 25) then
+                local msg = "Battery is criticaly low, save your work or plug adapter"
+                batteryType = "battery-empty"
+                local title = "<b>Battery criticaly low</b>"
+                show_battery_notification(msg, title, beautiful.icon_bat_caution, 20)
+            end
+            if (charge >= 10 and charge < 15) then
+                local msg = "Battery is criticaly low, save your work or plug adapter"
+                local title = "<b>Battery criticaly low</b>"
+                batteryType = "battery-empty"
+                show_battery_notification(msg, title, beautiful.icon_bat_caution, 20)
+            end
+            if (charge >= 0 and charge < 10) then
+                local msg = "Battery is criticaly low, save your work or plug adapter"
+                local title = "<b>Battery criticaly low</b>"
+                batteryType = "battery-empty"
+                show_battery_notification(msg, title, beautiful.icon_bat_caution, 20)
+            end
 
-        if status == 'Charging' then
-            batteryType = "battery-charging"
-        else
-            batteryType = "battery-normal"
-        end
+            if status == "Charging" then
+                batteryType = "battery-charging"
+            else
+                batteryType = "battery-normal"
+            end
 
-        widget:set_image(path_to_icons .. batteryType .. ".svg")
-
-    end,
-    icon_widget)
+            widget:set_image(path_to_icons .. batteryType .. ".svg")
+        end,
+        icon_widget
+    )
 
     return wibox.container.margin(battery_widget)
 end
 
-return setmetatable(battery_widget, { __call = function(_, ...) return worker(...) end })
+return setmetatable(
+    battery_widget,
+    {
+        __call = function(_, ...)
+            return worker(...)
+        end
+    }
+)

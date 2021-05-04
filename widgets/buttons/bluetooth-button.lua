@@ -18,7 +18,7 @@ local widget_icon =
 local status_text =
 	wibox.widget {
 	text = "Off",
-	font = beautiful.font .. " 8",
+	font = beautiful.font .. " 12",
 	widget = wibox.widget.textbox
 }
 local widget_name =
@@ -41,6 +41,7 @@ local bluetooth_button =
 			widget_icon,
 			text,
 			spacing = dpi(4),
+			bg = beautiful.xcolor4,
 			layout = wibox.layout.fixed.horizontal
 		},
 		top = dpi(12),
@@ -51,7 +52,7 @@ local bluetooth_button =
 	},
 	forced_width = dpi(115),
 	shape = gears.shape.rounded_rect,
-	bg = beautiful.bg_button,
+	bg = beautiful.xcolor4,
 	shape_border_color = beautiful.border_button,
 	shape_border_width = dpi(1),
 	widget = wibox.container.background
@@ -104,7 +105,7 @@ if settings.is_bluetooth_presence then
 						local output = stdout:gsub("%s+", " ")
 						if output == "" or output == nil then
 							status_text:set_text("On")
-							bluetooth_button:set_bg(beautiful.button_active)
+							bluetooth_button:set_bg(beautiful.xcolor13)
 						else
 							status_text:set_text(output)
 							bluetooth_button:set_bg(beautiful.button_active)

@@ -1,22 +1,19 @@
-local wibox = require('wibox')
-local awful = require('awful')
-local gears = require('gears')
-local beautiful = require('beautiful')
+local wibox = require("wibox")
+local awful = require("awful")
+local gears = require("gears")
+local beautiful = require("beautiful")
 local theme = require "themes.vice.theme"
 local dpi = beautiful.xresources.apply_dpi
-local clickable_container = require('widgets.clickable-container')
+local clickable_container = require("widgets.clickable-container")
 
 local create_clock = function()
-
 	local clock_format = nil
-	clock_format = '<span font="' .. theme.font ..  '">%I:%M:%S %p</span>'
+	clock_format = '<span font="' .. theme.font_bold .. '">%H:%M:%S</span>'
 
-	local clock_widget = wibox.widget.textclock(
-		clock_format,
-		1
-	)
+	local clock_widget = wibox.widget.textclock(clock_format, 1)
 
-	clock_widget = wibox.widget {
+	clock_widget =
+		wibox.widget {
 		{
 			{
 				{
@@ -26,10 +23,10 @@ local create_clock = function()
 					},
 					widget = clickable_container
 				},
-				top = dpi(2),
+				top = dpi(4),
 				bottom = dpi(2),
-				left = dpi(6),
-				right = dpi(6),
+				left = dpi(2),
+				right = dpi(2),
 				widget = wibox.container.margin
 			},
 			bg = beautiful.bg_button,
@@ -43,18 +40,18 @@ local create_clock = function()
 	}
 
 	clock_widget:connect_signal(
-		'mouse::enter',
+		"mouse::enter",
 		function()
 			local w = mouse.current_wibox
 			if w then
 				old_cursor, old_wibox = w.cursor, w
-				w.cursor = 'hand1'
+				w.cursor = "hand1"
 			end
 		end
 	)
 
 	clock_widget:connect_signal(
-		'mouse::leave',
+		"mouse::leave",
 		function()
 			if old_wibox then
 				old_wibox.cursor = old_cursor
@@ -63,20 +60,24 @@ local create_clock = function()
 		end
 	)
 
-	local calendar = awful.popup{
+	local calendar =
+		awful.popup {
 		ontop = true,
 		visible = false,
 		shape = beautiful.widget_shape,
-		placement = function (w)
-			awful.placement.bottom_right(w, {
-				margins = {left = 0, top = 0, bottom = beautiful.wibar_height + dpi(5), right = dpi(5)}
-			})
+		placement = function(w)
+			awful.placement.bottom_right(
+				w,
+				{
+					margins = {left = 0, top = 0, bottom = beautiful.wibar_height + dpi(5), right = dpi(5)}
+				}
+			)
 		end,
 		widget = {
 			{
 				require("widgets.calender"),
 				margins = beautiful.widget_margin,
-				widget = wibox.container.margin,
+				widget = wibox.container.margin
 			},
 			border_width = dpi(1),
 			border_color = beautiful.border_button,
@@ -93,26 +94,30 @@ local create_clock = function()
 				function()
 					if calendar.visible then
 						calendar.visible = not calendar.visible
-					else 
-						calendar.visible = true
+					else
 						--calendar:move_next_to(mouse.current_widget_geometry)
+						calendar.visible = true
 					end
 				end
 			)
 		)
 	)
 
-	awesome.connect_signal("calendar::show", function ()
-		calendar.visible = true
-	end)
+	awesome.connect_signal(
+		"calendar::show",
+		function()
+			calendar.visible = true
+		end
+	)
 
-	awesome.connect_signal("calendar::hide", function ()
-		calendar.visible = false
-	end)
+	awesome.connect_signal(
+		"calendar::hide",
+		function()
+			calendar.visible = false
+		end
+	)
 
 	return clock_widget
-	
 end
 
 return create_clock
-

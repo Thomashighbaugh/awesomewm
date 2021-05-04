@@ -27,13 +27,21 @@ local menubar = require("menubar")
 local machi = require("external.lib.layout-machi")
 require("beautiful").layout_machi = machi.get_icon()
 revelation.init()
+local drop = require('widgets.dropdown')
 require("awful.autofocus")
 
 local globalkeys =
 	gears.table.join(
-	-- ===================================================================
-	awful.key({modkey}, "F1", hotkeys_popup.show_help, {description = "show help", group = "awesome"}),
-	-- ===================================================================
+	--#############################################################################
+  awful.key(
+            {modkey},
+            'F1',
+            hotkeys_popup.show_help,
+            {
+                description = 'show help',
+                group = 'awesome'
+            }
+        ),	--#############################################################################
 
 	awful.key(
 		{modkey},
@@ -46,7 +54,7 @@ local globalkeys =
 			group = "Launcher"
 		}
 	),
-	-- ===================================================================
+	--#############################################################################
 
 	awful.key(
 		{modkey, "Control"},
@@ -59,7 +67,7 @@ local globalkeys =
 			group = "Launcher"
 		}
 	),
-	-- ===================================================================
+	--#############################################################################
 
 	awful.key(
 		{modkey},
@@ -72,19 +80,35 @@ local globalkeys =
 			group = "Launcher"
 		}
 	),
-	-- ===================================================================
+	--#############################################################################
 
 	awful.key(
 		{modkey, "Control"},
 		"F3",
 		function()
-			awful.spawn("gksu thunar")
+			awful.spawn("gksu caja")
+		end,
+		{
+			description = "Launch File Manager as Root",
+			group = "Launcher"
+		}
+	), 
+	
+--#############################################################################
+
+	awful.key(
+		{modkey, "Shift"},
+		"F3",
+		function()
+			awful.spawn("kitty -e ranger")
 		end,
 		{
 			description = "Launch Terminal File Manager",
 			group = "Launcher"
 		}
-	), -- ===================================================================
+	), 
+	
+--#############################################################################
 	awful.key(
 		{modkey},
 		"F4",
@@ -95,7 +119,7 @@ local globalkeys =
 			description = "Copy Font - Awesome Icons to Clipboard",
 			group = "Launcher"
 		}
-	), -- ===================================================================
+	), --#############################################################################
 	awful.key(
 		{modkey, "Control"},
 		"F4",
@@ -107,21 +131,58 @@ local globalkeys =
 			group = "Launcher"
 		}
 	),
-	-- ===================================================================
-	-- ===================================================================
+	    --#############################################################################
+    awful.key(
+        {modkey},
+        'F5',
+        function()
+            awful.spawn('arandr')
+        end,
+        {description = 'open display configuration application', group = 'function'}
+    ),
+    --#############################################################################
+        awful.key(
+            {'Mod1'},
+            'Tab',
+            function()
+                switcher.switch(1, 'Mod1', 'Alt_L', 'Shift', 'Tab')
+            end
+        ),
+            --#############################################################################
+
+        awful.key(
+            {'Mod1', 'Shift'},
+            'Tab',
+            function()
+                switcher.switch(-1, 'Mod1', 'Alt_L', 'Shift', 'Tab')
+            end
+        ),
+		--#############################################################################
+	-- My keybindings
+	awful.key(
+		{modkey, },
+		"q",
+		--function() awful.spawn("rofi -show drun -columns 2 -theme codeDark -no-show-icons") end
+		function()
+			awful.spawn.easy_async_with_shell(default_apps.lock_screen)
+		end,
+		{description = "Application launcher", group = "launcher"}
+	),
+	--#############################################################################
+	--#############################################################################
 	awful.key({modkey}, "Escape", awful.tag.history.restore, {description = "go back", group = "tag"}),
-	-- ===================================================================
+	--#############################################################################
 
 	awful.key(
 		{modkey},
-		"e",
+		"F12",
 		revelation,
 		{
 			description = "show all windows",
 			group = "awesome"
 		}
 	),
-	-- ===================================================================
+	--#############################################################################
 	awful.key(
 		{modkey},
 		"/",
@@ -133,7 +194,7 @@ local globalkeys =
 			group = "layout"
 		}
 	),
-	-- ===================================================================
+	--#############################################################################
 	awful.key(
 		{modkey},
 		"/",
@@ -152,7 +213,7 @@ local globalkeys =
 			switcher.switch(1, "Mod1", "Alt_L", "Shift", "Tab")
 		end
 	),
-	-- ===================================================================
+	--#############################################################################
 	awful.key(
 		{modkey},
 		"Print",
@@ -164,7 +225,7 @@ local globalkeys =
 			group = "Launcher"
 		}
 	),
-	-- ===================================================================
+	--#############################################################################
 	awful.key(
 		{"Mod1", "Shift"},
 		"Tab",
@@ -172,7 +233,7 @@ local globalkeys =
 			switcher.switch(-1, "Mod1", "Alt_L", "Shift", "Tab")
 		end
 	),
-	-- ===================================================================
+	--#############################################################################
 	-- Layout manipulation
 	-- Swap client
 	awful.key(
@@ -183,7 +244,7 @@ local globalkeys =
 		end,
 		{description = "swap with next client by index", group = "client"}
 	),
-	-- ===================================================================
+	--#############################################################################
 	awful.key(
 		{modkey, "Shift"},
 		"k",
@@ -192,7 +253,7 @@ local globalkeys =
 		end,
 		{description = "swap with previous client by index", group = "client"}
 	),
-	-- ===================================================================
+	--#############################################################################
 	-- Focus client
 	awful.key(
 		{modkey},
@@ -202,7 +263,7 @@ local globalkeys =
 		end,
 		{description = "focus next by index", group = "client"}
 	),
-	-- ===================================================================
+	--#############################################################################
 	awful.key(
 		{modkey},
 		"k",
@@ -211,7 +272,7 @@ local globalkeys =
 		end,
 		{description = "focus previous by index", group = "client"}
 	),
-	-- ===================================================================
+	--#############################################################################
 	-- Relative focus
 	awful.key(
 		{modkey, "Control"},
@@ -221,7 +282,7 @@ local globalkeys =
 		end,
 		{description = "focus the next screen", group = "screen"}
 	),
-	-- ===================================================================
+	--#############################################################################
 	awful.key(
 		{modkey, "Control"},
 		"k",
@@ -230,7 +291,7 @@ local globalkeys =
 		end,
 		{description = "focus the previous screen", group = "screen"}
 	),
-	-- ===================================================================
+	--#############################################################################
 
 	awful.key(
 		{modkey},
@@ -243,7 +304,7 @@ local globalkeys =
 			group = "layout"
 		}
 	),
-	-- ===================================================================
+	--#############################################################################
 
 	awful.key(
 		{modkey},
@@ -256,7 +317,7 @@ local globalkeys =
 			group = "layout"
 		}
 	),
-	-- ===================================================================
+	--#############################################################################
 
 	awful.key(
 		{modkey, "Shift"},
@@ -268,7 +329,7 @@ local globalkeys =
 			description = "increase the number of master clients",
 			group = "layout"
 		}
-	), -- ===================================================================
+	), --#############################################################################
 	awful.key(
 		{modkey, "Shift"},
 		"l",
@@ -279,7 +340,7 @@ local globalkeys =
 			description = "decrease the number of master clients",
 			group = "layout"
 		}
-	), -- ===================================================================
+	), --#############################################################################
 	awful.key(
 		{modkey, "Control"},
 		"h",
@@ -290,7 +351,7 @@ local globalkeys =
 			description = "increase the number of columns",
 			group = "layout"
 		}
-	), -- ===================================================================
+	), --#############################################################################
 	awful.key(
 		{modkey, "Control"},
 		"l",
@@ -301,7 +362,7 @@ local globalkeys =
 			description = "decrease the number of columns",
 			group = "layout"
 		}
-	), -- ===================================================================
+	), --#############################################################################
 	-- Focus previous
 	awful.key(
 		{modkey},
@@ -314,9 +375,9 @@ local globalkeys =
 		end,
 		{description = "go back", group = "client"}
 	),
-	-- ===================================================================
+	--#############################################################################
 	awful.key({modkey}, "u", awful.client.urgent.jumpto, {description = "jump to urgent client", group = "client"}),
-	-- ===================================================================
+	--#############################################################################
 
 	-- Standard program
 	awful.key(
@@ -327,9 +388,9 @@ local globalkeys =
 		end,
 		{description = "open a terminal", group = "launcher"}
 	),
-	-- ===================================================================
+	--#############################################################################
 	awful.key({modkey}, "r", awesome.restart, {description = "reload awesome", group = "awesome"}),
-	-- ===================================================================
+	--#############################################################################
 	awful.key(
 		{modkey},
 		"Escape",
@@ -338,7 +399,7 @@ local globalkeys =
 		end,
 		{description = "Launch exit screen", group = "launcher"}
 	),
-	-- ===================================================================
+	--#############################################################################
 	-- Client resize master
 	awful.key(
 		{modkey, "Control"},
@@ -348,7 +409,7 @@ local globalkeys =
 		end,
 		{description = "increase master width factor", group = "layout"}
 	),
-	-- ===================================================================
+	--#############################################################################
 	awful.key(
 		{modkey, "Control"},
 		"Left",
@@ -357,7 +418,7 @@ local globalkeys =
 		end,
 		{description = "decrease master width factor", group = "layout"}
 	),
-	-- ===================================================================
+	--#############################################################################
 	-- Increase/Decrease numbers of master
 	awful.key(
 		{modkey, "Shift"},
@@ -367,7 +428,7 @@ local globalkeys =
 		end,
 		{description = "increase the number of master clients", group = "layout"}
 	),
-	-- ===================================================================
+	--#############################################################################
 	awful.key(
 		{modkey, "Shift"},
 		"l",
@@ -376,7 +437,7 @@ local globalkeys =
 		end,
 		{description = "decrease the number of master clients", group = "layout"}
 	),
-	-- ===================================================================
+	--#############################################################################
 
 	-- Increase/Decrease numbers of columns
 	awful.key(
@@ -387,7 +448,7 @@ local globalkeys =
 		end,
 		{description = "increase the number of columns", group = "layout"}
 	),
-	-- ===================================================================
+	--#############################################################################
 	awful.key(
 		{modkey, "Control"},
 		"-",
@@ -396,7 +457,7 @@ local globalkeys =
 		end,
 		{description = "decrease the number of columns", group = "layout"}
 	),
-	-- ===================================================================
+	--#############################################################################
 
 	-- Next layout
 	awful.key(
@@ -407,7 +468,7 @@ local globalkeys =
 		end,
 		{description = "select next", group = "layout"}
 	),
-	-- ===================================================================
+	--#############################################################################
 
 	-- Previous layout
 	awful.key(
@@ -418,7 +479,7 @@ local globalkeys =
 		end,
 		{description = "select previous", group = "layout"}
 	),
-	-- ===================================================================
+	--#############################################################################
 
 	awful.key(
 		{modkey, "Control"},
@@ -432,7 +493,16 @@ local globalkeys =
 		end,
 		{description = "restore minimized", group = "client"}
 	),
-	-- ===================================================================
+	  --#############################################################################
+    awful.key(
+        {modkey},
+        'y',
+        function()
+            drop(terminal, {width = 0.5, minwidth = 720, height = 0.5, vert = 'center'})
+        end,
+        {description = 'toggle dropdown terminal', group = 'launcher'}
+    ),
+	--#############################################################################
 	-- My keybindings
 	awful.key(
 		{modkey, "Control"},
@@ -443,7 +513,7 @@ local globalkeys =
 		end,
 		{description = "Application launcher", group = "launcher"}
 	),
-	-- ===================================================================
+	--#############################################################################
 
 	awful.key(
 		{},
@@ -453,7 +523,7 @@ local globalkeys =
 		end,
 		{description = "increase volume up by 5%", group = "hotkeys"}
 	),
-	-- ===================================================================
+	--#############################################################################
 	awful.key(
 		{},
 		"XF86AudioLowerVolume",
@@ -462,7 +532,7 @@ local globalkeys =
 		end,
 		{description = "decrease volume up by 5%", group = "hotkeys"}
 	),
-	-- ===================================================================
+	--#############################################################################
 	awful.key(
 		{},
 		"XF86AudioMute",
@@ -471,7 +541,7 @@ local globalkeys =
 		end,
 		{description = "toggle mute", group = "hotkeys"}
 	),
-	-- ===================================================================
+	--#############################################################################
 	awful.key(
 		{},
 		"XF86MonBrightnessUp",
@@ -480,7 +550,7 @@ local globalkeys =
 		end,
 		{description = "increase brightness by 10%", group = "hotkeys"}
 	),
-	-- ===================================================================
+	--#############################################################################
 	awful.key(
 		{},
 		"XF86MonBrightnessDown",
@@ -489,7 +559,7 @@ local globalkeys =
 		end,
 		{description = "decrease brightness by 10%", group = "hotkeys"}
 	),
-	-- ===================================================================
+	--#############################################################################
 	awful.key(
 		{},
 		"XF86Display",
@@ -518,7 +588,7 @@ for i = 1, 9 do
 			end,
 			{description = "view tag #" .. i, group = "tag"}
 		),
-		-- ===================================================================
+		--#############################################################################
 		-- Toggle tag display.
 		awful.key(
 			{modkey, "Control"},
@@ -532,7 +602,7 @@ for i = 1, 9 do
 			end,
 			{description = "toggle tag #" .. i, group = "tag"}
 		),
-		-- ===================================================================
+		--#############################################################################
 		-- Move client to tag.
 		awful.key(
 			{modkey, "Shift"},
@@ -547,7 +617,7 @@ for i = 1, 9 do
 			end,
 			{description = "move focused client to tag #" .. i, group = "tag"}
 		),
-		-- ===================================================================
+		--#############################################################################
 		-- Toggle tag on focused client.
 		awful.key(
 			{modkey, "Control", "Shift"},
@@ -562,7 +632,7 @@ for i = 1, 9 do
 			end,
 			{description = "toggle focused client on tag #" .. i, group = "tag"}
 		),
-		-- ===================================================================
+		--#############################################################################
 
 		awful.key(
 			{modkey, "Shift"},

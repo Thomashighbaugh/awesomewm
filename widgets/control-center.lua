@@ -7,25 +7,29 @@ local battery_widget = require("widgets.panel.battery")
 local volume_widget = require("widgets.panel.volume")
 local network_indicator = require("widgets.panel.network")
 local create_button = require("widgets.buttons.create-button")
+local cpu_widget = require("widgets.panel.cpu-widget")
 
 -- Widget to show on panel
-local control_widget = wibox.widget{
+local control_widget =
+	wibox.widget {
 	{
 		{
 			{
 				{
+					-- require("widgets.panel.cpu-widget"),
+
 					volume_widget(),
-					battery_widget(),
+					battery_widget,
 					network_indicator,
-					spacing = dpi(4),
+					spacing = dpi(10),
 					layout = wibox.layout.fixed.horizontal
 				},
 				widget = wibox.container.place
 			},
-			left = dpi(6),
-			right = dpi(6),
-			top = dpi(4),
-			bottom = dpi(4),
+			left = dpi(4),
+			right = dpi(4),
+			top = dpi(1),
+			bottom = dpi(1),
 			widget = wibox.container.margin
 		},
 		bg = beautiful.bg_button,
@@ -38,30 +42,25 @@ local control_widget = wibox.widget{
 	widget = wibox.container.margin
 }
 
-
-local volume_slider = wibox.widget {
+local volume_slider =
+	wibox.widget {
 	require("widgets.volume-slider")(),
 	margins = beautiful.widget_margin,
 	widget = wibox.container.margin
 }
-
-local brightness_slider = wibox.widget {
-	require("widgets.brightness-slider")(),
-	margins = beautiful.widget_margin,
-	widget = wibox.container.margin
-}
+-- local brightness_slider = wibox.widget {
+-- 	require("widgets.brightness-slider")(),
+-- 	margins = beautiful.widget_margin,
+-- 	widget = wibox.container.margin
+-- }
 --- Control buttons
 -- power button
 local power_button = create_button.circle_big(beautiful.icon_system_power_off)
 
-local button_row_1= wibox.widget{
-
+local button_row =
+	wibox.widget {
 	power_button,
 	require("widgets.buttons.lock"),
-	spacing = beautiful.widget_margin * 1.5,
-	layout = wibox.layout.fixed.horizontal
-}
-local button_row_2 = wibox.widget{
 	require("widgets.buttons.global-floating-mode"),
 	require("widgets.buttons.screen-shot"),
 	require("widgets.buttons.microphone"),
@@ -70,14 +69,25 @@ local button_row_2 = wibox.widget{
 }
 
 -- Bluetooth and network buttons
-local rounded_buttons= wibox.widget{
+local rounded_buttons =
+	wibox.widget {
 	require("widgets.buttons.bluetooth-button"),
 	require("widgets.buttons.network-button"),
 	spacing = beautiful.widget_margin * 1.5,
 	layout = wibox.layout.fixed.horizontal
 }
 
-local control_buttons = wibox.widget{
+local rounded_buttons_row2 =
+	wibox.widget {
+	require("widgets.panel.cpu-widget"),
+	require("widgets.panel.ram-widget"),
+	forced_height = dpi(40),
+	spacing = beautiful.widget_margin * 1.5,
+	layout = wibox.layout.fixed.horizontal
+}
+
+local control_buttons =
+	wibox.widget {
 	{
 		{
 			{
@@ -85,18 +95,18 @@ local control_buttons = wibox.widget{
 				widget = wibox.container.place
 			},
 			{
-				button_row_1,
+				rounded_buttons_row2,
 				widget = wibox.container.place
 			},
 			{
-				button_row_2,
+				button_row,
 				widget = wibox.container.place
 			},
 			spacing = beautiful.widget_margin * 1.5,
 			layout = wibox.layout.fixed.vertical
 		},
-		top = dpi(15),
-		bottom = dpi(15),
+		top = dpi(35),
+		bottom = dpi(35),
 		widget = wibox.container.margin
 	},
 	bg = beautiful.bg_normal,
@@ -104,25 +114,27 @@ local control_buttons = wibox.widget{
 	widget = wibox.container.background
 }
 
-
-power_button:connect_signal("button::press", function (_, _, _, button)
-	if button == 1 then 
-		awesome.emit_signal("control-center::hide")
-		awesome.emit_signal('module::exit_screen:show')
+power_button:connect_signal(
+	"button::press",
+	function(_, _, _, button)
+		if button == 1 then
+			awesome.emit_signal("control-center::hide")
+			awesome.emit_signal("module::exit_screen:show")
+		end
 	end
-end)
-
+)
 
 -- Session and user widget
-local session_widget = function ()
-
-	local widget_username = wibox.widget{
-		text = 'tlh',
+local session_widget = function()
+	local widget_username =
+		wibox.widget {
+		text = "tlh",
 		font = beautiful.font_bold .. " 10",
 		widget = wibox.widget.textbox
 	}
-	local widget_hostname = wibox.widget{
-		text = '@localhost',
+	local widget_hostname =
+		wibox.widget {
+		text = "@localhost",
 		font = beautiful.font_bold .. " 10",
 		widget = wibox.widget.textbox
 	}
@@ -140,7 +152,8 @@ local session_widget = function ()
 			widget_username:set_text(stdout:gsub("^%l", string.upper):gsub("s+", ""))
 		end
 	)
-	local user_widget = wibox.widget {
+	local user_widget =
+		wibox.widget {
 		{
 			{
 				{
@@ -159,13 +172,11 @@ local session_widget = function ()
 								expand = "none",
 								layout = wibox.layout.flex.vertical
 							},
-						
 							spacing = dpi(80),
 							layout = wibox.layout.fixed.horizontal
 						},
-						widget =wibox.container.place
+						widget = wibox.container.place
 					},
-
 					spacing = beautiful.widget_margin,
 					layout = wibox.layout.fixed.horizontal
 				},
@@ -175,55 +186,58 @@ local session_widget = function ()
 			bottom = beautiful.widget_margin,
 			widget = wibox.container.margin
 		},
-		forced_height = dpi(120),
+		forced_height = dpi(80),
 		widget = wibox.container.background
 	}
-
 
 	return user_widget
 end
 
--- Function to split sting 
-function str_split (inputstr, sep)
-   if sep == nil then
-           sep = "%s"
-   end
-   local t={}
-   for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-           table.insert(t, str)
-   end
-   return t
+-- Function to split sting
+function str_split(inputstr, sep)
+	if sep == nil then
+		sep = "%s"
+	end
+	local t = {}
+	for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+		table.insert(t, str)
+	end
+	return t
 end
 
 -- Battery widget
-local battery_widget = function ()
-	local battery_percent = wibox.widget{
+local battery_widget = function()
+	local battery_percent =
+		wibox.widget {
 		text = "62%",
 		font = beautiful.font .. " 9",
 		forced_width = dpi(80),
 		widget = wibox.widget.textbox
 	}
 
-	local battery_icon = wibox.widget{
+	local battery_icon =
+		wibox.widget {
 		{
 			image = beautiful.battery_icon,
 			resize = true,
-			forced_width = dpi(14),
-			forced_height = dpi(14),
+			forced_width = dpi(21),
+			forced_height = dpi(21),
 			widget = wibox.widget.imagebox
 		},
 		top = dpi(2),
 		widget = wibox.container.margin
 	}
 
-	local battery_state = wibox.widget {
+	local battery_state =
+		wibox.widget {
 		text = "Discharging",
 		font = beautiful.font .. " 8",
 		valign = "left",
 		forced_width = dpi(145),
 		widget = wibox.widget.textbox
 	}
-	local battery = wibox.widget {
+	local battery =
+		wibox.widget {
 		{
 			{
 				battery_icon,
@@ -244,7 +258,7 @@ local battery_widget = function ()
 		echo "$bat_state+$bat_percentage"
 		"]],
 		5,
-		function (_, stdout)
+		function(_, stdout)
 			--battery_state:set_text(stdout:gsub('%\n', ''))
 			local state = str_split(stdout:gsub(",", ""), "+")
 			local status = state[1]
@@ -256,43 +270,45 @@ local battery_widget = function ()
 	return battery
 end
 
-local battery_widget_wrapped = wibox.widget{
+local battery_widget_wrapped =
+	wibox.widget {
 	widget = wibox.container.background,
 	bg = beautiful.bg_normal,
 	shape = beautiful.widget_shape,
 	battery_widget()
-
 }
 
 -- line separator
-local horizontal_separator = wibox.widget {
+local horizontal_separator =
+	wibox.widget {
 	thikness = dpi(6),
 	color = beautiful.bg_button,
 	forced_width = dpi(400),
-	forced_height  = dpi(1),
+	forced_height = dpi(3),
 	widget = wibox.widget.separator
 }
 
-local slider_contols = wibox.widget{
+local slider_contols =
+	wibox.widget {
 	widget = wibox.container.background,
 	bg = beautiful.bg_normal,
 	shape = beautiful.widget_shape,
 	{
 		layout = wibox.layout.fixed.vertical,
 		volume_slider,
-		horizontal_separator,
-		brightness_slider
+		horizontal_separator
+		-- brightness_slider
 	}
 }
 
-
-local space = wibox.widget{
-	widget = wibox.container.margin, 
+local space =
+	wibox.widget {
+	widget = wibox.container.margin,
 	top = beautiful.widget_margin
 }
 
-local rows = { 
-	layout = wibox.layout.fixed.vertical,
+local rows = {
+	layout = wibox.layout.fixed.vertical
 }
 table.insert(rows, session_widget())
 table.insert(rows, control_buttons)
@@ -300,7 +316,8 @@ table.insert(rows, space)
 table.insert(rows, slider_contols)
 
 -- Detect if the system has a battery
-local handle = io.popen(
+local handle =
+	io.popen(
 	[=[
 		bat_presence=$(ls /sys/class/power_supply | grep BAT)
 		if [ -z "$bat_presence" ]; then
@@ -318,47 +335,62 @@ if stdout:match("Battery detected") then
 	table.insert(rows, battery_widget_wrapped)
 end
 
-
-
-local control_popup = awful.popup{
+local control_popup =
+	awful.popup {
 	widget = {},
 	ontop = true,
 	shape = beautiful.widget_shape,
 	bg = beautiful.bg_normal,
-    visible = false,
-	placement = function (w)
-		awful.placement.bottom_right(w, {
-			margins = {left = 0, top = 0, bottom = beautiful.wibar_height + dpi(5), right = dpi(5)}
-		})
+	visible = false,
+	placement = function(w)
+		awful.placement.bottom_right(
+			w,
+			{
+				margins = {left = 0, top = 0, bottom = beautiful.wibar_height + dpi(5), right = dpi(5)}
+			}
+		)
 	end
 }
 
-control_popup:setup({
-	widget = wibox.container.background,
-	border_width = beautiful.widget_border_width,
-	border_color = beautiful.border_button,
-	shape = beautiful.widget_shape,
-	rows
-})
+control_popup:setup(
+	{
+		forced_height = dpi(500),
+		widget = wibox.container.background,
+		border_width = beautiful.widget_border_width,
+		border_color = beautiful.border_button,
+		shape = beautiful.widget_shape,
+		rows
+	}
+)
 
 control_widget:buttons(
 	gears.table.join(
-		awful.button( {}, 1, function() 
-			if control_popup.visible then 
-				control_popup.visible = not control_popup.visible
-			else
-				control_popup.visible = true
+		awful.button(
+			{},
+			1,
+			function()
+				if control_popup.visible then
+					control_popup.visible = not control_popup.visible
+				else
+					control_popup.visible = true
+				end
 			end
-		end )
+		)
 	)
 )
 
-awesome.connect_signal("control-center::hide", function ()
-	control_popup.visible = false
-end)
+awesome.connect_signal(
+	"control-center::hide",
+	function()
+		control_popup.visible = false
+	end
+)
 
-awesome.connect_signal("control-center::show", function ()
-	control_popup.visible = true
-end)
+awesome.connect_signal(
+	"control-center::show",
+	function()
+		control_popup.visible = true
+	end
+)
 
 return control_widget
