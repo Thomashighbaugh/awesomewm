@@ -71,43 +71,49 @@ This project requires you to have the variant of AwesomeWM built from the develo
 yay -S awesome-git 
 ``` 
 All of which is included in my [dotfiles installation script](https://github.com/Thomashighbaugh/dotfiles)
-ctivatable.h:25,
-                 from /usr/include/libpeas-1.0/libpeas/peas.h:23,
-                 from is-libsensors-plugin.h:21,
-                 from is-libsensors-plugin.c:22:ctivatable.h:25,
-                 from /usr/include/libpeas-1.0/libpeas/peas.h:23,
-                 from is-libsensors-plugin.h:21,
-                 from is-libsensors-plugin.c:22:
+
 
 Users of other distros will have to build from the source (sorry), follow the instructions on Awesome's README page for detailed instructions 
 
 
 **Coming Soon** You can preview this whole set up without needing to mess around with installing 
-## 0.5. :checkered_flag: Starting ##
+## 0.5. :checkered_flag: Installing This Configuration ##
 
+#### Method One 
 ```bash
 # Clone this project
-$ git clone https://github.com/Thomashighbaugh/awesome
+$ git clone https://github.com/Thomashighbaugh/awesomewm $HOME/.config/awesome
 
-# Access
-$ cd awesome
+# If Running Awesome 
+$ awesome --restart
 
-# Install dependencies
-$ yarn
+# Otherwise Restart your Display Manager OR Reboot and Login in Selecting Awesome As Your Session
+$ systemctl restart lightdm 
+# or 
+$ sudo reboot 
 
-# Run the project
-$ yarn start
-
-# The server will initialize in the <http://localhost:3000>
 ```
 
+#### Method Two
+This is the more full flavored variant, in which you will select AwesomeWM from my dotfiles installation script. 
+```bash
+$ git clone https://github.com/Thomashighbaugh/dotfiles $HOME/dotfiles 
+
+$ cd $HOME/dotfiles 
+
+$ ./INSTALL 
+
+# No You Will Need to Go Through the Process, At Least by Running the First Menu Item then GUI and select Awesome
+# This will take care of downloading and provisioning this repo and all the accessories that go along with it, exactly as I do on my own systems. 
+
+```
 ## 0.6. :memo: License ##
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
 
-Made with :heart: by <a href="https://github.com/Thomashighbaugh" target="_blank">{{YOUR_NAME}}</a>
+A Project By <a href="https://github.com/Thomashighbaugh" target="_blank">Thomas Leon Highbaugh</a>
 
-&#xa0;
+
 
 <a href="#top">Back to top</a>

@@ -16,13 +16,11 @@ local control_widget =
 		{
 			{
 				{
-					-- require("widgets.panel.cpu-widget"),
-
 					volume_widget(),
 					battery_widget,
 					network_indicator,
-					spacing = dpi(10),
-					layout = wibox.layout.fixed.horizontal
+					spacing = dpi(12),
+					layout = wibox.layout.align.horizontal
 				},
 				widget = wibox.container.place
 			},

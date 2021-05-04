@@ -1,16 +1,28 @@
+-- ####################################################################
+-- Import External Resources
+-- ####################################################################
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local gears = require("gears")
 local xrdb = xresources.get_current_theme()
 local gfs = require("gears.filesystem")
+-- Path Shortcut
 local themes_path = gfs.get_configuration_dir() .. "themes/vice/"
+
+-- ####################################################################
+-- Begin theme
+-- ####################################################################
 local theme = {}
+-- ####################################################################
+-- Font
+-- ####################################################################
 theme.font = "Hurmit Nerd Font Mono medium 12"
-theme.font_bold = "Hurmit Nerd Font Mono bold 12"
+theme.font_bold = "Hurmit Nerd Font Mono bold 14"
 theme.font_large = "Hurmit Nerd Font Mono bold 16"
 theme.font_small = "Hurmit Nerd Font Mono bold 11"
-theme.font_extra_small = "Hurmit Nerd Font Mono bold 9"
+theme.font_extra_small = "Hurmit Nerd Font Mono bold 7"
+
 -- ####################################################################
 -- Color Scheme From .Xresources
 -- ####################################################################
@@ -40,7 +52,6 @@ theme.xcolor17 = "#b2bfd9"
 theme.xcolor18 = "#22262d"
 
 -- Apply to common aliases used by AwesomeWM
-
 -- bg
 theme.bg_normal = theme.background
 theme.bg_focus = theme.xcolor8
@@ -58,10 +69,10 @@ theme.border_button = theme.xcolor0
 theme.button_active = theme.color5
 theme.button_active_alt = theme.xcolor4
 theme.bg_widget = theme.xcolor0
+
 -- ####################################################################
 -- Gap
 -- ####################################################################
-
 theme.useless_gap = dpi(1)
 theme.gap_single_client = true
 
@@ -71,7 +82,7 @@ theme.gap_single_client = true
 
 theme.border_radius = dpi(12)
 theme.maximized_hide_border = true
-theme.border_width = dpi(1)
+theme.border_width = dpi(0)
 theme.border_normal = theme.xcolor18 .. "00"
 theme.border_focus = theme.xcolor18 .. "00"
 theme.border_marked = theme.xcolor8 .. "00"
@@ -287,10 +298,17 @@ theme.hotkeys_shape = gears.shape.rounded_rect
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, theme.bg_focus, theme.fg_focus)
+
+-- ####################################################################
+-- Taglist Font (have to put it here or the config fails, not sure wtf)
+-- ####################################################################
 theme.taglist_font = "awesomewm-font 18"
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.tasklist_plain_task_name = true
+
+-- ####################################################################
+-- Icon theme
+-- ####################################################################
 theme.icon_theme = "Chhinamasta"
 
 return theme

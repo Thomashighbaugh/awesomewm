@@ -8,6 +8,7 @@
         "client",
         "tag",
         "editor_cmd",
-        "editor"
+        "editor",
+        "time"
     ]
 }
