@@ -20,7 +20,7 @@ local control_widget =
 					battery_widget,
 					network_indicator,
 					spacing = dpi(12),
-					layout = wibox.layout.align.horizontal
+					layout = wibox.layout.flex.horizontal
 				},
 				widget = wibox.container.place
 			},

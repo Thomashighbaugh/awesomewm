@@ -8,9 +8,10 @@ local wibox = require("wibox")
 local clickable_container = require("widgets.clickable-container")
 local gears = require("gears")
 local dpi = require("beautiful").xresources.apply_dpi
+local beautiful = require("beautiful")
 local defaults_apps = require("configurations.default-apps")
 local PATH_TO_ICONS = os.getenv("HOME") .. "/.config/awesome/themes/vice/icons/battery/"
-
+local naughty = require("naughty")
 -- ===================================================================
 -- Widget Creation
 -- ===================================================================
@@ -32,7 +33,7 @@ widget_button:buttons(
     gears.table.join(
         awful.button(
             {},
-            1,
+            3,
             nil,
             function()
                 awful.spawn(defaults_apps.power_manager)
@@ -55,13 +56,13 @@ local function show_battery_warning()
     naughty.notify {
         icon = PATH_TO_ICONS .. "battery-empty.svg",
         icon_size = dpi(24),
-        text = "Huston, we have a problem",
+        text = "Danger Will Robinson, Your Machine Is About to Give Up the Ghost!",
         title = "Battery is dying",
-        timeout = 5,
+        timeout = 20,
         hover_timeout = 0.5,
         position = "top_right",
-        bg = "#d32f2f",
-        fg = "#EEE9EF",
+        bg = beautiful.xbackground,
+        fg = beautiful.xforeground,
         width = 248
     }
 end
