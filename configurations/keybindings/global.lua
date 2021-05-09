@@ -4,18 +4,11 @@
 --                          |    |  |  ||  _  ||  _  |  _  ||  |    |     < |  -__|  |  |__ --|
 --                         |_______|__||_____||_____|___._||__|    |__|\__||_____|___  |_____|
 --                                                                                |_____|                                                                                                      --
---                                                      ::::::::::::::::::::       :::    ::: :::::::::::  ::::::::    --
---   global.lua                                         ::::::::::::::::::::       :+:    :+:     :+:     :+:    :+:   --
---                                                      ::::::::::::::+++#####+++  +:+    +:+     +:+     +:+          --
---   By: Thomas Leon Highbaugh <thighbaugh@zoho.c       ::+++##############+++     +:+    +:+     +:+     +:+          --
---   https://github.com/Thomashighbaugh             +++##############+++::::       +#+    +:+     +#+     +#+          --
---                                                    +++##+++::::::::::::::       +#+    +:+     +#+     +#+          --
---                                                      ::::::::::::::::::::       +#+    +#+     +#+     +#+          --
---                                                      ::::::::::::::::::::       #+#    #+#     #+#     #+#    #+#   --
---   Update: 2021/04/30 10:39:05 by Thomas Leon Highba  ::::::::::::::::::::        ########      ###      ######## .f --
---                                                                                                                     --
--- ******************************************************************************************************************* --
-
+--[[
+Author: Thomas Leon Highbaugh (thighbaugh@zoho.com)
+global.lua
+Desc: Global Keybindings
+]]
 local gears = require("gears")
 local awful = require("awful")
 local beautiful = require("beautiful")
@@ -27,22 +20,21 @@ local menubar = require("menubar")
 local machi = require("external.lib.layout-machi")
 require("beautiful").layout_machi = machi.get_icon()
 revelation.init()
-local drop = require('widgets.dropdown')
+local drop = require("widgets.dropdown")
 require("awful.autofocus")
 
 local globalkeys =
 	gears.table.join(
 	--#############################################################################
-  awful.key(
-            {modkey},
-            'F1',
-            hotkeys_popup.show_help,
-            {
-                description = 'show help',
-                group = 'awesome'
-            }
-        ),	--#############################################################################
-
+	awful.key(
+		{modkey},
+		"F1",
+		hotkeys_popup.show_help,
+		{
+			description = "show help",
+			group = "awesome"
+		}
+	), --#############################################################################
 	awful.key(
 		{modkey},
 		"F2",
@@ -92,9 +84,8 @@ local globalkeys =
 			description = "Launch File Manager as Root",
 			group = "Launcher"
 		}
-	), 
-	
---#############################################################################
+	),
+	--#############################################################################
 
 	awful.key(
 		{modkey, "Shift"},
@@ -106,9 +97,8 @@ local globalkeys =
 			description = "Launch Terminal File Manager",
 			group = "Launcher"
 		}
-	), 
-	
---#############################################################################
+	),
+	--#############################################################################
 	awful.key(
 		{modkey},
 		"F4",
@@ -131,36 +121,36 @@ local globalkeys =
 			group = "Launcher"
 		}
 	),
-	    --#############################################################################
-    awful.key(
-        {modkey},
-        'F5',
-        function()
-            awful.spawn('arandr')
-        end,
-        {description = 'open display configuration application', group = 'function'}
-    ),
-    --#############################################################################
-        awful.key(
-            {'Mod1'},
-            'Tab',
-            function()
-                switcher.switch(1, 'Mod1', 'Alt_L', 'Shift', 'Tab')
-            end
-        ),
-            --#############################################################################
+	--#############################################################################
+	awful.key(
+		{modkey},
+		"F5",
+		function()
+			awful.spawn("arandr")
+		end,
+		{description = "open display configuration application", group = "function"}
+	),
+	--#############################################################################
+	awful.key(
+		{"Mod1"},
+		"Tab",
+		function()
+			switcher.switch(1, "Mod1", "Alt_L", "Shift", "Tab")
+		end
+	),
+	--#############################################################################
 
-        awful.key(
-            {'Mod1', 'Shift'},
-            'Tab',
-            function()
-                switcher.switch(-1, 'Mod1', 'Alt_L', 'Shift', 'Tab')
-            end
-        ),
-		--#############################################################################
+	awful.key(
+		{"Mod1", "Shift"},
+		"Tab",
+		function()
+			switcher.switch(-1, "Mod1", "Alt_L", "Shift", "Tab")
+		end
+	),
+	--#############################################################################
 	-- My keybindings
 	awful.key(
-		{modkey, },
+		{modkey},
 		"q",
 		--function() awful.spawn("rofi -show drun -columns 2 -theme codeDark -no-show-icons") end
 		function()
@@ -493,15 +483,15 @@ local globalkeys =
 		end,
 		{description = "restore minimized", group = "client"}
 	),
-	  --#############################################################################
-    awful.key(
-        {modkey},
-        'y',
-        function()
-            drop(terminal, {width = 0.5, minwidth = 720, height = 0.5, vert = 'center'})
-        end,
-        {description = 'toggle dropdown terminal', group = 'launcher'}
-    ),
+	--#############################################################################
+	awful.key(
+		{modkey},
+		"y",
+		function()
+			drop(terminal, {width = 0.5, minwidth = 720, height = 0.5, vert = "center"})
+		end,
+		{description = "toggle dropdown terminal", group = "launcher"}
+	),
 	--#############################################################################
 	-- My keybindings
 	awful.key(

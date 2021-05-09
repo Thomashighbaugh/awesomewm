@@ -17,15 +17,13 @@ local beautiful = require("beautiful")
 local config_dir = filesystem.get_configuration_dir()
 local default_apps = {}
 
-default_apps.screeh_shot = "spectacle"
+default_apps.screeh_shot = "/home/tlh/.config/awesome/external/bin/screenshots desktop"
 default_apps.lock_screen = "$HOME/.config/awesome/external/i3lock/blur.sh"
 default_apps.power_manager = "xfce4-power-manager"
 default_apps.software_updater = "kitty --title 'System upgrade' -e sudo pacman -Syu"
 default_apps.bluetooth_manager = "kitty -e bluetoothctl"
 default_apps.network_manager = "kitty -e nmtui"
 default_apps.app_menu =
-	"rofi -dpi " ..
-	screen.primary.dpi ..
-		" -show drun -theme " .. config_dir .. "external/rofi/rofi.rasi -icon-theme " .. beautiful.icon_theme
+	"rofi -dpi  -show drun -theme " .. config_dir .. "external/rofi/rofi.rasi -icon-theme " .. beautiful.icon_theme
 
 return default_apps

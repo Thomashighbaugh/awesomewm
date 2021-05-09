@@ -9,6 +9,7 @@
         "tag",
         "editor_cmd",
         "editor",
-        "time"
+        "time",
+        "mouse"
     ]
 }
