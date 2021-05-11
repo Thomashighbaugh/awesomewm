@@ -15,7 +15,7 @@ local beautiful = require("beautiful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local default_apps = require("configurations.default-apps")
 local revelation = require("external.lib.revelation")
-local switcher = require("external.lib.awesome-switcher")
+
 local menubar = require("menubar")
 local machi = require("external.lib.layout-machi")
 require("beautiful").layout_machi = machi.get_icon()
@@ -214,14 +214,6 @@ local globalkeys =
 			description = "Take a Selection Screenshot",
 			group = "Launcher"
 		}
-	),
-	--#############################################################################
-	awful.key(
-		{"Mod1", "Shift"},
-		"Tab",
-		function()
-			switcher.switch(-1, "Mod1", "Alt_L", "Shift", "Tab")
-		end
 	),
 	--#############################################################################
 	-- Layout manipulation
