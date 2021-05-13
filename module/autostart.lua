@@ -4,9 +4,8 @@ local naughty = require("naughty")
 local config_dir = filesystem.get_configuration_dir()
 
 local startup_apps = {
---    "picom -b --experimental-backends --config " .. config_dir .. "external/picom/picom.conf"
-    -- Keyring
-    -- "xsetroot -cursor_name left_ptr",
+   "picom -b --experimental-backends --config ~/.config/awesome/external/picom/picom.conf",
+     "xsetroot -cursor_name left_ptr",
     'xcape -e "Super_L=Super_L|Control_L|Escape"'
 }
 

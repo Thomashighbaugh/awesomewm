@@ -15,7 +15,7 @@ local beautiful = require("beautiful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local default_apps = require("configurations.default-apps")
 local revelation = require("external.lib.revelation")
-
+local switcher = require("external.lib.switcher")
 local menubar = require("menubar")
 local machi = require("external.lib.layout-machi")
 require("beautiful").layout_machi = machi.get_icon()
@@ -25,6 +25,15 @@ require("awful.autofocus")
 
 local globalkeys =
 	gears.table.join(
+		awful.key({ "Mod1",           }, "Tab",
+		function ()
+			switcher.switch( 1, "Mod1", "Alt_L", "Shift", "Tab")
+		end),
+	  
+	  awful.key({ "Mod1", "Shift"   }, "Tab",
+		function ()
+			switcher.switch(-1, "Mod1", "Alt_L", "Shift", "Tab")
+		end),
 	--#############################################################################
 	awful.key(
 		{modkey},
@@ -43,6 +52,18 @@ local globalkeys =
 		end,
 		{
 			description = "Launch Firefox",
+			group = "Launcher"
+		}
+	),
+	--#############################################################################
+	awful.key(
+		{modkey, "Shift"},
+		"F2",
+		function()
+			awful.spawn("buku_run")
+		end,
+		{
+			description = "Launch Buku Rofi Menu",
 			group = "Launcher"
 		}
 	),
@@ -160,7 +181,6 @@ local globalkeys =
 	),
 	--#############################################################################
 	--#############################################################################
-	awful.key({modkey}, "Escape", awful.tag.history.restore, {description = "go back", group = "tag"}),
 	--#############################################################################
 
 	awful.key(
@@ -489,7 +509,6 @@ local globalkeys =
 	awful.key(
 		{modkey, "Control"},
 		"Escape",
-		--function() awful.spawn("rofi -show drun -columns 2 -theme codeDark -no-show-icons") end
 		function()
 			awful.spawn(default_apps.app_menu, false)
 		end,

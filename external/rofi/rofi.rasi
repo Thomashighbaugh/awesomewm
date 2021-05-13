@@ -1,5 +1,5 @@
 configuration {
-	font: "Inter Regular 10";
+	font: "Hurmit Nerd Font Mono bold 15";
 	show-icons: true;
 	drun-display-format: "{name}";
 	fullscreen: false;
@@ -13,13 +13,13 @@ configuration {
 
 * {
 	transparent: #00000000;
-	foreground: #F2F2F2EE;
-	background-selected: #F2F2F245;
-	background-active: #F2F2F230;
-	background-white: #F2F2F211;
-	background-black: #00000066;
-	urgent: #E91E6366;
-	urgent-selected: #E91E6377;
+	foreground: #f4f4f7EE;
+	background-selected: #8b9cbe45;
+	background-active: #f4f4f730;
+	background-white: #F4f4f711;
+	background-black: #17191e66;
+	urgent: #8265ff77;
+	urgent-selected: #8265ff77;
 }
 
 window {
@@ -37,7 +37,7 @@ prompt {
 button {
 	action: "ok";
 	str: " ";
-	font: "FantasqueSansMono Nerd Font 11";
+	font: "FantasqueSansMono Nerd Font 15";
 	expand: false;
 	text-color: @foreground;
 	background-color: @transparent;
@@ -46,7 +46,7 @@ button {
 }
 
 entry {
-	font: "Inter Regular 11";
+	font: "Hurmit Nerd Font Mono bold 11";
 	background-color: @transparent;
 	text-color: @foreground;
 	expand: true;
@@ -95,8 +95,8 @@ listview {
 mainbox {
 	background-color: @background-black;
 	children: [ inputbar, listview ];
-	spacing: 25px;
-	padding: 70px 15% 0 15%;
+	spacing: 15px;
+	padding: 70px 5% 0 5%;
 	/*padding: 70px 135px 0 135px;*/
 }
 

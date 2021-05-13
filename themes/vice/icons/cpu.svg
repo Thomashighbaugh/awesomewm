@@ -7,7 +7,7 @@
  <g>
   <title>Layer 1</title>
   <rect width="56" height="56" x="-61" y="-60" rx="2.8" ry="2.8" transform="matrix(0,-1,-1,0,0,0) " opacity="0.2" id="svg_1"/>
-  <rect width="56" height="56" x="-60" y="-60" rx="2.8" ry="2.8" transform="matrix(0,-1,-1,0,0,0) " fill="#0badff" id="svg_2"/>
+  <rect width="56" height="56" x="-60" y="-60" rx="2.8" ry="2.8" transform="matrix(0,-1,-1,0,0,0) " fill="#00ffcc" id="svg_2"/>
   <rect width="20" height="20" x="22" y="23" rx="4.8" ry="4.8" opacity="0.2" id="svg_3"/>
   <rect width="20" height="20" x="22" y="22" rx="4.8" ry="4.8" fill="#3c3f4c" id="svg_4"/>
   <g transform="matrix(2,0,0,2,0,1) " opacity="0.2" id="svg_5">

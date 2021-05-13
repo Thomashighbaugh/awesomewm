@@ -17,11 +17,11 @@ local theme = {}
 -- ####################################################################
 -- Font
 -- ####################################################################
-theme.font = "Hurmit Nerd Font Mono medium 12"
+theme.font = "Hurmit Nerd Font Mono medium 14"
 theme.font_bold = "Hurmit Nerd Font Mono bold 14"
-theme.font_large = "Hurmit Nerd Font Mono bold 16"
-theme.font_small = "Hurmit Nerd Font Mono bold 11"
-theme.font_extra_small = "Hurmit Nerd Font Mono bold 7"
+theme.font_large = "Hurmit Nerd Font Mono bold 18"
+theme.font_small = "Hurmit Nerd Font Mono bold 12"
+theme.font_extra_small = "Hurmit Nerd Font Mono bold 10"
 
 -- ####################################################################
 -- Color Scheme From .Xresources
@@ -120,7 +120,7 @@ end
 -- ####################################################################
 -- MStab Configuration
 -- ####################################################################
-theme.mstab_tabbar_style = "modern"
+theme.mstab_tabbar_style = "boxes"
 theme.mstab_bar_ontop = true -- whether you want to allow the bar to be ontop of clients
 theme.mstab_bar_padding = dpi(0) -- how much padding there should be between clients and your tabbar
 theme.mstab_dont_resize_slaves = false
