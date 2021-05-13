@@ -35,7 +35,7 @@ local create_clock = function()
 			border_color = beautiful.border_button,
 			widget = wibox.container.background
 		},
-		margins = dpi(2),
+		margins = dpi(0),
 		widget = wibox.container.margin
 	}
 

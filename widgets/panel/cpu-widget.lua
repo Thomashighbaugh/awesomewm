@@ -157,8 +157,8 @@ local function worker(user_args)
         wibox.widget {
         id = "icon",
         image = beautiful.icon_cpu,
-        forced_width = 48,
-        forced_height = 48,
+        forced_width = 96,
+        forced_height = 96,
         widget = wibox.widget.imagebox
     }
     local cpu_button =
@@ -177,6 +177,7 @@ local function worker(user_args)
             widget = wibox.container.margin
         },
         forced_width = dpi(115),
+
         shape = gears.shape.rounded_rect,
         bg = beautiful.bg_button,
         shape_border_color = beautiful.border_button,
@@ -226,7 +227,7 @@ local function worker(user_args)
                             forced_height = 30,
                             forced_width = 150,
                             paddings = 1,
-                            margins = 4,
+                            margins = 0,
                             border_width = 1,
                             border_color = beautiful.bg_focus,
                             background_color = beautiful.xbackground .. "cc",

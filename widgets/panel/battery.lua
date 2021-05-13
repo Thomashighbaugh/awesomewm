@@ -71,7 +71,7 @@ local last_battery_check = os.time()
 
 watch(
     "acpi -i",
-    1,
+    10,
     function(_, stdout)
         local battery_info = {}
         local capacities = {}
@@ -118,14 +118,14 @@ watch(
         end
 
         local rounded_charge = math.floor(charge / 10) * 10
-        if (rounded_charge == 0) then
+        if (charge == 100) then
             battery_icon_name = battery_icon_name .. "-normal"
-        elseif (rounded_charge <= 100 and rounded_charge >= 71) then
-            battery_icon_name = battery_icon_name .. "-normal" .. rounded_charge
-        elseif (rounded_charge >= 25 and rounded_charge <= 70) then
-            battery_icon_name = battery_icon_name .. "-half" .. rounded_charge
-        elseif (rounded_charge >= 0 and rounded_charge <= 24) then
-            battery_icon_name = battery_icon_name .. "-empty" .. rounded_charge
+        elseif (charge > 71) then
+            battery_icon_name = battery_icon_name .. "-normal" 
+        elseif (charge <= 70) then
+            battery_icon_name = battery_icon_name .. "-half" 
+        elseif ( charge <= 24) then
+            battery_icon_name = battery_icon_name .. "-empty" 
         end
 
         widget.icon:set_image(PATH_TO_ICONS .. battery_icon_name .. ".svg")

@@ -93,11 +93,11 @@ theme.widget_border_width = dpi(1)
 -- Margins and paddings
 -- ####################################################################
 
-theme.notification_margin = dpi(6)
-theme.widget_margin = dpi(6)
-theme.btn_xs_margin = dpi(3)
-theme.btn_md_margin = dpi(5)
-theme.widget_margin = dpi(3)
+theme.notification_margin = dpi(2)
+theme.widget_margin = dpi(1)
+theme.btn_xs_margin = dpi(1)
+theme.btn_md_margin = dpi(1)
+theme.widget_margin = dpi(1)
 theme.is_enable_titlebar = true
 
 -- ####################################################################
@@ -120,7 +120,7 @@ end
 -- ####################################################################
 -- MStab Configuration
 -- ####################################################################
-theme.mstab_tabbar_style = "boxes"
+theme.mstab_tabbar_style = "modern"
 theme.mstab_bar_ontop = true -- whether you want to allow the bar to be ontop of clients
 theme.mstab_bar_padding = dpi(0) -- how much padding there should be between clients and your tabbar
 theme.mstab_dont_resize_slaves = false
@@ -253,7 +253,7 @@ theme.menu_width = dpi(200)
 -- ####################################################################
 -- Wibar
 -- ####################################################################
-theme.wibar_height = dpi(28)
+theme.wibar_height = dpi(40)
 theme.wibar_position = "bottom"
 
 -- ####################################################################
@@ -302,14 +302,14 @@ theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, theme.bg_focus
 -- ####################################################################
 -- Taglist Font (have to put it here or the config fails, not sure wtf)
 -- ####################################################################
-theme.taglist_font = "awesomewm-font 18"
+theme.taglist_font = "awesomewm-font 24"
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 
 -- ####################################################################
 -- Icon theme
 -- ####################################################################
-theme.icon_theme = "Chhinamasta"
+theme.icon_theme = "chhinamasta"
 
 return theme
 

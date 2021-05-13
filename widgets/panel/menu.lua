@@ -27,7 +27,7 @@ local widget_menu =
 		widget = wibox.container.background
 	},
 	margins = dpi(0),
-	widget = wibox.container.margin
+	widget = wibox.container.background
 }
 
 widget_menu:buttons(

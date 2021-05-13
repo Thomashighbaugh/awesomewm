@@ -36,7 +36,7 @@ local control_widget =
 		border_color = beautiful.border_button,
 		widget = wibox.container.background
 	},
-	margins = dpi(2),
+	margins = dpi(0),
 	widget = wibox.container.margin
 }
 
@@ -126,14 +126,14 @@ power_button:connect_signal(
 local session_widget = function()
 	local widget_username =
 		wibox.widget {
-		text = "tlh",
-		font = beautiful.font_bold .. " 10",
+		text = "@user",
+		font = beautiful.font_bold .. " 15",
 		widget = wibox.widget.textbox
 	}
 	local widget_hostname =
 		wibox.widget {
 		text = "@localhost",
-		font = beautiful.font_bold .. " 10",
+		font = beautiful.font_bold .. " 15",
 		widget = wibox.widget.textbox
 	}
 	-- Set hostname
@@ -155,13 +155,7 @@ local session_widget = function()
 		{
 			{
 				{
-					{
-						image = beautiful.face_image,
-						resize = true,
-						forced_width = dpi(46),
-						forced_height = dpi(46),
-						widget = wibox.widget.imagebox
-					},
+
 					{
 						{
 							{
@@ -184,7 +178,7 @@ local session_widget = function()
 			bottom = beautiful.widget_margin,
 			widget = wibox.container.margin
 		},
-		forced_height = dpi(80),
+		forced_height = dpi(60),
 		widget = wibox.container.background
 	}
 
@@ -208,7 +202,7 @@ local battery_widget = function()
 	local battery_percent =
 		wibox.widget {
 		text = "62%",
-		font = beautiful.font .. " 9",
+		font = beautiful.font .. " 20",
 		forced_width = dpi(80),
 		widget = wibox.widget.textbox
 	}
@@ -218,8 +212,8 @@ local battery_widget = function()
 		{
 			image = beautiful.battery_icon,
 			resize = true,
-			forced_width = dpi(21),
-			forced_height = dpi(21),
+			forced_width = dpi(41),
+			forced_height = dpi(41),
 			widget = wibox.widget.imagebox
 		},
 		top = dpi(2),
@@ -228,10 +222,10 @@ local battery_widget = function()
 
 	local battery_state =
 		wibox.widget {
-		text = "Discharging",
-		font = beautiful.font .. " 8",
+		text = "",
+		font = beautiful.font .. " 12",
 		valign = "left",
-		forced_width = dpi(145),
+		forced_width = dpi(125),
 		widget = wibox.widget.textbox
 	}
 	local battery =
@@ -257,7 +251,7 @@ local battery_widget = function()
 		"]],
 		5,
 		function(_, stdout)
-			--battery_state:set_text(stdout:gsub('%\n', ''))
+			battery_state:set_text(stdout:gsub('%\n', ''))
 			local state = str_split(stdout:gsub(",", ""), "+")
 			local status = state[1]
 			local percent = state[2]
@@ -279,7 +273,7 @@ local battery_widget_wrapped =
 -- line separator
 local horizontal_separator =
 	wibox.widget {
-	thikness = dpi(6),
+	thickness = dpi(6),
 	color = beautiful.bg_button,
 	forced_width = dpi(400),
 	forced_height = dpi(3),
