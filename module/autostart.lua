@@ -27,7 +27,7 @@ local spawn_once = function(cmd)
                     title = "Error starting application",
                     message = "Error while starting " .. cmd,
                     timeout = 15,
-                    icon = config_dir .. "themes/codedark/icons/error.svg"
+                    icon = config_dir .. "themes/vice/icons/error.svg"
                 }
             )
         end

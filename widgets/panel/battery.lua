@@ -55,7 +55,7 @@ local battery_popup =
 local function show_battery_warning()
     naughty.notify {
         icon = PATH_TO_ICONS .. "battery-empty.svg",
-        icon_size = dpi(24),
+        icon_size = dpi(32),
         text = "Danger Will Robinson, Your Machine Is About to Give Up the Ghost!",
         title = "Battery is dying",
         timeout = 20,

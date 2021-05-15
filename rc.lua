@@ -88,3 +88,7 @@ require("module.notification")
 -- Autostarting Applications with WM
 -- ####################################################################
 require("module.autostart")
+
+
+collectgarbage("setpause", 110)
+collectgarbage("setstepmul", 1000)

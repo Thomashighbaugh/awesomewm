@@ -33,17 +33,6 @@ local volume_slider =  function()
 		forced_width = dpi(185),
 		forced_height = dpi(20),
 		widget = wibox.widget.slider
-		--max_value     = 100,
-		--value         = 50,
-		--forced_height = dpi(10),
-		--forced_width  = dpi(170),
-		--margins = {top = dpi(8), bottom = dpi(8)},
-		--border_width  = 0,
-		--color = beautiful.fg_normal,
-		--background_color = beautiful.bg_button,
-		--shape = gears.shape.rounded_bar,
-		--bar_shape = gears.shape.rounded_bar,
-		--widget = wibox.widget.progressbar,
 	}
 	
 	local widget_lebel = wibox.widget {
