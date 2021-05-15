@@ -122,7 +122,7 @@ end
 -- ####################################################################
 theme.mstab_tabbar_style = "modern"
 theme.mstab_bar_ontop = true -- whether you want to allow the bar to be ontop of clients
-theme.mstab_bar_padding = dpi(0) -- how much padding there should be between clients and your tabbar
+theme.mstab_bar_padding = dpi(12) -- how much padding there should be between clients and your tabbar
 theme.mstab_dont_resize_slaves = false
 theme.mstab_bar_height = 24
 
