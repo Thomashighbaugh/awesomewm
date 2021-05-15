@@ -1,149 +1,94 @@
--- automatically generated file. Do not edit (see /usr/share/doc/menu/html)
+-----------------------------------------------------------------
+---------------------     Menu      -----------------------------
+-----------------------------------------------------------------
 
-local awesome = awesome
+-- Standard awesome library
+local awful = require("awful")
+local hotkeys_popup = require("awful.hotkeys_popup").widget
+-- Theme handling library
+local beautiful = require("beautiful") -- for awesome.icon
+local freedesktop = require("freedesktop")
+local menubar = require("menubar")
+local M = {}  -- menu
+local _M = {} -- module
+local dpi = require('beautiful').xresources.apply_dpi
+-- Article about Menus in Awesome Window Manager
+-- https://awesomewm.org/apidoc/popups%20and%20bars/awful.menu.html
+local home = os.getenv("HOME")
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-Menu = {}
+-- This is used later as the default terminal and editor to run.
+-- local terminal = "xfce4-terminal"
+local terminal = "kitty"
 
-Menu["Applications_Accessibility"] = {
-	{"Xmag", "xmag"}
-}
-Menu["Applications_Editors"] = {
-	{"Xedit", "xedit"}
-}
-Menu["Applications_Emulators"] = {
-	{"VirtualBox", "/usr/bin/virtualbox", "/usr/share/pixmaps/virtualbox.xpm"}
-}
-Menu["Applications_Graphics"] = {
-	{"xcb", "/usr/bin/xcb"},
-	{"X Window Snapshot", "xwd | xwud"}
-}
-Menu["Applications_Network_Communication"] = {
-	{"Telnet", "x-terminal-emulator -e " .. "/usr/bin/telnet.netkit"},
-	{"Xbiff", "xbiff"}
-}
-Menu["Applications_Network_Monitoring"] = {
-	{"netwatch", "x-terminal-emulator -e " .. "/usr/sbin/netwatch"},
-	{"statnet", "x-terminal-emulator -e " .. "/usr/bin/statnet"},
-	{"trafshow", "x-terminal-emulator -e " .. "/usr/sbin/trafshow"}
-}
-Menu["Applications_Network_Web_Browsing"] = {
-	{"Google Chrome", "/opt/google/chrome/google-chrome", "/opt/google/chrome/product_logo_32.xpm"},
-	{"Opera", "/usr/bin/opera", "/usr/share/pixmaps/opera.xpm"},
-	{"Qutebrowser", "qutebrowser", "/usr/share/pixmaps/qutebrowser.xpm"},
-	{"w3m", "x-terminal-emulator -e " .. "/usr/bin/w3m /usr/share/doc/w3m/MANUAL.html"}
-}
-Menu["Applications_Network"] = {
-	{"Communication", Menu["Applications_Network_Communication"]},
-	{"Monitoring", Menu["Applications_Network_Monitoring"]},
-	{"Web Browsing", Menu["Applications_Network_Web_Browsing"]}
-}
-Menu["Applications_Programming"] = {
-	{"GDB", "x-terminal-emulator -e " .. "/usr/bin/gdb"},
-	{"Tclsh8.6", "x-terminal-emulator -e " .. "/usr/bin/tclsh8.6"},
-	{"TkWish8.6", "x-terminal-emulator -e /usr/bin/wish8.6"}
-}
-Menu["Applications_Science_Mathematics"] = {
-	{"Bc", "x-terminal-emulator -e " .. "/usr/bin/bc"},
-	{"Dc", "x-terminal-emulator -e " .. "/usr/bin/dc"},
-	{"Xcalc", "xcalc"}
-}
-Menu["Applications_Science"] = {
-	{"Mathematics", Menu["Applications_Science_Mathematics"]}
-}
-Menu["Applications_Shells"] = {
-	{"Bash", "x-terminal-emulator -e " .. "/bin/bash --login"},
-	{"Dash", "x-terminal-emulator -e " .. "/bin/dash -i"},
-	{"fish", "x-terminal-emulator -e " .. "/usr/bin/fish"},
-	{"Sh", "x-terminal-emulator -e " .. "/bin/sh --login"},
-	{"Zsh", "x-terminal-emulator -e " .. "/bin/zsh"}
-}
-Menu["Applications_Sound"] = {
-	{"ncmpcpp", "x-terminal-emulator -e " .. "/usr/bin/ncmpcpp"}
-}
-Menu["Applications_System_Administration"] = {
-	{"Editres", "editres"},
-	{"Xclipboard", "xclipboard"},
-	{"Xfontsel", "xfontsel"},
-	{"Xkill", "xkill"},
-	{"Xrefresh", "xrefresh"}
-}
-Menu["Applications_System_Hardware"] = {
-	{"Xvidtune", "xvidtune"}
-}
-Menu["Applications_System_Monitoring"] = {
-	{"Pstree", "x-terminal-emulator -e " .. "/usr/bin/pstree.x11", "/usr/share/pixmaps/pstree16.xpm"},
-	{"Top", "x-terminal-emulator -e " .. "/usr/bin/top"},
-	{"Xconsole", "xconsole -file /dev/xconsole"},
-	{"Xev", "x-terminal-emulator -e xev"},
-	{"Xload", "xload"}
-}
-Menu["Applications_System_Package_Management"] = {
-	{"Aptitude Package Manager (text)", "x-terminal-emulator -e " .. "/usr/bin/aptitude-curses"}
-}
-Menu["Applications_System"] = {
-	{"Administration", Menu["Applications_System_Administration"]},
-	{"Hardware", Menu["Applications_System_Hardware"]},
-	{"Monitoring", Menu["Applications_System_Monitoring"]},
-	{"Package Management", Menu["Applications_System_Package_Management"]}
-}
-Menu["Applications_Viewers"] = {
-	{"Wordview", "/usr/bin/wordview"},
-	{"Xditview", "xditview"}
-}
-Menu["Applications"] = {
-	{"Accessibility", Menu["Applications_Accessibility"]},
-	{"Editors", Menu["Applications_Editors"]},
-	{"Emulators", Menu["Applications_Emulators"]},
-	{"Graphics", Menu["Applications_Graphics"]},
-	{"Network", Menu["Applications_Network"]},
-	{"Programming", Menu["Applications_Programming"]},
-	{"Science", Menu["Applications_Science"]},
-	{"Shells", Menu["Applications_Shells"]},
-	{"Sound", Menu["Applications_Sound"]},
-	{"System", Menu["Applications_System"]},
-	{"Viewers", Menu["Applications_Viewers"]}
-}
-Menu["Games_Toys"] = {
-	{"Oclock", "oclock"},
-	{"Xclock (analog)", "xclock -analog"},
-	{"Xclock (digital)", "xclock -digital -update 1"},
-	{"Xeyes", "xeyes"},
-	{"Xlogo", "xlogo"}
-}
-Menu["Games"] = {
-	{"Toys", Menu["Games_Toys"]}
-}
-Menu["Help"] = {
-	{"Xman", "xman"}
-}
-Menu["Window_Managers"] = {
-	{
-		"awesome",
-		function()
-			awesome.exec("/usr/bin/awesome")
-		end,
-		"/usr/share/pixmaps/awesome.xpm"
-	},
-	{
-		"Bspwm",
-		function()
-			awesome.exec("/usr/bin/bspwm")
-		end
-	},
-	{
-		"Herbstluftwm",
-		function()
-			awesome.exec("/usr/bin/herbstluftwm")
-		end,
-		"/usr/share/pixmaps/herbstluftwm.xpm"
-	}
-}
-Menu["Debian"] = {
-	{"Applications", Menu["Applications"]},
-	{"Games", Menu["Games"]},
-	{"Help", Menu["Help"]},
-	{"Window Managers", Menu["Window_Managers"]}
-}
+-- Variable definitions
+-- This is used later as the default terminal and editor to run.
+local editor = "nvim"
+local editor_cmd = terminal .. " -e " .. editor
 
-Mainmenu = {menu = {Menu = Menu}}
-return Mainmenu
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+-- Default Menu Called When Right Clicking on the Desktop 
+M.awesome = {
+  { "Hotkeys", function()
+      hotkeys_popup.show_help(nil, awful.screen.focused())
+    end, home .. "/.config/awesome/themes/vice/icons/keyboard-alt1.svg"  },
+  { "Terminal", terminal,  home .. "/.config/awesome/themes/vice/icons/terminal-alt2.svg"  },
+  { "Shutdown/Logout", home .. "/bin/powermenu",  home .. "/.config/awesome/themes/vice/icons/power.svg"  },
+  { "Reload Awesome", awesome.restart, home .. "/.config/awesome/themes/vice/icons/logo.png"  },
+
+
+}
+-- Sub-Menu that can launch various commonly used programs quickly without needing to use Launcher Menu
+M.favorite = {
+  { "PCManFM", "pcmanfm",  home .. "/.config/awesome/themes/vice/icons/file-manager.svg" },
+  { "Spacemacs", "emacs",  home .. "/.config/awesome/themes/vice/icons/spacemacs.svg" },
+  { "Webstorm", "webstorm",  home .. "/.config/awesome/themes/vice/icons/webstorm.svg"  },
+  { "Kitty", "kitty -e tmux new",  home .. "/.config/awesome/themes/vice/icons/terminal-alt4.svg"  },
+  { "Firefox", "firefox",  home .. "/.config/awesome/themes/vice/icons/firefox-mozilla.svg"  },
+  { "Chromium", "chromium", home .. "/.config/awesome/themes/vice/icons/chromium-browser.svg" },
+  { "Firefox Developer Edition", "firefox-developer-edition", home .. "/.config/awesome/themes/vice/icons/firefox-mozilla.svg" },
+  { "Gimp", "gimp",  home .. "/.config/awesome/themes/vice/icons/gimp.svg" },
+  { "Inkscape", "inkscape",  home .. "/.config/awesome/themes/vice/icons/inkscape.svg" },
+  {"Pencilsheep", "pencilsheep", home .. "/.config/awesome/themes/vice/icons/pencil2d.svg"}
+}
+-- SubMenu for Network Related Tasks 
+M.network_main = {
+  { "Network Manager", "networkmanager_dmenu",  home .. "/.config/awesome/themes/vice/icons/network.svg" }
+}
+mymainmenu = freedesktop.menu.build({
+    icon_size = 32,
+    before = {
+        { "Terminal", terminal, home .. "/.config/awesome/themes/vice/icons/terminal-alt2.svg" },
+        { "Browser", firefox, home .. "/.config/awesome/themes/vice/icons/browser.svg" },
+        { "File Manager", filemanager, home .. "/.config/awesome/themes/vice/icons/file-manager.svg" },
+  	{ "Spacemacs", "emacs",  home .. "/.config/awesome/themes/vice/icons/spacemacs.svg" },
+        -- other triads can be put here
+    },
+    after = {
+        { "Awesome", myawesomemenu, "/usr/share/awesome/icons/awesome32.png" },
+        { "Exit", myexitmenu, home .. "/.config/awesome/themes/vice/icons/power.svg" },
+        -- other triads can be put here
+    }
+})
+mylauncher = awful.widget.launcher({image = home .. "/.config/awesome/themes/vice/icons/menu.svg", size = dpi(48),
+                                     menu = mymainmenu })
+
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+function _M.get()
+
+  -- Main Menu
+  local menu_items = {
+    { "awesome", M.awesome,  home .. "/.config/awesome/themes/vice/icons/logo.svg" },
+    { "open terminal", terminal, home .. "/.config/awesome/themes/vice/icons/utilities-terminal.svg" },
+    { "network", M.network_main, home .. "/.config/awesome/themes/vice/icons/network-wired-activated.svg" },
+    { "favorite", M.favorite,  home .. "/.config/awesome/themes/vice/icons/menu.svg"  }
+  }
+
+  return menu_items
+end
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+return setmetatable({}, { __call = function(_, ...) return _M.get(...) end })

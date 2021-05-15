@@ -6,7 +6,7 @@ local config_dir = filesystem.get_configuration_dir()
 local startup_apps = {
    "picom -b --experimental-backends --config ~/.config/awesome/external/picom/picom.conf",
      "xsetroot -cursor_name left_ptr",
-    'xcape -e "Super_L=Super_L|Control_L|Escape"'
+    'xcape -e "Super_L=Super_L|Control_L|Escape"',
 }
 
 local spawn_once = function(cmd)

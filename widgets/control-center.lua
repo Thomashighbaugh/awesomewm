@@ -346,7 +346,7 @@ local control_popup =
 
 control_popup:setup(
 	{
-		forced_height = dpi(500),
+		forced_height = dpi(400),
 		widget = wibox.container.background,
 		border_width = beautiful.widget_border_width,
 		border_color = beautiful.border_button,
