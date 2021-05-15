@@ -17,8 +17,7 @@ local default_apps = require("configurations.default-apps")
 local revelation = require("external.lib.revelation")
 local switcher = require("external.lib.switcher")
 local menubar = require("menubar")
-local machi = require("external.lib.layout-machi")
-require("beautiful").layout_machi = machi.get_icon()
+
 revelation.init()
 local drop = require("widgets.dropdown")
 require("awful.autofocus")
@@ -191,37 +190,6 @@ local globalkeys =
 			description = "show all windows",
 			group = "awesome"
 		}
-	),
-	--#############################################################################
-	awful.key(
-		{modkey},
-		"/",
-		function()
-			machi.switcher.start(client.focus)
-		end,
-		{
-			description = "switch between windows for a machi layout",
-			group = "layout"
-		}
-	),
-	--#############################################################################
-	awful.key(
-		{modkey},
-		"/",
-		function()
-			machi.switcher.start(client.focus)
-		end,
-		{
-			description = "switch between windows for a machi layout",
-			group = "layout"
-		}
-	),
-	awful.key(
-		{"Mod1"},
-		"Tab",
-		function()
-			switcher.switch(1, "Mod1", "Alt_L", "Shift", "Tab")
-		end
 	),
 	--#############################################################################
 	awful.key(

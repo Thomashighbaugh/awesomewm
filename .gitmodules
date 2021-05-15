@@ -1,9 +1,6 @@
 [submodule "external/lib/bling"]
 	path = external/lib/bling
 	url = https://github.com/BlingCorp/bling
-[submodule "external/lib/layout-machi"]
-	path = external/lib/layout-machi
-	url = https://github.com/xinhaoyuan/layout-machi
 [submodule "external/lib/lain"]
 	path = external/lib/lain
 	url = https://github.com/lcpz/lain

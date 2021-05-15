@@ -16,12 +16,9 @@ Desc: stores the default layouts available and their ordering when changed.
 -- Standard awesome library
 local awful = require("awful")
 local beautiful = require("beautiful")
-local lain = require("lain")
+local lain = require("external.lib.lain")
 local bling = require("external.lib.bling")
 local mstab = bling.layout.mstab
--- Layout Machi
-local machi = require("external.lib.layout-machi")
-beautiful.layout_machi = machi.get_icon()
 
 -- #############################################################################
 -- Layout Definitions ##########################################################
@@ -33,8 +30,7 @@ awful.layout.layouts = {
     awful.layout.suit.max,
     bling.layout.centered,
     bling.layout.equalarea,
-    machi.default_layout
-    -- awful.layout.suit.tile,
+        -- awful.layout.suit.tile,
     -- lain.layout.centerwork
     -- bling.layout.vertical,
     --awful.layout.suit.spiral.dwindle

@@ -15,40 +15,22 @@ Desc: The bottom bar and its widgets
 -- Create a wibox for each screen and add it
 pcall(require, "luarocks.loader")
 
-local gears = require("gears")
+
 local awful = require("awful")
 require("awful.autofocus")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
-local naughty = require("naughty")
 require("awful.hotkeys_popup.keys")
 require("awful.autofocus")
-local has_fdo, freedesktop = pcall(require, "freedesktop")
--- #############################################################################
--- Set Wallpaper ###############################################################
--- #############################################################################
-local function set_wallpaper(s)
-    -- Wallpaper
-    if beautiful.wallpaper then
-        local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
-        if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
-        end
-        gears.wallpaper.maximized(wallpaper, s, true)
-    end
-end
 
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
+
+local set_wallpaper = require("configurations.wallpaper")
+
 
 awful.screen.connect_for_each_screen(
     function(s)
         -- Wallpaper
         set_wallpaper(s)
-
-        -- Create a promptbox for each screen
-        s.mypromptbox = awful.widget.prompt()
 
         -- Create the wibox
         s.mywibox = awful.wibar({position = beautiful.wibar_position, screen = s, height = beautiful.wibar_height})
@@ -61,7 +43,6 @@ awful.screen.connect_for_each_screen(
                 layout = wibox.layout.fixed.horizontal,
                 require("widgets.panel.menu"),
                 require("widgets.panel.taglist")(s),
-                s.mypromptbox
             },
             require("widgets.panel.tasklist")(s), -- Middle widget
             {
