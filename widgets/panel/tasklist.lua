@@ -20,6 +20,13 @@ local tasklist = function(s)
 		),
 		awful.button(
 			{},
+			2,
+			function(c)
+				c:emit_signal("smart_borders::right_click")
+			end
+		),
+		awful.button(
+			{},
 			3,
 			function()
 				awful.menu.client_list({theme = {width = 650}})

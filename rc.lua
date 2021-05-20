@@ -90,5 +90,7 @@ require("module.notification")
 require("module.autostart")
 
 
+
+
 collectgarbage("setpause", 110)
 collectgarbage("setstepmul", 1000)
