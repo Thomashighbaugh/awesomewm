@@ -12,4 +12,4 @@
 	url = https://github.com/guotsuan/awesome-revelation
 [submodule "external/lib/switcher"]
 	path = external/lib/switcher
-	url = https://github.com/berlam/awesome-switcher
+	url = https://github.com/troglobit/awesome-switcher

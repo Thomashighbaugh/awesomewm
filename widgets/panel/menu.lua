@@ -16,11 +16,11 @@ local widget_menu =
 			},
 			left = dpi(2),
 			right = dpi(2),
-			top = dpi(0),
+			top = dpi(2),
 			bottom = dpi(0),
 			widget = wibox.container.margin
 		},
-		bg = beautiful.bg_button,
+		bg = beautiful.transparent,
 		shape = beautiful.panel_button_shape,
 		border_width = beautiful.btn_border_width,
 		border_color = beautiful.border_button,

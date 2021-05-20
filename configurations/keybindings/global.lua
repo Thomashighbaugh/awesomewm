@@ -12,10 +12,11 @@ Desc: Global Keybindings
 local gears = require("gears")
 local awful = require("awful")
 local beautiful = require("beautiful")
-local hotkeys_popup = require("awful.hotkeys_popup")
+local hotkeys_popup = require('awful.hotkeys_popup').widget
+
 local default_apps = require("configurations.default-apps")
 local revelation = require("external.lib.revelation")
-local switcher = require("external.lib.switcher")
+
 local menubar = require("menubar")
 
 revelation.init()
@@ -24,25 +25,17 @@ require("awful.autofocus")
 
 local globalkeys =
 	gears.table.join(
-		awful.key({ "Mod1",           }, "Tab",
-		function ()
-			switcher.switch( 1, "Mod1", "Alt_L", "Shift", "Tab")
-		end),
-	  
-	  awful.key({ "Mod1", "Shift"   }, "Tab",
-		function ()
-			switcher.switch(-1, "Mod1", "Alt_L", "Shift", "Tab")
-		end),
+
 	--#############################################################################
 	awful.key(
 		{modkey},
-		"F1",
+		'F1',
 		hotkeys_popup.show_help,
 		{
-			description = "show help",
-			group = "awesome"
+			description = 'show help',
+			group = 'awesome'
 		}
-	), --#############################################################################
+	),--#############################################################################
 	awful.key(
 		{modkey},
 		"F2",
@@ -150,23 +143,7 @@ local globalkeys =
 		end,
 		{description = "open display configuration application", group = "function"}
 	),
-	--#############################################################################
-	awful.key(
-		{"Mod1"},
-		"Tab",
-		function()
-			switcher.switch(1, "Mod1", "Alt_L", "Shift", "Tab")
-		end
-	),
-	--#############################################################################
 
-	awful.key(
-		{"Mod1", "Shift"},
-		"Tab",
-		function()
-			switcher.switch(-1, "Mod1", "Alt_L", "Shift", "Tab")
-		end
-	),
 	--#############################################################################
 	-- My keybindings
 	awful.key(

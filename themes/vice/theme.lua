@@ -131,7 +131,7 @@ theme.mstab_bar_height = 24
 -- ####################################################################
 theme.icon_times = themes_path .. "icons/remove.svg"
 -- awesome icon
-theme.awesome_menu_icon = themes_path .. "icons/logo.svg"
+theme.awesome_menu_icon = themes_path .. "icons/menu.svg"
 --- Update toggle icons
 theme.icon_update_none = themes_path .. "icons/update-none.svg"
 theme.icon_update_available = themes_path .. "icons/update-low.svg"
@@ -276,7 +276,7 @@ theme.titlebar_bg_focus = theme.bg_normal
 -- ####################################################################
 -- wallpaper
 -- ####################################################################
-theme.wallpaper = themes_path .. "/images/5.png"
+theme.wallpaper = themes_path .. "/images/6.png"
 
 -- ####################################################################
 -- LayoutBox
@@ -288,13 +288,7 @@ theme.layout_fullscreen = themes_path .. "layouts/fullscreen.svg"
 theme.layout_tile = themes_path .. "layouts/tile.svg"
 theme.layout_dwindle = themes_path .. "layouts/dwindle.svg"
 
--- ####################################################################
--- Hotkey popup
--- ####################################################################
-theme.hotkeys_border_width = dpi(1)
-theme.hotkeys_border_color = theme.bg_normal
-theme.hotkeys_modifiers_fg = theme.xforeground
-theme.hotkeys_shape = gears.shape.rounded_rect
+
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, theme.bg_focus, theme.fg_focus)
