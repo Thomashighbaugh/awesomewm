@@ -4,7 +4,8 @@
   &#xa0;
 
 </div>
-
+<h1>DON'T GET ATTAHED, HUGE REWRITE IN THE WORKS</h1>
+I know, I seem to have been rewriting this config weekly for a few months, but that's because I am close, so close (thanks to a Tom Meyers of TOS, awesome project, horrible logo/mascot he uses though...so horrible) to a functional, glorious dotfiles-like (remember I said functional) and fully featured desktop userland for the Electric Tantra Linux, so this particular configuration only has until then until it will be scrapped in favor of the configuration on going location [here](https://github.com/the-Electric-Tantra-Linux/awesomwm).From the linked repo, you can watch as I slowly work out all the kinks of the system and get that set up but this one is here for convenience in case you (or I tbh) need a working, not obnoxious configuration to hold you over. This process could end tonight, or in two months as with lua its always up in the air. 
 <h1 align="center">Awesome</h1>
 
 
