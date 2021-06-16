@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" version="1">
-    <rect style="fill:#324090" width="56" height="40" x="-60" y="-52" rx="22" ry="20" transform="matrix(0 -1 -1 0 0 0)"/>
-    <path style="opacity:.1;fill:#fff" d="M32 4c-11.08 0-20 9.812-20 22v1c0-12.188 8.92-22 20-22s20 9.812 20 22v-1c0-12.188-8.92-22-20-22z"/>
-    <path style="fill:none;stroke:#fff;stroke-width:2;stroke-linecap:square" d="m22 23 18 18-9 8.5v-35l9 8.5-18 16"/>
-    <path style="opacity:.2" d="M12 38v1c0 12.188 8.92 22 20 22s20-9.812 20-22v-1c0 12.188-8.92 22-20 22s-20-9.812-20-22z"/>
-</svg>
